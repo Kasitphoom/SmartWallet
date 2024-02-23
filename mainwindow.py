@@ -64,7 +64,6 @@ class Ui_MainWindow(object):
         self.graphButton.setFont(font)
         self.graphButton.setStyleSheet(u"background-color: rgb(255, 115, 102);\n"
 "height:33px;\n"
-"font-family: 'Font Awesome 6 Free Solid';\n"
 "font-size: 24px;\n"
 "color: white;\n"
 "")
@@ -76,7 +75,6 @@ class Ui_MainWindow(object):
         self.historyButton.setFont(font)
         self.historyButton.setStyleSheet(u"background-color: rgb(148, 255, 124);\n"
 "height: 33px;\n"
-"font-family: 'Font Awesome 6 Free Solid';\n"
 "font-size: 24px;\n"
 "color: white;")
 
@@ -86,7 +84,6 @@ class Ui_MainWindow(object):
         self.dashboardButton.setObjectName(u"dashboardButton")
         self.dashboardButton.setStyleSheet(u"background-color: rgb(240, 255, 105);\n"
 "height: 33px;\n"
-"font-family: 'Font Awesome 6 Free Solid';\n"
 "font-size: 24px;\n"
 "color: white;")
 
@@ -96,7 +93,6 @@ class Ui_MainWindow(object):
         self.budgetplannerButton.setObjectName(u"budgetplannerButton")
         self.budgetplannerButton.setStyleSheet(u"background-color: rgb(183, 124, 255);\n"
 "height: 33px;\n"
-"font-family: 'Font Awesome 6 Free Solid';\n"
 "font-size: 24px;\n"
 "color: white;")
 
@@ -106,7 +102,6 @@ class Ui_MainWindow(object):
         self.othersButton.setObjectName(u"othersButton")
         self.othersButton.setStyleSheet(u"background-color: rgb(93, 123, 255);\n"
 "height: 33px;\n"
-"font-family: 'Font Awesome 6 Free Solid';\n"
 "font-size: 24px;\n"
 "color: white;")
 
