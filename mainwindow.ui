@@ -29,171 +29,344 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
-   <widget class="QFrame" name="Content">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>393</width>
-      <height>753</height>
-     </rect>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="spacing">
+     <number>0</number>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(206, 255, 224);</string>
+    <property name="leftMargin">
+     <number>0</number>
     </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
+    <property name="topMargin">
+     <number>0</number>
     </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+    <property name="rightMargin">
+     <number>0</number>
     </property>
-   </widget>
-   <widget class="QFrame" name="frame_2">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>753</y>
-      <width>393</width>
-      <height>99</height>
-     </rect>
+    <property name="bottomMargin">
+     <number>0</number>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(119, 255, 88);
-</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_4">
-     <property name="leftMargin">
-      <number>19</number>
-     </property>
-     <property name="topMargin">
-      <number>23</number>
-     </property>
-     <property name="rightMargin">
-      <number>19</number>
-     </property>
-     <property name="bottomMargin">
-      <number>23</number>
-     </property>
-     <item>
-      <widget class="QFrame" name="frame">
-       <property name="enabled">
-        <bool>false</bool>
+    <item>
+     <widget class="QFrame" name="content">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(206, 255, 224);</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="spacing">
+        <number>0</number>
        </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(79, 186, 116);
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QStackedWidget" name="stackedWidget">
+         <widget class="QWidget" name="dashboardPage">
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QScrollArea" name="scrollArea">
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>389</width>
+                <height>749</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_5" stretch="1,5,5">
+               <property name="sizeConstraint">
+                <enum>QLayout::SetFixedSize</enum>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>5</number>
+               </property>
+               <item>
+                <widget class="QFrame" name="logoHeader">
+                 <property name="styleSheet">
+                  <string notr="true">background-image: url(:/images/image/sw_logo_section.svg);
+background-color: rgb(153, 255, 243);</string>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_2">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 233, 146);</string>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,20">
+                  <property name="sizeConstraint">
+                   <enum>QLayout::SetDefaultConstraint</enum>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="frame_5">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(79, 186, 116);</string>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QFrame" name="frame_6">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_7">
+                     <item>
+                      <widget class="QLabel" name="label_3">
+                       <property name="text">
+                        <string>TextLabel</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_4">
+                       <property name="text">
+                        <string>TextLabel</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton">
+                 <property name="text">
+                  <string>PushButton</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="page_2"/>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="footer">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(119, 255, 88);</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <property name="leftMargin">
+        <number>19</number>
+       </property>
+       <property name="topMargin">
+        <number>23</number>
+       </property>
+       <property name="rightMargin">
+        <number>19</number>
+       </property>
+       <property name="bottomMargin">
+        <number>23</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="frame">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(79, 186, 116);
 border-radius: 25px;
 </string>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <property name="spacing">
-         <number>39</number>
-        </property>
-        <property name="leftMargin">
-         <number>19</number>
-        </property>
-        <property name="rightMargin">
-         <number>19</number>
-        </property>
-        <item>
-         <widget class="QPushButton" name="graphButton">
-          <property name="font">
-           <font>
-            <family>Font Awesome 6 Free Solid</family>
-            <pointsize>-1</pointsize>
-           </font>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="spacing">
+           <number>39</number>
           </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 115, 102);
+          <property name="leftMargin">
+           <number>19</number>
+          </property>
+          <property name="rightMargin">
+           <number>19</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="graphButton">
+            <property name="font">
+             <font>
+              <family>Font Awesome 6 Free Solid</family>
+              <pointsize>-1</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 115, 102);
 height:33px;
-font-family: 'Font Awesome 6 Free Solid';
 font-size: 24px;
 color: white;
 </string>
-          </property>
-          <property name="text">
-           <string>chart-line</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="historyButton">
-          <property name="font">
-           <font>
-            <family>Font Awesome 6 Free Solid</family>
-            <pointsize>-1</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(148, 255, 124);
+            </property>
+            <property name="text">
+             <string>chart-line</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="historyButton">
+            <property name="font">
+             <font>
+              <family>Font Awesome 6 Free Solid</family>
+              <pointsize>-1</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(148, 255, 124);
 height: 33px;
-font-family: 'Font Awesome 6 Free Solid';
 font-size: 24px;
 color: white;</string>
-          </property>
-          <property name="text">
-           <string>history</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="dashboardButton">
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(240, 255, 105);
+            </property>
+            <property name="text">
+             <string>history</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="dashboardButton">
+            <property name="font">
+             <font>
+              <family>Font Awesome 6 Free Solid</family>
+              <pointsize>-1</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(240, 255, 105);
 height: 33px;
-font-family: 'Font Awesome 6 Free Solid';
 font-size: 24px;
 color: white;</string>
-          </property>
-          <property name="text">
-           <string>house</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="budgetplannerButton">
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(183, 124, 255);
+            </property>
+            <property name="text">
+             <string>house</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="budgetplannerButton">
+            <property name="font">
+             <font>
+              <family>Font Awesome 6 Free Solid</family>
+              <pointsize>-1</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(183, 124, 255);
 height: 33px;
-font-family: 'Font Awesome 6 Free Solid';
 font-size: 24px;
 color: white;</string>
-          </property>
-          <property name="text">
-           <string>sack-dollar</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="othersButton">
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(93, 123, 255);
+            </property>
+            <property name="text">
+             <string>sack-dollar</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="othersButton">
+            <property name="font">
+             <font>
+              <family>Font Awesome 6 Free Solid</family>
+              <pointsize>-1</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(93, 123, 255);
 height: 33px;
-font-family: 'Font Awesome 6 Free Solid';
 font-size: 24px;
 color: white;</string>
-          </property>
-          <property name="text">
-           <string>ellipsis</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-    </layout>
-   </widget>
+            </property>
+            <property name="text">
+             <string>ellipsis</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources>

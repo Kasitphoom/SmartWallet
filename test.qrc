@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="images">
+    <file>image/sw_logo_section.svg</file>
     <file>image/sw_logo_section.png</file>
     <file>image/sw_logo.png</file>
   </qresource>
