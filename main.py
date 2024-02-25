@@ -19,8 +19,7 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
 
         #-----------------Font testing-----------------
-        # font_path = 'otfs\Sushi Sushi.ttf'
-        # id = QFontDatabase.addApplicationFont(font_path)
+        # id = QFontDatabase.addApplicationFont('otfs\Sushi Sushi.ttf')
         # if id < 0:
         #     print('Failed to load font')
         # families = QFontDatabase.applicationFontFamilies(id)
