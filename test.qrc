@@ -1,5 +1,17 @@
 <RCC>
   <qresource prefix="images">
+    <file>image/add-bills.svg</file>
+    <file>image/budget.svg</file>
+    <file>image/budget-planner.svg</file>
+    <file>image/faEye.svg</file>
+    <file>image/graph.svg</file>
+    <file>image/history.svg</file>
+    <file>image/history-features.svg</file>
+    <file>image/home.svg</file>
+    <file>image/info-circle.svg</file>
+    <file>image/my-qr.svg</file>
+    <file>image/summary.svg</file>
+    <file>image/transfer.svg</file>
     <file>image/sw_logo_section.svg</file>
     <file>image/sw_logo_section.png</file>
     <file>image/sw_logo.png</file>
