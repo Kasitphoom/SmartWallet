@@ -25,6 +25,9 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
@@ -83,6 +86,9 @@
          <property name="lineWidth">
           <number>0</number>
          </property>
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
          <widget class="QWidget" name="dashboardPage">
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <property name="spacing">
@@ -117,6 +123,9 @@
                <height>0</height>
               </size>
              </property>
+             <property name="acceptDrops">
+              <bool>false</bool>
+             </property>
              <property name="styleSheet">
               <string notr="true">width:10px;</string>
              </property>
@@ -127,18 +136,21 @@
               <bool>true</bool>
              </property>
              <widget class="QWidget" name="scrollAreaWidgetContents">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-109</y>
-                <width>381</width>
-                <height>860</height>
+                <y>0</y>
+                <width>391</width>
+                <height>751</height>
                </rect>
               </property>
               <property name="styleSheet">
                <string notr="true"/>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0,0,0,0,0">
+              <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0,0,0,0">
                <property name="spacing">
                 <number>14</number>
                </property>
@@ -409,7 +421,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QFrame" name="frame_10">
+                <widget class="QFrame" name="Dashboard_balance_expense_saving">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -450,7 +462,7 @@
                      <number>5</number>
                     </property>
                     <item row="1" column="0">
-                     <widget class="QFrame" name="frame_9">
+                     <widget class="QFrame" name="Dashboard_expense">
                       <property name="styleSheet">
                        <string notr="true">background-color: rgba(171, 52, 40, 51);
 border-radius: 15px;</string>
@@ -461,10 +473,73 @@ border-radius: 15px;</string>
                       <property name="frameShadow">
                        <enum>QFrame::Raised</enum>
                       </property>
+                      <layout class="QGridLayout" name="gridLayout_6">
+                       <property name="leftMargin">
+                        <number>15</number>
+                       </property>
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="d_expense_title">
+                         <property name="font">
+                          <font>
+                           <family>Arial</family>
+                           <pointsize>14</pointsize>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: none;
+color: #B3625A;
+</string>
+                         </property>
+                         <property name="text">
+                          <string>Total Expense</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLabel" name="d_expense_amount">
+                         <property name="font">
+                          <font>
+                           <family>Arial</family>
+                           <pointsize>16</pointsize>
+                           <fontweight>Black</fontweight>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: none;
+color: #B3625A;
+</string>
+                         </property>
+                         <property name="text">
+                          <string>0.00 THB</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QLabel" name="d_expense_description">
+                         <property name="font">
+                          <font>
+                           <family>Arial</family>
+                           <pointsize>8</pointsize>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: none;
+color: #B3625A;
+</string>
+                         </property>
+                         <property name="text">
+                          <string>Total expense of this month</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
                      </widget>
                     </item>
                     <item row="1" column="1">
-                     <widget class="QFrame" name="frame_11">
+                     <widget class="QFrame" name="Dashboard_saving">
                       <property name="styleSheet">
                        <string notr="true">border-radius: 15px;
 background-color: rgba(79, 186, 116, 76.5);</string>
@@ -475,13 +550,91 @@ background-color: rgba(79, 186, 116, 76.5);</string>
                       <property name="frameShadow">
                        <enum>QFrame::Raised</enum>
                       </property>
+                      <layout class="QGridLayout" name="gridLayout">
+                       <property name="leftMargin">
+                        <number>15</number>
+                       </property>
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="d_saving_title">
+                         <property name="font">
+                          <font>
+                           <family>Arial</family>
+                           <pointsize>14</pointsize>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: none;
+color: #4FBA74;
+</string>
+                         </property>
+                         <property name="text">
+                          <string>Total Saving</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLabel" name="d_saving_amount">
+                         <property name="font">
+                          <font>
+                           <family>Arial</family>
+                           <pointsize>16</pointsize>
+                           <fontweight>Black</fontweight>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: none;
+color: #4FBA74;
+</string>
+                         </property>
+                         <property name="text">
+                          <string>0.00 THB</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QLabel" name="d_saving_description">
+                         <property name="font">
+                          <font>
+                           <family>Arial</family>
+                           <pointsize>8</pointsize>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: none;
+color: #4FBA74;
+</string>
+                         </property>
+                         <property name="text">
+                          <string>The accumulated savings
+from every type of expense </string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
                      </widget>
                     </item>
                     <item row="0" column="0" colspan="2">
-                     <widget class="QFrame" name="frame_2">
+                     <widget class="QFrame" name="Dashboard_balance">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>126</height>
+                       </size>
+                      </property>
                       <property name="styleSheet">
-                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(31, 162, 255, 255), stop:1 rgba(126, 242, 157, 255));
-border-radius: 15px;</string>
+                       <string notr="true">.QFrame {
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(31, 162, 255, 255), stop:1 rgba(126, 242, 157, 255));
+border-radius: 15px;
+}</string>
                       </property>
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
@@ -489,6 +642,70 @@ border-radius: 15px;</string>
                       <property name="frameShadow">
                        <enum>QFrame::Raised</enum>
                       </property>
+                      <layout class="QGridLayout" name="gridLayout_7" rowstretch="1,7,1" columnstretch="0">
+                       <property name="leftMargin">
+                        <number>15</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>15</number>
+                       </property>
+                       <property name="verticalSpacing">
+                        <number>0</number>
+                       </property>
+                       <item row="1" column="0">
+                        <widget class="QLabel" name="d_balance_amount">
+                         <property name="font">
+                          <font>
+                           <family>Arial</family>
+                           <pointsize>16</pointsize>
+                           <fontweight>Black</fontweight>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: none;
+color: rgb(255, 255, 255);
+</string>
+                         </property>
+                         <property name="text">
+                          <string>0.00 THB</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="d_balance_title">
+                         <property name="font">
+                          <font>
+                           <family>Arial</family>
+                           <pointsize>14</pointsize>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: none;
+color: rgb(255, 255, 255);
+</string>
+                         </property>
+                         <property name="text">
+                          <string>Balance</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <spacer name="d_verticalSpacer">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>20</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
                      </widget>
                     </item>
                    </layout>
@@ -643,7 +860,8 @@ border-radius: 15px;</string>
                   </size>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">width: 1px;</string>
+                  <string notr="true">width: 1px;
+height: 10px;</string>
                  </property>
                  <property name="verticalScrollBarPolicy">
                   <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -654,13 +872,16 @@ border-radius: 15px;</string>
                  <property name="widgetResizable">
                   <bool>true</bool>
                  </property>
+                 <property name="alignment">
+                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                 </property>
                  <widget class="QWidget" name="limitscrollAreaWidgetContents">
                   <property name="geometry">
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>381</width>
-                    <height>90</height>
+                    <width>720</width>
+                    <height>81</height>
                    </rect>
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -708,25 +929,16 @@ border-radius: 5px;
                       <enum>QFrame::Raised</enum>
                      </property>
                      <layout class="QVBoxLayout" name="verticalLayout_15">
+                      <property name="topMargin">
+                       <number>9</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>9</number>
+                      </property>
                       <item>
-                       <widget class="QFrame" name="frame_12">
-                        <property name="sizePolicy">
-                         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                          <horstretch>0</horstretch>
-                          <verstretch>0</verstretch>
-                         </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                         <size>
-                          <width>27</width>
-                          <height>24</height>
-                         </size>
-                        </property>
+                       <widget class="QFrame" name="frame_3">
                         <property name="layoutDirection">
                          <enum>Qt::LeftToRight</enum>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">background-image: url(:/images/image/expense_gray/bowl-food-gray.svg);</string>
                         </property>
                         <property name="frameShape">
                          <enum>QFrame::StyledPanel</enum>
@@ -734,10 +946,725 @@ border-radius: 5px;
                         <property name="frameShadow">
                          <enum>QFrame::Raised</enum>
                         </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_8">
+                         <property name="topMargin">
+                          <number>5</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>5</number>
+                         </property>
+                         <item>
+                          <widget class="QFrame" name="frame_12">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>26</width>
+                             <height>22</height>
+                            </size>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::LeftToRight</enum>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-image: url(:/images/image/expense_gray/bowl-food-gray.svg);</string>
+                           </property>
+                           <property name="frameShape">
+                            <enum>QFrame::StyledPanel</enum>
+                           </property>
+                           <property name="frameShadow">
+                            <enum>QFrame::Raised</enum>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
                        </widget>
                       </item>
                       <item>
-                       <widget class="QLabel" name="label_4">
+                       <widget class="QLabel" name="foodlimitlabel">
+                        <property name="text">
+                         <string>0 THB</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QFrame" name="frame_15">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>79</width>
+                       <height>81</height>
+                      </size>
+                     </property>
+                     <property name="layoutDirection">
+                      <enum>Qt::LeftToRight</enum>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(238, 238, 238);
+border-radius: 5px;
+</string>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_18">
+                      <property name="topMargin">
+                       <number>9</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>9</number>
+                      </property>
+                      <item>
+                       <widget class="QFrame" name="frame_16">
+                        <property name="layoutDirection">
+                         <enum>Qt::LeftToRight</enum>
+                        </property>
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_10">
+                         <property name="topMargin">
+                          <number>5</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>5</number>
+                         </property>
+                         <item>
+                          <widget class="QFrame" name="frame_17">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>24</width>
+                             <height>22</height>
+                            </size>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::LeftToRight</enum>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-image: url(:/images/image/expense_gray/film-gray.svg);</string>
+                           </property>
+                           <property name="frameShape">
+                            <enum>QFrame::StyledPanel</enum>
+                           </property>
+                           <property name="frameShadow">
+                            <enum>QFrame::Raised</enum>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="entertainmentlimitlabel">
+                        <property name="text">
+                         <string>0 THB</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QFrame" name="frame_18">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>79</width>
+                       <height>81</height>
+                      </size>
+                     </property>
+                     <property name="layoutDirection">
+                      <enum>Qt::LeftToRight</enum>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(238, 238, 238);
+border-radius: 5px;
+</string>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_21">
+                      <property name="topMargin">
+                       <number>9</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>9</number>
+                      </property>
+                      <item>
+                       <widget class="QFrame" name="frame_21">
+                        <property name="layoutDirection">
+                         <enum>Qt::LeftToRight</enum>
+                        </property>
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_13">
+                         <property name="topMargin">
+                          <number>5</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>5</number>
+                         </property>
+                         <item>
+                          <widget class="QFrame" name="frame_24">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>25</width>
+                             <height>21</height>
+                            </size>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::LeftToRight</enum>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-image: url(:/images/image/expense_gray/car-gray.svg);</string>
+                           </property>
+                           <property name="frameShape">
+                            <enum>QFrame::StyledPanel</enum>
+                           </property>
+                           <property name="frameShadow">
+                            <enum>QFrame::Raised</enum>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="transportationlimitlabel">
+                        <property name="text">
+                         <string>0 THB</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QFrame" name="frame_34">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>79</width>
+                       <height>81</height>
+                      </size>
+                     </property>
+                     <property name="layoutDirection">
+                      <enum>Qt::LeftToRight</enum>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(238, 238, 238);
+border-radius: 5px;
+</string>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_25">
+                      <property name="topMargin">
+                       <number>9</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>9</number>
+                      </property>
+                      <item>
+                       <widget class="QFrame" name="frame_35">
+                        <property name="layoutDirection">
+                         <enum>Qt::LeftToRight</enum>
+                        </property>
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_17">
+                         <property name="topMargin">
+                          <number>5</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>5</number>
+                         </property>
+                         <item>
+                          <widget class="QFrame" name="frame_36">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>31</width>
+                             <height>24</height>
+                            </size>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::LeftToRight</enum>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-image: url(:/images/image/expense_gray/return-gray.svg);</string>
+                           </property>
+                           <property name="frameShape">
+                            <enum>QFrame::StyledPanel</enum>
+                           </property>
+                           <property name="frameShadow">
+                            <enum>QFrame::Raised</enum>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="returnlimitlabel">
+                        <property name="text">
+                         <string>0 THB</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QFrame" name="frame_31">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>79</width>
+                       <height>81</height>
+                      </size>
+                     </property>
+                     <property name="layoutDirection">
+                      <enum>Qt::LeftToRight</enum>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(238, 238, 238);
+border-radius: 5px;
+</string>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_24">
+                      <property name="topMargin">
+                       <number>9</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>9</number>
+                      </property>
+                      <item>
+                       <widget class="QFrame" name="frame_32">
+                        <property name="layoutDirection">
+                         <enum>Qt::LeftToRight</enum>
+                        </property>
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_16">
+                         <property name="topMargin">
+                          <number>5</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>5</number>
+                         </property>
+                         <item>
+                          <widget class="QFrame" name="frame_33">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>25</width>
+                             <height>24</height>
+                            </size>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::LeftToRight</enum>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-image: url(:/images/image/expense_gray/lend-gray.svg);</string>
+                           </property>
+                           <property name="frameShape">
+                            <enum>QFrame::StyledPanel</enum>
+                           </property>
+                           <property name="frameShadow">
+                            <enum>QFrame::Raised</enum>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="lendlimitlabel">
+                        <property name="text">
+                         <string>0 THB</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QFrame" name="frame_28">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>79</width>
+                       <height>81</height>
+                      </size>
+                     </property>
+                     <property name="layoutDirection">
+                      <enum>Qt::LeftToRight</enum>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(238, 238, 238);
+border-radius: 5px;
+</string>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_23">
+                      <property name="topMargin">
+                       <number>9</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>9</number>
+                      </property>
+                      <item>
+                       <widget class="QFrame" name="frame_29">
+                        <property name="layoutDirection">
+                         <enum>Qt::LeftToRight</enum>
+                        </property>
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_15">
+                         <property name="topMargin">
+                          <number>5</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>5</number>
+                         </property>
+                         <item>
+                          <widget class="QFrame" name="frame_30">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>26</width>
+                             <height>24</height>
+                            </size>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::LeftToRight</enum>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-image: url(:/images/image/expense_gray/health-gray.svg);</string>
+                           </property>
+                           <property name="frameShape">
+                            <enum>QFrame::StyledPanel</enum>
+                           </property>
+                           <property name="frameShadow">
+                            <enum>QFrame::Raised</enum>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="healthcarelimitlabel">
+                        <property name="text">
+                         <string>0 THB</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QFrame" name="frame_13">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>79</width>
+                       <height>81</height>
+                      </size>
+                     </property>
+                     <property name="layoutDirection">
+                      <enum>Qt::LeftToRight</enum>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(238, 238, 238);
+border-radius: 5px;
+</string>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_17">
+                      <property name="topMargin">
+                       <number>9</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>9</number>
+                      </property>
+                      <item>
+                       <widget class="QFrame" name="frame_7">
+                        <property name="layoutDirection">
+                         <enum>Qt::LeftToRight</enum>
+                        </property>
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_9">
+                         <property name="topMargin">
+                          <number>5</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>5</number>
+                         </property>
+                         <item>
+                          <widget class="QFrame" name="frame_14">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>30</width>
+                             <height>25</height>
+                            </size>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::LeftToRight</enum>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-image: url(:/images/image/expense_gray/education-gray.svg);</string>
+                           </property>
+                           <property name="frameShape">
+                            <enum>QFrame::StyledPanel</enum>
+                           </property>
+                           <property name="frameShadow">
+                            <enum>QFrame::Raised</enum>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="educationlimitlabel">
+                        <property name="text">
+                         <string>0 THB</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QFrame" name="frame_25">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>79</width>
+                       <height>81</height>
+                      </size>
+                     </property>
+                     <property name="layoutDirection">
+                      <enum>Qt::LeftToRight</enum>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(238, 238, 238);
+border-radius: 5px;
+</string>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_22">
+                      <property name="topMargin">
+                       <number>9</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>9</number>
+                      </property>
+                      <item>
+                       <widget class="QFrame" name="frame_26">
+                        <property name="layoutDirection">
+                         <enum>Qt::LeftToRight</enum>
+                        </property>
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_14">
+                         <property name="topMargin">
+                          <number>5</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>5</number>
+                         </property>
+                         <item>
+                          <widget class="QFrame" name="frame_27">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>16</width>
+                             <height>21</height>
+                            </size>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::LeftToRight</enum>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-image: url(:/images/image/expense_gray/other-gray.svg);</string>
+                           </property>
+                           <property name="frameShape">
+                            <enum>QFrame::StyledPanel</enum>
+                           </property>
+                           <property name="frameShadow">
+                            <enum>QFrame::Raised</enum>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_10">
                         <property name="text">
                          <string>0 THB</string>
                         </property>
@@ -836,7 +1763,7 @@ border-radius: 5px;
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
-                   <height>175</height>
+                   <height>170</height>
                   </size>
                  </property>
                  <property name="frameShape">
@@ -845,72 +1772,12 @@ border-radius: 5px;
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
                  </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_6">
+                 <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0">
                   <item>
-                   <layout class="QGridLayout" name="gridLayout_2">
-                    <property name="spacing">
-                     <number>6</number>
+                   <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,0,0,0,0,0,0,0">
+                    <property name="bottomMargin">
+                     <number>0</number>
                     </property>
-                    <item row="0" column="7">
-                     <widget class="QFrame" name="fhistoryframe">
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_12">
-                       <property name="spacing">
-                        <number>2</number>
-                       </property>
-                       <property name="leftMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>0</number>
-                       </property>
-                       <item>
-                        <widget class="QPushButton" name="fhistoryButton">
-                         <property name="text">
-                          <string/>
-                         </property>
-                         <property name="icon">
-                          <iconset resource="test.qrc">
-                           <normaloff>:/images/image/history-features.svg</normaloff>:/images/image/history-features.svg</iconset>
-                         </property>
-                         <property name="iconSize">
-                          <size>
-                           <width>42</width>
-                           <height>42</height>
-                          </size>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QLabel" name="fhistorylabel">
-                         <property name="font">
-                          <font>
-                           <family>Arial</family>
-                           <pointsize>12</pointsize>
-                          </font>
-                         </property>
-                         <property name="text">
-                          <string>History</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignCenter</set>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
                     <item row="0" column="4">
                      <widget class="QFrame" name="ftransferframe">
                       <property name="frameShape">
@@ -920,14 +1787,11 @@ border-radius: 5px;
                        <enum>QFrame::Raised</enum>
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_8">
-                       <property name="spacing">
-                        <number>2</number>
-                       </property>
                        <property name="leftMargin">
                         <number>0</number>
                        </property>
                        <property name="topMargin">
-                        <number>0</number>
+                        <number>1</number>
                        </property>
                        <property name="rightMargin">
                         <number>0</number>
@@ -970,7 +1834,7 @@ border-radius: 5px;
                           <string>Transfer</string>
                          </property>
                          <property name="alignment">
-                          <set>Qt::AlignCenter</set>
+                          <set>Qt::AlignHCenter|Qt::AlignTop</set>
                          </property>
                         </widget>
                        </item>
@@ -979,15 +1843,21 @@ border-radius: 5px;
                     </item>
                     <item row="0" column="6">
                      <widget class="QFrame" name="fbudgetplannerframe">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>10</height>
+                       </size>
+                      </property>
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
                       </property>
                       <property name="frameShadow">
                        <enum>QFrame::Raised</enum>
                       </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_11">
+                      <layout class="QVBoxLayout" name="verticalLayout_11" stretch="1,0">
                        <property name="spacing">
-                        <number>2</number>
+                        <number>10</number>
                        </property>
                        <property name="leftMargin">
                         <number>0</number>
@@ -1003,6 +1873,12 @@ border-radius: 5px;
                        </property>
                        <item>
                         <widget class="QPushButton" name="fbudgetplannerButton">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>42</height>
+                          </size>
+                         </property>
                          <property name="text">
                           <string/>
                          </property>
@@ -1020,6 +1896,12 @@ border-radius: 5px;
                        </item>
                        <item>
                         <widget class="QLabel" name="fbudgetplannerlabel">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>0</height>
+                          </size>
+                         </property>
                          <property name="font">
                           <font>
                            <family>Arial</family>
@@ -1031,7 +1913,7 @@ border-radius: 5px;
 Planner</string>
                          </property>
                          <property name="alignment">
-                          <set>Qt::AlignCenter</set>
+                          <set>Qt::AlignBottom|Qt::AlignHCenter</set>
                          </property>
                         </widget>
                        </item>
@@ -1048,7 +1930,7 @@ Planner</string>
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_10">
                        <property name="spacing">
-                        <number>2</number>
+                        <number>6</number>
                        </property>
                        <property name="leftMargin">
                         <number>0</number>
@@ -1091,7 +1973,7 @@ Planner</string>
                           <string>Add Bills</string>
                          </property>
                          <property name="alignment">
-                          <set>Qt::AlignCenter</set>
+                          <set>Qt::AlignHCenter|Qt::AlignTop</set>
                          </property>
                         </widget>
                        </item>
@@ -1108,7 +1990,7 @@ Planner</string>
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_14">
                        <property name="spacing">
-                        <number>2</number>
+                        <number>6</number>
                        </property>
                        <property name="leftMargin">
                         <number>0</number>
@@ -1171,7 +2053,7 @@ Planner</string>
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_16">
                        <property name="spacing">
-                        <number>2</number>
+                        <number>6</number>
                        </property>
                        <property name="leftMargin">
                         <number>0</number>
@@ -1221,6 +2103,72 @@ Planner</string>
                       </layout>
                      </widget>
                     </item>
+                    <item row="0" column="7">
+                     <widget class="QFrame" name="fhistoryframe">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_12">
+                       <property name="spacing">
+                        <number>6</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QPushButton" name="fhistoryButton">
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="test.qrc">
+                           <normaloff>:/images/image/history-features.svg</normaloff>:/images/image/history-features.svg</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>42</width>
+                           <height>42</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="fhistorylabel">
+                         <property name="font">
+                          <font>
+                           <family>Arial</family>
+                           <pointsize>12</pointsize>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>History</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
                    </layout>
                   </item>
                  </layout>
@@ -1240,6 +2188,12 @@ Planner</string>
     </item>
     <item>
      <widget class="QFrame" name="footer">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>16</height>
+       </size>
+      </property>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
