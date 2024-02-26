@@ -129,7 +129,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>374</width>
-                <height>829</height>
+                <height>853</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -718,7 +718,7 @@ border-radius: 15px;</string>
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
-                   <height>151</height>
+                   <height>175</height>
                   </size>
                  </property>
                  <property name="frameShape">
@@ -730,6 +730,9 @@ border-radius: 15px;</string>
                  <layout class="QVBoxLayout" name="verticalLayout_6">
                   <item>
                    <layout class="QGridLayout" name="gridLayout_2">
+                    <property name="spacing">
+                     <number>6</number>
+                    </property>
                     <item row="0" column="7">
                      <widget class="QFrame" name="fhistoryframe">
                       <property name="frameShape">
