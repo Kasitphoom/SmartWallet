@@ -127,7 +127,8 @@
               <bool>false</bool>
              </property>
              <property name="styleSheet">
-              <string notr="true">width:10px;</string>
+              <string notr="true">width:10px;
+</string>
              </property>
              <property name="horizontalScrollBarPolicy">
               <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -142,15 +143,15 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>391</width>
-                <height>751</height>
+                <y>-323</y>
+                <width>390</width>
+                <height>1074</height>
                </rect>
               </property>
               <property name="styleSheet">
                <string notr="true"/>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0,0,0,0">
+              <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0,0,0,0,0,0,0">
                <property name="spacing">
                 <number>14</number>
                </property>
@@ -167,7 +168,7 @@
                 <number>0</number>
                </property>
                <property name="bottomMargin">
-                <number>0</number>
+                <number>14</number>
                </property>
                <item>
                 <widget class="QFrame" name="logoHeader">
@@ -986,8 +987,14 @@ border-radius: 5px;
                       </item>
                       <item>
                        <widget class="QLabel" name="foodlimitlabel">
+                        <property name="font">
+                         <font>
+                          <family>Arial</family>
+                          <bold>true</bold>
+                         </font>
+                        </property>
                         <property name="text">
-                         <string>0 THB</string>
+                         <string>0.00 THB</string>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignCenter</set>
@@ -1083,8 +1090,14 @@ border-radius: 5px;
                       </item>
                       <item>
                        <widget class="QLabel" name="entertainmentlimitlabel">
+                        <property name="font">
+                         <font>
+                          <family>Arial</family>
+                          <bold>true</bold>
+                         </font>
+                        </property>
                         <property name="text">
-                         <string>0 THB</string>
+                         <string>0.00 THB</string>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignCenter</set>
@@ -1180,8 +1193,14 @@ border-radius: 5px;
                       </item>
                       <item>
                        <widget class="QLabel" name="transportationlimitlabel">
+                        <property name="font">
+                         <font>
+                          <family>Arial</family>
+                          <bold>true</bold>
+                         </font>
+                        </property>
                         <property name="text">
-                         <string>0 THB</string>
+                         <string>0.00 THB</string>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignCenter</set>
@@ -1277,8 +1296,14 @@ border-radius: 5px;
                       </item>
                       <item>
                        <widget class="QLabel" name="returnlimitlabel">
+                        <property name="font">
+                         <font>
+                          <family>Arial</family>
+                          <bold>true</bold>
+                         </font>
+                        </property>
                         <property name="text">
-                         <string>0 THB</string>
+                         <string>0.00 THB</string>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignCenter</set>
@@ -1374,8 +1399,14 @@ border-radius: 5px;
                       </item>
                       <item>
                        <widget class="QLabel" name="lendlimitlabel">
+                        <property name="font">
+                         <font>
+                          <family>Arial</family>
+                          <bold>true</bold>
+                         </font>
+                        </property>
                         <property name="text">
-                         <string>0 THB</string>
+                         <string>0.00 THB</string>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignCenter</set>
@@ -1471,8 +1502,14 @@ border-radius: 5px;
                       </item>
                       <item>
                        <widget class="QLabel" name="healthcarelimitlabel">
+                        <property name="font">
+                         <font>
+                          <family>Arial</family>
+                          <bold>true</bold>
+                         </font>
+                        </property>
                         <property name="text">
-                         <string>0 THB</string>
+                         <string>0.00 THB</string>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignCenter</set>
@@ -1568,8 +1605,14 @@ border-radius: 5px;
                       </item>
                       <item>
                        <widget class="QLabel" name="educationlimitlabel">
+                        <property name="font">
+                         <font>
+                          <family>Arial</family>
+                          <bold>true</bold>
+                         </font>
+                        </property>
                         <property name="text">
-                         <string>0 THB</string>
+                         <string>0.00 THB</string>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignCenter</set>
@@ -1665,8 +1708,14 @@ border-radius: 5px;
                       </item>
                       <item>
                        <widget class="QLabel" name="label_10">
+                        <property name="font">
+                         <font>
+                          <family>Arial</family>
+                          <bold>true</bold>
+                         </font>
+                        </property>
                         <property name="text">
-                         <string>0 THB</string>
+                         <string>0.00 THB</string>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignCenter</set>
@@ -2170,6 +2219,387 @@ Planner</string>
                      </widget>
                     </item>
                    </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_9">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_18" stretch="1,50">
+                  <property name="spacing">
+                   <number>10</number>
+                  </property>
+                  <property name="sizeConstraint">
+                   <enum>QLayout::SetDefaultConstraint</enum>
+                  </property>
+                  <property name="leftMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>9</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>9</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="greenbar3_5">
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(79, 186, 116);</string>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_5">
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <pointsize>16</pointsize>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Cost Summary</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>127</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_21">
+                  <property name="spacing">
+                   <number>14</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>24</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>24</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="frame_10">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>164</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border-radius: 15px;
+background-color: rgb(238, 238, 238);</string>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_13">
+                     <item>
+                      <widget class="QLabel" name="label_8">
+                       <property name="font">
+                        <font>
+                         <family>Arial</family>
+                         <pointsize>11</pointsize>
+                         <bold>true</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Month to date</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="monthtodateframe">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_22" stretch="1,3,1">
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QFrame" name="mtdArrowindicatorframe">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="minimumSize">
+                           <size>
+                            <width>18</width>
+                            <height>24</height>
+                           </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">background-image: url(:/images/image/arrow-none.svg);</string>
+                          </property>
+                          <property name="frameShape">
+                           <enum>QFrame::StyledPanel</enum>
+                          </property>
+                          <property name="frameShadow">
+                           <enum>QFrame::Raised</enum>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="mtdPercentagelabel">
+                          <property name="font">
+                           <font>
+                            <pointsize>16</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(0, 0, 0);</string>
+                          </property>
+                          <property name="text">
+                           <string>0.00</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="mtdPercentagevaluelabel">
+                          <property name="font">
+                           <font>
+                            <pointsize>16</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(0, 0, 0);</string>
+                          </property>
+                          <property name="text">
+                           <string>%</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_11">
+                       <property name="font">
+                        <font>
+                         <family>Arial</family>
+                         <pointsize>10</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>compared to last month 
+for same period</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QFrame" name="frame_11">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>164</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border-radius: 15px;
+background-color: rgb(238, 238, 238);</string>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_19">
+                     <item>
+                      <widget class="QLabel" name="label_9">
+                       <property name="font">
+                        <font>
+                         <family>Arial</family>
+                         <pointsize>11</pointsize>
+                         <bold>true</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Total forcasted cost</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="totalforcastedcostframe">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_23" stretch="1,3,1">
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QFrame" name="tfcArrowindicatorframe">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="minimumSize">
+                           <size>
+                            <width>18</width>
+                            <height>24</height>
+                           </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">background-image: url(:/images/image/arrow-none.svg);</string>
+                          </property>
+                          <property name="frameShape">
+                           <enum>QFrame::StyledPanel</enum>
+                          </property>
+                          <property name="frameShadow">
+                           <enum>QFrame::Raised</enum>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="tfcPerccentagevaluelabel">
+                          <property name="font">
+                           <font>
+                            <pointsize>16</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(0, 0, 0);</string>
+                          </property>
+                          <property name="text">
+                           <string>0.00</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="tfcPercentagelabel">
+                          <property name="font">
+                           <font>
+                            <pointsize>16</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(0, 0, 0);</string>
+                          </property>
+                          <property name="text">
+                           <string>%</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_12">
+                       <property name="font">
+                        <font>
+                         <family>Arial</family>
+                         <pointsize>10</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>compared to last month 
+total cost</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
                   </item>
                  </layout>
                 </widget>
