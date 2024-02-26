@@ -1,5 +1,5 @@
 import ZODB, ZODB.config
-import class_obj, BTrees.OOBTree, transaction
+import BTrees.OOBTree, transaction
 
 path = "./config.xml"
 db = ZODB.config.databaseFromURL(path)
