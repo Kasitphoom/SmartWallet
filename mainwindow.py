@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'mainwindow.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.1
+## Created by: Qt User Interface Compiler version 6.6.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -113,6 +113,7 @@ class Ui_MainWindow(object):
 
         self.frame_10 = QFrame(self.scrollAreaWidgetContents)
         self.frame_10.setObjectName(u"frame_10")
+        self.frame_10.setEnabled(True)
         self.frame_10.setFrameShape(QFrame.StyledPanel)
         self.frame_10.setFrameShadow(QFrame.Raised)
 
