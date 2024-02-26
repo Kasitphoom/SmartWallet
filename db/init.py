@@ -1,7 +1,12 @@
-import os
+import sys
 import ZODB, ZODB.config
 import BTrees.OOBTree, transaction
-from account import Account
+from pathlib import Path
+
+# append a new directory to sys.path
+sys.path.append(str(Path(__file__).parent.parent))
+
+from obj.account import Account
 
 # from account import Account
 
@@ -14,6 +19,6 @@ if __name__ == "__main__":
     root.accounts = BTrees.OOBTree.BTree()
     root.transactions = BTrees.OOBTree.BTree()
 
-    root.accounts[123456789] = Account("John Doe", 1000, 123456789)
+    root.accounts["123456789"] = Account("John Doe", 1000, "123456789")
 
     transaction.commit()

@@ -32,9 +32,9 @@ else:
         pickle.dump(user_cache, f)
 
 class MainWindow(QMainWindow):
-    def __init__(self, manager):
+    def __init__(self, manager: WalletManager):
         super().__init__()
-        self.account_manager = manager
+        self.manager = manager
         self.account_number_visibility = False
         # Add fonts in QFontDatabase before setting up the UI
         QFontDatabase.addApplicationFont('otfs/Font Awesome 6 Brands-Regular-400.otf')
@@ -44,12 +44,15 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         
-        self.ui.frame_10.installEventFilter(self)
+        self.ui.frame_12.installEventFilter(self)
         
         self.ui.eyeButton.clicked.connect(self.handleAccountNumberVisibility)
+        
+        # set text as this format XXX-X-1234-X
+        self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
 
     def eventFilter(self, obj, event):
-        if type(event) == QMouseEvent and obj == self.ui.frame_10 and event.button() == Qt.MouseButton.LeftButton:
+        if type(event) == QMouseEvent and obj == self.ui.frame_12 and event.button() == Qt.MouseButton.LeftButton:
             self.customPressEvent(event)
             return True
         return super().eventFilter(obj, event)
@@ -60,14 +63,13 @@ class MainWindow(QMainWindow):
     def handleAccountNumberVisibility(self):
         self.account_number_visibility = not self.account_number_visibility
         if self.account_number_visibility:
-            self.ui.accountNumberlabel.setText(str(self.account_manager.account.ID))
+            self.ui.accountNumberlabel.setText(self.manager.get_account_number_visible())
         else:
-            self.ui.accountNumberlabel.setText("*" * 9 + str(self.account_manager.account.ID)[-4:])
+            self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    manager = WalletManager(root.accounts[123456789])
-    print(root.accounts[123456789].ID)
+    manager = WalletManager(root.accounts["123456789"])
     main = MainWindow(manager)
     main.show()
     sys.exit(app.exec())

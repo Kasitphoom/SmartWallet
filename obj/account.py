@@ -11,6 +11,9 @@ class Account(persistent.Persistent):
         
     def withdraw(self, amount):
         self.balance -= amount
+    
+    def getID(self):
+        return self.ID
         
     def __str__(self):
         return "%s: %s" % (self.name, self.balance)
