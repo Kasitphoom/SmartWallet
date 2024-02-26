@@ -1,5 +1,13 @@
 <RCC>
   <qresource prefix="images">
+    <file>image/expense_gray/bowl-food-gray.svg</file>
+    <file>image/expense_gray/car-gray.svg</file>
+    <file>image/expense_gray/education-gray.svg</file>
+    <file>image/expense_gray/film-gray.svg</file>
+    <file>image/expense_gray/health-gray.svg</file>
+    <file>image/expense_gray/lend-gray.svg</file>
+    <file>image/expense_gray/other-gray.svg</file>
+    <file>image/expense_gray/return-gray.svg</file>
     <file>image/add-bills.svg</file>
     <file>image/budget.svg</file>
     <file>image/budget-planner.svg</file>
