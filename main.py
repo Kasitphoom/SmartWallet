@@ -1,7 +1,7 @@
 import sys
 
 from PySide6 import QtCore, QtWidgets
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem
 from PySide6.QtCore import QSize, QRect, Qt
 from PySide6.QtGui import QFont, QFontDatabase, QMouseEvent
 from mainwindow import Ui_MainWindow
@@ -14,7 +14,6 @@ from obj.account import Account
 import pickle
 
 import ZODB, ZODB.config
-import BTrees.OOBTree, transaction
 
 path = "./db/config.xml"
 db = ZODB.config.databaseFromURL(path)
@@ -34,12 +33,13 @@ else:
 class MainWindow(QMainWindow):
     def __init__(self, manager: WalletManager):
         super().__init__()
+        self.today_date = QtCore.QDate.currentDate()
         self.manager = manager
         self.account_number_visibility = False
+        self.calculated_limits = {}
+        
         # Add fonts in QFontDatabase before setting up the UI
-        QFontDatabase.addApplicationFont('otfs/Font Awesome 6 Brands-Regular-400.otf')
-        QFontDatabase.addApplicationFont('otfs/Font Awesome 6 Free-Regular-400.otf')
-        QFontDatabase.addApplicationFont('otfs/Font Awesome 6 Free-Solid-900.otf')
+        QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Font Awesome 6 Free-Solid-900.otf").as_posix())
         
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -53,6 +53,8 @@ class MainWindow(QMainWindow):
         
         # set balance
         self.ui.d_balance_amount.setText(self.manager.get_balance() + " THB")
+        
+        self.update_daily_limit()
 
     def eventFilter(self, obj, event):
         if type(event) == QMouseEvent and obj == self.ui.frame_12 and event.button() == Qt.MouseButton.LeftButton:
@@ -70,9 +72,13 @@ class MainWindow(QMainWindow):
         else:
             self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
     
-    def update_limit_dashboard(self):
-        pass
-
+    def update_daily_limit(self):
+        self.ui.foodlimitlabel.setText(str(self.manager.calculate_daily_limit("food")))
+        self.ui.transportationlimitlabel.setText(str(self.manager.calculate_daily_limit("transport")))
+        self.ui.entertainmentlimitlabel.setText(str(self.manager.calculate_daily_limit("entertainment")))
+        self.ui.healthcarelimitlabel.setText(str(self.manager.calculate_daily_limit("healthcare")))
+        self.ui.label_10.setText(str(self.manager.calculate_daily_limit("others")))
+        
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     manager = WalletManager(root.accounts["123456789"])

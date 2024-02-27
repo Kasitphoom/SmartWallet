@@ -879,7 +879,7 @@ height: 0px;</string>
                  <widget class="QWidget" name="limitscrollAreaWidgetContents">
                   <property name="geometry">
                    <rect>
-                    <x>-329</x>
+                    <x>0</x>
                     <y>0</y>
                     <width>720</width>
                     <height>90</height>
