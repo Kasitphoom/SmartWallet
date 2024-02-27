@@ -19,6 +19,6 @@ if __name__ == "__main__":
     root.accounts = BTrees.OOBTree.BTree()
     root.transactions = BTrees.OOBTree.BTree()
 
-    root.accounts["123456789"] = Account("John Doe", 1000, "123456789")
+    root.accounts["123456789"] = Account("John Doe", 1000, "123456789", 10_000)
 
     transaction.commit()
