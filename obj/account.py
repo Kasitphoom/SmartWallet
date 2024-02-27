@@ -8,14 +8,25 @@ class Account(persistent.Persistent):
         self.transactions = []
         self.average_income = average_income
         self.limits_rate = {
-            "food": 0.2,
+            "housing": 0,
+            "food": 0.5,
             "transport": 0.15,
             "saving": 0.2,
             "entertainment": 0.1,
             "healthcare": 0.05,
             "others": 0.1
         }
-        self.monthly_limits = {}
+        self.monthly_limits = {
+            "housing": 0,
+            "food": 0,
+            "transport": 0,
+            "saving": 0,
+            "entertainment": 0,
+            "healthcare": 0,
+            "others": 0
+        }
+        
+        self.updateMonthlyLimits()
         
     def addTransaction(self, transaction):
         self.transactions.append(transaction)
@@ -35,6 +46,15 @@ class Account(persistent.Persistent):
 
     def getMonthlyLimits(self):
         return self.monthly_limits
+    
+    def updateMonthlyLimits(self):
+        self.monthly_limits["housing"] = self.limits_rate["housing"] * self.average_income
+        self.monthly_limits["food"] = self.limits_rate["food"] * self.average_income
+        self.monthly_limits["transport"] = self.limits_rate["transport"] * self.average_income
+        self.monthly_limits["saving"] = self.limits_rate["saving"] * self.average_income
+        self.monthly_limits["entertainment"] = self.limits_rate["entertainment"] * self.average_income
+        self.monthly_limits["healthcare"] = self.limits_rate["healthcare"] * self.average_income
+        self.monthly_limits["others"] = self.limits_rate["others"] * self.average_income
     
     def __str__(self):
         return "%s: %s" % (self.name, self.balance)

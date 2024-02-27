@@ -33,7 +33,6 @@ else:
 class MainWindow(QMainWindow):
     def __init__(self, manager: WalletManager):
         super().__init__()
-        self.today_date = QtCore.QDate.currentDate()
         self.manager = manager
         self.account_number_visibility = False
         self.calculated_limits = {}
@@ -75,11 +74,12 @@ class MainWindow(QMainWindow):
             self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
     
     def update_daily_limit(self):
-        self.ui.foodlimitlabel.setText(str(self.manager.calculate_daily_limit("food")))
-        self.ui.transportationlimitlabel.setText(str(self.manager.calculate_daily_limit("transport")))
-        self.ui.entertainmentlimitlabel.setText(str(self.manager.calculate_daily_limit("entertainment")))
-        self.ui.healthcarelimitlabel.setText(str(self.manager.calculate_daily_limit("healthcare")))
-        self.ui.label_10.setText(str(self.manager.calculate_daily_limit("others")))
+        self.ui.educationlimitlabel.setText(f"{self.manager.calculate_daily_limit('housing'):,.2f}")
+        self.ui.foodlimitlabel.setText(f"{self.manager.calculate_daily_limit('food'):,.2f}")
+        self.ui.transportationlimitlabel.setText(f"{self.manager.calculate_daily_limit('transport'):,.2f}")
+        self.ui.entertainmentlimitlabel.setText(f"{self.manager.calculate_daily_limit('entertainment'):,.2f}")
+        self.ui.healthcarelimitlabel.setText(f"{self.manager.calculate_daily_limit('healthcare'):,.2f}")
+        self.ui.label_10.setText(f"{self.manager.calculate_daily_limit('others'):,.2f}")
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
