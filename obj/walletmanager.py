@@ -11,3 +11,6 @@ class WalletManager():
     
     def get_account_number_visible(self):
         return f"{str(self.get_account_number())[:3]}-{str(self.get_account_number())[3]}-{str(self.get_account_number())[4:8]}-{str(self.get_account_number())[8:]}"
+    
+    def get_balance(self):
+        return "{:,}".format(self.account.getBalance())

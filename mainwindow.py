@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'mainwindow.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.0
+## Created by: Qt User Interface Compiler version 6.6.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -59,30 +59,31 @@ class Ui_MainWindow(object):
         self.scrollArea = QScrollArea(self.dashboardPage)
         self.scrollArea.setObjectName(u"scrollArea")
         self.scrollArea.setEnabled(True)
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.scrollArea.sizePolicy().hasHeightForWidth())
         self.scrollArea.setSizePolicy(sizePolicy)
         self.scrollArea.setMinimumSize(QSize(0, 0))
         self.scrollArea.setAcceptDrops(False)
-        self.scrollArea.setStyleSheet(u"width:10px;")
+        self.scrollArea.setStyleSheet(u"width:5px;\n"
+"")
         self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
         self.scrollAreaWidgetContents.setEnabled(True)
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 391, 751))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 390, 1074))
         self.scrollAreaWidgetContents.setStyleSheet(u"")
         self.verticalLayout_5 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_5.setSpacing(14)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.verticalLayout_5.setSizeConstraint(QLayout.SetMaximumSize)
-        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_5.setContentsMargins(0, 0, 0, 14)
         self.logoHeader = QFrame(self.scrollAreaWidgetContents)
         self.logoHeader.setObjectName(u"logoHeader")
         self.logoHeader.setEnabled(False)
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.logoHeader.sizePolicy().hasHeightForWidth())
@@ -164,12 +165,13 @@ class Ui_MainWindow(object):
 
         self.eyeButton = QPushButton(self.accountNumberlowerframe)
         self.eyeButton.setObjectName(u"eyeButton")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.eyeButton.sizePolicy().hasHeightForWidth())
         self.eyeButton.setSizePolicy(sizePolicy2)
         self.eyeButton.setMinimumSize(QSize(16, 16))
+        self.eyeButton.setCursor(QCursor(Qt.PointingHandCursor))
         self.eyeButton.setStyleSheet(u"border: none;")
         icon = QIcon()
         icon.addFile(u":/images/image/faEye.svg", QSize(), QIcon.Normal, QIcon.Off)
@@ -177,7 +179,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addWidget(self.eyeButton)
 
-        self.horizontalSpacer = QSpacerItem(40, 15, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer = QSpacerItem(40, 15, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer)
 
@@ -330,7 +332,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_7.addWidget(self.d_balance_title, 0, 0, 1, 1)
 
-        self.d_verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.d_verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.gridLayout_7.addItem(self.d_verticalSpacer, 2, 0, 1, 1)
 
@@ -395,7 +397,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_6.addWidget(self.pushButton)
 
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_6.addItem(self.horizontalSpacer_2)
 
@@ -409,7 +411,7 @@ class Ui_MainWindow(object):
 
         self.limitscrollArea = QScrollArea(self.scrollAreaWidgetContents)
         self.limitscrollArea.setObjectName(u"limitscrollArea")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.limitscrollArea.sizePolicy().hasHeightForWidth())
@@ -423,7 +425,7 @@ class Ui_MainWindow(object):
         self.limitscrollArea.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.limitscrollAreaWidgetContents = QWidget()
         self.limitscrollAreaWidgetContents.setObjectName(u"limitscrollAreaWidgetContents")
-        self.limitscrollAreaWidgetContents.setGeometry(QRect(0, 0, 720, 81))
+        self.limitscrollAreaWidgetContents.setGeometry(QRect(-329, 0, 720, 81))
         self.horizontalLayout_7 = QHBoxLayout(self.limitscrollAreaWidgetContents)
         self.horizontalLayout_7.setSpacing(10)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
@@ -467,6 +469,10 @@ class Ui_MainWindow(object):
 
         self.foodlimitlabel = QLabel(self.frame_8)
         self.foodlimitlabel.setObjectName(u"foodlimitlabel")
+        font6 = QFont()
+        font6.setFamilies([u"Arial"])
+        font6.setBold(True)
+        self.foodlimitlabel.setFont(font6)
         self.foodlimitlabel.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_15.addWidget(self.foodlimitlabel)
@@ -513,6 +519,7 @@ class Ui_MainWindow(object):
 
         self.entertainmentlimitlabel = QLabel(self.frame_15)
         self.entertainmentlimitlabel.setObjectName(u"entertainmentlimitlabel")
+        self.entertainmentlimitlabel.setFont(font6)
         self.entertainmentlimitlabel.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_18.addWidget(self.entertainmentlimitlabel)
@@ -559,6 +566,7 @@ class Ui_MainWindow(object):
 
         self.transportationlimitlabel = QLabel(self.frame_18)
         self.transportationlimitlabel.setObjectName(u"transportationlimitlabel")
+        self.transportationlimitlabel.setFont(font6)
         self.transportationlimitlabel.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_21.addWidget(self.transportationlimitlabel)
@@ -605,6 +613,7 @@ class Ui_MainWindow(object):
 
         self.returnlimitlabel = QLabel(self.frame_34)
         self.returnlimitlabel.setObjectName(u"returnlimitlabel")
+        self.returnlimitlabel.setFont(font6)
         self.returnlimitlabel.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_25.addWidget(self.returnlimitlabel)
@@ -651,6 +660,7 @@ class Ui_MainWindow(object):
 
         self.lendlimitlabel = QLabel(self.frame_31)
         self.lendlimitlabel.setObjectName(u"lendlimitlabel")
+        self.lendlimitlabel.setFont(font6)
         self.lendlimitlabel.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_24.addWidget(self.lendlimitlabel)
@@ -697,6 +707,7 @@ class Ui_MainWindow(object):
 
         self.healthcarelimitlabel = QLabel(self.frame_28)
         self.healthcarelimitlabel.setObjectName(u"healthcarelimitlabel")
+        self.healthcarelimitlabel.setFont(font6)
         self.healthcarelimitlabel.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_23.addWidget(self.healthcarelimitlabel)
@@ -743,6 +754,7 @@ class Ui_MainWindow(object):
 
         self.educationlimitlabel = QLabel(self.frame_13)
         self.educationlimitlabel.setObjectName(u"educationlimitlabel")
+        self.educationlimitlabel.setFont(font6)
         self.educationlimitlabel.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_17.addWidget(self.educationlimitlabel)
@@ -789,6 +801,7 @@ class Ui_MainWindow(object):
 
         self.label_10 = QLabel(self.frame_25)
         self.label_10.setObjectName(u"label_10")
+        self.label_10.setFont(font6)
         self.label_10.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_22.addWidget(self.label_10)
@@ -854,6 +867,7 @@ class Ui_MainWindow(object):
         self.ftransferButton = QPushButton(self.ftransferframe)
         self.ftransferButton.setObjectName(u"ftransferButton")
         self.ftransferButton.setMinimumSize(QSize(0, 0))
+        self.ftransferButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon2 = QIcon()
         icon2.addFile(u":/images/image/transfer.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.ftransferButton.setIcon(icon2)
@@ -863,10 +877,10 @@ class Ui_MainWindow(object):
 
         self.ftransferlabel = QLabel(self.ftransferframe)
         self.ftransferlabel.setObjectName(u"ftransferlabel")
-        font6 = QFont()
-        font6.setFamilies([u"Arial"])
-        font6.setPointSize(12)
-        self.ftransferlabel.setFont(font6)
+        font7 = QFont()
+        font7.setFamilies([u"Arial"])
+        font7.setPointSize(12)
+        self.ftransferlabel.setFont(font7)
         self.ftransferlabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
         self.verticalLayout_8.addWidget(self.ftransferlabel)
@@ -886,6 +900,7 @@ class Ui_MainWindow(object):
         self.fbudgetplannerButton = QPushButton(self.fbudgetplannerframe)
         self.fbudgetplannerButton.setObjectName(u"fbudgetplannerButton")
         self.fbudgetplannerButton.setMinimumSize(QSize(0, 42))
+        self.fbudgetplannerButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon3 = QIcon()
         icon3.addFile(u":/images/image/budget-planner.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.fbudgetplannerButton.setIcon(icon3)
@@ -896,7 +911,7 @@ class Ui_MainWindow(object):
         self.fbudgetplannerlabel = QLabel(self.fbudgetplannerframe)
         self.fbudgetplannerlabel.setObjectName(u"fbudgetplannerlabel")
         self.fbudgetplannerlabel.setMinimumSize(QSize(0, 0))
-        self.fbudgetplannerlabel.setFont(font6)
+        self.fbudgetplannerlabel.setFont(font7)
         self.fbudgetplannerlabel.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
 
         self.verticalLayout_11.addWidget(self.fbudgetplannerlabel)
@@ -915,6 +930,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_10.setContentsMargins(0, 0, 0, 0)
         self.faddbillsButton = QPushButton(self.faddbillsframe)
         self.faddbillsButton.setObjectName(u"faddbillsButton")
+        self.faddbillsButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon4 = QIcon()
         icon4.addFile(u":/images/image/add-bills.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.faddbillsButton.setIcon(icon4)
@@ -924,7 +940,7 @@ class Ui_MainWindow(object):
 
         self.faddbillslabel = QLabel(self.faddbillsframe)
         self.faddbillslabel.setObjectName(u"faddbillslabel")
-        self.faddbillslabel.setFont(font6)
+        self.faddbillslabel.setFont(font7)
         self.faddbillslabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
         self.verticalLayout_10.addWidget(self.faddbillslabel)
@@ -942,6 +958,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_14.setContentsMargins(0, 0, 0, 0)
         self.fsummaryButton = QPushButton(self.fsummaryframe)
         self.fsummaryButton.setObjectName(u"fsummaryButton")
+        self.fsummaryButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon5 = QIcon()
         icon5.addFile(u":/images/image/summary.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.fsummaryButton.setIcon(icon5)
@@ -951,7 +968,7 @@ class Ui_MainWindow(object):
 
         self.fsummarylabel = QLabel(self.fsummaryframe)
         self.fsummarylabel.setObjectName(u"fsummarylabel")
-        self.fsummarylabel.setFont(font6)
+        self.fsummarylabel.setFont(font7)
         self.fsummarylabel.setLineWidth(1)
         self.fsummarylabel.setAlignment(Qt.AlignCenter)
 
@@ -970,6 +987,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_16.setContentsMargins(0, 0, 0, 0)
         self.fmyqrButton = QPushButton(self.fmyqrframe)
         self.fmyqrButton.setObjectName(u"fmyqrButton")
+        self.fmyqrButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon6 = QIcon()
         icon6.addFile(u":/images/image/my-qr.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.fmyqrButton.setIcon(icon6)
@@ -979,7 +997,7 @@ class Ui_MainWindow(object):
 
         self.fmyqrlabel = QLabel(self.fmyqrframe)
         self.fmyqrlabel.setObjectName(u"fmyqrlabel")
-        self.fmyqrlabel.setFont(font6)
+        self.fmyqrlabel.setFont(font7)
         self.fmyqrlabel.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_16.addWidget(self.fmyqrlabel)
@@ -998,6 +1016,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_12.setContentsMargins(0, 0, 0, 0)
         self.fhistoryButton = QPushButton(self.fhistoryframe)
         self.fhistoryButton.setObjectName(u"fhistoryButton")
+        self.fhistoryButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon7 = QIcon()
         icon7.addFile(u":/images/image/history-features.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.fhistoryButton.setIcon(icon7)
@@ -1007,7 +1026,7 @@ class Ui_MainWindow(object):
 
         self.fhistorylabel = QLabel(self.fhistoryframe)
         self.fhistorylabel.setObjectName(u"fhistorylabel")
-        self.fhistorylabel.setFont(font6)
+        self.fhistorylabel.setFont(font7)
         self.fhistorylabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
         self.verticalLayout_12.addWidget(self.fhistorylabel)
@@ -1020,6 +1039,196 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_5.addWidget(self.featuresframe)
+
+        self.frame_9 = QFrame(self.scrollAreaWidgetContents)
+        self.frame_9.setObjectName(u"frame_9")
+        sizePolicy1.setHeightForWidth(self.frame_9.sizePolicy().hasHeightForWidth())
+        self.frame_9.setSizePolicy(sizePolicy1)
+        self.frame_9.setMinimumSize(QSize(0, 50))
+        self.frame_9.setStyleSheet(u"")
+        self.frame_9.setFrameShape(QFrame.StyledPanel)
+        self.frame_9.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_18 = QHBoxLayout(self.frame_9)
+        self.horizontalLayout_18.setSpacing(10)
+        self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
+        self.horizontalLayout_18.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.horizontalLayout_18.setContentsMargins(9, 9, 9, 9)
+        self.greenbar3_5 = QFrame(self.frame_9)
+        self.greenbar3_5.setObjectName(u"greenbar3_5")
+        self.greenbar3_5.setStyleSheet(u"background-color: rgb(79, 186, 116);")
+        self.greenbar3_5.setFrameShape(QFrame.StyledPanel)
+        self.greenbar3_5.setFrameShadow(QFrame.Raised)
+
+        self.horizontalLayout_18.addWidget(self.greenbar3_5)
+
+        self.label_5 = QLabel(self.frame_9)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setFont(font5)
+
+        self.horizontalLayout_18.addWidget(self.label_5)
+
+        self.horizontalLayout_18.setStretch(0, 1)
+        self.horizontalLayout_18.setStretch(1, 50)
+
+        self.verticalLayout_5.addWidget(self.frame_9)
+
+        self.frame_2 = QFrame(self.scrollAreaWidgetContents)
+        self.frame_2.setObjectName(u"frame_2")
+        sizePolicy1.setHeightForWidth(self.frame_2.sizePolicy().hasHeightForWidth())
+        self.frame_2.setSizePolicy(sizePolicy1)
+        self.frame_2.setMinimumSize(QSize(0, 127))
+        self.frame_2.setFrameShape(QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_21 = QHBoxLayout(self.frame_2)
+        self.horizontalLayout_21.setSpacing(14)
+        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
+        self.horizontalLayout_21.setContentsMargins(24, 0, 24, 0)
+        self.frame_10 = QFrame(self.frame_2)
+        self.frame_10.setObjectName(u"frame_10")
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.frame_10.sizePolicy().hasHeightForWidth())
+        self.frame_10.setSizePolicy(sizePolicy4)
+        self.frame_10.setMinimumSize(QSize(164, 0))
+        self.frame_10.setStyleSheet(u"border-radius: 15px;\n"
+"background-color: rgb(238, 238, 238);")
+        self.frame_10.setFrameShape(QFrame.StyledPanel)
+        self.frame_10.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_13 = QVBoxLayout(self.frame_10)
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.label_8 = QLabel(self.frame_10)
+        self.label_8.setObjectName(u"label_8")
+        font8 = QFont()
+        font8.setFamilies([u"Arial"])
+        font8.setPointSize(11)
+        font8.setBold(True)
+        self.label_8.setFont(font8)
+
+        self.verticalLayout_13.addWidget(self.label_8)
+
+        self.monthtodateframe = QFrame(self.frame_10)
+        self.monthtodateframe.setObjectName(u"monthtodateframe")
+        self.monthtodateframe.setFrameShape(QFrame.StyledPanel)
+        self.monthtodateframe.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_22 = QHBoxLayout(self.monthtodateframe)
+        self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
+        self.horizontalLayout_22.setContentsMargins(-1, 0, -1, 0)
+        self.mtdArrowindicatorframe = QFrame(self.monthtodateframe)
+        self.mtdArrowindicatorframe.setObjectName(u"mtdArrowindicatorframe")
+        sizePolicy2.setHeightForWidth(self.mtdArrowindicatorframe.sizePolicy().hasHeightForWidth())
+        self.mtdArrowindicatorframe.setSizePolicy(sizePolicy2)
+        self.mtdArrowindicatorframe.setMinimumSize(QSize(18, 24))
+        self.mtdArrowindicatorframe.setStyleSheet(u"background-image: url(:/images/image/arrow-none.svg);")
+        self.mtdArrowindicatorframe.setFrameShape(QFrame.StyledPanel)
+        self.mtdArrowindicatorframe.setFrameShadow(QFrame.Raised)
+
+        self.horizontalLayout_22.addWidget(self.mtdArrowindicatorframe)
+
+        self.mtdPercentagelabel = QLabel(self.monthtodateframe)
+        self.mtdPercentagelabel.setObjectName(u"mtdPercentagelabel")
+        font9 = QFont()
+        font9.setPointSize(16)
+        self.mtdPercentagelabel.setFont(font9)
+        self.mtdPercentagelabel.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.mtdPercentagelabel.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_22.addWidget(self.mtdPercentagelabel)
+
+        self.mtdPercentagevaluelabel = QLabel(self.monthtodateframe)
+        self.mtdPercentagevaluelabel.setObjectName(u"mtdPercentagevaluelabel")
+        self.mtdPercentagevaluelabel.setFont(font9)
+        self.mtdPercentagevaluelabel.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.mtdPercentagevaluelabel.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_22.addWidget(self.mtdPercentagevaluelabel)
+
+        self.horizontalLayout_22.setStretch(0, 1)
+        self.horizontalLayout_22.setStretch(1, 3)
+        self.horizontalLayout_22.setStretch(2, 1)
+
+        self.verticalLayout_13.addWidget(self.monthtodateframe)
+
+        self.label_11 = QLabel(self.frame_10)
+        self.label_11.setObjectName(u"label_11")
+        font10 = QFont()
+        font10.setFamilies([u"Arial"])
+        font10.setPointSize(10)
+        self.label_11.setFont(font10)
+
+        self.verticalLayout_13.addWidget(self.label_11)
+
+
+        self.horizontalLayout_21.addWidget(self.frame_10)
+
+        self.frame_11 = QFrame(self.frame_2)
+        self.frame_11.setObjectName(u"frame_11")
+        sizePolicy4.setHeightForWidth(self.frame_11.sizePolicy().hasHeightForWidth())
+        self.frame_11.setSizePolicy(sizePolicy4)
+        self.frame_11.setMinimumSize(QSize(164, 0))
+        self.frame_11.setStyleSheet(u"border-radius: 15px;\n"
+"background-color: rgb(238, 238, 238);")
+        self.frame_11.setFrameShape(QFrame.StyledPanel)
+        self.frame_11.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_19 = QVBoxLayout(self.frame_11)
+        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
+        self.label_9 = QLabel(self.frame_11)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setFont(font8)
+
+        self.verticalLayout_19.addWidget(self.label_9)
+
+        self.totalforcastedcostframe = QFrame(self.frame_11)
+        self.totalforcastedcostframe.setObjectName(u"totalforcastedcostframe")
+        self.totalforcastedcostframe.setFrameShape(QFrame.StyledPanel)
+        self.totalforcastedcostframe.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_23 = QHBoxLayout(self.totalforcastedcostframe)
+        self.horizontalLayout_23.setObjectName(u"horizontalLayout_23")
+        self.horizontalLayout_23.setContentsMargins(-1, 0, -1, 0)
+        self.tfcArrowindicatorframe = QFrame(self.totalforcastedcostframe)
+        self.tfcArrowindicatorframe.setObjectName(u"tfcArrowindicatorframe")
+        sizePolicy2.setHeightForWidth(self.tfcArrowindicatorframe.sizePolicy().hasHeightForWidth())
+        self.tfcArrowindicatorframe.setSizePolicy(sizePolicy2)
+        self.tfcArrowindicatorframe.setMinimumSize(QSize(18, 24))
+        self.tfcArrowindicatorframe.setStyleSheet(u"background-image: url(:/images/image/arrow-none.svg);")
+        self.tfcArrowindicatorframe.setFrameShape(QFrame.StyledPanel)
+        self.tfcArrowindicatorframe.setFrameShadow(QFrame.Raised)
+
+        self.horizontalLayout_23.addWidget(self.tfcArrowindicatorframe)
+
+        self.tfcPerccentagevaluelabel = QLabel(self.totalforcastedcostframe)
+        self.tfcPerccentagevaluelabel.setObjectName(u"tfcPerccentagevaluelabel")
+        self.tfcPerccentagevaluelabel.setFont(font9)
+        self.tfcPerccentagevaluelabel.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.tfcPerccentagevaluelabel.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_23.addWidget(self.tfcPerccentagevaluelabel)
+
+        self.tfcPercentagelabel = QLabel(self.totalforcastedcostframe)
+        self.tfcPercentagelabel.setObjectName(u"tfcPercentagelabel")
+        self.tfcPercentagelabel.setFont(font9)
+        self.tfcPercentagelabel.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.tfcPercentagelabel.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_23.addWidget(self.tfcPercentagelabel)
+
+        self.horizontalLayout_23.setStretch(0, 1)
+        self.horizontalLayout_23.setStretch(1, 3)
+        self.horizontalLayout_23.setStretch(2, 1)
+
+        self.verticalLayout_19.addWidget(self.totalforcastedcostframe)
+
+        self.label_12 = QLabel(self.frame_11)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setFont(font10)
+
+        self.verticalLayout_19.addWidget(self.label_12)
+
+
+        self.horizontalLayout_21.addWidget(self.frame_11)
+
+
+        self.verticalLayout_5.addWidget(self.frame_2)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
@@ -1048,7 +1257,7 @@ class Ui_MainWindow(object):
         self.menubar.setObjectName(u"menubar")
         self.menubar.setEnabled(False)
         self.menubar.setStyleSheet(u"background-color: rgb(79, 186, 116);\n"
-"border-radius: 25px;\n"
+"border-radius: 28px;\n"
 "")
         self.menubar.setFrameShape(QFrame.StyledPanel)
         self.menubar.setFrameShadow(QFrame.Raised)
@@ -1058,9 +1267,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setContentsMargins(19, -1, 19, -1)
         self.graphButton = QPushButton(self.menubar)
         self.graphButton.setObjectName(u"graphButton")
-        font7 = QFont()
-        font7.setFamilies([u"Font Awesome 6 Free Solid"])
-        self.graphButton.setFont(font7)
+        font11 = QFont()
+        font11.setFamilies([u"Font Awesome 6 Free"])
+        font11.setBold(True)
+        self.graphButton.setFont(font11)
         self.graphButton.setStyleSheet(u"height:33px;\n"
 "font-size: 24px;\n"
 "color: white;\n"
@@ -1070,7 +1280,7 @@ class Ui_MainWindow(object):
 
         self.historyButton = QPushButton(self.menubar)
         self.historyButton.setObjectName(u"historyButton")
-        self.historyButton.setFont(font7)
+        self.historyButton.setFont(font11)
         self.historyButton.setStyleSheet(u"height: 33px;\n"
 "font-size: 24px;\n"
 "color: white;")
@@ -1079,10 +1289,7 @@ class Ui_MainWindow(object):
 
         self.dashboardButton = QPushButton(self.menubar)
         self.dashboardButton.setObjectName(u"dashboardButton")
-        font8 = QFont()
-        font8.setFamilies([u"Font Awesome 6 Free Solid"])
-        font8.setBold(True)
-        self.dashboardButton.setFont(font8)
+        self.dashboardButton.setFont(font11)
         self.dashboardButton.setStyleSheet(u"height: 33px;\n"
 "font-size: 24px;\n"
 "color: white;")
@@ -1091,7 +1298,7 @@ class Ui_MainWindow(object):
 
         self.budgetplannerButton = QPushButton(self.menubar)
         self.budgetplannerButton.setObjectName(u"budgetplannerButton")
-        self.budgetplannerButton.setFont(font8)
+        self.budgetplannerButton.setFont(font11)
         self.budgetplannerButton.setStyleSheet(u"height: 33px;\n"
 "font-size: 24px;\n"
 "color: white;")
@@ -1100,7 +1307,7 @@ class Ui_MainWindow(object):
 
         self.othersButton = QPushButton(self.menubar)
         self.othersButton.setObjectName(u"othersButton")
-        self.othersButton.setFont(font8)
+        self.othersButton.setFont(font11)
         self.othersButton.setStyleSheet(u"height: 33px;\n"
 "font-size: 24px;\n"
 "color: white;")
@@ -1139,14 +1346,14 @@ class Ui_MainWindow(object):
         self.d_balance_title.setText(QCoreApplication.translate("MainWindow", u"Balance", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Your limits today", None))
         self.pushButton.setText("")
-        self.foodlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0 THB", None))
-        self.entertainmentlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0 THB", None))
-        self.transportationlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0 THB", None))
-        self.returnlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0 THB", None))
-        self.lendlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0 THB", None))
-        self.healthcarelimitlabel.setText(QCoreApplication.translate("MainWindow", u"0 THB", None))
-        self.educationlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0 THB", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"0 THB", None))
+        self.foodlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0.00 THB", None))
+        self.entertainmentlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0.00 THB", None))
+        self.transportationlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0.00 THB", None))
+        self.returnlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0.00 THB", None))
+        self.lendlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0.00 THB", None))
+        self.healthcarelimitlabel.setText(QCoreApplication.translate("MainWindow", u"0.00 THB", None))
+        self.educationlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0.00 THB", None))
+        self.label_10.setText(QCoreApplication.translate("MainWindow", u"0.00 THB", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Features", None))
         self.ftransferButton.setText("")
         self.ftransferlabel.setText(QCoreApplication.translate("MainWindow", u"Transfer", None))
@@ -1161,6 +1368,17 @@ class Ui_MainWindow(object):
         self.fmyqrlabel.setText(QCoreApplication.translate("MainWindow", u"My QR", None))
         self.fhistoryButton.setText("")
         self.fhistorylabel.setText(QCoreApplication.translate("MainWindow", u"History", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Cost Summary", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Month to date", None))
+        self.mtdPercentagelabel.setText(QCoreApplication.translate("MainWindow", u"0.00", None))
+        self.mtdPercentagevaluelabel.setText(QCoreApplication.translate("MainWindow", u"%", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"compared to last month \n"
+"for same period", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Total forcasted cost", None))
+        self.tfcPerccentagevaluelabel.setText(QCoreApplication.translate("MainWindow", u"0.00", None))
+        self.tfcPercentagelabel.setText(QCoreApplication.translate("MainWindow", u"%", None))
+        self.label_12.setText(QCoreApplication.translate("MainWindow", u"compared to last month \n"
+"total cost", None))
         self.graphButton.setText(QCoreApplication.translate("MainWindow", u"chart-line", None))
         self.historyButton.setText(QCoreApplication.translate("MainWindow", u"history", None))
         self.dashboardButton.setText(QCoreApplication.translate("MainWindow", u"house", None))
