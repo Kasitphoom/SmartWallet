@@ -79,7 +79,7 @@ class MainWindow(QMainWindow):
         self.ui.transportationlimitlabel.setText(f"{self.manager.calculate_daily_limit('transport'):,.2f}")
         self.ui.entertainmentlimitlabel.setText(f"{self.manager.calculate_daily_limit('entertainment'):,.2f}")
         self.ui.healthcarelimitlabel.setText(f"{self.manager.calculate_daily_limit('healthcare'):,.2f}")
-        self.ui.label_10.setText(f"{self.manager.calculate_daily_limit('others'):,.2f}")
+        self.ui.otherlimitlabel.setText(f"{self.manager.calculate_daily_limit('others'):,.2f}")
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
