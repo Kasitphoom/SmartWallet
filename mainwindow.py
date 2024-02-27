@@ -292,7 +292,7 @@ class Ui_MainWindow(object):
 
         self.Dashboard_saving = QFrame(self.Dashboard_balance_expense_saving)
         self.Dashboard_saving.setObjectName(u"Dashboard_saving")
-        self.Dashboard_saving.setStyleSheet(u"border-radius: 15px;\n"
+        self.Dashboard_saving.setStyleSheet(u"border-radius: 15px;\n")
         self.d_expense_amount = QLabel(self.Dashboard_expense)
         self.d_expense_amount.setObjectName(u"d_expense_amount")
         font3 = QFont()
