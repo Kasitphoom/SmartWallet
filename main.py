@@ -46,7 +46,7 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.stackedWidget.setCurrentIndex(0)
-        self.ui.frame_12.installEventFilter(self)
+        self.ui.frame_10.installEventFilter(self)
         
         self.ui.eyeButton.clicked.connect(self.handleAccountNumberVisibility)
         
