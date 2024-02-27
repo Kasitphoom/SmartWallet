@@ -76,7 +76,7 @@ class MainWindow(QMainWindow):
     def update_daily_limit(self):
         housing_limit = self.manager.calculate_daily_limit("housing")
         self.ui.housinglimitlabel.setText(f"{housing_limit:,.2f}")
-        self.ui.housinglimitframe.setStyleSheet(f"QFrame {{ background-color: {'rgba(171, 52, 40, 51)' if housing_limit < self.manager.get_max_daily_limit('housing') * 0.25 else 'rgba(171, 52, 40, 51)' if housing_limit < self.manager.get_max_daily_limit('housing') * 0.25 else 'rgba(40, 171, 52, 51)'} }}")
+        self.ui.housinglimitframe.setStyleSheet(self.ui.housinglimitframe.styleSheet() + f"\nbackground-color: {'rgba(171, 52, 40, 51)' if housing_limit < self.manager.get_max_daily_limit('housing') * 0.25 else 'rgba(171, 52, 40, 51)' if housing_limit < self.manager.get_max_daily_limit('housing') * 0.25 else 'rgba(40, 171, 52, 51)'}")
         
         self.ui.foodlimitlabel.setText(f"{self.manager.calculate_daily_limit('food'):,.2f}")
         self.ui.foodlimitframe.setStyleSheet(f"background-color: {'rgba(171, 52, 40, 51)' if self.manager.calculate_daily_limit('food') < self.manager.get_max_daily_limit('food') * 0.25 else 'rgba(171, 52, 40, 51)' if self.manager.calculate_daily_limit('food') < self.manager.get_max_daily_limit('food') * 0.25 else 'rgba(40, 171, 52, 51)'}")
