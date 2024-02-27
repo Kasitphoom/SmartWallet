@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'mainwindow.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.1
+## Created by: Qt User Interface Compiler version 6.6.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -59,7 +59,7 @@ class Ui_MainWindow(object):
         self.scrollArea = QScrollArea(self.dashboardPage)
         self.scrollArea.setObjectName(u"scrollArea")
         self.scrollArea.setEnabled(True)
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.scrollArea.sizePolicy().hasHeightForWidth())
@@ -83,7 +83,7 @@ class Ui_MainWindow(object):
         self.logoHeader = QFrame(self.scrollAreaWidgetContents)
         self.logoHeader.setObjectName(u"logoHeader")
         self.logoHeader.setEnabled(False)
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.logoHeader.sizePolicy().hasHeightForWidth())
@@ -165,7 +165,7 @@ class Ui_MainWindow(object):
 
         self.eyeButton = QPushButton(self.accountNumberlowerframe)
         self.eyeButton.setObjectName(u"eyeButton")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.eyeButton.sizePolicy().hasHeightForWidth())
@@ -178,7 +178,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addWidget(self.eyeButton)
 
-        self.horizontalSpacer = QSpacerItem(40, 15, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer = QSpacerItem(40, 15, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer)
 
@@ -331,7 +331,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_7.addWidget(self.d_balance_title, 0, 0, 1, 1)
 
-        self.d_verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.d_verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.gridLayout_7.addItem(self.d_verticalSpacer, 2, 0, 1, 1)
 
@@ -396,7 +396,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_6.addWidget(self.pushButton)
 
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_6.addItem(self.horizontalSpacer_2)
 
@@ -410,7 +410,7 @@ class Ui_MainWindow(object):
 
         self.limitscrollArea = QScrollArea(self.scrollAreaWidgetContents)
         self.limitscrollArea.setObjectName(u"limitscrollArea")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.limitscrollArea.sizePolicy().hasHeightForWidth())
@@ -443,35 +443,24 @@ class Ui_MainWindow(object):
         self.verticalLayout_15 = QVBoxLayout(self.frame_8)
         self.verticalLayout_15.setObjectName(u"verticalLayout_15")
         self.verticalLayout_15.setContentsMargins(-1, 9, -1, 9)
-        self.frame_3 = QFrame(self.frame_8)
-        self.frame_3.setObjectName(u"frame_3")
-        self.frame_3.setLayoutDirection(Qt.LeftToRight)
-        self.frame_3.setFrameShape(QFrame.StyledPanel)
-        self.frame_3.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_8 = QHBoxLayout(self.frame_3)
-        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.horizontalLayout_8.setContentsMargins(-1, 5, -1, 5)
-        self.frame_12 = QFrame(self.frame_3)
-        self.frame_12.setObjectName(u"frame_12")
-        sizePolicy2.setHeightForWidth(self.frame_12.sizePolicy().hasHeightForWidth())
-        self.frame_12.setSizePolicy(sizePolicy2)
-        self.frame_12.setMinimumSize(QSize(26, 22))
-        self.frame_12.setLayoutDirection(Qt.LeftToRight)
-        self.frame_12.setStyleSheet(u"background-image: url(:/images/image/expense_gray/bowl-food-gray.svg);")
-        self.frame_12.setFrameShape(QFrame.StyledPanel)
-        self.frame_12.setFrameShadow(QFrame.Raised)
+        self.label_4 = QLabel(self.frame_8)
+        self.label_4.setObjectName(u"label_4")
+        font6 = QFont()
+        font6.setFamilies([u"Font Awesome 6 Free"])
+        font6.setPointSize(24)
+        font6.setBold(True)
+        self.label_4.setFont(font6)
+        self.label_4.setStyleSheet(u"color: rgb(137, 137, 137);")
+        self.label_4.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_8.addWidget(self.frame_12)
-
-
-        self.verticalLayout_15.addWidget(self.frame_3)
+        self.verticalLayout_15.addWidget(self.label_4)
 
         self.foodlimitlabel = QLabel(self.frame_8)
         self.foodlimitlabel.setObjectName(u"foodlimitlabel")
-        font6 = QFont()
-        font6.setFamilies([u"Arial"])
-        font6.setBold(True)
-        self.foodlimitlabel.setFont(font6)
+        font7 = QFont()
+        font7.setFamilies([u"Arial"])
+        font7.setBold(True)
+        self.foodlimitlabel.setFont(font7)
         self.foodlimitlabel.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_15.addWidget(self.foodlimitlabel)
@@ -493,32 +482,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_18 = QVBoxLayout(self.frame_15)
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
         self.verticalLayout_18.setContentsMargins(-1, 9, -1, 9)
-        self.frame_16 = QFrame(self.frame_15)
-        self.frame_16.setObjectName(u"frame_16")
-        self.frame_16.setLayoutDirection(Qt.LeftToRight)
-        self.frame_16.setFrameShape(QFrame.StyledPanel)
-        self.frame_16.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_10 = QHBoxLayout(self.frame_16)
-        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
-        self.horizontalLayout_10.setContentsMargins(-1, 5, -1, 5)
-        self.frame_17 = QFrame(self.frame_16)
-        self.frame_17.setObjectName(u"frame_17")
-        sizePolicy2.setHeightForWidth(self.frame_17.sizePolicy().hasHeightForWidth())
-        self.frame_17.setSizePolicy(sizePolicy2)
-        self.frame_17.setMinimumSize(QSize(24, 22))
-        self.frame_17.setLayoutDirection(Qt.LeftToRight)
-        self.frame_17.setStyleSheet(u"background-image: url(:/images/image/expense_gray/film-gray.svg);")
-        self.frame_17.setFrameShape(QFrame.StyledPanel)
-        self.frame_17.setFrameShadow(QFrame.Raised)
+        self.label_6 = QLabel(self.frame_15)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setFont(font6)
+        self.label_6.setStyleSheet(u"color: rgb(137, 137, 137);")
+        self.label_6.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_10.addWidget(self.frame_17)
-
-
-        self.verticalLayout_18.addWidget(self.frame_16)
+        self.verticalLayout_18.addWidget(self.label_6)
 
         self.entertainmentlimitlabel = QLabel(self.frame_15)
         self.entertainmentlimitlabel.setObjectName(u"entertainmentlimitlabel")
-        self.entertainmentlimitlabel.setFont(font6)
+        self.entertainmentlimitlabel.setFont(font7)
         self.entertainmentlimitlabel.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_18.addWidget(self.entertainmentlimitlabel)
@@ -540,32 +514,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_21 = QVBoxLayout(self.frame_18)
         self.verticalLayout_21.setObjectName(u"verticalLayout_21")
         self.verticalLayout_21.setContentsMargins(-1, 9, -1, 9)
-        self.frame_21 = QFrame(self.frame_18)
-        self.frame_21.setObjectName(u"frame_21")
-        self.frame_21.setLayoutDirection(Qt.LeftToRight)
-        self.frame_21.setFrameShape(QFrame.StyledPanel)
-        self.frame_21.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_13 = QHBoxLayout(self.frame_21)
-        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
-        self.horizontalLayout_13.setContentsMargins(-1, 5, -1, 5)
-        self.frame_24 = QFrame(self.frame_21)
-        self.frame_24.setObjectName(u"frame_24")
-        sizePolicy2.setHeightForWidth(self.frame_24.sizePolicy().hasHeightForWidth())
-        self.frame_24.setSizePolicy(sizePolicy2)
-        self.frame_24.setMinimumSize(QSize(25, 21))
-        self.frame_24.setLayoutDirection(Qt.LeftToRight)
-        self.frame_24.setStyleSheet(u"background-image: url(:/images/image/expense_gray/car-gray.svg);")
-        self.frame_24.setFrameShape(QFrame.StyledPanel)
-        self.frame_24.setFrameShadow(QFrame.Raised)
+        self.label_7 = QLabel(self.frame_18)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setFont(font6)
+        self.label_7.setStyleSheet(u"color: rgb(137, 137, 137);")
+        self.label_7.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_13.addWidget(self.frame_24)
-
-
-        self.verticalLayout_21.addWidget(self.frame_21)
+        self.verticalLayout_21.addWidget(self.label_7)
 
         self.transportationlimitlabel = QLabel(self.frame_18)
         self.transportationlimitlabel.setObjectName(u"transportationlimitlabel")
-        self.transportationlimitlabel.setFont(font6)
+        self.transportationlimitlabel.setFont(font7)
         self.transportationlimitlabel.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_21.addWidget(self.transportationlimitlabel)
@@ -587,32 +546,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_25 = QVBoxLayout(self.frame_34)
         self.verticalLayout_25.setObjectName(u"verticalLayout_25")
         self.verticalLayout_25.setContentsMargins(-1, 9, -1, 9)
-        self.frame_35 = QFrame(self.frame_34)
-        self.frame_35.setObjectName(u"frame_35")
-        self.frame_35.setLayoutDirection(Qt.LeftToRight)
-        self.frame_35.setFrameShape(QFrame.StyledPanel)
-        self.frame_35.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_17 = QHBoxLayout(self.frame_35)
-        self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
-        self.horizontalLayout_17.setContentsMargins(-1, 5, -1, 5)
-        self.frame_36 = QFrame(self.frame_35)
-        self.frame_36.setObjectName(u"frame_36")
-        sizePolicy2.setHeightForWidth(self.frame_36.sizePolicy().hasHeightForWidth())
-        self.frame_36.setSizePolicy(sizePolicy2)
-        self.frame_36.setMinimumSize(QSize(31, 24))
-        self.frame_36.setLayoutDirection(Qt.LeftToRight)
-        self.frame_36.setStyleSheet(u"background-image: url(:/images/image/expense_gray/return-gray.svg);")
-        self.frame_36.setFrameShape(QFrame.StyledPanel)
-        self.frame_36.setFrameShadow(QFrame.Raised)
+        self.label_13 = QLabel(self.frame_34)
+        self.label_13.setObjectName(u"label_13")
+        self.label_13.setFont(font6)
+        self.label_13.setStyleSheet(u"color: rgb(137, 137, 137);")
+        self.label_13.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_17.addWidget(self.frame_36)
-
-
-        self.verticalLayout_25.addWidget(self.frame_35)
+        self.verticalLayout_25.addWidget(self.label_13)
 
         self.returnlimitlabel = QLabel(self.frame_34)
         self.returnlimitlabel.setObjectName(u"returnlimitlabel")
-        self.returnlimitlabel.setFont(font6)
+        self.returnlimitlabel.setFont(font7)
         self.returnlimitlabel.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_25.addWidget(self.returnlimitlabel)
@@ -634,32 +578,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_24 = QVBoxLayout(self.frame_31)
         self.verticalLayout_24.setObjectName(u"verticalLayout_24")
         self.verticalLayout_24.setContentsMargins(-1, 9, -1, 9)
-        self.frame_32 = QFrame(self.frame_31)
-        self.frame_32.setObjectName(u"frame_32")
-        self.frame_32.setLayoutDirection(Qt.LeftToRight)
-        self.frame_32.setFrameShape(QFrame.StyledPanel)
-        self.frame_32.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_16 = QHBoxLayout(self.frame_32)
-        self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
-        self.horizontalLayout_16.setContentsMargins(-1, 5, -1, 5)
-        self.frame_33 = QFrame(self.frame_32)
-        self.frame_33.setObjectName(u"frame_33")
-        sizePolicy2.setHeightForWidth(self.frame_33.sizePolicy().hasHeightForWidth())
-        self.frame_33.setSizePolicy(sizePolicy2)
-        self.frame_33.setMinimumSize(QSize(25, 24))
-        self.frame_33.setLayoutDirection(Qt.LeftToRight)
-        self.frame_33.setStyleSheet(u"background-image: url(:/images/image/expense_gray/lend-gray.svg);")
-        self.frame_33.setFrameShape(QFrame.StyledPanel)
-        self.frame_33.setFrameShadow(QFrame.Raised)
+        self.label_15 = QLabel(self.frame_31)
+        self.label_15.setObjectName(u"label_15")
+        self.label_15.setFont(font6)
+        self.label_15.setStyleSheet(u"color: rgb(137, 137, 137);")
+        self.label_15.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_16.addWidget(self.frame_33)
-
-
-        self.verticalLayout_24.addWidget(self.frame_32)
+        self.verticalLayout_24.addWidget(self.label_15)
 
         self.lendlimitlabel = QLabel(self.frame_31)
         self.lendlimitlabel.setObjectName(u"lendlimitlabel")
-        self.lendlimitlabel.setFont(font6)
+        self.lendlimitlabel.setFont(font7)
         self.lendlimitlabel.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_24.addWidget(self.lendlimitlabel)
@@ -681,32 +610,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_23 = QVBoxLayout(self.frame_28)
         self.verticalLayout_23.setObjectName(u"verticalLayout_23")
         self.verticalLayout_23.setContentsMargins(-1, 9, -1, 9)
-        self.frame_29 = QFrame(self.frame_28)
-        self.frame_29.setObjectName(u"frame_29")
-        self.frame_29.setLayoutDirection(Qt.LeftToRight)
-        self.frame_29.setFrameShape(QFrame.StyledPanel)
-        self.frame_29.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_15 = QHBoxLayout(self.frame_29)
-        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
-        self.horizontalLayout_15.setContentsMargins(-1, 5, -1, 5)
-        self.frame_30 = QFrame(self.frame_29)
-        self.frame_30.setObjectName(u"frame_30")
-        sizePolicy2.setHeightForWidth(self.frame_30.sizePolicy().hasHeightForWidth())
-        self.frame_30.setSizePolicy(sizePolicy2)
-        self.frame_30.setMinimumSize(QSize(26, 24))
-        self.frame_30.setLayoutDirection(Qt.LeftToRight)
-        self.frame_30.setStyleSheet(u"background-image: url(:/images/image/expense_gray/health-gray.svg);")
-        self.frame_30.setFrameShape(QFrame.StyledPanel)
-        self.frame_30.setFrameShadow(QFrame.Raised)
+        self.label_14 = QLabel(self.frame_28)
+        self.label_14.setObjectName(u"label_14")
+        self.label_14.setFont(font6)
+        self.label_14.setStyleSheet(u"color: rgb(137, 137, 137);")
+        self.label_14.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_15.addWidget(self.frame_30)
-
-
-        self.verticalLayout_23.addWidget(self.frame_29)
+        self.verticalLayout_23.addWidget(self.label_14)
 
         self.healthcarelimitlabel = QLabel(self.frame_28)
         self.healthcarelimitlabel.setObjectName(u"healthcarelimitlabel")
-        self.healthcarelimitlabel.setFont(font6)
+        self.healthcarelimitlabel.setFont(font7)
         self.healthcarelimitlabel.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_23.addWidget(self.healthcarelimitlabel)
@@ -728,32 +642,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_17 = QVBoxLayout(self.frame_13)
         self.verticalLayout_17.setObjectName(u"verticalLayout_17")
         self.verticalLayout_17.setContentsMargins(-1, 9, -1, 9)
-        self.frame_7 = QFrame(self.frame_13)
-        self.frame_7.setObjectName(u"frame_7")
-        self.frame_7.setLayoutDirection(Qt.LeftToRight)
-        self.frame_7.setFrameShape(QFrame.StyledPanel)
-        self.frame_7.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_9 = QHBoxLayout(self.frame_7)
-        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
-        self.horizontalLayout_9.setContentsMargins(-1, 5, -1, 5)
-        self.frame_14 = QFrame(self.frame_7)
-        self.frame_14.setObjectName(u"frame_14")
-        sizePolicy2.setHeightForWidth(self.frame_14.sizePolicy().hasHeightForWidth())
-        self.frame_14.setSizePolicy(sizePolicy2)
-        self.frame_14.setMinimumSize(QSize(30, 25))
-        self.frame_14.setLayoutDirection(Qt.LeftToRight)
-        self.frame_14.setStyleSheet(u"background-image: url(:/images/image/expense_gray/education-gray.svg);")
-        self.frame_14.setFrameShape(QFrame.StyledPanel)
-        self.frame_14.setFrameShadow(QFrame.Raised)
+        self.label_16 = QLabel(self.frame_13)
+        self.label_16.setObjectName(u"label_16")
+        self.label_16.setFont(font6)
+        self.label_16.setStyleSheet(u"color: rgb(137, 137, 137);")
+        self.label_16.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_9.addWidget(self.frame_14)
-
-
-        self.verticalLayout_17.addWidget(self.frame_7)
+        self.verticalLayout_17.addWidget(self.label_16)
 
         self.educationlimitlabel = QLabel(self.frame_13)
         self.educationlimitlabel.setObjectName(u"educationlimitlabel")
-        self.educationlimitlabel.setFont(font6)
+        self.educationlimitlabel.setFont(font7)
         self.educationlimitlabel.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_17.addWidget(self.educationlimitlabel)
@@ -775,32 +674,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_22 = QVBoxLayout(self.frame_25)
         self.verticalLayout_22.setObjectName(u"verticalLayout_22")
         self.verticalLayout_22.setContentsMargins(-1, 9, -1, 9)
-        self.frame_26 = QFrame(self.frame_25)
-        self.frame_26.setObjectName(u"frame_26")
-        self.frame_26.setLayoutDirection(Qt.LeftToRight)
-        self.frame_26.setFrameShape(QFrame.StyledPanel)
-        self.frame_26.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_14 = QHBoxLayout(self.frame_26)
-        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
-        self.horizontalLayout_14.setContentsMargins(-1, 5, -1, 5)
-        self.frame_27 = QFrame(self.frame_26)
-        self.frame_27.setObjectName(u"frame_27")
-        sizePolicy2.setHeightForWidth(self.frame_27.sizePolicy().hasHeightForWidth())
-        self.frame_27.setSizePolicy(sizePolicy2)
-        self.frame_27.setMinimumSize(QSize(16, 21))
-        self.frame_27.setLayoutDirection(Qt.LeftToRight)
-        self.frame_27.setStyleSheet(u"background-image: url(:/images/image/expense_gray/other-gray.svg);")
-        self.frame_27.setFrameShape(QFrame.StyledPanel)
-        self.frame_27.setFrameShadow(QFrame.Raised)
+        self.label_17 = QLabel(self.frame_25)
+        self.label_17.setObjectName(u"label_17")
+        self.label_17.setFont(font6)
+        self.label_17.setStyleSheet(u"color: rgb(137, 137, 137);")
+        self.label_17.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_14.addWidget(self.frame_27)
-
-
-        self.verticalLayout_22.addWidget(self.frame_26)
+        self.verticalLayout_22.addWidget(self.label_17)
 
         self.label_10 = QLabel(self.frame_25)
         self.label_10.setObjectName(u"label_10")
-        self.label_10.setFont(font6)
+        self.label_10.setFont(font7)
         self.label_10.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_22.addWidget(self.label_10)
@@ -875,10 +759,10 @@ class Ui_MainWindow(object):
 
         self.ftransferlabel = QLabel(self.ftransferframe)
         self.ftransferlabel.setObjectName(u"ftransferlabel")
-        font7 = QFont()
-        font7.setFamilies([u"Arial"])
-        font7.setPointSize(12)
-        self.ftransferlabel.setFont(font7)
+        font8 = QFont()
+        font8.setFamilies([u"Arial"])
+        font8.setPointSize(12)
+        self.ftransferlabel.setFont(font8)
         self.ftransferlabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
         self.verticalLayout_8.addWidget(self.ftransferlabel)
@@ -908,7 +792,7 @@ class Ui_MainWindow(object):
         self.fbudgetplannerlabel = QLabel(self.fbudgetplannerframe)
         self.fbudgetplannerlabel.setObjectName(u"fbudgetplannerlabel")
         self.fbudgetplannerlabel.setMinimumSize(QSize(0, 0))
-        self.fbudgetplannerlabel.setFont(font7)
+        self.fbudgetplannerlabel.setFont(font8)
         self.fbudgetplannerlabel.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
 
         self.verticalLayout_11.addWidget(self.fbudgetplannerlabel)
@@ -936,7 +820,7 @@ class Ui_MainWindow(object):
 
         self.faddbillslabel = QLabel(self.faddbillsframe)
         self.faddbillslabel.setObjectName(u"faddbillslabel")
-        self.faddbillslabel.setFont(font7)
+        self.faddbillslabel.setFont(font8)
         self.faddbillslabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
         self.verticalLayout_10.addWidget(self.faddbillslabel)
@@ -963,7 +847,7 @@ class Ui_MainWindow(object):
 
         self.fsummarylabel = QLabel(self.fsummaryframe)
         self.fsummarylabel.setObjectName(u"fsummarylabel")
-        self.fsummarylabel.setFont(font7)
+        self.fsummarylabel.setFont(font8)
         self.fsummarylabel.setLineWidth(1)
         self.fsummarylabel.setAlignment(Qt.AlignCenter)
 
@@ -991,7 +875,7 @@ class Ui_MainWindow(object):
 
         self.fmyqrlabel = QLabel(self.fmyqrframe)
         self.fmyqrlabel.setObjectName(u"fmyqrlabel")
-        self.fmyqrlabel.setFont(font7)
+        self.fmyqrlabel.setFont(font8)
         self.fmyqrlabel.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_16.addWidget(self.fmyqrlabel)
@@ -1019,7 +903,7 @@ class Ui_MainWindow(object):
 
         self.fhistorylabel = QLabel(self.fhistoryframe)
         self.fhistorylabel.setObjectName(u"fhistorylabel")
-        self.fhistorylabel.setFont(font7)
+        self.fhistorylabel.setFont(font8)
         self.fhistorylabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
         self.verticalLayout_12.addWidget(self.fhistorylabel)
@@ -1078,7 +962,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_21.setContentsMargins(24, 0, 24, 0)
         self.frame_10 = QFrame(self.frame_2)
         self.frame_10.setObjectName(u"frame_10")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy4.setHorizontalStretch(0)
         sizePolicy4.setVerticalStretch(0)
         sizePolicy4.setHeightForWidth(self.frame_10.sizePolicy().hasHeightForWidth())
@@ -1092,11 +976,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
         self.label_8 = QLabel(self.frame_10)
         self.label_8.setObjectName(u"label_8")
-        font8 = QFont()
-        font8.setFamilies([u"Arial"])
-        font8.setPointSize(11)
-        font8.setBold(True)
-        self.label_8.setFont(font8)
+        font9 = QFont()
+        font9.setFamilies([u"Arial"])
+        font9.setPointSize(11)
+        font9.setBold(True)
+        self.label_8.setFont(font9)
 
         self.verticalLayout_13.addWidget(self.label_8)
 
@@ -1120,9 +1004,9 @@ class Ui_MainWindow(object):
 
         self.mtdPercentagelabel = QLabel(self.monthtodateframe)
         self.mtdPercentagelabel.setObjectName(u"mtdPercentagelabel")
-        font9 = QFont()
-        font9.setPointSize(16)
-        self.mtdPercentagelabel.setFont(font9)
+        font10 = QFont()
+        font10.setPointSize(16)
+        self.mtdPercentagelabel.setFont(font10)
         self.mtdPercentagelabel.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.mtdPercentagelabel.setAlignment(Qt.AlignCenter)
 
@@ -1130,7 +1014,7 @@ class Ui_MainWindow(object):
 
         self.mtdPercentagevaluelabel = QLabel(self.monthtodateframe)
         self.mtdPercentagevaluelabel.setObjectName(u"mtdPercentagevaluelabel")
-        self.mtdPercentagevaluelabel.setFont(font9)
+        self.mtdPercentagevaluelabel.setFont(font10)
         self.mtdPercentagevaluelabel.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.mtdPercentagevaluelabel.setAlignment(Qt.AlignCenter)
 
@@ -1144,10 +1028,10 @@ class Ui_MainWindow(object):
 
         self.label_11 = QLabel(self.frame_10)
         self.label_11.setObjectName(u"label_11")
-        font10 = QFont()
-        font10.setFamilies([u"Arial"])
-        font10.setPointSize(10)
-        self.label_11.setFont(font10)
+        font11 = QFont()
+        font11.setFamilies([u"Arial"])
+        font11.setPointSize(10)
+        self.label_11.setFont(font11)
 
         self.verticalLayout_13.addWidget(self.label_11)
 
@@ -1167,7 +1051,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_19.setObjectName(u"verticalLayout_19")
         self.label_9 = QLabel(self.frame_11)
         self.label_9.setObjectName(u"label_9")
-        self.label_9.setFont(font8)
+        self.label_9.setFont(font9)
 
         self.verticalLayout_19.addWidget(self.label_9)
 
@@ -1191,7 +1075,7 @@ class Ui_MainWindow(object):
 
         self.tfcPerccentagevaluelabel = QLabel(self.totalforcastedcostframe)
         self.tfcPerccentagevaluelabel.setObjectName(u"tfcPerccentagevaluelabel")
-        self.tfcPerccentagevaluelabel.setFont(font9)
+        self.tfcPerccentagevaluelabel.setFont(font10)
         self.tfcPerccentagevaluelabel.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.tfcPerccentagevaluelabel.setAlignment(Qt.AlignCenter)
 
@@ -1199,7 +1083,7 @@ class Ui_MainWindow(object):
 
         self.tfcPercentagelabel = QLabel(self.totalforcastedcostframe)
         self.tfcPercentagelabel.setObjectName(u"tfcPercentagelabel")
-        self.tfcPercentagelabel.setFont(font9)
+        self.tfcPercentagelabel.setFont(font10)
         self.tfcPercentagelabel.setStyleSheet(u"color: rgb(0, 0, 0);")
         self.tfcPercentagelabel.setAlignment(Qt.AlignCenter)
 
@@ -1213,7 +1097,7 @@ class Ui_MainWindow(object):
 
         self.label_12 = QLabel(self.frame_11)
         self.label_12.setObjectName(u"label_12")
-        self.label_12.setFont(font10)
+        self.label_12.setFont(font11)
 
         self.verticalLayout_19.addWidget(self.label_12)
 
@@ -1266,7 +1150,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_11.addWidget(self.transferbackButto)
 
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_11.addItem(self.horizontalSpacer_3)
 
@@ -1275,6 +1159,8 @@ class Ui_MainWindow(object):
 
         self.frame_20 = QFrame(self.transferPage)
         self.frame_20.setObjectName(u"frame_20")
+        sizePolicy1.setHeightForWidth(self.frame_20.sizePolicy().hasHeightForWidth())
+        self.frame_20.setSizePolicy(sizePolicy1)
         self.frame_20.setStyleSheet(u"")
         self.frame_20.setFrameShape(QFrame.StyledPanel)
         self.frame_20.setFrameShadow(QFrame.Raised)
@@ -1367,9 +1253,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setContentsMargins(19, -1, 19, -1)
         self.graphButton = QPushButton(self.menubar)
         self.graphButton.setObjectName(u"graphButton")
-        font11 = QFont()
-        font11.setFamilies([u"Font Awesome 6 Free Solid"])
-        self.graphButton.setFont(font11)
+        font12 = QFont()
+        font12.setFamilies([u"Font Awesome 6 Free"])
+        font12.setBold(True)
+        self.graphButton.setFont(font12)
         self.graphButton.setStyleSheet(u"height:33px;\n"
 "font-size: 24px;\n"
 "color: white;\n"
@@ -1379,7 +1266,7 @@ class Ui_MainWindow(object):
 
         self.historyButton = QPushButton(self.menubar)
         self.historyButton.setObjectName(u"historyButton")
-        self.historyButton.setFont(font11)
+        self.historyButton.setFont(font12)
         self.historyButton.setStyleSheet(u"height: 33px;\n"
 "font-size: 24px;\n"
 "color: white;")
@@ -1388,9 +1275,6 @@ class Ui_MainWindow(object):
 
         self.dashboardButton = QPushButton(self.menubar)
         self.dashboardButton.setObjectName(u"dashboardButton")
-        font12 = QFont()
-        font12.setFamilies([u"Font Awesome 6 Free Solid"])
-        font12.setBold(True)
         self.dashboardButton.setFont(font12)
         self.dashboardButton.setStyleSheet(u"height: 33px;\n"
 "font-size: 24px;\n"
@@ -1448,13 +1332,21 @@ class Ui_MainWindow(object):
         self.d_balance_title.setText(QCoreApplication.translate("MainWindow", u"Balance", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Your limits today", None))
         self.pushButton.setText("")
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"bowl-food", None))
         self.foodlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0.00 THB", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"film", None))
         self.entertainmentlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0.00 THB", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"car", None))
         self.transportationlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0.00 THB", None))
+        self.label_13.setText(QCoreApplication.translate("MainWindow", u"person-walking-arrow-loop-left", None))
         self.returnlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0.00 THB", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"download", None))
         self.lendlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0.00 THB", None))
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"heart-pulse", None))
         self.healthcarelimitlabel.setText(QCoreApplication.translate("MainWindow", u"0.00 THB", None))
+        self.label_16.setText(QCoreApplication.translate("MainWindow", u"building", None))
         self.educationlimitlabel.setText(QCoreApplication.translate("MainWindow", u"0.00 THB", None))
+        self.label_17.setText(QCoreApplication.translate("MainWindow", u"Question", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"0.00 THB", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Features", None))
         self.ftransferButton.setText("")
