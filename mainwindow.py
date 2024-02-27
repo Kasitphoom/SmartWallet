@@ -223,7 +223,7 @@ class Ui_MainWindow(object):
         self.gridLayout_3.setContentsMargins(-1, -1, -1, 0)
         self.Dashboard_expense = QFrame(self.Dashboard_balance_expense_saving)
         self.Dashboard_expense.setObjectName(u"Dashboard_expense")
-        self.Dashboard_expense.setStyleSheet(u"background-color: rgba(171, 52, 40, 51);\n"
+        self.Dashboard_expense.setStyleSheet(u"background-color: rgba(171, 52, 40, 51);\n")
         self.Dashboard_expense = QFrame(self.Dashboard_balance_expense_saving)
         self.Dashboard_expense.setObjectName(u"Dashboard_expense")
         self.Dashboard_expense.setStyleSheet(u"background-color: rgba(171, 52, 40, 51);\n"
