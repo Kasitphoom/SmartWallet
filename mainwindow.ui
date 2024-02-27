@@ -879,7 +879,7 @@ height: 10px;</string>
                  <widget class="QWidget" name="limitscrollAreaWidgetContents">
                   <property name="geometry">
                    <rect>
-                    <x>0</x>
+                    <x>-250</x>
                     <y>0</y>
                     <width>720</width>
                     <height>81</height>
@@ -1448,7 +1448,7 @@ border-radius: 5px;
                     </widget>
                    </item>
                    <item>
-                    <widget class="QFrame" name="educationlimitframe">
+                    <widget class="QFrame" name="housinglimitframe">
                      <property name="sizePolicy">
                       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                        <horstretch>0</horstretch>
@@ -1483,7 +1483,7 @@ border-radius: 5px;
                        <number>9</number>
                       </property>
                       <item>
-                       <widget class="QLabel" name="educationlimiticon">
+                       <widget class="QLabel" name="housinglimiticon">
                         <property name="font">
                          <font>
                           <family>Font Awesome 6 Free</family>
@@ -1503,7 +1503,7 @@ border-radius: 5px;
                        </widget>
                       </item>
                       <item>
-                       <widget class="QLabel" name="educationlimitlabel">
+                       <widget class="QLabel" name="housinglimitlabel">
                         <property name="font">
                          <font>
                           <family>Arial</family>
