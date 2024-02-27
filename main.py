@@ -74,7 +74,7 @@ class MainWindow(QMainWindow):
             self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
     
     def update_daily_limit(self):
-        self.ui.educationlimitlabel.setText(f"{self.manager.calculate_daily_limit('housing'):,.2f}")
+        self.ui.housinglimitlabel.setText(f"{self.manager.calculate_daily_limit('housing'):,.2f}")
         self.ui.foodlimitlabel.setText(f"{self.manager.calculate_daily_limit('food'):,.2f}")
         self.ui.transportationlimitlabel.setText(f"{self.manager.calculate_daily_limit('transport'):,.2f}")
         self.ui.entertainmentlimitlabel.setText(f"{self.manager.calculate_daily_limit('entertainment'):,.2f}")
