@@ -66,14 +66,14 @@ class Ui_MainWindow(object):
         self.scrollArea.setSizePolicy(sizePolicy)
         self.scrollArea.setMinimumSize(QSize(0, 0))
         self.scrollArea.setAcceptDrops(False)
-        self.scrollArea.setStyleSheet(u"width:5px;\n"
+        self.scrollArea.setStyleSheet(u"width:0px;\n"
 "")
         self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
         self.scrollAreaWidgetContents.setEnabled(True)
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 390, 1074))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 391, 1074))
         self.scrollAreaWidgetContents.setStyleSheet(u"")
         self.verticalLayout_5 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_5.setSpacing(14)
@@ -418,14 +418,14 @@ class Ui_MainWindow(object):
         self.limitscrollArea.setSizePolicy(sizePolicy3)
         self.limitscrollArea.setMinimumSize(QSize(0, 90))
         self.limitscrollArea.setStyleSheet(u"width: 1px;\n"
-"height: 10px;")
+"height: 0px;")
         self.limitscrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.limitscrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.limitscrollArea.setWidgetResizable(True)
         self.limitscrollArea.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.limitscrollAreaWidgetContents = QWidget()
         self.limitscrollAreaWidgetContents.setObjectName(u"limitscrollAreaWidgetContents")
-        self.limitscrollAreaWidgetContents.setGeometry(QRect(-329, 0, 720, 81))
+        self.limitscrollAreaWidgetContents.setGeometry(QRect(0, 0, 720, 90))
         self.horizontalLayout_7 = QHBoxLayout(self.limitscrollAreaWidgetContents)
         self.horizontalLayout_7.setSpacing(10)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
@@ -1235,9 +1235,118 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addWidget(self.scrollArea)
 
         self.stackedWidget.addWidget(self.dashboardPage)
-        self.page_2 = QWidget()
-        self.page_2.setObjectName(u"page_2")
-        self.stackedWidget.addWidget(self.page_2)
+        self.transferPage = QWidget()
+        self.transferPage.setObjectName(u"transferPage")
+        self.verticalLayout_20 = QVBoxLayout(self.transferPage)
+        self.verticalLayout_20.setSpacing(14)
+        self.verticalLayout_20.setObjectName(u"verticalLayout_20")
+        self.verticalLayout_20.setContentsMargins(0, 0, 0, 14)
+        self.logoHeader_2 = QFrame(self.transferPage)
+        self.logoHeader_2.setObjectName(u"logoHeader_2")
+        self.logoHeader_2.setEnabled(False)
+        sizePolicy1.setHeightForWidth(self.logoHeader_2.sizePolicy().hasHeightForWidth())
+        self.logoHeader_2.setSizePolicy(sizePolicy1)
+        self.logoHeader_2.setMinimumSize(QSize(0, 110))
+        self.logoHeader_2.setStyleSheet(u"background-image: url(:/images/image/sw_logo_section.svg);")
+        self.logoHeader_2.setFrameShape(QFrame.StyledPanel)
+        self.logoHeader_2.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_20.addWidget(self.logoHeader_2)
+
+        self.transferbackframe = QFrame(self.transferPage)
+        self.transferbackframe.setObjectName(u"transferbackframe")
+        sizePolicy1.setHeightForWidth(self.transferbackframe.sizePolicy().hasHeightForWidth())
+        self.transferbackframe.setSizePolicy(sizePolicy1)
+        self.transferbackframe.setMinimumSize(QSize(0, 20))
+        self.transferbackframe.setFrameShape(QFrame.StyledPanel)
+        self.transferbackframe.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_11 = QHBoxLayout(self.transferbackframe)
+        self.horizontalLayout_11.setSpacing(0)
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.horizontalLayout_11.setContentsMargins(41, 0, 41, 0)
+        self.transferbackButto = QPushButton(self.transferbackframe)
+        self.transferbackButto.setObjectName(u"transferbackButto")
+        sizePolicy2.setHeightForWidth(self.transferbackButto.sizePolicy().hasHeightForWidth())
+        self.transferbackButto.setSizePolicy(sizePolicy2)
+        self.transferbackButto.setMinimumSize(QSize(99, 20))
+        self.transferbackButto.setStyleSheet(u"background-image: url(:/images/image/backtransfer.svg);")
+
+        self.horizontalLayout_11.addWidget(self.transferbackButto)
+
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_11.addItem(self.horizontalSpacer_3)
+
+
+        self.verticalLayout_20.addWidget(self.transferbackframe)
+
+        self.frame_20 = QFrame(self.transferPage)
+        self.frame_20.setObjectName(u"frame_20")
+        self.frame_20.setFrameShape(QFrame.StyledPanel)
+        self.frame_20.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_26 = QVBoxLayout(self.frame_20)
+        self.verticalLayout_26.setSpacing(24)
+        self.verticalLayout_26.setObjectName(u"verticalLayout_26")
+        self.verticalLayout_26.setContentsMargins(39, 0, 39, 0)
+        self.frame_22 = QFrame(self.frame_20)
+        self.frame_22.setObjectName(u"frame_22")
+        sizePolicy1.setHeightForWidth(self.frame_22.sizePolicy().hasHeightForWidth())
+        self.frame_22.setSizePolicy(sizePolicy1)
+        self.frame_22.setMinimumSize(QSize(0, 20))
+        self.frame_22.setFrameShape(QFrame.StyledPanel)
+        self.frame_22.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_12 = QHBoxLayout(self.frame_22)
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.label_3 = QLabel(self.frame_22)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setFont(font)
+
+        self.horizontalLayout_12.addWidget(self.label_3)
+
+
+        self.verticalLayout_26.addWidget(self.frame_22)
+
+        self.qrcodeButton = QPushButton(self.frame_20)
+        self.qrcodeButton.setObjectName(u"qrcodeButton")
+        sizePolicy2.setHeightForWidth(self.qrcodeButton.sizePolicy().hasHeightForWidth())
+        self.qrcodeButton.setSizePolicy(sizePolicy2)
+        self.qrcodeButton.setMinimumSize(QSize(314, 63))
+        self.qrcodeButton.setStyleSheet(u"background-image: url(:/images/image/qrcodeButton.svg);")
+
+        self.verticalLayout_26.addWidget(self.qrcodeButton)
+
+        self.pushButton_3 = QPushButton(self.frame_20)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        sizePolicy2.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
+        self.pushButton_3.setSizePolicy(sizePolicy2)
+        self.pushButton_3.setMinimumSize(QSize(314, 63))
+        self.pushButton_3.setStyleSheet(u"background-image: url(:/images/image/directtransferButton.svg);")
+
+        self.verticalLayout_26.addWidget(self.pushButton_3)
+
+
+        self.verticalLayout_20.addWidget(self.frame_20)
+
+        self.frame_23 = QFrame(self.transferPage)
+        self.frame_23.setObjectName(u"frame_23")
+        sizePolicy1.setHeightForWidth(self.frame_23.sizePolicy().hasHeightForWidth())
+        self.frame_23.setSizePolicy(sizePolicy1)
+        self.frame_23.setMinimumSize(QSize(0, 20))
+        self.frame_23.setStyleSheet(u"color: #d9d9d9")
+        self.frame_23.setFrameShape(QFrame.HLine)
+        self.frame_23.setFrameShadow(QFrame.Raised)
+        self.frame_23.setLineWidth(1)
+
+        self.verticalLayout_20.addWidget(self.frame_23)
+
+        self.frame_19 = QFrame(self.transferPage)
+        self.frame_19.setObjectName(u"frame_19")
+        self.frame_19.setFrameShape(QFrame.StyledPanel)
+        self.frame_19.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_20.addWidget(self.frame_19)
+
+        self.stackedWidget.addWidget(self.transferPage)
 
         self.verticalLayout.addWidget(self.stackedWidget)
 
@@ -1324,7 +1433,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1379,6 +1488,10 @@ class Ui_MainWindow(object):
         self.tfcPercentagelabel.setText(QCoreApplication.translate("MainWindow", u"%", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"compared to last month \n"
 "total cost", None))
+        self.transferbackButto.setText("")
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Choose your method", None))
+        self.qrcodeButton.setText("")
+        self.pushButton_3.setText("")
         self.graphButton.setText(QCoreApplication.translate("MainWindow", u"chart-line", None))
         self.historyButton.setText(QCoreApplication.translate("MainWindow", u"history", None))
         self.dashboardButton.setText(QCoreApplication.translate("MainWindow", u"house", None))
