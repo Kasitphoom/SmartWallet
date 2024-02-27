@@ -30,6 +30,10 @@ class WalletManager():
         for transaction in self.account.transactions:
             if transaction.date.month == self.current_date.month and transaction.date.day == self.current_date.day and transaction.category == category:
                 limit -= transaction.amount
-        
-        print(category, limit)
+
         return limit
+    
+    def get_max_daily_limit(self, category):
+        if category in self.account.monthly_limits:
+            return self.account.monthly_limits[category] / calendar.monthrange(self.current_date.year, self.current_date.month)[1]
+        return "Category not found"

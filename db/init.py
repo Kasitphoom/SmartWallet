@@ -7,6 +7,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 
 from obj.account import Account
+from obj.transaction import Transaction
 
 # from account import Account
 

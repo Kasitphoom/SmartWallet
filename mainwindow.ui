@@ -879,7 +879,7 @@ height: 10px;</string>
                  <widget class="QWidget" name="limitscrollAreaWidgetContents">
                   <property name="geometry">
                    <rect>
-                    <x>-250</x>
+                    <x>0</x>
                     <y>0</y>
                     <width>720</width>
                     <height>81</height>
@@ -946,7 +946,8 @@ border-radius: 5px;
                          </font>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">color: rgb(137, 137, 137);</string>
+                         <string notr="true">color: rgb(137, 137, 137);
+background-color: rgba(255, 255, 255, 0);</string>
                         </property>
                         <property name="text">
                          <string>bowl-food</string>
