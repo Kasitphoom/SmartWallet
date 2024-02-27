@@ -1,0 +1,5 @@
+config.xml
+__pycache__/
+*.pkl
+mainwindow.py
+test_rc.py
