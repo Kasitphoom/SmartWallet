@@ -69,6 +69,9 @@ class MainWindow(QMainWindow):
             self.ui.accountNumberlabel.setText(self.manager.get_account_number_visible())
         else:
             self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
+    
+    def update_limit_dashboard(self):
+        pass
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
