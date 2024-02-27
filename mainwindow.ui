@@ -387,6 +387,9 @@
                             <height>16</height>
                            </size>
                           </property>
+                          <property name="cursor">
+                           <cursorShape>PointingHandCursor</cursorShape>
+                          </property>
                           <property name="styleSheet">
                            <string notr="true">border: none;</string>
                           </property>
@@ -879,7 +882,7 @@ height: 0px;</string>
                  <widget class="QWidget" name="limitscrollAreaWidgetContents">
                   <property name="geometry">
                    <rect>
-                    <x>0</x>
+                    <x>-329</x>
                     <y>0</y>
                     <width>720</width>
                     <height>90</height>
@@ -1856,6 +1859,9 @@ border-radius: 5px;
                            <height>0</height>
                           </size>
                          </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="text">
                           <string/>
                          </property>
@@ -1928,6 +1934,9 @@ border-radius: 5px;
                            <height>42</height>
                           </size>
                          </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="text">
                           <string/>
                          </property>
@@ -1995,6 +2004,9 @@ Planner</string>
                        </property>
                        <item>
                         <widget class="QPushButton" name="faddbillsButton">
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="text">
                           <string/>
                          </property>
@@ -2055,6 +2067,9 @@ Planner</string>
                        </property>
                        <item>
                         <widget class="QPushButton" name="fsummaryButton">
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="text">
                           <string/>
                          </property>
@@ -2118,6 +2133,9 @@ Planner</string>
                        </property>
                        <item>
                         <widget class="QPushButton" name="fmyqrButton">
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="text">
                           <string/>
                          </property>
@@ -2184,6 +2202,9 @@ Planner</string>
                        </property>
                        <item>
                         <widget class="QPushButton" name="fhistoryButton">
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
                          <property name="text">
                           <string/>
                          </property>
@@ -2920,7 +2941,7 @@ total cost</string>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(79, 186, 116);
-border-radius: 25px;
+border-radius: 28px;
 </string>
          </property>
          <property name="frameShape">
@@ -2943,8 +2964,9 @@ border-radius: 25px;
            <widget class="QPushButton" name="graphButton">
             <property name="font">
              <font>
-              <family>Font Awesome 6 Free Solid</family>
+              <family>Font Awesome 6 Free</family>
               <pointsize>-1</pointsize>
+              <bold>true</bold>
              </font>
             </property>
             <property name="styleSheet">
@@ -2962,8 +2984,9 @@ color: white;
            <widget class="QPushButton" name="historyButton">
             <property name="font">
              <font>
-              <family>Font Awesome 6 Free Solid</family>
+              <family>Font Awesome 6 Free</family>
               <pointsize>-1</pointsize>
+              <bold>true</bold>
              </font>
             </property>
             <property name="styleSheet">
@@ -2980,7 +3003,7 @@ color: white;</string>
            <widget class="QPushButton" name="dashboardButton">
             <property name="font">
              <font>
-              <family>Font Awesome 6 Free Solid</family>
+              <family>Font Awesome 6 Free</family>
               <pointsize>-1</pointsize>
               <bold>true</bold>
              </font>
@@ -2999,7 +3022,7 @@ color: white;</string>
            <widget class="QPushButton" name="budgetplannerButton">
             <property name="font">
              <font>
-              <family>Font Awesome 6 Free Solid</family>
+              <family>Font Awesome 6 Free</family>
               <pointsize>-1</pointsize>
               <bold>true</bold>
              </font>
@@ -3018,7 +3041,7 @@ color: white;</string>
            <widget class="QPushButton" name="othersButton">
             <property name="font">
              <font>
-              <family>Font Awesome 6 Free Solid</family>
+              <family>Font Awesome 6 Free</family>
               <pointsize>-1</pointsize>
               <bold>true</bold>
              </font>

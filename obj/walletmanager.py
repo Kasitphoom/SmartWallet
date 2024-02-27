@@ -2,6 +2,14 @@ from obj.account import Account
 class WalletManager():
     def __init__(self, account: Account):
         self.account = account
+        self.limits_rate = {
+            "food": 0.2,
+            "transport": 0.15,
+            "saving": 0.2,
+            "entertainment": 0.1,
+            "healthcare": 0.05,
+            "others": 0.1
+        }
     
     def get_account_number_non_visible(self):
         return f"XXX-X-{str(self.get_account_number())[4:8]}-X"
@@ -11,3 +19,9 @@ class WalletManager():
     
     def get_account_number_visible(self):
         return f"{str(self.get_account_number())[:3]}-{str(self.get_account_number())[3]}-{str(self.get_account_number())[4:8]}-{str(self.get_account_number())[8:]}"
+    
+    def get_balance(self):
+        return "{:,}".format(self.account.getBalance())
+    
+    def calculate_limit(self, category: str):
+        return self.account.getBalance() * self.limits_rate[category]

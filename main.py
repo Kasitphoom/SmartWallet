@@ -50,6 +50,9 @@ class MainWindow(QMainWindow):
         
         # set text as this format XXX-X-1234-X
         self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
+        
+        # set balance
+        self.ui.d_balance_amount.setText(self.manager.get_balance() + " THB")
 
     def eventFilter(self, obj, event):
         if type(event) == QMouseEvent and obj == self.ui.frame_12 and event.button() == Qt.MouseButton.LeftButton:
@@ -66,6 +69,9 @@ class MainWindow(QMainWindow):
             self.ui.accountNumberlabel.setText(self.manager.get_account_number_visible())
         else:
             self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
+    
+    def update_limit_dashboard(self):
+        pass
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

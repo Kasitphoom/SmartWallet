@@ -5,6 +5,10 @@ class Account(persistent.Persistent):
         self.name = name
         self.balance = balance
         self.ID = ID
+        self.transactions = []
+        
+    def addTransaction(self, transaction):
+        self.transactions.append(transaction)
         
     def deposit(self, amount):
         self.balance += amount
@@ -15,5 +19,9 @@ class Account(persistent.Persistent):
     def getID(self):
         return self.ID
         
+    def getBalance(self):
+        """Return in format of 1,000 THB"""
+        return self.balance
+    
     def __str__(self):
         return "%s: %s" % (self.name, self.balance)
