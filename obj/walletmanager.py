@@ -1,6 +1,14 @@
 from datetime import datetime
 from obj.account import Account
 import calendar
+
+import ZODB, ZODB.config
+
+path = "./db/config.xml"
+db = ZODB.config.databaseFromURL(path)
+connection = db.open()
+root = connection.root
+
 class WalletManager():
     def __init__(self, account: Account):
         self.account = account
@@ -44,3 +52,11 @@ class WalletManager():
             if transaction.date.month == self.current_date.month:
                 total += transaction.amount
         return total
+    
+    def login_account(self, email, password):
+        for account in root.accounts.values():
+            if account.login(email, password):
+                self.account = account
+                return self.account
+            
+        return None

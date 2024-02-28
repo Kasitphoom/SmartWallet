@@ -13,6 +13,8 @@ from obj.account import Account
 
 import pickle
 
+import hashlib
+
 import ZODB, ZODB.config
 
 path = "./db/config.xml"
@@ -29,7 +31,7 @@ if USER_CACHE_FILE.exists():
         user_cache = pickle.load(f)
 else:
     with open(USER_CACHE_FILE, "wb") as f:
-        user_cache = {}
+        user_cache = ""
         pickle.dump(user_cache, f)
 
 class MainWindow(QMainWindow):
@@ -38,7 +40,7 @@ class MainWindow(QMainWindow):
         self.manager = manager
         self.account_number_visibility = False
         self.calculated_limits = {}
-        
+        self.__salt = "rT8jllFhs7"
         
         
         # Add fonts in QFontDatabase before setting up the UI
@@ -47,9 +49,17 @@ class MainWindow(QMainWindow):
         
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.ui.stackedWidget_2.setCurrentIndex(0)
+        
+        if user_cache == {}:
+            self.ui.stackedWidget_2.setCurrentIndex(1)
+        else:
+            self.ui.stackedWidget_2.setCurrentIndex(0)
+        
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.frame_10.installEventFilter(self)
+        
+        # login page
+        self.ui.loginButton_3.clicked.connect(self.handleLogin)
         
         self.ui.eyeButton.clicked.connect(self.handleAccountNumberVisibility)
         
@@ -63,9 +73,27 @@ class MainWindow(QMainWindow):
         self.ui.dashboardButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(0))
         self.ui.ftransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(1))
         
-        self.update_dashboard()
+        self.update_window()
+        
+    def handleLogin(self):
+        email = self.ui.loginEmailTextEdit_3.text()
+        password = self.ui.loginPasswordTextEdit_3.text() + self.__salt
+        
+        hash_object = hashlib.sha256(password)
+        password = hash_object.hexdigest()
+        
+        print(password)
+        
+        account = self.manager.login_account(email, password)
+        
+        if account:
+            self.ui.stackedWidget_2.setCurrentIndex(0)
+            self.ui.stackedWidget.setCurrentIndex(0)
+            self.update_window()
+        # else:
+        #     self.ui.loginErrorLabel.setText("Invalid email or password")
 
-    def update_dashboard(self):
+    def update_window(self):
         self.ui.d_balance_amount.setText(self.manager.get_balance() + " THB")
         self.update_daily_limit()
         self.update_total_month_expense()
