@@ -1,6 +1,7 @@
 from datetime import datetime
 from obj.account import Account
 import calendar
+import random
 
 import ZODB, ZODB.config
 
@@ -10,8 +11,8 @@ connection = db.open()
 root = connection.root
 
 class WalletManager():
-    def __init__(self, account: Account):
-        self.account = account
+    def __init__(self):
+        self.account: Account = None
         self.current_date = datetime.now()
     
     def get_account_number_non_visible(self):
@@ -53,10 +54,29 @@ class WalletManager():
                 total += transaction.amount
         return total
     
+    def set_account(self, accountID):
+        self.account = root.accounts[accountID]
+    
     def login_account(self, email, password):
         for account in root.accounts.values():
+            print(account.login(email, password), account.email, account.password, email, password)
             if account.login(email, password):
                 self.account = account
                 return self.account
             
         return None
+
+    def register_account(self, name, email, password):
+        account = Account(name, 0, self.generate_account_number(), password, email)
+        root.accounts[account.getID()] = account
+        connection.transaction_manager.commit()
+        
+    def generate_account_number(self):
+        randnum = str(random.randint(000000000, 999999999))
+        if not randnum in root.accounts:
+            return randnum
+        else:
+            return self.generate_account_number()
+        
+    def check_accounts(self, accountID):
+        return accountID in root.accounts

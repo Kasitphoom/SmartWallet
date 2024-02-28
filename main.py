@@ -15,13 +15,6 @@ import pickle
 
 import hashlib
 
-import ZODB, ZODB.config
-
-path = "./db/config.xml"
-db = ZODB.config.databaseFromURL(path)
-connection = db.open()
-root = connection.root
-
 cache_dir = Path(__file__).parent / "cache"
 cache_dir.mkdir(parents=True, exist_ok=True)
 USER_CACHE_FILE = cache_dir / "user_cache.pkl"
@@ -41,6 +34,16 @@ class MainWindow(QMainWindow):
         self.account_number_visibility = False
         self.calculated_limits = {}
         self.__salt = "rT8jllFhs7"
+        self.page = {
+            # stacked widget
+            "dashboard": 0,
+            "transfer": 1,
+            "budgetplanner": 2,
+            # stacked widget 2
+            "main": 0,
+            "login": 1,
+            "register": 2
+        }
         
         
         # Add fonts in QFontDatabase before setting up the UI
@@ -50,36 +53,40 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         
-        if user_cache == {}:
-            self.ui.stackedWidget_2.setCurrentIndex(1)
+        if user_cache == "":
+            self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
+        elif manager.check_accounts(user_cache):
+            self.manager.set_account(user_cache)
+            self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
+            self.update_window()
         else:
-            self.ui.stackedWidget_2.setCurrentIndex(0)
+            self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
         
-        self.ui.stackedWidget.setCurrentIndex(0)
+        self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
         self.ui.frame_10.installEventFilter(self)
         
         # login page
-        self.ui.loginButton_3.clicked.connect(self.handleLogin)
+        self.ui.loginButton.clicked.connect(self.handleLogin)
+        self.ui.registerButton.clicked.connect(self.handleRegister)
         
+        # show/hide account number
         self.ui.eyeButton.clicked.connect(self.handleAccountNumberVisibility)
         
-        # set text as this format XXX-X-1234-X
-        self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
-        
-        # set balance
-        self.ui.d_balance_amount.setText(self.manager.get_balance() + " THB")
-        
         # buttons to change page
-        self.ui.dashboardButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(0))
-        self.ui.ftransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(1))
-        
-        self.update_window()
+        self.ui.dashboardButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
+        self.ui.ftransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["transfer"]))
+        self.ui.fbudgetplannerButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["budgetplanner"]))
+        self.ui.redirectToRegisterButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(self.page["register"]))
+        self.ui.redirectToLoginButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(self.page["login"]))
+
+        # handle page change
+        self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler) 
         
     def handleLogin(self):
-        email = self.ui.loginEmailTextEdit_3.text()
-        password = self.ui.loginPasswordTextEdit_3.text() + self.__salt
+        email = self.ui.loginEmailLineEdit.text()
+        password = self.ui.loginPasswordLineEdit.text() + self.__salt
         
-        hash_object = hashlib.sha256(password)
+        hash_object = hashlib.sha256(password.encode())
         password = hash_object.hexdigest()
         
         print(password)
@@ -87,14 +94,45 @@ class MainWindow(QMainWindow):
         account = self.manager.login_account(email, password)
         
         if account:
-            self.ui.stackedWidget_2.setCurrentIndex(0)
-            self.ui.stackedWidget.setCurrentIndex(0)
+            # save to cache
+            with open(USER_CACHE_FILE, "wb") as f:
+                user_cache = account.getID()
+                self.manager.set_account(user_cache)
+                pickle.dump(user_cache, f)
+            
+            self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
+            self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
             self.update_window()
-        # else:
-        #     self.ui.loginErrorLabel.setText("Invalid email or password")
+        else:
+            self.ui.loginError.setText("Invalid email or password")
+            print("Invalid email or password")
+
+    def handleRegister(self):
+        fullname = self.ui.registerFullNameENLineEdit.text()
+        email = self.ui.registerEmailLineEdit.text()
+        password = self.ui.registerPasswordLineEdit.text() + self.__salt
+        confirm_password = self.ui.registerConfirmPasswordLineEdit.text() + self.__salt
+        
+        if password != confirm_password:
+            print("Password does not match")
+            self.ui.registerConfirmPasswordError.setText("Password does not match")
+            return
+        
+        hash_object = hashlib.sha256(password.encode())
+        password = hash_object.hexdigest()
+        
+        self.manager.register_account(fullname, email, password)
+        self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
 
     def update_window(self):
         self.ui.d_balance_amount.setText(self.manager.get_balance() + " THB")
+        
+        # set text as this format XXX-X-1234-X
+        self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
+        
+        # set balance
+        self.ui.d_balance_amount.setText(self.manager.get_balance() + " THB")
+        
         self.update_daily_limit()
         self.update_total_month_expense()
 
@@ -181,10 +219,17 @@ class MainWindow(QMainWindow):
         
     def update_total_month_expense(self):
         self.ui.d_expense_amount.setText(f"{self.manager.get_total_expense_of_this_month():,.2f} THB")
+
+    def page_changed_handler(self):
+        if self.ui.loginError.text() != "":
+            self.ui.loginError.setText("")
+        if self.ui.registerConfirmPasswordError.text() != "":
+            self.ui.registerConfirmPasswordError.setText("")
+
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    manager = WalletManager(root.accounts["123456789"])
+    manager = WalletManager()
     main = MainWindow(manager)
     main.show()
     sys.exit(app.exec())
