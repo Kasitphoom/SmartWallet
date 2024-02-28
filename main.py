@@ -46,6 +46,7 @@ class MainWindow(QMainWindow):
         
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.ui.stackedWidget_2.setCurrentIndex(0)
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.frame_10.installEventFilter(self)
         
