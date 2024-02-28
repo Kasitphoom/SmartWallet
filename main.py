@@ -61,7 +61,12 @@ class MainWindow(QMainWindow):
         self.ui.dashboardButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(0))
         self.ui.ftransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(1))
         
+        self.update_dashboard()
+
+    def update_dashboard(self):
+        self.ui.d_balance_amount.setText(self.manager.get_balance() + " THB")
         self.update_daily_limit()
+        self.update_total_month_expense()
 
     def eventFilter(self, obj, event):
         if type(event) == QMouseEvent and obj == self.ui.frame_12 and event.button() == Qt.MouseButton.LeftButton:
@@ -143,6 +148,9 @@ class MainWindow(QMainWindow):
         self.ui.otherlimitlabel.setText(f"{other_limit:,.2f}")
         self.ui.otherlimitframe.setStyleSheet(self.style_sheet_color_limit("others"))
         self.ui.otherlimiticon.setStyleSheet(f"color: {'#B3625A' if other_limit < max_other_limit * 0.25 else '#F49E4C' if other_limit < max_other_limit * 0.50 else '#4FBA74'}")
+        
+    def update_total_month_expense(self):
+        self.ui.d_expense_amount.setText(f"{self.manager.get_total_expense_of_this_month():,.2f} THB")
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
