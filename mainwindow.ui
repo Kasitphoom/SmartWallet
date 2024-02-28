@@ -866,7 +866,7 @@ color: rgb(255, 255, 255);
                  </property>
                  <property name="styleSheet">
                   <string notr="true">
-width: 1px;
+width: 0px;
 height: 10px;
 
 
@@ -890,7 +890,7 @@ height: 10px;
                     <x>-176</x>
                     <y>0</y>
                     <width>720</width>
-                    <height>81</height>
+                    <height>90</height>
                    </rect>
                   </property>
                   <property name="styleSheet">

@@ -55,6 +55,10 @@ class MainWindow(QMainWindow):
         # set balance
         self.ui.d_balance_amount.setText(self.manager.get_balance() + " THB")
         
+        # buttons to change page
+        self.ui.dashboardButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(0))
+        self.ui.ftransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(1))
+        
         self.update_daily_limit()
 
     def eventFilter(self, obj, event):
