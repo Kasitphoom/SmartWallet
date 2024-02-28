@@ -1,13 +1,21 @@
 from datetime import datetime
 from obj.account import Account
 import calendar
+
+import ZODB, ZODB.config
+
+path = "./db/config.xml"
+db = ZODB.config.databaseFromURL(path)
+connection = db.open()
+root = connection.root
+
 class WalletManager():
     def __init__(self, account: Account):
         self.account = account
         self.current_date = datetime.now()
     
     def get_account_number_non_visible(self):
-        return f"XXX-X-{str(self.get_account_number())[4:8]}-X"
+        return f"xxx-x-{str(self.get_account_number())[4:8]}-x"
     
     def get_account_number(self):
         return self.account.getID()
@@ -30,6 +38,25 @@ class WalletManager():
         for transaction in self.account.transactions:
             if transaction.date.month == self.current_date.month and transaction.date.day == self.current_date.day and transaction.category == category:
                 limit -= transaction.amount
-        
-        print(category, limit)
+
         return limit
+    
+    def get_max_daily_limit(self, category):
+        if category in self.account.monthly_limits:
+            return self.account.monthly_limits[category] / calendar.monthrange(self.current_date.year, self.current_date.month)[1]
+        return "Category not found"
+    
+    def get_total_expense_of_this_month(self):
+        total = 0
+        for transaction in self.account.transactions:
+            if transaction.date.month == self.current_date.month:
+                total += transaction.amount
+        return total
+    
+    def login_account(self, email, password):
+        for account in root.accounts.values():
+            if account.login(email, password):
+                self.account = account
+                return self.account
+            
+        return None

@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="images">
+    <file>image/sw_full_logo.svg</file>
     <file>image/qrcodeButton.svg</file>
     <file>image/backdirecttransfer.svg</file>
     <file>image/directtransferButton.svg</file>
@@ -31,6 +32,7 @@
   </qresource>
   <qresource prefix="fonts">
     <file>otfs/Font Awesome 6 Free-Solid-900.otf</file>
+    <file>otfs/Montserrat-VariableFont_wght.ttf</file>
     <file>otfs/Font Awesome 6 Brands-Regular-400.otf</file>
     <file>otfs/Font Awesome 6 Free-Regular-400.otf</file>
     <file>otfs/Sushi Sushi.ttf</file>

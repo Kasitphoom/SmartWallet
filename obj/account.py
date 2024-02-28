@@ -1,8 +1,11 @@
 import persistent
 
+
 class Account(persistent.Persistent):
-    def __init__(self, name, balance, ID, average_income = 0):
+    def __init__(self, name, balance, ID, password, email, average_income = 0):
         self.name = name
+        self.password = password
+        self.email = email
         self.balance = balance
         self.ID = ID
         self.transactions = []
@@ -28,6 +31,9 @@ class Account(persistent.Persistent):
         
         self.updateMonthlyLimits()
         
+    def login(self, name, password):
+        return self.name == name and self.password == password
+    
     def addTransaction(self, transaction):
         self.transactions.append(transaction)
         
