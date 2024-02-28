@@ -3190,6 +3190,9 @@ background-color: none;</string>
                    <height>16777215</height>
                   </size>
                  </property>
+                 <property name="verticalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAlwaysOff</enum>
+                 </property>
                  <property name="horizontalScrollBarPolicy">
                   <enum>Qt::ScrollBarAlwaysOff</enum>
                  </property>
@@ -3200,9 +3203,9 @@ background-color: none;</string>
                   <property name="geometry">
                    <rect>
                     <x>0</x>
-                    <y>0</y>
+                    <y>-61</y>
                     <width>393</width>
-                    <height>760</height>
+                    <height>845</height>
                    </rect>
                   </property>
                   <property name="maximumSize">
@@ -3728,6 +3731,9 @@ QLineEdit::focus {
                         <property name="dragEnabled">
                          <bool>false</bool>
                         </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
                         <property name="placeholderText">
                          <string/>
                         </property>
@@ -3851,7 +3857,7 @@ QLineEdit::focus {
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>50</width>
+                             <width>60</width>
                              <height>16777215</height>
                             </size>
                            </property>
@@ -3885,6 +3891,9 @@ QLineEdit::focus {
                            </property>
                            <property name="dragEnabled">
                             <bool>false</bool>
+                           </property>
+                           <property name="readOnly">
+                            <bool>true</bool>
                            </property>
                            <property name="placeholderText">
                             <string/>
@@ -3976,7 +3985,7 @@ QLineEdit::focus {
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>50</width>
+                             <width>60</width>
                              <height>16777215</height>
                             </size>
                            </property>
@@ -4010,6 +4019,9 @@ QLineEdit::focus {
                            </property>
                            <property name="dragEnabled">
                             <bool>false</bool>
+                           </property>
+                           <property name="readOnly">
+                            <bool>true</bool>
                            </property>
                            <property name="placeholderText">
                             <string/>
@@ -4101,7 +4113,7 @@ QLineEdit::focus {
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>50</width>
+                             <width>60</width>
                              <height>16777215</height>
                             </size>
                            </property>
@@ -4135,6 +4147,9 @@ QLineEdit::focus {
                            </property>
                            <property name="dragEnabled">
                             <bool>false</bool>
+                           </property>
+                           <property name="readOnly">
+                            <bool>true</bool>
                            </property>
                            <property name="placeholderText">
                             <string/>
@@ -4226,7 +4241,7 @@ QLineEdit::focus {
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>50</width>
+                             <width>60</width>
                              <height>16777215</height>
                             </size>
                            </property>
@@ -4260,6 +4275,9 @@ QLineEdit::focus {
                            </property>
                            <property name="dragEnabled">
                             <bool>false</bool>
+                           </property>
+                           <property name="readOnly">
+                            <bool>true</bool>
                            </property>
                            <property name="placeholderText">
                             <string/>
@@ -4351,7 +4369,7 @@ QLineEdit::focus {
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>50</width>
+                             <width>60</width>
                              <height>16777215</height>
                             </size>
                            </property>
@@ -4385,6 +4403,9 @@ QLineEdit::focus {
                            </property>
                            <property name="dragEnabled">
                             <bool>false</bool>
+                           </property>
+                           <property name="readOnly">
+                            <bool>true</bool>
                            </property>
                            <property name="placeholderText">
                             <string/>
@@ -4476,7 +4497,7 @@ QLineEdit::focus {
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>50</width>
+                             <width>60</width>
                              <height>16777215</height>
                             </size>
                            </property>
@@ -4510,6 +4531,9 @@ QLineEdit::focus {
                            </property>
                            <property name="dragEnabled">
                             <bool>false</bool>
+                           </property>
+                           <property name="readOnly">
+                            <bool>true</bool>
                            </property>
                            <property name="placeholderText">
                             <string/>
@@ -4605,7 +4629,7 @@ QLineEdit::focus {
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>50</width>
+                             <width>60</width>
                              <height>16777215</height>
                             </size>
                            </property>
@@ -4640,6 +4664,9 @@ QLineEdit::focus {
                            <property name="dragEnabled">
                             <bool>false</bool>
                            </property>
+                           <property name="readOnly">
+                            <bool>true</bool>
+                           </property>
                            <property name="placeholderText">
                             <string/>
                            </property>
@@ -4665,6 +4692,224 @@ QLineEdit::focus {
                           </widget>
                          </item>
                         </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QFrame" name="planTotalFrame">
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_45">
+                         <property name="spacing">
+                          <number>6</number>
+                         </property>
+                         <property name="leftMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="topMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="rightMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>0</number>
+                         </property>
+                         <item>
+                          <widget class="QLabel" name="label_46">
+                           <property name="font">
+                            <font>
+                             <family>Montserrat Medium</family>
+                             <pointsize>12</pointsize>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true"/>
+                           </property>
+                           <property name="text">
+                            <string>Total</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <spacer name="horizontalSpacer_25">
+                           <property name="orientation">
+                            <enum>Qt::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="planTotalLineEdit">
+                           <property name="minimumSize">
+                            <size>
+                             <width>10</width>
+                             <height>25</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>60</width>
+                             <height>16777215</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <family>Montserrat Medium</family>
+                             <pointsize>12</pointsize>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">QLineEdit {
+	border-bottom: 1px solid black;
+	padding-left: 8px;
+}
+
+QLineEdit::focus {
+	border-bottom: 1px solid rgb(5, 9, 255);
+}</string>
+                           </property>
+                           <property name="inputMask">
+                            <string/>
+                           </property>
+                           <property name="text">
+                            <string>0</string>
+                           </property>
+                           <property name="frame">
+                            <bool>true</bool>
+                           </property>
+                           <property name="alignment">
+                            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                           </property>
+                           <property name="dragEnabled">
+                            <bool>false</bool>
+                           </property>
+                           <property name="readOnly">
+                            <bool>true</bool>
+                           </property>
+                           <property name="placeholderText">
+                            <string/>
+                           </property>
+                           <property name="clearButtonEnabled">
+                            <bool>false</bool>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="label_47">
+                           <property name="font">
+                            <font>
+                             <family>Montserrat Medium</family>
+                             <pointsize>12</pointsize>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">color: rgb(151, 151, 151);</string>
+                           </property>
+                           <property name="text">
+                            <string>%</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QFrame" name="planTransportFrame_2">
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_46">
+                         <property name="spacing">
+                          <number>6</number>
+                         </property>
+                         <property name="leftMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="topMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="rightMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>0</number>
+                         </property>
+                         <item>
+                          <spacer name="horizontalSpacer_26">
+                           <property name="orientation">
+                            <enum>Qt::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item>
+                          <widget class="QPushButton" name="planEditButton">
+                           <property name="minimumSize">
+                            <size>
+                             <width>120</width>
+                             <height>29</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>120</width>
+                             <height>16777215</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <family>Montserrat ExtraBold</family>
+                             <pointsize>10</pointsize>
+                             <bold>true</bold>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: #FFF4EA;
+color: #F49E4C;
+border-radius: 5px;</string>
+                           </property>
+                           <property name="text">
+                            <string>Edit</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="planTotalErrorLabel">
+                        <property name="font">
+                         <font>
+                          <family>Montserrat Medium</family>
+                          <pointsize>8</pointsize>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(255, 0, 0);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+                        </property>
                        </widget>
                       </item>
                      </layout>

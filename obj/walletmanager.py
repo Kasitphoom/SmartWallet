@@ -80,3 +80,17 @@ class WalletManager():
         
     def check_accounts(self, accountID):
         return accountID in root.accounts
+    
+    def get_limits(self):
+        limits = self.account.limits_rate
+        for key in limits:
+            limits[key] = limits[key] * 100
+        return limits
+    
+    def get_average_income(self):
+        return self.account.average_income
+    
+    def save_limits_and_income(self, limits, income):
+        self.account.limits_rate = limits
+        self.account.average_income = income
+        connection.transaction_manager.commit()

@@ -45,7 +45,7 @@ class MainWindow(QMainWindow):
             "register": 2
         }
         
-        
+
         # Add fonts in QFontDatabase before setting up the UI
         QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Font Awesome 6 Free-Solid-900.otf").as_posix())
         QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Montserrat-VariableFont_wght.ttf").as_posix())
@@ -76,11 +76,29 @@ class MainWindow(QMainWindow):
         self.ui.dashboardButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
         self.ui.ftransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["transfer"]))
         self.ui.fbudgetplannerButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["budgetplanner"]))
+        self.ui.budgetplannerButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["budgetplanner"]))
         self.ui.redirectToRegisterButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(self.page["register"]))
         self.ui.redirectToLoginButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(self.page["login"]))
 
         # handle page change
         self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler) 
+
+        # set initial budget page
+        self.limit_ui = {
+            "housing": self.ui.planHousingLineEdit,
+            "food": self.ui.planFoodLineEdit,
+            "transport": self.ui.planTransportLineEdit,
+            "entertainment": self.ui.planEntertainmentLineEdit,
+            "healthcare": self.ui.planHealthcareLineEdit,
+            "others": self.ui.planMiscellaneousLineEdit,
+            "saving": self.ui.planSavingLineEdit,
+        }
+        self.update_limit_labels()
+        self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
+        for ui in self.limit_ui.values():
+            ui.textChanged.connect(self.update_total_limit)
+
+
         
     def handleLogin(self):
         email = self.ui.loginEmailLineEdit.text()
@@ -225,6 +243,54 @@ class MainWindow(QMainWindow):
             self.ui.loginError.setText("")
         if self.ui.registerConfirmPasswordError.text() != "":
             self.ui.registerConfirmPasswordError.setText("")
+
+    def update_limit_labels(self):
+        self.limits = self.manager.get_limits()
+        self.ui.averageIncomeLineEdit.setText(str(float(self.manager.get_average_income())))
+        # set line edit texts of limits
+        for limit, ui in self.limit_ui.items():
+            ui.setText(str(self.limits[limit]))
+        self.ui.planTotalLineEdit.setText(str(sum(self.limits.values())))
+
+    def enable_limits_edit(self):
+        # enable editing
+        for ui in self.limit_ui.values():
+            ui.setReadOnly(False)
+        self.ui.averageIncomeLineEdit.setReadOnly(False)
+        # change to save button
+        self.ui.planEditButton.setText("Save")
+        self.ui.planEditButton.setStyleSheet("background-color: #4FBA74; color: white;")
+        self.ui.planEditButton.clicked.connect(self.save_limits_setting)
+
+    def save_limits_setting(self):
+        if self.check_total_limit():
+            # disable editing
+            for ui in self.limit_ui.values():
+                ui.setReadOnly(True)
+            self.ui.averageIncomeLineEdit.setReadOnly(True)
+            # change to edit button
+            self.ui.planEditButton.setText("Edit")
+            self.ui.planEditButton.setStyleSheet("background-color: #FFF4EA; color: #F49E4C;")
+            self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
+            # save limits
+            self.limits_temp = {}
+            for limit_name, ui in self.limit_ui.items():
+                self.limits_temp[limit_name] = float(ui.text()) / 100
+            self.manager.save_limits_and_income(self.limits_temp, float(self.ui.averageIncomeLineEdit.text()))
+            self.update_limit_labels()
+            self.ui.planTotalErrorLabel.setText("")
+        else:
+            print("Total limit is not 100%")
+            self.ui.planTotalErrorLabel.setText("Total limit is not 100%")
+
+    def update_total_limit(self):
+        self.ui.planTotalLineEdit.setText(str(sum([float(ui.text()) for ui in self.limit_ui.values()])))
+
+    def check_total_limit(self):
+        return float(self.ui.planTotalLineEdit.text()) == 100.0
+
+
+
 
         
 if __name__ == "__main__":
