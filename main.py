@@ -104,6 +104,7 @@ class MainWindow(QMainWindow):
         
         if password != confirm_password:
             print("Password does not match")
+            self.ui.registerConfirmPasswordError.setText("Password does not match")
             return
         
         hash_object = hashlib.sha256(password.encode())
@@ -211,6 +212,8 @@ class MainWindow(QMainWindow):
     def page_changed_handler(self):
         if self.ui.loginError.text() != "":
             self.ui.loginError.setText("")
+        if self.ui.registerConfirmPasswordError.text() != "":
+            self.ui.registerConfirmPasswordError.setText("")
 
         
 if __name__ == "__main__":
