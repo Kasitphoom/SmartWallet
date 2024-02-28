@@ -15,13 +15,6 @@ import pickle
 
 import hashlib
 
-import ZODB, ZODB.config
-
-path = "./db/config.xml"
-db = ZODB.config.databaseFromURL(path)
-connection = db.open()
-root = connection.root
-
 cache_dir = Path(__file__).parent / "cache"
 cache_dir.mkdir(parents=True, exist_ok=True)
 USER_CACHE_FILE = cache_dir / "user_cache.pkl"
@@ -52,9 +45,10 @@ class MainWindow(QMainWindow):
         
         if user_cache == "":
             self.ui.stackedWidget_2.setCurrentIndex(1)
-        elif user_cache in root.accounts:
-            self.manager.set_account(root.accounts[user_cache])
+        elif manager.check_accounts(user_cache):
+            self.manager.set_account(user_cache)
             self.ui.stackedWidget_2.setCurrentIndex(0)
+            self.update_window()
         else:
             self.ui.stackedWidget_2.setCurrentIndex(1)
         
@@ -65,13 +59,8 @@ class MainWindow(QMainWindow):
         self.ui.loginButton.clicked.connect(self.handleLogin)
         self.ui.registerButton.clicked.connect(self.handleRegister)
         
+        # show/hide account number
         self.ui.eyeButton.clicked.connect(self.handleAccountNumberVisibility)
-        
-        # set text as this format XXX-X-1234-X
-        self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
-        
-        # set balance
-        self.ui.d_balance_amount.setText(self.manager.get_balance() + " THB")
         
         # buttons to change page
         self.ui.dashboardButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(0))
@@ -121,6 +110,13 @@ class MainWindow(QMainWindow):
 
     def update_window(self):
         self.ui.d_balance_amount.setText(self.manager.get_balance() + " THB")
+        
+        # set text as this format XXX-X-1234-X
+        self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
+        
+        # set balance
+        self.ui.d_balance_amount.setText(self.manager.get_balance() + " THB")
+        
         self.update_daily_limit()
         self.update_total_month_expense()
 
@@ -210,7 +206,7 @@ class MainWindow(QMainWindow):
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    manager = WalletManager(root.accounts["123456789"])
+    manager = WalletManager()
     main = MainWindow(manager)
     main.show()
     sys.exit(app.exec())
