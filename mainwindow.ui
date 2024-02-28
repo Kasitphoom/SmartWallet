@@ -51,7 +51,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget_2">
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="main_page">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -164,7 +164,7 @@ width:0px;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>391</width>
+                    <width>390</width>
                     <height>1074</height>
                    </rect>
                   </property>
@@ -3114,7 +3114,7 @@ color: white;</string>
             <number>0</number>
            </property>
            <item>
-            <widget class="QFrame" name="login_logo_3">
+            <widget class="QFrame" name="login_logo">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -3151,7 +3151,7 @@ background-position: center bottom;</string>
             </spacer>
            </item>
            <item>
-            <widget class="QFrame" name="loginEmailFrame_3">
+            <widget class="QFrame" name="loginEmailFrame">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -3187,7 +3187,7 @@ background-position: center bottom;</string>
                <number>10</number>
               </property>
               <item>
-               <widget class="QLabel" name="loginEmailLabel_3">
+               <widget class="QLabel" name="loginEmailLabel">
                 <property name="font">
                  <font>
                   <bold>true</bold>
@@ -3202,27 +3202,20 @@ background-position: center bottom;</string>
                </widget>
               </item>
               <item>
-               <widget class="QTextEdit" name="loginEmailTextEdit_3">
+               <widget class="QLineEdit" name="loginEmailLineEdit">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
                   <height>35</height>
                  </size>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>80</height>
-                 </size>
-                </property>
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
-                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QTextEdit {
+                 <string notr="true">QLineEdit {
     border: 1px solid rgb(186, 231, 202); /* Light gray border */
     color: #ffffff; /* Dark gray text color */
 	background-color: rgb(74, 175, 108);
@@ -3231,7 +3224,7 @@ background-position: center bottom;</string>
 	padding-top: 2px;
 }
 
-QTextEdit:focus {
+QLineEdit:focus {
 	border: 1px solid #ffffff;
 }
 
@@ -3239,15 +3232,12 @@ QTextEdit::placeholder {
     color: #999; /* Light gray placeholder text color */
 }
 
-QTextEdit::disabled {
+QLineEdit::disabled {
     background-color: #eee; /* Lighter gray background for disabled state */
     color: #666; /* Dimmed text color for disabled state */
     border-color: #ddd; /* Lighter gray border for disabled state */
 }
 </string>
-                </property>
-                <property name="tabChangesFocus">
-                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -3255,7 +3245,7 @@ QTextEdit::disabled {
             </widget>
            </item>
            <item>
-            <widget class="QFrame" name="loginPasswordFrame_3">
+            <widget class="QFrame" name="loginPasswordFrame">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -3291,7 +3281,7 @@ QTextEdit::disabled {
                <number>10</number>
               </property>
               <item>
-               <widget class="QLabel" name="loginPasswordLabel_3">
+               <widget class="QLabel" name="loginPasswordLabel">
                 <property name="font">
                  <font>
                   <bold>true</bold>
@@ -3306,27 +3296,20 @@ QTextEdit::disabled {
                </widget>
               </item>
               <item>
-               <widget class="QTextEdit" name="loginPasswordTextEdit_3">
+               <widget class="QLineEdit" name="loginPasswordLineEdit">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
                   <height>35</height>
                  </size>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>80</height>
-                 </size>
-                </property>
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
-                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QTextEdit {
+                 <string notr="true">QLineEdit {
     border: 1px solid rgb(186, 231, 202); /* Light gray border */
     color: #ffffff; /* Dark gray text color */
 	background-color: rgb(74, 175, 108);
@@ -3335,7 +3318,7 @@ QTextEdit::disabled {
 	padding-top: 2px;
 }
 
-QTextEdit:focus {
+QLineEdit:focus {
 	border: 1px solid #ffffff;
 }
 
@@ -3343,15 +3326,15 @@ QTextEdit::placeholder {
     color: #999; /* Light gray placeholder text color */
 }
 
-QTextEdit::disabled {
+QLineEdit::disabled {
     background-color: #eee; /* Lighter gray background for disabled state */
     color: #666; /* Dimmed text color for disabled state */
     border-color: #ddd; /* Lighter gray border for disabled state */
 }
 </string>
                 </property>
-                <property name="tabChangesFocus">
-                 <bool>true</bool>
+                <property name="echoMode">
+                 <enum>QLineEdit::Password</enum>
                 </property>
                </widget>
               </item>
@@ -3359,7 +3342,7 @@ QTextEdit::disabled {
             </widget>
            </item>
            <item>
-            <widget class="QFrame" name="loginRedirectFrame_3">
+            <widget class="QFrame" name="loginRedirectFrame">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -3416,7 +3399,7 @@ QTextEdit::disabled {
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="redirectToRegisterButton_3">
+               <widget class="QPushButton" name="redirectToRegisterButton">
                 <property name="minimumSize">
                  <size>
                   <width>20</width>
@@ -3463,7 +3446,7 @@ border: none;</string>
             </widget>
            </item>
            <item>
-            <widget class="QFrame" name="loginButtonFrame_3">
+            <widget class="QFrame" name="loginButtonFrame">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -3499,7 +3482,7 @@ border: none;</string>
                <number>0</number>
               </property>
               <item>
-               <widget class="QPushButton" name="loginButton_3">
+               <widget class="QPushButton" name="loginButton">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -3688,27 +3671,20 @@ background-position: center bottom;</string>
                </widget>
               </item>
               <item>
-               <widget class="QTextEdit" name="registerFullNameENTextEdit">
+               <widget class="QLineEdit" name="registerFullNameENLineEdit">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
                   <height>35</height>
                  </size>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>80</height>
-                 </size>
-                </property>
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
-                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QTextEdit {
+                 <string notr="true">QLineEdit {
     border: 1px solid rgb(186, 231, 202); /* Light gray border */
     color: #ffffff; /* Dark gray text color */
 	background-color: rgb(74, 175, 108);
@@ -3717,7 +3693,7 @@ background-position: center bottom;</string>
 	padding-top: 2px;
 }
 
-QTextEdit:focus {
+QLineEdit:focus {
 	border: 1px solid #ffffff;
 }
 
@@ -3725,15 +3701,15 @@ QTextEdit::placeholder {
     color: #999; /* Light gray placeholder text color */
 }
 
-QTextEdit::disabled {
+QLineEdit::disabled {
     background-color: #eee; /* Lighter gray background for disabled state */
     color: #666; /* Dimmed text color for disabled state */
     border-color: #ddd; /* Lighter gray border for disabled state */
 }
 </string>
                 </property>
-                <property name="tabChangesFocus">
-                 <bool>true</bool>
+                <property name="placeholderText">
+                 <string/>
                 </property>
                </widget>
               </item>
@@ -3792,27 +3768,20 @@ QTextEdit::disabled {
                </widget>
               </item>
               <item>
-               <widget class="QTextEdit" name="registerFullNameTHTextEdit">
+               <widget class="QLineEdit" name="registerFullNameTHLineEdit">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
                   <height>35</height>
                  </size>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>80</height>
-                 </size>
-                </property>
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
-                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QTextEdit {
+                 <string notr="true">QLineEdit {
     border: 1px solid rgb(186, 231, 202); /* Light gray border */
     color: #ffffff; /* Dark gray text color */
 	background-color: rgb(74, 175, 108);
@@ -3821,7 +3790,7 @@ QTextEdit::disabled {
 	padding-top: 2px;
 }
 
-QTextEdit:focus {
+QLineEdit:focus {
 	border: 1px solid #ffffff;
 }
 
@@ -3829,15 +3798,12 @@ QTextEdit::placeholder {
     color: #999; /* Light gray placeholder text color */
 }
 
-QTextEdit::disabled {
+QLineEdit::disabled {
     background-color: #eee; /* Lighter gray background for disabled state */
     color: #666; /* Dimmed text color for disabled state */
     border-color: #ddd; /* Lighter gray border for disabled state */
 }
 </string>
-                </property>
-                <property name="tabChangesFocus">
-                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -3896,27 +3862,20 @@ QTextEdit::disabled {
                </widget>
               </item>
               <item>
-               <widget class="QTextEdit" name="registerEmailTextEdit">
+               <widget class="QLineEdit" name="registerEmailLineEdit">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
                   <height>35</height>
                  </size>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>80</height>
-                 </size>
-                </property>
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
-                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QTextEdit {
+                 <string notr="true">QLineEdit {
     border: 1px solid rgb(186, 231, 202); /* Light gray border */
     color: #ffffff; /* Dark gray text color */
 	background-color: rgb(74, 175, 108);
@@ -3925,7 +3884,7 @@ QTextEdit::disabled {
 	padding-top: 2px;
 }
 
-QTextEdit:focus {
+QLineEdit:focus {
 	border: 1px solid #ffffff;
 }
 
@@ -3933,15 +3892,12 @@ QTextEdit::placeholder {
     color: #999; /* Light gray placeholder text color */
 }
 
-QTextEdit::disabled {
+QLineEdit::disabled {
     background-color: #eee; /* Lighter gray background for disabled state */
     color: #666; /* Dimmed text color for disabled state */
     border-color: #ddd; /* Lighter gray border for disabled state */
 }
 </string>
-                </property>
-                <property name="tabChangesFocus">
-                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -4000,27 +3956,20 @@ QTextEdit::disabled {
                </widget>
               </item>
               <item>
-               <widget class="QTextEdit" name="registerPasswordTextEdit">
+               <widget class="QLineEdit" name="registerPasswordLineEdit">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
                   <height>35</height>
                  </size>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>80</height>
-                 </size>
-                </property>
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
-                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QTextEdit {
+                 <string notr="true">QLineEdit {
     border: 1px solid rgb(186, 231, 202); /* Light gray border */
     color: #ffffff; /* Dark gray text color */
 	background-color: rgb(74, 175, 108);
@@ -4029,7 +3978,7 @@ QTextEdit::disabled {
 	padding-top: 2px;
 }
 
-QTextEdit:focus {
+QLineEdit:focus {
 	border: 1px solid #ffffff;
 }
 
@@ -4037,15 +3986,12 @@ QTextEdit::placeholder {
     color: #999; /* Light gray placeholder text color */
 }
 
-QTextEdit::disabled {
+QLineEdit::disabled {
     background-color: #eee; /* Lighter gray background for disabled state */
     color: #666; /* Dimmed text color for disabled state */
     border-color: #ddd; /* Lighter gray border for disabled state */
 }
 </string>
-                </property>
-                <property name="tabChangesFocus">
-                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -4104,27 +4050,20 @@ QTextEdit::disabled {
                </widget>
               </item>
               <item>
-               <widget class="QTextEdit" name="registerConfirmPasswordTextEdit">
+               <widget class="QLineEdit" name="registerConfirmPasswordLineEdit">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
                   <height>35</height>
                  </size>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>80</height>
-                 </size>
-                </property>
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
-                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">QTextEdit {
+                 <string notr="true">QLineEdit {
     border: 1px solid rgb(186, 231, 202); /* Light gray border */
     color: #ffffff; /* Dark gray text color */
 	background-color: rgb(74, 175, 108);
@@ -4133,7 +4072,7 @@ QTextEdit::disabled {
 	padding-top: 2px;
 }
 
-QTextEdit:focus {
+QLineEdit:focus {
 	border: 1px solid #ffffff;
 }
 
@@ -4141,15 +4080,12 @@ QTextEdit::placeholder {
     color: #999; /* Light gray placeholder text color */
 }
 
-QTextEdit::disabled {
+QLineEdit::disabled {
     background-color: #eee; /* Lighter gray background for disabled state */
     color: #666; /* Dimmed text color for disabled state */
     border-color: #ddd; /* Lighter gray border for disabled state */
 }
 </string>
-                </property>
-                <property name="tabChangesFocus">
-                 <bool>true</bool>
                 </property>
                </widget>
               </item>
