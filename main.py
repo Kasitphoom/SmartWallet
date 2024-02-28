@@ -77,6 +77,10 @@ class MainWindow(QMainWindow):
         self.ui.dashboardButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(0))
         self.ui.ftransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(1))
         self.ui.redirectToRegisterButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(2))
+        self.ui.redirectToLoginButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(1))
+
+        # handle page change
+        self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler) 
         
     def handleLogin(self):
         email = self.ui.loginEmailLineEdit.text()
@@ -100,7 +104,7 @@ class MainWindow(QMainWindow):
             self.ui.stackedWidget.setCurrentIndex(0)
             self.update_window()
         else:
-            # self.ui.loginErrorLabel.setText("Invalid email or password")
+            self.ui.loginError.setText("Invalid email or password")
             print("Invalid email or password")
 
     def handleRegister(self):
@@ -207,6 +211,11 @@ class MainWindow(QMainWindow):
         
     def update_total_month_expense(self):
         self.ui.d_expense_amount.setText(f"{self.manager.get_total_expense_of_this_month():,.2f} THB")
+
+    def page_changed_handler(self):
+        if self.ui.loginError.text() != "":
+            self.ui.loginError.setText("")
+
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
