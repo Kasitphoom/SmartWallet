@@ -109,7 +109,7 @@
               <number>0</number>
              </property>
              <property name="currentIndex">
-              <number>2</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="dashboardPage">
               <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -3236,7 +3236,6 @@ background-position: center bottom;</string>
 
 QTextEdit:focus {
 	border: 1px solid #ffffff;
-    box-shadow: 1px 2px 38px 6px rgba(255,255,255,0.75);
 }
 
 QTextEdit::placeholder {
@@ -3341,7 +3340,6 @@ QTextEdit::disabled {
 
 QTextEdit:focus {
 	border: 1px solid #ffffff;
-    box-shadow: 1px 2px 38px 6px rgba(255,255,255,0.75);
 }
 
 QTextEdit::placeholder {
@@ -3439,6 +3437,9 @@ QTextEdit::disabled {
                   <bold>true</bold>
                  </font>
                 </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">color: rgb(255, 255, 255);
 border: none;</string>
@@ -3519,6 +3520,9 @@ border: none;</string>
                   <pointsize>10</pointsize>
                   <bold>true</bold>
                  </font>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">color: rgb(255, 255, 255);
