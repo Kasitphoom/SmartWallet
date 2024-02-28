@@ -39,6 +39,7 @@ class MainWindow(QMainWindow):
             "dashboard": 0,
             "transfer": 1,
             "budgetplanner": 2,
+            "directtransfer": 3,
             # stacked widget 2
             "main": 0,
             "login": 1,
