@@ -72,26 +72,74 @@ class MainWindow(QMainWindow):
             self.ui.accountNumberlabel.setText(self.manager.get_account_number_visible())
         else:
             self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
+            
+    def style_sheet_color_limit(self, category):
+        limit = self.manager.calculate_daily_limit(category)
+        daily_limit = self.manager.get_max_daily_limit(category)
+        qss = f"""
+        QFrame {{
+            background-color: {'rgba(171, 52, 40, 51)' if limit < daily_limit * 0.25 else 'rgba(171, 52, 40, 51)' if limit < daily_limit * 0.50 else 'rgba(40, 171, 52, 51)'};
+            border-radius: 5px;
+        }}
+        QLabel {{
+            background-color: transparent;
+            color: {'#B3625A' if limit < daily_limit * 0.25 else '#F49E4C' if limit < daily_limit * 0.50 else '#4FBA74'};
+        }}
+        """
+        return qss
     
     def update_daily_limit(self):
+        # Update daily limit for each category and set the color of the limit frame and icon.
+        # house limit
         housing_limit = self.manager.calculate_daily_limit("housing")
+        max_housing_limit = self.manager.get_max_daily_limit("housing")
+        
         self.ui.housinglimitlabel.setText(f"{housing_limit:,.2f}")
-        self.ui.housinglimitframe.setStyleSheet("QFrame {" + self.ui.housinglimitframe.styleSheet() + f"background-color: {'rgba(171, 52, 40, 51)' if housing_limit < self.manager.get_max_daily_limit('housing') * 0.25 else 'rgba(171, 52, 40, 51)' if housing_limit < self.manager.get_max_daily_limit('housing') * 0.25 else 'rgba(40, 171, 52, 51)'}" + "}")
-        print(self.ui.housinglimiticon.styleSheet())
+        self.ui.housinglimiticon.setStyleSheet(f"color: {'#B3625A' if housing_limit < max_housing_limit * 0.25 else '#F49E4C' if housing_limit < max_housing_limit * 0.50 else '#4FBA74'}")
+        self.ui.housinglimitframe.setStyleSheet(self.style_sheet_color_limit("housing"))
         
-        self.ui.foodlimitlabel.setText(f"{self.manager.calculate_daily_limit('food'):,.2f}")
-        self.ui.foodlimitframe.setStyleSheet(f"background-color: {'rgba(171, 52, 40, 51)' if self.manager.calculate_daily_limit('food') < self.manager.get_max_daily_limit('food') * 0.25 else 'rgba(171, 52, 40, 51)' if self.manager.calculate_daily_limit('food') < self.manager.get_max_daily_limit('food') * 0.25 else 'rgba(40, 171, 52, 51)'}")
+        # food limit
+        food_limit = self.manager.calculate_daily_limit("food")
+        max_food_limit = self.manager.get_max_daily_limit("food")
         
-        self.ui.transportationlimitlabel.setText(f"{self.manager.calculate_daily_limit('transport'):,.2f}")
-        self.ui.entertainmentlimitlabel.setText(f"{self.manager.calculate_daily_limit('entertainment'):,.2f}")
-        self.ui.healthcarelimitlabel.setText(f"{self.manager.calculate_daily_limit('healthcare'):,.2f}")
-        self.ui.otherlimitlabel.setText(f"{self.manager.calculate_daily_limit('others'):,.2f}")
+        self.ui.foodlimitlabel.setText(f"{food_limit:,.2f}")
+        self.ui.foodlimitframe.setStyleSheet(self.style_sheet_color_limit("food"))
+        self.ui.foodlimiticon.setStyleSheet(f"color: {'#B3625A' if food_limit < max_food_limit * 0.25 else '#F49E4C' if food_limit < max_food_limit * 0.50 else '#4FBA74'}")
+        
+        # transport limit
+        transport_limit = self.manager.calculate_daily_limit("transport")
+        max_transport_limit = self.manager.get_max_daily_limit("transport")
+        
+        self.ui.transportationlimitlabel.setText(f"{transport_limit:,.2f}")
+        self.ui.transportationlimitframe.setStyleSheet(self.style_sheet_color_limit("transport"))
+        self.ui.transportationlimiticon.setStyleSheet(f"color: {'#B3625A' if transport_limit < max_transport_limit * 0.25 else '#F49E4C' if transport_limit < max_transport_limit * 0.50 else '#4FBA74'}")
+        
+        # entertainment limit
+        entertainment_limit = self.manager.calculate_daily_limit("entertainment")
+        max_entertainment_limit = self.manager.get_max_daily_limit("entertainment")
+        
+        self.ui.entertainmentlimitlabel.setText(f"{entertainment_limit:,.2f}")
+        self.ui.entertainmentlimitframe.setStyleSheet(self.style_sheet_color_limit("entertainment"))
+        self.ui.entertainmentlimiticon.setStyleSheet(f"color: {'#B3625A' if entertainment_limit < max_entertainment_limit * 0.25 else '#F49E4C' if entertainment_limit < max_entertainment_limit * 0.50 else '#4FBA74'}")
+        
+        # healthcare limit
+        healthcare_limit = self.manager.calculate_daily_limit("healthcare")
+        max_healthcare_limit = self.manager.get_max_daily_limit("healthcare")
+        
+        self.ui.healthcarelimitlabel.setText(f"{healthcare_limit:,.2f}")
+        self.ui.healthcarelimitframe.setStyleSheet(self.style_sheet_color_limit("healthcare"))
+        self.ui.healthcarelimiticon.setStyleSheet(f"color: {'#B3625A' if healthcare_limit < max_healthcare_limit * 0.25 else '#F49E4C' if healthcare_limit < max_healthcare_limit * 0.50 else '#4FBA74'}")
+        
+        # other limit
+        other_limit = self.manager.calculate_daily_limit("others")
+        max_other_limit = self.manager.get_max_daily_limit("others")
+        
+        self.ui.otherlimitlabel.setText(f"{other_limit:,.2f}")
+        self.ui.otherlimitframe.setStyleSheet(self.style_sheet_color_limit("others"))
+        self.ui.otherlimiticon.setStyleSheet(f"color: {'#B3625A' if other_limit < max_other_limit * 0.25 else '#F49E4C' if other_limit < max_other_limit * 0.50 else '#4FBA74'}")
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    with open("qss/style.qss", "r") as f:
-        _style = f.read()
-        app.setStyleSheet(_style)
     manager = WalletManager(root.accounts["123456789"])
     main = MainWindow(manager)
     main.show()

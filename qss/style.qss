@@ -1,3 +1,9 @@
-* > QLabel {
-    background-color: transparent;
+QFrame > QLabel {
+	
+	background-color: rgb(255, 170, 127);
+}
+
+.QMainWindow {
+
+	background-color: rgb(255, 255, 255);
 }
