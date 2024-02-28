@@ -11,8 +11,8 @@ connection = db.open()
 root = connection.root
 
 class WalletManager():
-    def __init__(self, account: Account):
-        self.account = account
+    def __init__(self):
+        self.account: Account = None
         self.current_date = datetime.now()
     
     def get_account_number_non_visible(self):
@@ -72,8 +72,11 @@ class WalletManager():
         connection.transaction_manager.commit()
         
     def generate_account_number(self):
-        randnum = random.randint(000000000, 999999999)
+        randnum = str(random.randint(000000000, 999999999))
         if not randnum in root.accounts:
             return randnum
         else:
             return self.generate_account_number()
+        
+    def check_accounts(self, accountID):
+        return accountID in root.accounts
