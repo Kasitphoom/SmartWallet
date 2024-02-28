@@ -35,10 +35,7 @@
    <property name="enabled">
     <bool>true</bool>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_9">
-    <property name="spacing">
-     <number>0</number>
-    </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_8">
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -54,7 +51,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget_2">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="main_page">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -3539,6 +3536,804 @@ border-radius: 15px</string>
            </item>
            <item>
             <spacer name="verticalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="register_page">
+       <layout class="QVBoxLayout" name="verticalLayout_28">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QFrame" name="registerWrap">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(79, 186, 116);</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <property name="lineWidth">
+           <number>0</number>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_31">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QFrame" name="register_logo">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-image: url(:/images/image/sw_full_logo.svg);
+background-repeat: no-repeat;
+background-position: center bottom;</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_7">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>22</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QFrame" name="registerFullNameENFrame">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>62</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>80</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_33">
+              <property name="spacing">
+               <number>6</number>
+              </property>
+              <property name="leftMargin">
+               <number>52</number>
+              </property>
+              <property name="topMargin">
+               <number>12</number>
+              </property>
+              <property name="rightMargin">
+               <number>52</number>
+              </property>
+              <property name="bottomMargin">
+               <number>10</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="registerFullNameENLabel">
+                <property name="font">
+                 <font>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);</string>
+                </property>
+                <property name="text">
+                 <string>Full name (English)</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTextEdit" name="registerFullNameENTextEdit">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>80</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QTextEdit {
+    border: 1px solid rgb(186, 231, 202); /* Light gray border */
+    color: #ffffff; /* Dark gray text color */
+	background-color: rgb(74, 175, 108);
+	border-radius: 10px;
+	padding-left: 8px;
+	padding-top: 2px;
+}
+
+QTextEdit:focus {
+	border: 1px solid #ffffff;
+}
+
+QTextEdit::placeholder {
+    color: #999; /* Light gray placeholder text color */
+}
+
+QTextEdit::disabled {
+    background-color: #eee; /* Lighter gray background for disabled state */
+    color: #666; /* Dimmed text color for disabled state */
+    border-color: #ddd; /* Lighter gray border for disabled state */
+}
+</string>
+                </property>
+                <property name="tabChangesFocus">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="registerFullNameTHFrame">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>62</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>80</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_50">
+              <property name="spacing">
+               <number>6</number>
+              </property>
+              <property name="leftMargin">
+               <number>52</number>
+              </property>
+              <property name="topMargin">
+               <number>12</number>
+              </property>
+              <property name="rightMargin">
+               <number>52</number>
+              </property>
+              <property name="bottomMargin">
+               <number>10</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="registerFullNameTHLabel">
+                <property name="font">
+                 <font>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);</string>
+                </property>
+                <property name="text">
+                 <string>Full name (Thai)</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTextEdit" name="registerFullNameTHTextEdit">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>80</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QTextEdit {
+    border: 1px solid rgb(186, 231, 202); /* Light gray border */
+    color: #ffffff; /* Dark gray text color */
+	background-color: rgb(74, 175, 108);
+	border-radius: 10px;
+	padding-left: 8px;
+	padding-top: 2px;
+}
+
+QTextEdit:focus {
+	border: 1px solid #ffffff;
+}
+
+QTextEdit::placeholder {
+    color: #999; /* Light gray placeholder text color */
+}
+
+QTextEdit::disabled {
+    background-color: #eee; /* Lighter gray background for disabled state */
+    color: #666; /* Dimmed text color for disabled state */
+    border-color: #ddd; /* Lighter gray border for disabled state */
+}
+</string>
+                </property>
+                <property name="tabChangesFocus">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="registerEmailFrame">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>62</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>80</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_32">
+              <property name="spacing">
+               <number>6</number>
+              </property>
+              <property name="leftMargin">
+               <number>52</number>
+              </property>
+              <property name="topMargin">
+               <number>12</number>
+              </property>
+              <property name="rightMargin">
+               <number>52</number>
+              </property>
+              <property name="bottomMargin">
+               <number>10</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="registerEmailLabel">
+                <property name="font">
+                 <font>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);</string>
+                </property>
+                <property name="text">
+                 <string>Email</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTextEdit" name="registerEmailTextEdit">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>80</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QTextEdit {
+    border: 1px solid rgb(186, 231, 202); /* Light gray border */
+    color: #ffffff; /* Dark gray text color */
+	background-color: rgb(74, 175, 108);
+	border-radius: 10px;
+	padding-left: 8px;
+	padding-top: 2px;
+}
+
+QTextEdit:focus {
+	border: 1px solid #ffffff;
+}
+
+QTextEdit::placeholder {
+    color: #999; /* Light gray placeholder text color */
+}
+
+QTextEdit::disabled {
+    background-color: #eee; /* Lighter gray background for disabled state */
+    color: #666; /* Dimmed text color for disabled state */
+    border-color: #ddd; /* Lighter gray border for disabled state */
+}
+</string>
+                </property>
+                <property name="tabChangesFocus">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="registerPasswordFrame">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>62</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>80</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_39">
+              <property name="spacing">
+               <number>6</number>
+              </property>
+              <property name="leftMargin">
+               <number>52</number>
+              </property>
+              <property name="topMargin">
+               <number>12</number>
+              </property>
+              <property name="rightMargin">
+               <number>52</number>
+              </property>
+              <property name="bottomMargin">
+               <number>10</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="registerPasswordLabel">
+                <property name="font">
+                 <font>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);</string>
+                </property>
+                <property name="text">
+                 <string>Password</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTextEdit" name="registerPasswordTextEdit">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>80</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QTextEdit {
+    border: 1px solid rgb(186, 231, 202); /* Light gray border */
+    color: #ffffff; /* Dark gray text color */
+	background-color: rgb(74, 175, 108);
+	border-radius: 10px;
+	padding-left: 8px;
+	padding-top: 2px;
+}
+
+QTextEdit:focus {
+	border: 1px solid #ffffff;
+}
+
+QTextEdit::placeholder {
+    color: #999; /* Light gray placeholder text color */
+}
+
+QTextEdit::disabled {
+    background-color: #eee; /* Lighter gray background for disabled state */
+    color: #666; /* Dimmed text color for disabled state */
+    border-color: #ddd; /* Lighter gray border for disabled state */
+}
+</string>
+                </property>
+                <property name="tabChangesFocus">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="registerConfirmPasswordFrame">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>62</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>80</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_53">
+              <property name="spacing">
+               <number>6</number>
+              </property>
+              <property name="leftMargin">
+               <number>52</number>
+              </property>
+              <property name="topMargin">
+               <number>12</number>
+              </property>
+              <property name="rightMargin">
+               <number>52</number>
+              </property>
+              <property name="bottomMargin">
+               <number>10</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="registerConfirmPasswordLabel">
+                <property name="font">
+                 <font>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);</string>
+                </property>
+                <property name="text">
+                 <string>Confirm Password</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTextEdit" name="registerConfirmPasswordTextEdit">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>80</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QTextEdit {
+    border: 1px solid rgb(186, 231, 202); /* Light gray border */
+    color: #ffffff; /* Dark gray text color */
+	background-color: rgb(74, 175, 108);
+	border-radius: 10px;
+	padding-left: 8px;
+	padding-top: 2px;
+}
+
+QTextEdit:focus {
+	border: 1px solid #ffffff;
+}
+
+QTextEdit::placeholder {
+    color: #999; /* Light gray placeholder text color */
+}
+
+QTextEdit::disabled {
+    background-color: #eee; /* Lighter gray background for disabled state */
+    color: #666; /* Dimmed text color for disabled state */
+    border-color: #ddd; /* Lighter gray border for disabled state */
+}
+</string>
+                </property>
+                <property name="tabChangesFocus">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="registerRedirectFrame">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_14">
+              <property name="spacing">
+               <number>6</number>
+              </property>
+              <property name="leftMargin">
+               <number>52</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>20</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_18">
+                <property name="maximumSize">
+                 <size>
+                  <width>140</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);</string>
+                </property>
+                <property name="text">
+                 <string>Already have an account?</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="redirectToLoginButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>20</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);
+border: none;</string>
+                </property>
+                <property name="text">
+                 <string>Login</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_7">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="registerButtonFrame">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>80</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_45">
+              <property name="spacing">
+               <number>6</number>
+              </property>
+              <property name="leftMargin">
+               <number>71</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>52</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="registerButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>54</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>252</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(29, 36, 37);
+border-radius: 15px</string>
+                </property>
+                <property name="text">
+                 <string>Register</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_8">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
