@@ -3145,7 +3145,7 @@ background-position: center bottom;</string>
              <property name="sizeHint" stdset="0">
               <size>
                <width>20</width>
-               <height>22</height>
+               <height>34</height>
               </size>
              </property>
             </spacer>
@@ -3155,13 +3155,13 @@ background-position: center bottom;</string>
              <property name="minimumSize">
               <size>
                <width>0</width>
-               <height>62</height>
+               <height>72</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
                <width>16777215</width>
-               <height>80</height>
+               <height>100</height>
               </size>
              </property>
              <property name="frameShape">
@@ -3178,13 +3178,13 @@ background-position: center bottom;</string>
                <number>52</number>
               </property>
               <property name="topMargin">
-               <number>12</number>
+               <number>0</number>
               </property>
               <property name="rightMargin">
                <number>52</number>
               </property>
               <property name="bottomMargin">
-               <number>10</number>
+               <number>0</number>
               </property>
               <item>
                <widget class="QLabel" name="loginEmailLabel">
@@ -3241,6 +3241,22 @@ QLineEdit::disabled {
                 </property>
                </widget>
               </item>
+              <item>
+               <widget class="QLabel" name="loginEmailError">
+                <property name="font">
+                 <font>
+                  <pointsize>8</pointsize>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>
@@ -3272,13 +3288,13 @@ QLineEdit::disabled {
                <number>52</number>
               </property>
               <property name="topMargin">
-               <number>12</number>
+               <number>0</number>
               </property>
               <property name="rightMargin">
                <number>52</number>
               </property>
               <property name="bottomMargin">
-               <number>10</number>
+               <number>0</number>
               </property>
               <item>
                <widget class="QLabel" name="loginPasswordLabel">
@@ -3338,6 +3354,22 @@ QLineEdit::disabled {
                 </property>
                </widget>
               </item>
+              <item>
+               <widget class="QLabel" name="loginError">
+                <property name="font">
+                 <font>
+                  <pointsize>8</pointsize>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>
@@ -3375,7 +3407,7 @@ QLineEdit::disabled {
                <number>0</number>
               </property>
               <property name="bottomMargin">
-               <number>20</number>
+               <number>10</number>
               </property>
               <item>
                <widget class="QLabel" name="label_17">
@@ -3614,7 +3646,7 @@ background-position: center bottom;</string>
              <property name="sizeHint" stdset="0">
               <size>
                <width>20</width>
-               <height>22</height>
+               <height>34</height>
               </size>
              </property>
             </spacer>
@@ -3647,13 +3679,13 @@ background-position: center bottom;</string>
                <number>52</number>
               </property>
               <property name="topMargin">
-               <number>12</number>
+               <number>0</number>
               </property>
               <property name="rightMargin">
                <number>52</number>
               </property>
               <property name="bottomMargin">
-               <number>10</number>
+               <number>0</number>
               </property>
               <item>
                <widget class="QLabel" name="registerFullNameENLabel">
@@ -3713,6 +3745,22 @@ QLineEdit::disabled {
                 </property>
                </widget>
               </item>
+              <item>
+               <widget class="QLabel" name="registerFullNameENError">
+                <property name="font">
+                 <font>
+                  <pointsize>8</pointsize>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>
@@ -3744,13 +3792,13 @@ QLineEdit::disabled {
                <number>52</number>
               </property>
               <property name="topMargin">
-               <number>12</number>
+               <number>0</number>
               </property>
               <property name="rightMargin">
                <number>52</number>
               </property>
               <property name="bottomMargin">
-               <number>10</number>
+               <number>0</number>
               </property>
               <item>
                <widget class="QLabel" name="registerFullNameTHLabel">
@@ -3807,6 +3855,22 @@ QLineEdit::disabled {
                 </property>
                </widget>
               </item>
+              <item>
+               <widget class="QLabel" name="registerFullNameTHError">
+                <property name="font">
+                 <font>
+                  <pointsize>8</pointsize>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>
@@ -3838,13 +3902,13 @@ QLineEdit::disabled {
                <number>52</number>
               </property>
               <property name="topMargin">
-               <number>12</number>
+               <number>0</number>
               </property>
               <property name="rightMargin">
                <number>52</number>
               </property>
               <property name="bottomMargin">
-               <number>10</number>
+               <number>0</number>
               </property>
               <item>
                <widget class="QLabel" name="registerEmailLabel">
@@ -3901,6 +3965,22 @@ QLineEdit::disabled {
                 </property>
                </widget>
               </item>
+              <item>
+               <widget class="QLabel" name="registerEmailError">
+                <property name="font">
+                 <font>
+                  <pointsize>8</pointsize>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>
@@ -3932,13 +4012,13 @@ QLineEdit::disabled {
                <number>52</number>
               </property>
               <property name="topMargin">
-               <number>12</number>
+               <number>0</number>
               </property>
               <property name="rightMargin">
                <number>52</number>
               </property>
               <property name="bottomMargin">
-               <number>10</number>
+               <number>0</number>
               </property>
               <item>
                <widget class="QLabel" name="registerPasswordLabel">
@@ -3993,6 +4073,25 @@ QLineEdit::disabled {
 }
 </string>
                 </property>
+                <property name="echoMode">
+                 <enum>QLineEdit::Password</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="registerPasswordError">
+                <property name="font">
+                 <font>
+                  <pointsize>8</pointsize>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
                </widget>
               </item>
              </layout>
@@ -4026,13 +4125,13 @@ QLineEdit::disabled {
                <number>52</number>
               </property>
               <property name="topMargin">
-               <number>12</number>
+               <number>0</number>
               </property>
               <property name="rightMargin">
                <number>52</number>
               </property>
               <property name="bottomMargin">
-               <number>10</number>
+               <number>0</number>
               </property>
               <item>
                <widget class="QLabel" name="registerConfirmPasswordLabel">
@@ -4087,6 +4186,25 @@ QLineEdit::disabled {
 }
 </string>
                 </property>
+                <property name="echoMode">
+                 <enum>QLineEdit::Password</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="registerConfirmPasswordError">
+                <property name="font">
+                 <font>
+                  <pointsize>8</pointsize>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
                </widget>
               </item>
              </layout>
@@ -4126,7 +4244,7 @@ QLineEdit::disabled {
                <number>0</number>
               </property>
               <property name="bottomMargin">
-               <number>20</number>
+               <number>10</number>
               </property>
               <item>
                <widget class="QLabel" name="label_18">
