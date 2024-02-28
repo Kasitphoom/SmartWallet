@@ -43,6 +43,7 @@ class MainWindow(QMainWindow):
         
         # Add fonts in QFontDatabase before setting up the UI
         QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Font Awesome 6 Free-Solid-900.otf").as_posix())
+        QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Montserrat-VariableFont_wght.ttf").as_posix())
         
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
