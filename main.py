@@ -261,6 +261,7 @@ class MainWindow(QMainWindow):
         # change to save button
         self.ui.planEditButton.setText("Save")
         self.ui.planEditButton.setStyleSheet("background-color: #4FBA74; color: white;")
+        self.ui.planEditButton.clicked.disconnect()
         self.ui.planEditButton.clicked.connect(self.save_limits_setting)
 
     def save_limits_setting(self):
@@ -272,6 +273,7 @@ class MainWindow(QMainWindow):
             # change to edit button
             self.ui.planEditButton.setText("Edit")
             self.ui.planEditButton.setStyleSheet("background-color: #FFF4EA; color: #F49E4C;")
+            self.ui.planEditButton.clicked.disconnect()
             self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
             # save limits
             self.limits_temp = {}
@@ -281,7 +283,6 @@ class MainWindow(QMainWindow):
             self.update_limit_labels()
             self.ui.planTotalErrorLabel.setText("")
         else:
-            print("Total limit is not 100%")
             self.ui.planTotalErrorLabel.setText("Total limit is not 100%")
 
     def update_total_limit(self):
@@ -289,6 +290,7 @@ class MainWindow(QMainWindow):
 
     def check_total_limit(self):
         return float(self.ui.planTotalLineEdit.text()) == 100.0
+
 
 
 

@@ -2988,7 +2988,7 @@ height: 0px;</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>351</width>
+                       <width>133</width>
                        <height>105</height>
                       </rect>
                      </property>
@@ -3203,9 +3203,9 @@ background-color: none;</string>
                   <property name="geometry">
                    <rect>
                     <x>0</x>
-                    <y>-61</y>
+                    <y>0</y>
                     <width>393</width>
-                    <height>751</height>
+                    <height>845</height>
                    </rect>
                   </property>
                   <property name="maximumSize">
