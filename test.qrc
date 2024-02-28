@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="images">
+    <file>image/sw_full_logo.svg</file>
     <file>image/qrcodeButton.svg</file>
     <file>image/directtransferButton.svg</file>
     <file>image/backtransfer.svg</file>
