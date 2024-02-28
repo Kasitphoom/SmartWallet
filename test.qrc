@@ -1,6 +1,7 @@
 <RCC>
   <qresource prefix="images">
-    <file>image/backbudgetplanner.svg</file>
+    <file>image/dt_cancelbutton.svg</file>
+    <file>image/dt_confirmbutton.svg</file>
     <file>image/sw_full_logo.svg</file>
     <file>image/qrcodeButton.svg</file>
     <file>image/backdirecttransfer.svg</file>
