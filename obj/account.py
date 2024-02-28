@@ -31,8 +31,8 @@ class Account(persistent.Persistent):
         
         self.updateMonthlyLimits()
         
-    def login(self, name, password):
-        return self.name == name and self.password == password
+    def login(self, email, password):
+        return self.email == email and self.password == password
     
     def addTransaction(self, transaction):
         self.transactions.append(transaction)

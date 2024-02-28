@@ -51,7 +51,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget_2">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="main_page">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -164,7 +164,7 @@ width:0px;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>390</width>
+                    <width>391</width>
                     <height>1074</height>
                    </rect>
                   </property>
@@ -3710,100 +3710,6 @@ QLineEdit::disabled {
                 </property>
                 <property name="placeholderText">
                  <string/>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QFrame" name="registerFullNameTHFrame">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>62</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>80</height>
-              </size>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_50">
-              <property name="spacing">
-               <number>6</number>
-              </property>
-              <property name="leftMargin">
-               <number>52</number>
-              </property>
-              <property name="topMargin">
-               <number>12</number>
-              </property>
-              <property name="rightMargin">
-               <number>52</number>
-              </property>
-              <property name="bottomMargin">
-               <number>10</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="registerFullNameTHLabel">
-                <property name="font">
-                 <font>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">color: rgb(255, 255, 255);</string>
-                </property>
-                <property name="text">
-                 <string>Full name (Thai)</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="registerFullNameTHLineEdit">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>35</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QLineEdit {
-    border: 1px solid rgb(186, 231, 202); /* Light gray border */
-    color: #ffffff; /* Dark gray text color */
-	background-color: rgb(74, 175, 108);
-	border-radius: 10px;
-	padding-left: 8px;
-	padding-top: 2px;
-}
-
-QLineEdit:focus {
-	border: 1px solid #ffffff;
-}
-
-QTextEdit::placeholder {
-    color: #999; /* Light gray placeholder text color */
-}
-
-QLineEdit::disabled {
-    background-color: #eee; /* Lighter gray background for disabled state */
-    color: #666; /* Dimmed text color for disabled state */
-    border-color: #ddd; /* Lighter gray border for disabled state */
-}
-</string>
                 </property>
                </widget>
               </item>

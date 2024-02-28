@@ -50,16 +50,20 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         
-        if user_cache == {}:
+        if user_cache == "":
             self.ui.stackedWidget_2.setCurrentIndex(1)
-        else:
+        elif user_cache in root.accounts:
+            self.manager.set_account(root.accounts[user_cache])
             self.ui.stackedWidget_2.setCurrentIndex(0)
+        else:
+            self.ui.stackedWidget_2.setCurrentIndex(1)
         
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.frame_10.installEventFilter(self)
         
         # login page
-        self.ui.loginButton_3.clicked.connect(self.handleLogin)
+        self.ui.loginButton.clicked.connect(self.handleLogin)
+        self.ui.registerButton.clicked.connect(self.handleRegister)
         
         self.ui.eyeButton.clicked.connect(self.handleAccountNumberVisibility)
         
@@ -72,14 +76,13 @@ class MainWindow(QMainWindow):
         # buttons to change page
         self.ui.dashboardButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(0))
         self.ui.ftransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(1))
-        
-        self.update_window()
+        self.ui.redirectToRegisterButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(2))
         
     def handleLogin(self):
-        email = self.ui.loginEmailTextEdit_3.text()
-        password = self.ui.loginPasswordTextEdit_3.text() + self.__salt
+        email = self.ui.loginEmailLineEdit.text()
+        password = self.ui.loginPasswordLineEdit.text() + self.__salt
         
-        hash_object = hashlib.sha256(password)
+        hash_object = hashlib.sha256(password.encode())
         password = hash_object.hexdigest()
         
         print(password)
@@ -87,11 +90,34 @@ class MainWindow(QMainWindow):
         account = self.manager.login_account(email, password)
         
         if account:
+            # save to cache
+            with open(USER_CACHE_FILE, "wb") as f:
+                user_cache = account.getID()
+                self.manager.set_account(user_cache)
+                pickle.dump(user_cache, f)
+            
             self.ui.stackedWidget_2.setCurrentIndex(0)
             self.ui.stackedWidget.setCurrentIndex(0)
             self.update_window()
-        # else:
-        #     self.ui.loginErrorLabel.setText("Invalid email or password")
+        else:
+            # self.ui.loginErrorLabel.setText("Invalid email or password")
+            print("Invalid email or password")
+
+    def handleRegister(self):
+        fullname = self.ui.registerFullNameENLineEdit.text()
+        email = self.ui.registerEmailLineEdit.text()
+        password = self.ui.registerPasswordLineEdit.text() + self.__salt
+        confirm_password = self.ui.registerConfirmPasswordLineEdit.text() + self.__salt
+        
+        if password != confirm_password:
+            print("Password does not match")
+            return
+        
+        hash_object = hashlib.sha256(password.encode())
+        password = hash_object.hexdigest()
+        
+        self.manager.register_account(fullname, email, password)
+        self.ui.stackedWidget_2.setCurrentIndex(1)
 
     def update_window(self):
         self.ui.d_balance_amount.setText(self.manager.get_balance() + " THB")
