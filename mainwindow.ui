@@ -144,7 +144,7 @@ width:0px;
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-45</y>
+                <y>0</y>
                 <width>391</width>
                 <height>1074</height>
                </rect>
@@ -887,7 +887,7 @@ height: 10px;
                  <widget class="QWidget" name="limitscrollAreaWidgetContents">
                   <property name="geometry">
                    <rect>
-                    <x>-176</x>
+                    <x>0</x>
                     <y>0</y>
                     <width>720</width>
                     <height>90</height>
@@ -2901,7 +2901,7 @@ total cost</string>
        <item>
         <widget class="QFrame" name="menubar">
          <property name="enabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(79, 186, 116);
