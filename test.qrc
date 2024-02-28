@@ -30,6 +30,7 @@
     <file>image/sw_logo.png</file>
   </qresource>
   <qresource prefix="fonts">
+    <file>otfs/Montserrat-Italic-VariableFont_wght.ttf</file>
     <file>otfs/Font Awesome 6 Free-Solid-900.otf</file>
     <file>otfs/Font Awesome 6 Brands-Regular-400.otf</file>
     <file>otfs/Font Awesome 6 Free-Regular-400.otf</file>
