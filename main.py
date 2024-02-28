@@ -45,6 +45,8 @@ class MainWindow(QMainWindow):
         
         if user_cache == "":
             self.ui.stackedWidget_2.setCurrentIndex(1)
+        elif user_cache in root.accounts:
+            self.manager.set_account(user_cache)
         elif manager.check_accounts(user_cache):
             self.manager.set_account(user_cache)
             self.ui.stackedWidget_2.setCurrentIndex(0)
