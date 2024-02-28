@@ -20,7 +20,9 @@ db = ZODB.config.databaseFromURL(path)
 connection = db.open()
 root = connection.root
 
-USER_CACHE_FILE = Path.absolute(Path(__file__).parent / "cache/user_cache.pkl")
+cache_dir = Path(__file__).parent / "cache"
+cache_dir.mkdir(parents=True, exist_ok=True)
+USER_CACHE_FILE = cache_dir / "user_cache.pkl"
 
 if USER_CACHE_FILE.exists():
     with open(USER_CACHE_FILE, "rb") as f:
