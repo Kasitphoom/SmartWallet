@@ -34,6 +34,16 @@ class MainWindow(QMainWindow):
         self.account_number_visibility = False
         self.calculated_limits = {}
         self.__salt = "rT8jllFhs7"
+        self.page = {
+            # stacked widget
+            "dashboard": 0,
+            "transfer": 1,
+            "budgetplanner": 2,
+            # stacked widget 2
+            "main": 0,
+            "login": 1,
+            "register": 2
+        }
         
         
         # Add fonts in QFontDatabase before setting up the UI
@@ -44,15 +54,15 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         
         if user_cache == "":
-            self.ui.stackedWidget_2.setCurrentIndex(1)
+            self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
         elif manager.check_accounts(user_cache):
             self.manager.set_account(user_cache)
-            self.ui.stackedWidget_2.setCurrentIndex(0)
+            self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
             self.update_window()
         else:
-            self.ui.stackedWidget_2.setCurrentIndex(1)
+            self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
         
-        self.ui.stackedWidget.setCurrentIndex(0)
+        self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
         self.ui.frame_10.installEventFilter(self)
         
         # login page
@@ -63,10 +73,11 @@ class MainWindow(QMainWindow):
         self.ui.eyeButton.clicked.connect(self.handleAccountNumberVisibility)
         
         # buttons to change page
-        self.ui.dashboardButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(0))
-        self.ui.ftransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(1))
-        self.ui.redirectToRegisterButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(2))
-        self.ui.redirectToLoginButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(1))
+        self.ui.dashboardButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
+        self.ui.ftransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["transfer"]))
+        self.ui.fbudgetplannerButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["budgetplanner"]))
+        self.ui.redirectToRegisterButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(self.page["register"]))
+        self.ui.redirectToLoginButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(self.page["login"]))
 
         # handle page change
         self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler) 
@@ -89,8 +100,8 @@ class MainWindow(QMainWindow):
                 self.manager.set_account(user_cache)
                 pickle.dump(user_cache, f)
             
-            self.ui.stackedWidget_2.setCurrentIndex(0)
-            self.ui.stackedWidget.setCurrentIndex(0)
+            self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
+            self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
             self.update_window()
         else:
             self.ui.loginError.setText("Invalid email or password")
@@ -111,7 +122,7 @@ class MainWindow(QMainWindow):
         password = hash_object.hexdigest()
         
         self.manager.register_account(fullname, email, password)
-        self.ui.stackedWidget_2.setCurrentIndex(1)
+        self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
 
     def update_window(self):
         self.ui.d_balance_amount.setText(self.manager.get_balance() + " THB")
