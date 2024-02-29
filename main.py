@@ -95,7 +95,6 @@ class MainWindow(QMainWindow):
         hash_object = hashlib.sha256(password.encode())
         password = hash_object.hexdigest()
         
-        print(password)
         
         account = self.manager.login_account(email, password)
         
@@ -112,7 +111,6 @@ class MainWindow(QMainWindow):
             self.setupBudget()
         else:
             self.ui.loginError.setText("Invalid email or password")
-            print("Invalid email or password")
 
     def handleRegister(self):
         fullname = self.ui.registerFullNameENLineEdit.text()
@@ -121,7 +119,6 @@ class MainWindow(QMainWindow):
         confirm_password = self.ui.registerConfirmPasswordLineEdit.text() + self.__salt
         
         if password != confirm_password:
-            print("Password does not match")
             self.ui.registerConfirmPasswordError.setText("Password does not match")
             return
         
@@ -179,6 +176,7 @@ class MainWindow(QMainWindow):
         # house limit
         housing_limit = self.manager.calculate_daily_limit("housing")
         max_housing_limit = self.manager.get_max_daily_limit("housing")
+        
         
         self.ui.housinglimitlabel.setText(f"{housing_limit:,.2f}")
         self.ui.housinglimiticon.setStyleSheet(f"color: {'#B3625A' if housing_limit < max_housing_limit * 0.25 else '#F49E4C' if housing_limit < max_housing_limit * 0.50 else '#4FBA74'}")
@@ -269,9 +267,7 @@ class MainWindow(QMainWindow):
             for limit_name, ui in self.limit_ui.items():
                 self.limits_temp[limit_name] = float(ui.text()) / 100
             self.manager.save_limits_and_income(self.limits_temp, float(self.ui.averageIncomeLineEdit.text()))
-            self.update_limit_labels()
-            self.manager.account.updateMonthlyLimits()
-            self.update_daily_limit()
+            self.update_window()
             self.ui.planTotalErrorLabel.setText("")
         else:
             self.ui.planTotalErrorLabel.setText("Total limit is not 100%")
