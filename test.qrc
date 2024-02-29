@@ -34,9 +34,16 @@
     <file>image/sw_logo.png</file>
   </qresource>
   <qresource prefix="fonts">
+    <file>otfs/Montserrat-Black.ttf</file>
+    <file>otfs/Montserrat-Bold.ttf</file>
+    <file>otfs/Montserrat-ExtraBold.ttf</file>
+    <file>otfs/Montserrat-ExtraLight.ttf</file>
+    <file>otfs/Montserrat-Light.ttf</file>
+    <file>otfs/Montserrat-Medium.ttf</file>
+    <file>otfs/Montserrat-Regular.ttf</file>
+    <file>otfs/Montserrat-SemiBold.ttf</file>
+    <file>otfs/Montserrat-Thin.ttf</file>
     <file>otfs/Font Awesome 6 Free-Solid-900.otf</file>
-    <file>otfs/Montserrat-VariableFont_wght.ttf</file>
-    <file>otfs/Font Awesome 6 Brands-Regular-400.otf</file>
     <file>otfs/Font Awesome 6 Free-Regular-400.otf</file>
     <file>otfs/Sushi Sushi.ttf</file>
   </qresource>

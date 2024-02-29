@@ -49,9 +49,15 @@ class MainWindow(QMainWindow):
 
         # Add fonts in QFontDatabase before setting up the UI
         QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Font Awesome 6 Free-Solid-900.otf").as_posix())
-        fontid = QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Montserrat-VariableFont_wght.ttf").as_posix())
-        
-        print(QFontDatabase.applicationFontFamilies(fontid))
+        QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Montserrat-Black.ttf").as_posix())
+        QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Montserrat-Bold.ttf").as_posix())
+        QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Montserrat-ExtraBold.ttf").as_posix())
+        QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Montserrat-ExtraLight.ttf").as_posix())
+        QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Montserrat-Light.ttf").as_posix())
+        QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Montserrat-Medium.ttf").as_posix())
+        QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Montserrat-Regular.ttf").as_posix())
+        QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Montserrat-SemiBold.ttf").as_posix())
+        QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Montserrat-Thin.ttf").as_posix())
         
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
