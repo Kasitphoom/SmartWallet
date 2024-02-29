@@ -35,8 +35,6 @@ class MainWindow(QMainWindow):
         self.account_number_visibility = False
         self.calculated_limits = {}
         self.__salt = "rT8jllFhs7"
-        self.capture = cv2.VideoCapture(0)
-        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1200)
         # self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 1000)
         self.detector = cv2.QRCodeDetector()
         self.page = {
@@ -315,6 +313,8 @@ class MainWindow(QMainWindow):
         accountID = self.start_camera_feed()
 
     def start_camera_feed(self):
+        self.capture = cv2.VideoCapture(0)
+        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1200)
         # Start the camera feed update timer
         self.camera_timer = QTimer(self)
         accountID = self.camera_timer.timeout.connect(self.update_camera_feed)
@@ -344,7 +344,7 @@ class MainWindow(QMainWindow):
             return
 
         # Crop the frame to remove the excess part
-        crop_rect = QRect(325, 0, self.ui.camera_label.width(), self.ui.camera_label.height())
+        crop_rect = QRect(315, 0, self.ui.camera_label.width(), self.ui.camera_label.height())
         cropped_frame = frame[crop_rect.y():crop_rect.y() + crop_rect.height(), crop_rect.x():crop_rect.x() + crop_rect.width()].copy()
 
         # Convert the OpenCV frame to QImage
