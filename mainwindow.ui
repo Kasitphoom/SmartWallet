@@ -326,13 +326,10 @@ width:0px;
                            </property>
                            <property name="font">
                             <font>
-                             <family>Montserrat ExtraBold</family>
+                             <family>Arial</family>
                              <pointsize>12</pointsize>
                              <bold>true</bold>
                             </font>
-                           </property>
-                           <property name="cursor">
-                            <cursorShape>ArrowCursor</cursorShape>
                            </property>
                            <property name="text">
                             <string>Account No.</string>
@@ -388,7 +385,7 @@ width:0px;
                               </property>
                               <property name="font">
                                <font>
-                                <family>Montserrat SemiBold</family>
+                                <family>Arial</family>
                                 <pointsize>16</pointsize>
                                </font>
                               </property>
@@ -413,9 +410,6 @@ width:0px;
                                 <width>16</width>
                                 <height>16</height>
                                </size>
-                              </property>
-                              <property name="cursor">
-                               <cursorShape>PointingHandCursor</cursorShape>
                               </property>
                               <property name="styleSheet">
                                <string notr="true">border: none;</string>
@@ -512,7 +506,7 @@ border-radius: 15px;</string>
                             <widget class="QLabel" name="d_expense_title">
                              <property name="font">
                               <font>
-                               <family>Montserrat Medium</family>
+                               <family>Arial</family>
                                <pointsize>14</pointsize>
                               </font>
                              </property>
@@ -530,7 +524,7 @@ color: #B3625A;
                             <widget class="QLabel" name="d_expense_amount">
                              <property name="font">
                               <font>
-                               <family>Montserrat ExtraBold</family>
+                               <family>Arial</family>
                                <pointsize>16</pointsize>
                                <fontweight>Black</fontweight>
                               </font>
@@ -552,7 +546,7 @@ color: #B3625A;
                             <widget class="QLabel" name="d_expense_description">
                              <property name="font">
                               <font>
-                               <family>Montserrat Medium</family>
+                               <family>Arial</family>
                                <pointsize>8</pointsize>
                               </font>
                              </property>
@@ -589,7 +583,7 @@ background-color: rgba(79, 186, 116, 76.5);</string>
                             <widget class="QLabel" name="d_saving_title">
                              <property name="font">
                               <font>
-                               <family>Montserrat Medium</family>
+                               <family>Arial</family>
                                <pointsize>14</pointsize>
                               </font>
                              </property>
@@ -607,7 +601,7 @@ color: #4FBA74;
                             <widget class="QLabel" name="d_saving_amount">
                              <property name="font">
                               <font>
-                               <family>Montserrat ExtraBold</family>
+                               <family>Arial</family>
                                <pointsize>16</pointsize>
                                <fontweight>Black</fontweight>
                               </font>
@@ -629,7 +623,7 @@ color: #4FBA74;
                             <widget class="QLabel" name="d_saving_description">
                              <property name="font">
                               <font>
-                               <family>Montserrat Medium</family>
+                               <family>Arial</family>
                                <pointsize>8</pointsize>
                               </font>
                              </property>
@@ -687,7 +681,7 @@ border-radius: 15px;
                             <widget class="QLabel" name="d_balance_amount">
                              <property name="font">
                               <font>
-                               <family>Montserrat ExtraBold</family>
+                               <family>Arial</family>
                                <pointsize>16</pointsize>
                                <fontweight>Black</fontweight>
                               </font>
@@ -709,7 +703,7 @@ color: rgb(255, 255, 255);
                             <widget class="QLabel" name="d_balance_title">
                              <property name="font">
                               <font>
-                               <family>Montserrat Medium</family>
+                               <family>Arial</family>
                                <pointsize>14</pointsize>
                               </font>
                              </property>
@@ -824,7 +818,7 @@ color: rgb(255, 255, 255);
                           <widget class="QLabel" name="label_2">
                            <property name="font">
                             <font>
-                             <family>Montserrat ExtraBold</family>
+                             <family>Arial</family>
                              <pointsize>16</pointsize>
                              <bold>true</bold>
                             </font>
@@ -847,15 +841,6 @@ color: rgb(255, 255, 255);
                              <width>16</width>
                              <height>16</height>
                             </size>
-                           </property>
-                           <property name="font">
-                            <font>
-                             <family>Font Awesome 6 Free</family>
-                             <bold>true</bold>
-                            </font>
-                           </property>
-                           <property name="cursor">
-                            <cursorShape>PointingHandCursor</cursorShape>
                            </property>
                            <property name="text">
                             <string/>
@@ -901,8 +886,8 @@ color: rgb(255, 255, 255);
                      </property>
                      <property name="styleSheet">
                       <string notr="true">
-width: 10px;
-height: 0px;
+width: 0px;
+height: 10px;
 
 
 </string>
@@ -999,7 +984,7 @@ QLabel {
                             <property name="font">
                              <font>
                               <family>Font Awesome 6 Free</family>
-                              <pointsize>21</pointsize>
+                              <pointsize>24</pointsize>
                               <bold>true</bold>
                              </font>
                             </property>
@@ -1022,7 +1007,7 @@ QLabel {
                            <widget class="QLabel" name="foodlimitlabel">
                             <property name="font">
                              <font>
-                              <family>Montserrat SemiBold</family>
+                              <family>Arial</family>
                               <bold>true</bold>
                              </font>
                             </property>
@@ -1038,7 +1023,7 @@ QLabel {
                            <widget class="QLabel" name="limitcurrency_1">
                             <property name="font">
                              <font>
-                              <family>Montserrat SemiBold</family>
+                              <family>Arial</family>
                               <pointsize>7</pointsize>
                               <bold>true</bold>
                              </font>
@@ -1103,7 +1088,7 @@ QLabel {
                             <property name="font">
                              <font>
                               <family>Font Awesome 6 Free</family>
-                              <pointsize>21</pointsize>
+                              <pointsize>24</pointsize>
                               <bold>true</bold>
                              </font>
                             </property>
@@ -1122,7 +1107,7 @@ QLabel {
                            <widget class="QLabel" name="entertainmentlimitlabel">
                             <property name="font">
                              <font>
-                              <family>Montserrat SemiBold</family>
+                              <family>Arial</family>
                               <bold>true</bold>
                              </font>
                             </property>
@@ -1138,7 +1123,7 @@ QLabel {
                            <widget class="QLabel" name="limitcurrency_2">
                             <property name="font">
                              <font>
-                              <family>Montserrat SemiBold</family>
+                              <family>Arial</family>
                               <pointsize>7</pointsize>
                               <bold>true</bold>
                              </font>
@@ -1202,7 +1187,7 @@ QLabel {
                             <property name="font">
                              <font>
                               <family>Font Awesome 6 Free</family>
-                              <pointsize>21</pointsize>
+                              <pointsize>24</pointsize>
                               <bold>true</bold>
                              </font>
                             </property>
@@ -1221,7 +1206,7 @@ QLabel {
                            <widget class="QLabel" name="transportationlimitlabel">
                             <property name="font">
                              <font>
-                              <family>Montserrat SemiBold</family>
+                              <family>Arial</family>
                               <bold>true</bold>
                              </font>
                             </property>
@@ -1237,7 +1222,7 @@ QLabel {
                            <widget class="QLabel" name="limitcurrency_3">
                             <property name="font">
                              <font>
-                              <family>Montserrat SemiBold</family>
+                              <family>Arial</family>
                               <pointsize>7</pointsize>
                               <bold>true</bold>
                              </font>
@@ -1301,7 +1286,7 @@ QLabel {
                             <property name="font">
                              <font>
                               <family>Font Awesome 6 Free</family>
-                              <pointsize>19</pointsize>
+                              <pointsize>24</pointsize>
                               <bold>true</bold>
                              </font>
                             </property>
@@ -1320,7 +1305,7 @@ QLabel {
                            <widget class="QLabel" name="returnlimitlabel">
                             <property name="font">
                              <font>
-                              <family>Montserrat SemiBold</family>
+                              <family>Arial</family>
                               <bold>true</bold>
                              </font>
                             </property>
@@ -1336,7 +1321,7 @@ QLabel {
                            <widget class="QLabel" name="limitcurrency_4">
                             <property name="font">
                              <font>
-                              <family>Montserrat SemiBold</family>
+                              <family>Arial</family>
                               <pointsize>7</pointsize>
                               <bold>true</bold>
                              </font>
@@ -1400,7 +1385,7 @@ QLabel {
                             <property name="font">
                              <font>
                               <family>Font Awesome 6 Free</family>
-                              <pointsize>20</pointsize>
+                              <pointsize>24</pointsize>
                               <bold>true</bold>
                              </font>
                             </property>
@@ -1419,7 +1404,7 @@ QLabel {
                            <widget class="QLabel" name="lendlimitlabel">
                             <property name="font">
                              <font>
-                              <family>Montserrat SemiBold</family>
+                              <family>Arial</family>
                               <bold>true</bold>
                              </font>
                             </property>
@@ -1435,7 +1420,7 @@ QLabel {
                            <widget class="QLabel" name="limitcurrency_5">
                             <property name="font">
                              <font>
-                              <family>Montserrat SemiBold</family>
+                              <family>Arial</family>
                               <pointsize>7</pointsize>
                               <bold>true</bold>
                              </font>
@@ -1499,7 +1484,7 @@ QLabel {
                             <property name="font">
                              <font>
                               <family>Font Awesome 6 Free</family>
-                              <pointsize>20</pointsize>
+                              <pointsize>24</pointsize>
                               <bold>true</bold>
                              </font>
                             </property>
@@ -1518,7 +1503,7 @@ QLabel {
                            <widget class="QLabel" name="healthcarelimitlabel">
                             <property name="font">
                              <font>
-                              <family>Montserrat SemiBold</family>
+                              <family>Arial</family>
                               <bold>true</bold>
                              </font>
                             </property>
@@ -1534,7 +1519,7 @@ QLabel {
                            <widget class="QLabel" name="limitcurrency_6">
                             <property name="font">
                              <font>
-                              <family>Montserrat SemiBold</family>
+                              <family>Arial</family>
                               <pointsize>7</pointsize>
                               <bold>true</bold>
                              </font>
@@ -1598,7 +1583,7 @@ QLabel {
                             <property name="font">
                              <font>
                               <family>Font Awesome 6 Free</family>
-                              <pointsize>19</pointsize>
+                              <pointsize>24</pointsize>
                               <bold>true</bold>
                              </font>
                             </property>
@@ -1617,7 +1602,7 @@ QLabel {
                            <widget class="QLabel" name="housinglimitlabel">
                             <property name="font">
                              <font>
-                              <family>Montserrat SemiBold</family>
+                              <family>Arial</family>
                               <bold>true</bold>
                              </font>
                             </property>
@@ -1633,7 +1618,7 @@ QLabel {
                            <widget class="QLabel" name="limitcurrency_7">
                             <property name="font">
                              <font>
-                              <family>Montserrat SemiBold</family>
+                              <family>Arial</family>
                               <pointsize>7</pointsize>
                               <bold>true</bold>
                              </font>
@@ -1697,7 +1682,7 @@ QLabel {
                             <property name="font">
                              <font>
                               <family>Font Awesome 6 Free</family>
-                              <pointsize>20</pointsize>
+                              <pointsize>24</pointsize>
                               <bold>true</bold>
                              </font>
                             </property>
@@ -1716,7 +1701,7 @@ QLabel {
                            <widget class="QLabel" name="otherlimitlabel">
                             <property name="font">
                              <font>
-                              <family>Montserrat SemiBold</family>
+                              <family>Arial</family>
                               <bold>true</bold>
                              </font>
                             </property>
@@ -1732,7 +1717,7 @@ QLabel {
                            <widget class="QLabel" name="limitcurrency_8">
                             <property name="font">
                              <font>
-                              <family>Montserrat SemiBold</family>
+                              <family>Arial</family>
                               <pointsize>7</pointsize>
                               <bold>true</bold>
                              </font>
@@ -1811,7 +1796,7 @@ QLabel {
                        <widget class="QLabel" name="label">
                         <property name="font">
                          <font>
-                          <family>Montserrat ExtraBold</family>
+                          <family>Arial</family>
                           <pointsize>16</pointsize>
                           <bold>true</bold>
                          </font>
@@ -1852,9 +1837,6 @@ QLabel {
                         </property>
                         <item row="0" column="4">
                          <widget class="QFrame" name="ftransferframe">
-                          <property name="cursor">
-                           <cursorShape>PointingHandCursor</cursorShape>
-                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -1901,7 +1883,7 @@ QLabel {
                             <widget class="QLabel" name="ftransferlabel">
                              <property name="font">
                               <font>
-                               <family>Montserrat Medium</family>
+                               <family>Arial</family>
                                <pointsize>12</pointsize>
                               </font>
                              </property>
@@ -1923,14 +1905,6 @@ QLabel {
                             <width>0</width>
                             <height>10</height>
                            </size>
-                          </property>
-                          <property name="font">
-                           <font>
-                            <family>Segoe UI</family>
-                           </font>
-                          </property>
-                          <property name="cursor">
-                           <cursorShape>PointingHandCursor</cursorShape>
                           </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
@@ -1987,8 +1961,8 @@ QLabel {
                              </property>
                              <property name="font">
                               <font>
-                               <family>Montserrat Medium</family>
-                               <pointsize>11</pointsize>
+                               <family>Arial</family>
+                               <pointsize>12</pointsize>
                               </font>
                              </property>
                              <property name="text">
@@ -2005,9 +1979,6 @@ Planner</string>
                         </item>
                         <item row="0" column="5">
                          <widget class="QFrame" name="faddbillsframe">
-                          <property name="cursor">
-                           <cursorShape>PointingHandCursor</cursorShape>
-                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -2051,7 +2022,7 @@ Planner</string>
                             <widget class="QLabel" name="faddbillslabel">
                              <property name="font">
                               <font>
-                               <family>Montserrat Medium</family>
+                               <family>Arial</family>
                                <pointsize>12</pointsize>
                               </font>
                              </property>
@@ -2068,9 +2039,6 @@ Planner</string>
                         </item>
                         <item row="1" column="4">
                          <widget class="QFrame" name="fsummaryframe">
-                          <property name="cursor">
-                           <cursorShape>PointingHandCursor</cursorShape>
-                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -2114,7 +2082,7 @@ Planner</string>
                             <widget class="QLabel" name="fsummarylabel">
                              <property name="font">
                               <font>
-                               <family>Montserrat Medium</family>
+                               <family>Arial</family>
                                <pointsize>12</pointsize>
                               </font>
                              </property>
@@ -2134,9 +2102,6 @@ Planner</string>
                         </item>
                         <item row="1" column="5">
                          <widget class="QFrame" name="fmyqrframe">
-                          <property name="cursor">
-                           <cursorShape>PointingHandCursor</cursorShape>
-                          </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
                           </property>
@@ -2180,7 +2145,7 @@ Planner</string>
                             <widget class="QLabel" name="fmyqrlabel">
                              <property name="font">
                               <font>
-                               <family>Montserrat Medium</family>
+                               <family>Arial</family>
                                <pointsize>12</pointsize>
                               </font>
                              </property>
@@ -2202,9 +2167,6 @@ Planner</string>
                             <width>0</width>
                             <height>0</height>
                            </size>
-                          </property>
-                          <property name="cursor">
-                           <cursorShape>PointingHandCursor</cursorShape>
                           </property>
                           <property name="frameShape">
                            <enum>QFrame::StyledPanel</enum>
@@ -2249,7 +2211,7 @@ Planner</string>
                             <widget class="QLabel" name="fhistorylabel">
                              <property name="font">
                               <font>
-                               <family>Montserrat Medium</family>
+                               <family>Arial</family>
                                <pointsize>12</pointsize>
                               </font>
                              </property>
@@ -2328,7 +2290,7 @@ Planner</string>
                        <widget class="QLabel" name="label_5">
                         <property name="font">
                          <font>
-                          <family>Montserrat ExtraBold</family>
+                          <family>Arial</family>
                           <pointsize>16</pointsize>
                           <bold>true</bold>
                          </font>
@@ -2402,24 +2364,12 @@ background-color: rgb(238, 238, 238);</string>
                          <enum>QFrame::Raised</enum>
                         </property>
                         <layout class="QVBoxLayout" name="verticalLayout_13">
-                         <property name="leftMargin">
-                          <number>8</number>
-                         </property>
-                         <property name="topMargin">
-                          <number>8</number>
-                         </property>
-                         <property name="rightMargin">
-                          <number>8</number>
-                         </property>
-                         <property name="bottomMargin">
-                          <number>8</number>
-                         </property>
                          <item>
                           <widget class="QLabel" name="label_8">
                            <property name="font">
                             <font>
-                             <family>Montserrat SemiBold</family>
-                             <pointsize>10</pointsize>
+                             <family>Arial</family>
+                             <pointsize>11</pointsize>
                              <bold>true</bold>
                             </font>
                            </property>
@@ -2472,8 +2422,7 @@ background-color: rgb(238, 238, 238);</string>
                              <widget class="QLabel" name="mtdPercentagelabel">
                               <property name="font">
                                <font>
-                                <family>Montserrat ExtraBold</family>
-                                <pointsize>14</pointsize>
+                                <pointsize>16</pointsize>
                                </font>
                               </property>
                               <property name="styleSheet">
@@ -2491,7 +2440,6 @@ background-color: rgb(238, 238, 238);</string>
                              <widget class="QLabel" name="mtdPercentagevaluelabel">
                               <property name="font">
                                <font>
-                                <family>Montserrat ExtraBold</family>
                                 <pointsize>16</pointsize>
                                </font>
                               </property>
@@ -2513,8 +2461,8 @@ background-color: rgb(238, 238, 238);</string>
                           <widget class="QLabel" name="label_11">
                            <property name="font">
                             <font>
-                             <family>Montserrat Medium</family>
-                             <pointsize>9</pointsize>
+                             <family>Arial</family>
+                             <pointsize>10</pointsize>
                             </font>
                            </property>
                            <property name="text">
@@ -2551,24 +2499,12 @@ background-color: rgb(238, 238, 238);</string>
                          <enum>QFrame::Raised</enum>
                         </property>
                         <layout class="QVBoxLayout" name="verticalLayout_19">
-                         <property name="leftMargin">
-                          <number>8</number>
-                         </property>
-                         <property name="topMargin">
-                          <number>8</number>
-                         </property>
-                         <property name="rightMargin">
-                          <number>8</number>
-                         </property>
-                         <property name="bottomMargin">
-                          <number>8</number>
-                         </property>
                          <item>
                           <widget class="QLabel" name="label_9">
                            <property name="font">
                             <font>
-                             <family>Montserrat SemiBold</family>
-                             <pointsize>10</pointsize>
+                             <family>Arial</family>
+                             <pointsize>11</pointsize>
                              <bold>true</bold>
                             </font>
                            </property>
@@ -2621,8 +2557,7 @@ background-color: rgb(238, 238, 238);</string>
                              <widget class="QLabel" name="tfcPerccentagevaluelabel">
                               <property name="font">
                                <font>
-                                <family>Montserrat ExtraBold</family>
-                                <pointsize>14</pointsize>
+                                <pointsize>16</pointsize>
                                </font>
                               </property>
                               <property name="styleSheet">
@@ -2640,7 +2575,6 @@ background-color: rgb(238, 238, 238);</string>
                              <widget class="QLabel" name="tfcPercentagelabel">
                               <property name="font">
                                <font>
-                                <family>Montserrat ExtraBold</family>
                                 <pointsize>16</pointsize>
                                </font>
                               </property>
@@ -3257,6 +3191,9 @@ background-color: none;</string>
                    <height>16777215</height>
                   </size>
                  </property>
+                 <property name="verticalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAlwaysOff</enum>
+                 </property>
                  <property name="horizontalScrollBarPolicy">
                   <enum>Qt::ScrollBarAlwaysOff</enum>
                  </property>
@@ -3795,6 +3732,9 @@ QLineEdit::focus {
                         <property name="dragEnabled">
                          <bool>false</bool>
                         </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
                         <property name="placeholderText">
                          <string/>
                         </property>
@@ -3918,7 +3858,7 @@ QLineEdit::focus {
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>50</width>
+                             <width>60</width>
                              <height>16777215</height>
                             </size>
                            </property>
@@ -3952,6 +3892,9 @@ QLineEdit::focus {
                            </property>
                            <property name="dragEnabled">
                             <bool>false</bool>
+                           </property>
+                           <property name="readOnly">
+                            <bool>true</bool>
                            </property>
                            <property name="placeholderText">
                             <string/>
@@ -4043,7 +3986,7 @@ QLineEdit::focus {
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>50</width>
+                             <width>60</width>
                              <height>16777215</height>
                             </size>
                            </property>
@@ -4077,6 +4020,9 @@ QLineEdit::focus {
                            </property>
                            <property name="dragEnabled">
                             <bool>false</bool>
+                           </property>
+                           <property name="readOnly">
+                            <bool>true</bool>
                            </property>
                            <property name="placeholderText">
                             <string/>
@@ -4168,7 +4114,7 @@ QLineEdit::focus {
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>50</width>
+                             <width>60</width>
                              <height>16777215</height>
                             </size>
                            </property>
@@ -4202,6 +4148,9 @@ QLineEdit::focus {
                            </property>
                            <property name="dragEnabled">
                             <bool>false</bool>
+                           </property>
+                           <property name="readOnly">
+                            <bool>true</bool>
                            </property>
                            <property name="placeholderText">
                             <string/>
@@ -4293,7 +4242,7 @@ QLineEdit::focus {
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>50</width>
+                             <width>60</width>
                              <height>16777215</height>
                             </size>
                            </property>
@@ -4327,6 +4276,9 @@ QLineEdit::focus {
                            </property>
                            <property name="dragEnabled">
                             <bool>false</bool>
+                           </property>
+                           <property name="readOnly">
+                            <bool>true</bool>
                            </property>
                            <property name="placeholderText">
                             <string/>
@@ -4418,7 +4370,7 @@ QLineEdit::focus {
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>50</width>
+                             <width>60</width>
                              <height>16777215</height>
                             </size>
                            </property>
@@ -4452,6 +4404,9 @@ QLineEdit::focus {
                            </property>
                            <property name="dragEnabled">
                             <bool>false</bool>
+                           </property>
+                           <property name="readOnly">
+                            <bool>true</bool>
                            </property>
                            <property name="placeholderText">
                             <string/>
@@ -4543,7 +4498,7 @@ QLineEdit::focus {
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>50</width>
+                             <width>60</width>
                              <height>16777215</height>
                             </size>
                            </property>
@@ -4577,6 +4532,9 @@ QLineEdit::focus {
                            </property>
                            <property name="dragEnabled">
                             <bool>false</bool>
+                           </property>
+                           <property name="readOnly">
+                            <bool>true</bool>
                            </property>
                            <property name="placeholderText">
                             <string/>
@@ -4672,7 +4630,7 @@ QLineEdit::focus {
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>50</width>
+                             <width>60</width>
                              <height>16777215</height>
                             </size>
                            </property>
@@ -4706,6 +4664,9 @@ QLineEdit::focus {
                            </property>
                            <property name="dragEnabled">
                             <bool>false</bool>
+                           </property>
+                           <property name="readOnly">
+                            <bool>true</bool>
                            </property>
                            <property name="placeholderText">
                             <string/>
@@ -5387,7 +5348,7 @@ border-radius: 5px;</string>
                     <property name="frameShadow">
                      <enum>QFrame::Raised</enum>
                     </property>
-                    <layout class="QGridLayout" name="gridLayout_8" rowstretch="1,7,1" columnstretch="0">
+                    <layout class="QGridLayout" name="gridLayout_8" rowstretch="1,0,0" columnstretch="0">
                      <property name="leftMargin">
                       <number>15</number>
                      </property>
@@ -5397,6 +5358,37 @@ border-radius: 5px;</string>
                      <property name="verticalSpacing">
                       <number>0</number>
                      </property>
+                     <item row="2" column="0">
+                      <spacer name="dt_verticalSpacer">
+                       <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>20</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="dt_balance_title">
+                       <property name="font">
+                        <font>
+                         <family>Arial</family>
+                         <pointsize>14</pointsize>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">background-color: none;
+color: rgb(79, 186, 116);
+</string>
+                       </property>
+                       <property name="text">
+                        <string>Balance</string>
+                       </property>
+                      </widget>
+                     </item>
                      <item row="1" column="0">
                       <widget class="QLabel" name="dt_balance_amount">
                        <property name="font">
@@ -5416,37 +5408,6 @@ border-radius: 5px;</string>
                         <set>Qt::AlignCenter</set>
                        </property>
                       </widget>
-                     </item>
-                     <item row="0" column="0">
-                      <widget class="QLabel" name="dt_balance_title">
-                       <property name="font">
-                        <font>
-                         <family>Montserrat SemiBold</family>
-                         <pointsize>14</pointsize>
-                        </font>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: none;
-color: rgb(79, 186, 116);
-</string>
-                       </property>
-                       <property name="text">
-                        <string>Balance</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="0">
-                      <spacer name="dt_verticalSpacer">
-                       <property name="orientation">
-                        <enum>Qt::Vertical</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>20</width>
-                         <height>40</height>
-                        </size>
-                       </property>
-                      </spacer>
                      </item>
                     </layout>
                    </widget>
@@ -5486,7 +5447,7 @@ border-radius: 15px;</string>
                       <widget class="QLabel" name="dt_budget_title">
                        <property name="font">
                         <font>
-                         <family>Montserrat ExtraBold</family>
+                         <family>Arial</family>
                          <pointsize>14</pointsize>
                          <bold>true</bold>
                         </font>
@@ -5635,12 +5596,6 @@ color: #F49E4C;
                   </item>
                   <item>
                    <widget class="QFrame" name="frame_13">
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>50</height>
-                     </size>
-                    </property>
                     <property name="frameShape">
                      <enum>QFrame::StyledPanel</enum>
                     </property>
@@ -6324,7 +6279,7 @@ color: #F49E4C;
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>99</height>
+            <height>16</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -6603,8 +6558,6 @@ background-position: center bottom;</string>
                <widget class="QLabel" name="loginEmailLabel">
                 <property name="font">
                  <font>
-                  <family>Montserrat SemiBold</family>
-                  <pointsize>10</pointsize>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -6626,8 +6579,7 @@ background-position: center bottom;</string>
                 </property>
                 <property name="font">
                  <font>
-                  <family>Montserrat Medium</family>
-                  <pointsize>9</pointsize>
+                  <pointsize>12</pointsize>
                  </font>
                 </property>
                 <property name="styleSheet">
@@ -6654,9 +6606,6 @@ QLineEdit::disabled {
     border-color: #ddd; /* Lighter gray border for disabled state */
 }
 </string>
-                </property>
-                <property name="text">
-                 <string/>
                 </property>
                </widget>
               </item>
@@ -6719,8 +6668,6 @@ QLineEdit::disabled {
                <widget class="QLabel" name="loginPasswordLabel">
                 <property name="font">
                  <font>
-                  <family>Montserrat SemiBold</family>
-                  <pointsize>10</pointsize>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -6742,8 +6689,7 @@ QLineEdit::disabled {
                 </property>
                 <property name="font">
                  <font>
-                  <family>Montserrat Medium</family>
-                  <pointsize>9</pointsize>
+                  <pointsize>12</pointsize>
                  </font>
                 </property>
                 <property name="styleSheet">
@@ -6826,19 +6772,13 @@ QLineEdit::disabled {
                <number>0</number>
               </property>
               <property name="rightMargin">
-               <number>52</number>
+               <number>0</number>
               </property>
               <property name="bottomMargin">
                <number>10</number>
               </property>
               <item>
                <widget class="QLabel" name="label_17">
-                <property name="minimumSize">
-                 <size>
-                  <width>156</width>
-                  <height>0</height>
-                 </size>
-                </property>
                 <property name="maximumSize">
                  <size>
                   <width>140</width>
@@ -6847,7 +6787,6 @@ QLineEdit::disabled {
                 </property>
                 <property name="font">
                  <font>
-                  <family>Montserrat Medium</family>
                   <bold>false</bold>
                  </font>
                 </property>
@@ -6863,7 +6802,7 @@ QLineEdit::disabled {
                <widget class="QPushButton" name="redirectToRegisterButton">
                 <property name="minimumSize">
                  <size>
-                  <width>25</width>
+                  <width>20</width>
                   <height>0</height>
                  </size>
                 </property>
@@ -6875,8 +6814,7 @@ QLineEdit::disabled {
                 </property>
                 <property name="font">
                  <font>
-                  <family>Montserrat SemiBold</family>
-                  <bold>false</bold>
+                  <bold>true</bold>
                  </font>
                 </property>
                 <property name="cursor">
@@ -6959,7 +6897,6 @@ border: none;</string>
                 </property>
                 <property name="font">
                  <font>
-                  <family>Montserrat ExtraBold</family>
                   <pointsize>10</pointsize>
                   <bold>true</bold>
                  </font>
@@ -7122,7 +7059,6 @@ background-position: center bottom;</string>
                <widget class="QLabel" name="registerFullNameENLabel">
                 <property name="font">
                  <font>
-                  <family>Montserrat SemiBold</family>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -7236,7 +7172,6 @@ QLineEdit::disabled {
                <widget class="QLabel" name="registerEmailLabel">
                 <property name="font">
                  <font>
-                  <family>Montserrat SemiBold</family>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -7347,7 +7282,6 @@ QLineEdit::disabled {
                <widget class="QLabel" name="registerPasswordLabel">
                 <property name="font">
                  <font>
-                  <family>Montserrat SemiBold</family>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -7461,7 +7395,6 @@ QLineEdit::disabled {
                <widget class="QLabel" name="registerConfirmPasswordLabel">
                 <property name="font">
                  <font>
-                  <family>Montserrat SemiBold</family>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -7566,19 +7499,13 @@ QLineEdit::disabled {
                <number>0</number>
               </property>
               <property name="rightMargin">
-               <number>52</number>
+               <number>0</number>
               </property>
               <property name="bottomMargin">
                <number>10</number>
               </property>
               <item>
                <widget class="QLabel" name="label_18">
-                <property name="minimumSize">
-                 <size>
-                  <width>156</width>
-                  <height>0</height>
-                 </size>
-                </property>
                 <property name="maximumSize">
                  <size>
                   <width>140</width>
@@ -7587,7 +7514,6 @@ QLineEdit::disabled {
                 </property>
                 <property name="font">
                  <font>
-                  <family>Montserrat Medium</family>
                   <bold>false</bold>
                  </font>
                 </property>
@@ -7615,7 +7541,6 @@ QLineEdit::disabled {
                 </property>
                 <property name="font">
                  <font>
-                  <family>Montserrat SemiBold</family>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -7699,7 +7624,6 @@ border: none;</string>
                 </property>
                 <property name="font">
                  <font>
-                  <family>Montserrat SemiBold</family>
                   <pointsize>10</pointsize>
                   <bold>true</bold>
                  </font>

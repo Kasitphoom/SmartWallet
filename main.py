@@ -62,6 +62,8 @@ class MainWindow(QMainWindow):
             self.manager.set_account(user_cache)
             self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
             self.update_window()
+            # set initial budget page
+            self.setupBudget()
         else:
             self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
         
@@ -86,26 +88,7 @@ class MainWindow(QMainWindow):
         self.ui.navigateToDirectTransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["directtransfer"]))
 
         # handle page change
-        self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler)
-        
-        print(self.ui.transfertypeframe.findChild(QPushButton, "backButton"))
-
-        # set initial budget page
-        self.limit_ui = {
-            "housing": self.ui.planHousingLineEdit,
-            "food": self.ui.planFoodLineEdit,
-            "transport": self.ui.planTransportLineEdit,
-            "entertainment": self.ui.planEntertainmentLineEdit,
-            "healthcare": self.ui.planHealthcareLineEdit,
-            "others": self.ui.planMiscellaneousLineEdit,
-            "saving": self.ui.planSavingLineEdit,
-        }
-        self.update_limit_labels()
-        self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
-        for ui in self.limit_ui.values():
-            ui.textChanged.connect(self.update_total_limit)
-
-
+        self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler) 
         
     def handleLogin(self):
         email = self.ui.loginEmailLineEdit.text()
@@ -127,6 +110,7 @@ class MainWindow(QMainWindow):
             self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
             self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
             self.update_window()
+            self.setupBudget()
         else:
             self.ui.loginError.setText("Invalid email or password")
 
@@ -295,6 +279,21 @@ class MainWindow(QMainWindow):
 
     def check_total_limit(self):
         return float(self.ui.planTotalLineEdit.text()) == 100.0
+    
+    def setupBudget(self):
+        self.limit_ui = {
+            "housing": self.ui.planHousingLineEdit,
+            "food": self.ui.planFoodLineEdit,
+            "transport": self.ui.planTransportLineEdit,
+            "entertainment": self.ui.planEntertainmentLineEdit,
+            "healthcare": self.ui.planHealthcareLineEdit,
+            "others": self.ui.planMiscellaneousLineEdit,
+            "saving": self.ui.planSavingLineEdit,
+        }
+        self.update_limit_labels()
+        self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
+        for ui in self.limit_ui.values():
+            ui.textChanged.connect(self.update_total_limit)
 
 
 
