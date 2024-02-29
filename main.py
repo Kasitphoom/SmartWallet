@@ -101,6 +101,9 @@ class MainWindow(QMainWindow):
         for ui in self.limit_ui.values():
             ui.textChanged.connect(self.update_total_limit)
 
+        # handle direct transfer page
+        self.update_direct_transfer_balance()
+
 
         
     def handleLogin(self):
@@ -296,7 +299,8 @@ class MainWindow(QMainWindow):
     def check_total_limit(self):
         return float(self.ui.planTotalLineEdit.text()) == 100.0
 
-
+    def update_direct_transfer_balance(self):
+        self.ui.dt_balance_amount.setText(self.manager.get_balance() + " THB")
 
 
 
