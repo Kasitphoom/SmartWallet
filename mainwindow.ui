@@ -106,7 +106,7 @@
               <number>0</number>
              </property>
              <property name="currentIndex">
-              <number>2</number>
+              <number>3</number>
              </property>
              <widget class="QWidget" name="dashboardPage">
               <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -164,7 +164,7 @@ width:0px;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>390</width>
+                    <width>391</width>
                     <height>1074</height>
                    </rect>
                   </property>
@@ -2988,7 +2988,7 @@ height: 0px;</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>133</width>
+                       <width>351</width>
                        <height>105</height>
                       </rect>
                      </property>
@@ -3205,7 +3205,7 @@ background-color: none;</string>
                     <x>0</x>
                     <y>0</y>
                     <width>393</width>
-                    <height>845</height>
+                    <height>844</height>
                    </rect>
                   </property>
                   <property name="maximumSize">
@@ -4937,7 +4937,7 @@ border-radius: 5px;</string>
              <widget class="QWidget" name="directtransferPage">
               <layout class="QVBoxLayout" name="verticalLayout_34">
                <property name="spacing">
-                <number>24</number>
+                <number>16</number>
                </property>
                <property name="leftMargin">
                 <number>0</number>
@@ -5090,13 +5090,13 @@ border-radius: 5px;</string>
                    <number>41</number>
                   </property>
                   <property name="topMargin">
-                   <number>9</number>
+                   <number>0</number>
                   </property>
                   <property name="rightMargin">
                    <number>41</number>
                   </property>
                   <property name="bottomMargin">
-                   <number>9</number>
+                   <number>0</number>
                   </property>
                   <item>
                    <widget class="QFrame" name="frame_7">
@@ -5150,8 +5150,8 @@ border-radius: 5px;</string>
                        </property>
                        <property name="font">
                         <font>
-                         <family>Montserrat ExtraBold</family>
-                         <pointsize>12</pointsize>
+                         <family>Montserrat SemiBold</family>
+                         <pointsize>10</pointsize>
                          <bold>true</bold>
                         </font>
                        </property>
@@ -5213,7 +5213,7 @@ border-radius: 5px;</string>
                           <property name="font">
                            <font>
                             <family>Montserrat SemiBold</family>
-                            <pointsize>16</pointsize>
+                            <pointsize>10</pointsize>
                            </font>
                           </property>
                           <property name="layoutDirection">
@@ -5330,8 +5330,9 @@ border-radius: 5px;</string>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">.QFrame {
-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(31, 162, 255, 255), stop:1 rgba(126, 242, 157, 255));
-border-radius: 15px;
+	
+	background-color: rgb(192, 229, 205);
+	border-radius: 15px;
 }</string>
                     </property>
                     <property name="frameShape">
@@ -5354,15 +5355,13 @@ border-radius: 15px;
                       <widget class="QLabel" name="dt_balance_amount">
                        <property name="font">
                         <font>
-                         <family>Arial</family>
+                         <family>Montserrat SemiBold</family>
                          <pointsize>16</pointsize>
-                         <fontweight>Black</fontweight>
+                         <bold>false</bold>
                         </font>
                        </property>
                        <property name="styleSheet">
-                        <string notr="true">background-color: none;
-color: rgb(255, 255, 255);
-</string>
+                        <string notr="true">background-color: none;</string>
                        </property>
                        <property name="text">
                         <string>0.00 THB</string>
@@ -5382,7 +5381,7 @@ color: rgb(255, 255, 255);
                        </property>
                        <property name="styleSheet">
                         <string notr="true">background-color: none;
-color: rgb(255, 255, 255);
+color: rgb(79, 186, 116);
 </string>
                        </property>
                        <property name="text">
@@ -5470,7 +5469,7 @@ color: #F49E4C;
                        </property>
                        <property name="styleSheet">
                         <string notr="true">background-color: none;
-color: #FFFFFF;
+
 </string>
                        </property>
                        <property name="text">
