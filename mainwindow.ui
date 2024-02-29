@@ -3055,7 +3055,7 @@ height: 0px;</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>351</width>
+                       <width>133</width>
                        <height>105</height>
                       </rect>
                      </property>
@@ -5253,6 +5253,12 @@ border-radius: 5px;</string>
                           <property name="minimumSize">
                            <size>
                             <width>0</width>
+                            <height>15</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>16777215</width>
                             <height>15</height>
                            </size>
                           </property>
