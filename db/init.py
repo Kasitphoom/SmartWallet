@@ -21,5 +21,6 @@ if __name__ == "__main__":
     root.transactions = BTrees.OOBTree.BTree()
 
     root.accounts["123456789"] = Account("John Doe", 1000, "123456789", "c72811a3c777b8bf78740b3d3433b0b9aee7a601644ad5387f35ba6132577e20", "admin@email.com", 15_000)
+    root.accounts["874043489"] = Account("Phong Kit", 10000, "874043489", "c72811a3c777b8bf78740b3d3433b0b9aee7a601644ad5387f35ba6132577e20", "phong@email.com", 20_000)
 
     transaction.commit()

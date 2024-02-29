@@ -12,7 +12,7 @@ class Account(persistent.Persistent):
         self.average_income = average_income
         self.limits_rate = {
             "housing": 0,
-            "food": 0.5,
+            "food": 0.4,
             "transport": 0.15,
             "saving": 0.2,
             "entertainment": 0.1,

@@ -34,8 +34,19 @@ class MainWindow(QMainWindow):
         self.account_number_visibility = False
         self.calculated_limits = {}
         self.__salt = "rT8jllFhs7"
+        self.page = {
+            # stacked widget
+            "dashboard": 0,
+            "transfer": 1,
+            "budgetplanner": 2,
+            "directtransfer": 3,
+            # stacked widget 2
+            "main": 0,
+            "login": 1,
+            "register": 2
+        }
         
-        
+
         # Add fonts in QFontDatabase before setting up the UI
         QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Font Awesome 6 Free-Solid-900.otf").as_posix())
         QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Montserrat-VariableFont_wght.ttf").as_posix())
@@ -44,15 +55,15 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         
         if user_cache == "":
-            self.ui.stackedWidget_2.setCurrentIndex(1)
+            self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
         elif manager.check_accounts(user_cache):
             self.manager.set_account(user_cache)
-            self.ui.stackedWidget_2.setCurrentIndex(0)
+            self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
             self.update_window()
         else:
-            self.ui.stackedWidget_2.setCurrentIndex(1)
+            self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
         
-        self.ui.stackedWidget.setCurrentIndex(0)
+        self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
         self.ui.frame_10.installEventFilter(self)
         
         # login page
@@ -63,13 +74,34 @@ class MainWindow(QMainWindow):
         self.ui.eyeButton.clicked.connect(self.handleAccountNumberVisibility)
         
         # buttons to change page
-        self.ui.dashboardButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(0))
-        self.ui.ftransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(1))
-        self.ui.redirectToRegisterButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(2))
-        self.ui.redirectToLoginButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(1))
+        self.ui.dashboardButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
+        self.ui.ftransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["transfer"]))
+        self.ui.fbudgetplannerButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["budgetplanner"]))
+        self.ui.budgetplannerButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["budgetplanner"]))
+        self.ui.redirectToRegisterButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(self.page["register"]))
+        self.ui.redirectToLoginButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(self.page["login"]))
+        self.ui.transferbackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
+        self.ui.navigateToDirectTransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["directtransfer"]))
 
         # handle page change
         self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler) 
+
+        # set initial budget page
+        self.limit_ui = {
+            "housing": self.ui.planHousingLineEdit,
+            "food": self.ui.planFoodLineEdit,
+            "transport": self.ui.planTransportLineEdit,
+            "entertainment": self.ui.planEntertainmentLineEdit,
+            "healthcare": self.ui.planHealthcareLineEdit,
+            "others": self.ui.planMiscellaneousLineEdit,
+            "saving": self.ui.planSavingLineEdit,
+        }
+        self.update_limit_labels()
+        self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
+        for ui in self.limit_ui.values():
+            ui.textChanged.connect(self.update_total_limit)
+
+
         
     def handleLogin(self):
         email = self.ui.loginEmailLineEdit.text()
@@ -78,7 +110,6 @@ class MainWindow(QMainWindow):
         hash_object = hashlib.sha256(password.encode())
         password = hash_object.hexdigest()
         
-        print(password)
         
         account = self.manager.login_account(email, password)
         
@@ -89,12 +120,11 @@ class MainWindow(QMainWindow):
                 self.manager.set_account(user_cache)
                 pickle.dump(user_cache, f)
             
-            self.ui.stackedWidget_2.setCurrentIndex(0)
-            self.ui.stackedWidget.setCurrentIndex(0)
+            self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
+            self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
             self.update_window()
         else:
             self.ui.loginError.setText("Invalid email or password")
-            print("Invalid email or password")
 
     def handleRegister(self):
         fullname = self.ui.registerFullNameENLineEdit.text()
@@ -103,7 +133,6 @@ class MainWindow(QMainWindow):
         confirm_password = self.ui.registerConfirmPasswordLineEdit.text() + self.__salt
         
         if password != confirm_password:
-            print("Password does not match")
             self.ui.registerConfirmPasswordError.setText("Password does not match")
             return
         
@@ -111,7 +140,7 @@ class MainWindow(QMainWindow):
         password = hash_object.hexdigest()
         
         self.manager.register_account(fullname, email, password)
-        self.ui.stackedWidget_2.setCurrentIndex(1)
+        self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
 
     def update_window(self):
         self.ui.d_balance_amount.setText(self.manager.get_balance() + " THB")
@@ -161,6 +190,7 @@ class MainWindow(QMainWindow):
         # house limit
         housing_limit = self.manager.calculate_daily_limit("housing")
         max_housing_limit = self.manager.get_max_daily_limit("housing")
+        
         
         self.ui.housinglimitlabel.setText(f"{housing_limit:,.2f}")
         self.ui.housinglimiticon.setStyleSheet(f"color: {'#B3625A' if housing_limit < max_housing_limit * 0.25 else '#F49E4C' if housing_limit < max_housing_limit * 0.50 else '#4FBA74'}")
@@ -214,6 +244,57 @@ class MainWindow(QMainWindow):
             self.ui.loginError.setText("")
         if self.ui.registerConfirmPasswordError.text() != "":
             self.ui.registerConfirmPasswordError.setText("")
+
+    def update_limit_labels(self):
+        self.limits = self.manager.get_limits()
+        self.ui.averageIncomeLineEdit.setText(str(float(self.manager.get_average_income())))
+        # set line edit texts of limits
+        for limit, ui in self.limit_ui.items():
+            ui.setText(str(self.limits[limit]))
+        self.ui.planTotalLineEdit.setText(str(sum(self.limits.values())))
+        self.ui.budgetAmountLabel.setText(str(float(self.manager.get_average_income()) - (float(self.manager.get_average_income()) * self.limits["saving"] / 100)))
+
+    def enable_limits_edit(self):
+        # enable editing
+        for ui in self.limit_ui.values():
+            ui.setReadOnly(False)
+        self.ui.averageIncomeLineEdit.setReadOnly(False)
+        # change to save button
+        self.ui.planEditButton.setText("Save")
+        self.ui.planEditButton.setStyleSheet("background-color: #4FBA74; color: white;")
+        self.ui.planEditButton.clicked.disconnect()
+        self.ui.planEditButton.clicked.connect(self.save_limits_setting)
+
+    def save_limits_setting(self):
+        if self.check_total_limit():
+            # disable editing
+            for ui in self.limit_ui.values():
+                ui.setReadOnly(True)
+            self.ui.averageIncomeLineEdit.setReadOnly(True)
+            # change to edit button
+            self.ui.planEditButton.setText("Edit")
+            self.ui.planEditButton.setStyleSheet("background-color: #FFF4EA; color: #F49E4C;")
+            self.ui.planEditButton.clicked.disconnect()
+            self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
+            # save limits
+            self.limits_temp = {}
+            for limit_name, ui in self.limit_ui.items():
+                self.limits_temp[limit_name] = float(ui.text()) / 100
+            self.manager.save_limits_and_income(self.limits_temp, float(self.ui.averageIncomeLineEdit.text()))
+            self.update_window()
+            self.ui.planTotalErrorLabel.setText("")
+        else:
+            self.ui.planTotalErrorLabel.setText("Total limit is not 100%")
+
+    def update_total_limit(self):
+        self.ui.planTotalLineEdit.setText(str(sum([float(ui.text()) for ui in self.limit_ui.values()])))
+
+    def check_total_limit(self):
+        return float(self.ui.planTotalLineEdit.text()) == 100.0
+
+
+
+
 
         
 if __name__ == "__main__":
