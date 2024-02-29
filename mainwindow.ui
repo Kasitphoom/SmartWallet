@@ -107,7 +107,7 @@ color: rgb(0, 0, 0);</string>
               <number>0</number>
              </property>
              <property name="currentIndex">
-              <number>3</number>
+              <number>5</number>
              </property>
              <widget class="QWidget" name="dashboardPage">
               <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -165,7 +165,7 @@ width:0px;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>391</width>
+                    <width>390</width>
                     <height>1074</height>
                    </rect>
                   </property>
@@ -3635,7 +3635,7 @@ border-radius: 15px;</string>
                           <widget class="QLabel" name="label_20">
                            <property name="font">
                             <font>
-                             <family>Montserrat SemiBold</family>
+                             <family>Montserrat</family>
                              <pointsize>12</pointsize>
                              <bold>true</bold>
                             </font>
@@ -6267,6 +6267,66 @@ color: #F49E4C;
                <property name="spacing">
                 <number>0</number>
                </property>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="scanQRPage">
+              <layout class="QVBoxLayout" name="verticalLayout_42">
+               <property name="spacing">
+                <number>30</number>
+               </property>
+               <property name="leftMargin">
+                <number>20</number>
+               </property>
+               <property name="topMargin">
+                <number>30</number>
+               </property>
+               <property name="rightMargin">
+                <number>20</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="scanQRCodeBackButton">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>150</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-image: url(:/images/image/backscanqrcode.svg);</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="cameraFrame">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_43">
+                  <item>
+                   <widget class="QLabel" name="camera_label">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
               </layout>
              </widget>
             </widget>

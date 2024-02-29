@@ -2,8 +2,8 @@ import sys
 
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem
-from PySide6.QtCore import QSize, QRect, Qt
-from PySide6.QtGui import QFont, QFontDatabase, QMouseEvent
+from PySide6.QtCore import QSize, QRect, Qt, Slot, QTimer
+from PySide6.QtGui import QFont, QFontDatabase, QMouseEvent, QImage, QPixmap
 from mainwindow import Ui_MainWindow
 
 from pathlib import Path
@@ -14,6 +14,7 @@ from obj.account import Account
 import pickle
 
 import hashlib
+import cv2
 
 cache_dir = Path(__file__).parent / "cache"
 cache_dir.mkdir(parents=True, exist_ok=True)
@@ -34,12 +35,18 @@ class MainWindow(QMainWindow):
         self.account_number_visibility = False
         self.calculated_limits = {}
         self.__salt = "rT8jllFhs7"
+        self.capture = cv2.VideoCapture(0)
+        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1200)
+        # self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 1000)
+        self.detector = cv2.QRCodeDetector()
         self.page = {
             # stacked widget
             "dashboard": 0,
             "transfer": 1,
             "budgetplanner": 2,
             "directtransfer": 3,
+            "history": 4,
+            "scanqrcode": 5,
             # stacked widget 2
             "main": 0,
             "login": 1,
@@ -84,9 +91,10 @@ class MainWindow(QMainWindow):
         self.ui.redirectToLoginButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(self.page["login"]))
         self.ui.transferbackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
         self.ui.navigateToDirectTransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["directtransfer"]))
-
+        self.ui.navigateToDirectQrcodeButton.clicked.connect(self.handleNavigationToScanQRCode)
+        
         # handle page change
-        self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler) 
+        self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler)
         
     def handleLogin(self):
         email = self.ui.loginEmailLineEdit.text()
@@ -292,9 +300,54 @@ class MainWindow(QMainWindow):
         self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
         for ui in self.limit_ui.values():
             ui.textChanged.connect(self.update_total_limit)
+    
 
+    def handleNavigationToScanQRCode(self):
+        self.ui.stackedWidget.setCurrentIndex(self.page["scanqrcode"])
+        accountID = self.start_camera_feed()
 
+    def start_camera_feed(self):
+        # Start the camera feed update timer
+        self.camera_timer = QTimer(self)
+        accountID = self.camera_timer.timeout.connect(self.update_camera_feed)
+        self.camera_timer.start(1)  # Adjust the timeout value as needed
+        return accountID
 
+   
+    @Slot()
+    def update_camera_feed(self):
+        # Read the frame from the camera
+        ret, frame = self.capture.read()
+        if not ret:
+            print("Failed to capture frame")
+            return
+
+        # Detect QR code from the frame
+        accountID, bbox, _ = self.detector.detectAndDecode(frame)
+        if accountID:
+            print("QR Code detected:", accountID)
+            # Perform any actions you want with the detected QR code data
+            self.camera_timer.timeout.disconnect()
+            self.capture.release()
+            return accountID
+        elif self.ui.stackedWidget.currentIndex() != self.page["scanqrcode"]:
+            self.camera_timer.timeout.disconnect()
+            self.capture.release()
+            return
+
+        # Crop the frame to remove the excess part
+        crop_rect = QRect(325, 0, self.ui.camera_label.width(), self.ui.camera_label.height())
+        cropped_frame = frame[crop_rect.y():crop_rect.y() + crop_rect.height(), crop_rect.x():crop_rect.x() + crop_rect.width()].copy()
+
+        # Convert the OpenCV frame to QImage
+        height, width, _ = cropped_frame.shape
+        qimg = QImage(cropped_frame.data, width, height, cropped_frame.strides[0], QImage.Format_BGR888)
+
+        # Convert QImage to QPixmap for displaying
+        pixmap = QPixmap.fromImage(qimg)
+
+        # Update the QLabel with the new QPixmap
+        self.ui.camera_label.setPixmap(pixmap)
 
 
         
