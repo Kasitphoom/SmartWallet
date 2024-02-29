@@ -100,7 +100,8 @@ class MainWindow(QMainWindow):
         self.ui.navigateToDirectQrcodeButton.clicked.connect(self.handleNavigationToScanQRCode)
         
         # handle page change
-        self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler)
+        self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler_2)
+        self.ui.stackedWidget.currentChanged.connect(self.page_changed_handler)
         
     def handleLogin(self):
         email = self.ui.loginEmailLineEdit.text()
@@ -240,6 +241,11 @@ class MainWindow(QMainWindow):
         self.ui.d_expense_amount.setText(f"{self.manager.get_total_expense_of_this_month():,.2f} THB")
 
     def page_changed_handler(self):
+            if self.ui.accountNumberLineEditDT != "":
+                self.ui.accountNumberLineEditDT.setText("")
+                self.ui.accountNumberLineEditDT.setReadOnly(False)
+
+    def page_changed_handler_2(self):
         if self.ui.loginError.text() != "":
             self.ui.loginError.setText("")
         if self.ui.registerConfirmPasswordError.text() != "":
@@ -334,9 +340,9 @@ class MainWindow(QMainWindow):
         if accountID:
             # Perform any actions you want with the detected QR code data
             print("QR Code detected:", accountID)
-            self.accountToTransferTo = accountID ### set account to transfer to
             self.camera_timer.timeout.disconnect()
             self.capture.release()
+            self.handleRedirectFromScanQRCodeToDirectTransfer(accountID)
             return
         elif self.ui.stackedWidget.currentIndex() != self.page["scanqrcode"]:
             self.camera_timer.timeout.disconnect()
@@ -356,6 +362,12 @@ class MainWindow(QMainWindow):
 
         # Update the QLabel with the new QPixmap
         self.ui.camera_label.setPixmap(pixmap)
+
+    def handleRedirectFromScanQRCodeToDirectTransfer(self, accountID):
+        self.ui.stackedWidget.setCurrentIndex(self.page["directtransfer"])
+        self.ui.accountNumberLineEditDT.setReadOnly(True)
+        self.ui.accountNumberLineEditDT.setText(accountID)
+
 
 
         
