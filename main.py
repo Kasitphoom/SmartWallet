@@ -310,16 +310,15 @@ class MainWindow(QMainWindow):
 
     def handleNavigationToScanQRCode(self):
         self.ui.stackedWidget.setCurrentIndex(self.page["scanqrcode"])
-        accountID = self.start_camera_feed()
+        self.start_camera_feed()
 
     def start_camera_feed(self):
         self.capture = cv2.VideoCapture(0)
         self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1200)
         # Start the camera feed update timer
         self.camera_timer = QTimer(self)
-        accountID = self.camera_timer.timeout.connect(self.update_camera_feed)
+        self.camera_timer.timeout.connect(self.update_camera_feed)
         self.camera_timer.start(1)  # Adjust the timeout value as needed
-        return accountID
 
    
     @Slot()
@@ -333,11 +332,12 @@ class MainWindow(QMainWindow):
         # Detect QR code from the frame
         accountID, bbox, _ = self.detector.detectAndDecode(frame)
         if accountID:
-            print("QR Code detected:", accountID)
             # Perform any actions you want with the detected QR code data
+            print("QR Code detected:", accountID)
+            self.accountToTransferTo = accountID ### set account to transfer to
             self.camera_timer.timeout.disconnect()
             self.capture.release()
-            return accountID
+            return
         elif self.ui.stackedWidget.currentIndex() != self.page["scanqrcode"]:
             self.camera_timer.timeout.disconnect()
             self.capture.release()
