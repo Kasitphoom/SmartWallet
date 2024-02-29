@@ -828,7 +828,7 @@ color: rgb(255, 255, 255);
                           </widget>
                          </item>
                          <item>
-                          <widget class="QPushButton" name="pushButton">
+                          <widget class="QPushButton" name="moreInfoButton">
                            <property name="sizePolicy">
                             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                              <horstretch>0</horstretch>
@@ -2811,7 +2811,7 @@ total cost</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="qrcodeButton">
+                   <widget class="QPushButton" name="navigateToDirectQrcodeButton">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -2833,7 +2833,7 @@ total cost</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="pushButton_3">
+                   <widget class="QPushButton" name="navigateToDirectTransferButton">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -3265,7 +3265,7 @@ background-color: none;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QFrame" name="transferbackframe_3">
+                    <widget class="QFrame" name="budgetBackFrame">
                      <property name="sizePolicy">
                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                        <horstretch>0</horstretch>
@@ -3301,7 +3301,7 @@ background-color: none;</string>
                        <number>0</number>
                       </property>
                       <item>
-                       <widget class="QPushButton" name="transferbackButton_2">
+                       <widget class="QPushButton" name="budgetBackButton">
                         <property name="sizePolicy">
                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                           <horstretch>0</horstretch>
@@ -4823,7 +4823,7 @@ QLineEdit::focus {
                        </widget>
                       </item>
                       <item>
-                       <widget class="QFrame" name="planTransportFrame_2">
+                       <widget class="QFrame" name="budgetPerMonthFrmae">
                         <property name="frameShape">
                          <enum>QFrame::StyledPanel</enum>
                         </property>
@@ -4937,7 +4937,7 @@ border-radius: 5px;</string>
              <widget class="QWidget" name="directtransferPage">
               <layout class="QVBoxLayout" name="verticalLayout_34">
                <property name="spacing">
-                <number>16</number>
+                <number>14</number>
                </property>
                <property name="leftMargin">
                 <number>0</number>
@@ -5016,7 +5016,7 @@ border-radius: 5px;</string>
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QPushButton" name="pushButton_2">
+                   <widget class="QPushButton" name="dicrectTransferBackButton">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -5026,6 +5026,12 @@ border-radius: 5px;</string>
                     <property name="minimumSize">
                      <size>
                       <width>155</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
                       <height>20</height>
                      </size>
                     </property>
@@ -5462,8 +5468,8 @@ color: #F49E4C;
                       <widget class="QLabel" name="dt_expense_amount">
                        <property name="font">
                         <font>
-                         <family>Arial</family>
-                         <pointsize>16</pointsize>
+                         <family>Montserrat SemiBold</family>
+                         <pointsize>13</pointsize>
                          <fontweight>Black</fontweight>
                         </font>
                        </property>
@@ -5549,7 +5555,7 @@ color: #F49E4C;
                       </widget>
                      </item>
                      <item>
-                      <widget class="QPushButton" name="pushButton_6">
+                      <widget class="QPushButton" name="moreInfoButtonDT">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                          <horstretch>0</horstretch>
@@ -5597,7 +5603,13 @@ color: #F49E4C;
                     </property>
                     <layout class="QHBoxLayout" name="horizontalLayout_16">
                      <property name="spacing">
-                      <number>2</number>
+                      <number>0</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>41</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>41</number>
                      </property>
                      <item>
                       <widget class="QPushButton" name="typefoodButton">
@@ -5977,7 +5989,7 @@ color: #F49E4C;
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QLineEdit" name="lineEdit">
+                      <widget class="QLineEdit" name="accountNumberLineEditDT">
                        <property name="font">
                         <font>
                          <family>Montserrat SemiBold</family>
@@ -5991,27 +6003,7 @@ color: #F49E4C;
                         <string/>
                        </property>
                        <property name="placeholderText">
-                        <string>0.00</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="label_10">
-                       <property name="font">
-                        <font>
-                         <family>Montserrat ExtraBold</family>
-                         <pointsize>13</pointsize>
-                         <bold>true</bold>
-                        </font>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">border-bottom: none;</string>
-                       </property>
-                       <property name="text">
-                        <string>THB</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                        <string>xxxxx4999x</string>
                        </property>
                       </widget>
                      </item>
@@ -6046,7 +6038,7 @@ color: #F49E4C;
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QLineEdit" name="lineEdit_2">
+                      <widget class="QLineEdit" name="amountToTransferLineEditDT">
                        <property name="font">
                         <font>
                          <family>Montserrat SemiBold</family>
@@ -6184,7 +6176,7 @@ color: #F49E4C;
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QPushButton" name="dt_">
+                   <widget class="QPushButton" name="dt_cancleButton">
                     <property name="minimumSize">
                      <size>
                       <width>104</width>
