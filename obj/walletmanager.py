@@ -39,7 +39,6 @@ class WalletManager():
         for transaction in self.account.transactions:
             if transaction.date.month == self.current_date.month and transaction.date.day == self.current_date.day and transaction.category == category:
                 limit -= transaction.amount
-        print("Calculate daily limit:", self.account.monthly_limits, category)
         return limit
     
     def get_max_daily_limit(self, category):
@@ -59,7 +58,6 @@ class WalletManager():
     
     def login_account(self, email, password):
         for account in root.accounts.values():
-            print(account.login(email, password), account.email, account.password, email, password)
             if account.login(email, password):
                 self.account = account
                 return self.account
