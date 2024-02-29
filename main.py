@@ -49,7 +49,9 @@ class MainWindow(QMainWindow):
 
         # Add fonts in QFontDatabase before setting up the UI
         QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Font Awesome 6 Free-Solid-900.otf").as_posix())
-        QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Montserrat-VariableFont_wght.ttf").as_posix())
+        fontid = QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "otfs/Montserrat-VariableFont_wght.ttf").as_posix())
+        
+        print(QFontDatabase.applicationFontFamilies(fontid))
         
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -84,7 +86,9 @@ class MainWindow(QMainWindow):
         self.ui.navigateToDirectTransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["directtransfer"]))
 
         # handle page change
-        self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler) 
+        self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler)
+        
+        print(self.ui.transfertypeframe.findChild(QPushButton, "backButton"))
 
         # set initial budget page
         self.limit_ui = {
