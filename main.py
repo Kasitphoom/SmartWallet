@@ -254,6 +254,7 @@ class MainWindow(QMainWindow):
         for limit, ui in self.limit_ui.items():
             ui.setText(str(self.limits[limit]))
         self.ui.planTotalLineEdit.setText(str(sum(self.limits.values())))
+        self.ui.budgetAmountLabel.setText(str(float(self.manager.get_average_income()) - (float(self.manager.get_average_income()) * self.limits["saving"] / 100)))
 
     def enable_limits_edit(self):
         # enable editing
@@ -263,6 +264,7 @@ class MainWindow(QMainWindow):
         # change to save button
         self.ui.planEditButton.setText("Save")
         self.ui.planEditButton.setStyleSheet("background-color: #4FBA74; color: white;")
+        self.ui.planEditButton.clicked.disconnect()
         self.ui.planEditButton.clicked.connect(self.save_limits_setting)
 
     def save_limits_setting(self):
@@ -274,6 +276,7 @@ class MainWindow(QMainWindow):
             # change to edit button
             self.ui.planEditButton.setText("Edit")
             self.ui.planEditButton.setStyleSheet("background-color: #FFF4EA; color: #F49E4C;")
+            self.ui.planEditButton.clicked.disconnect()
             self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
             # save limits
             self.limits_temp = {}
@@ -281,9 +284,10 @@ class MainWindow(QMainWindow):
                 self.limits_temp[limit_name] = float(ui.text()) / 100
             self.manager.save_limits_and_income(self.limits_temp, float(self.ui.averageIncomeLineEdit.text()))
             self.update_limit_labels()
+            self.manager.account.updateMonthlyLimits()
+            self.update_daily_limit()
             self.ui.planTotalErrorLabel.setText("")
         else:
-            print("Total limit is not 100%")
             self.ui.planTotalErrorLabel.setText("Total limit is not 100%")
 
     def update_total_limit(self):
@@ -291,6 +295,7 @@ class MainWindow(QMainWindow):
 
     def check_total_limit(self):
         return float(self.ui.planTotalLineEdit.text()) == 100.0
+
 
 
 
