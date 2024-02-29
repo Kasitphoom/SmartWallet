@@ -29,7 +29,8 @@
    <enum>Qt::LeftToRight</enum>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);</string>
+   <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="enabled">
@@ -51,7 +52,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget_2">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="main_page">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -164,7 +165,7 @@ width:0px;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>390</width>
+                    <width>391</width>
                     <height>1074</height>
                    </rect>
                   </property>
