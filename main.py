@@ -319,38 +319,45 @@ class MainWindow(QMainWindow):
         self.start_camera_feed()
 
     def start_camera_feed(self):
+        # Open the default camera (index 0)
         self.capture = cv2.VideoCapture(0)
-        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1200)
-        # Start the camera feed update timer
+        # Set the width of the captured frame to 1200 pixels
+        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1250)
+        # Start a timer that triggers the update_camera_feed method at regular intervals
         self.camera_timer = QTimer(self)
         self.camera_timer.timeout.connect(self.update_camera_feed)
-        self.camera_timer.start(1)  # Adjust the timeout value as needed
+        # Start the timer with a timeout value of 50 millisecond (adjust as needed)
+        self.camera_timer.start(50)
 
-   
     @Slot()
     def update_camera_feed(self):
-        # Read the frame from the camera
+        # Read a frame from the camera
         ret, frame = self.capture.read()
+        # Check if the frame was captured successfully
         if not ret:
             print("Failed to capture frame")
             return
 
-        # Detect QR code from the frame
+        # Detect a QR code from the frame
         accountID, bbox, _ = self.detector.detectAndDecode(frame)
+        # Check if a QR code is detected
         if accountID:
             # Perform any actions you want with the detected QR code data
             print("QR Code detected:", accountID)
+            # Disconnect the timer signal, release the camera, and handle the detected QR code
             self.camera_timer.timeout.disconnect()
             self.capture.release()
             self.handleRedirectFromScanQRCodeToDirectTransfer(accountID)
             return
+        # Check if the current page is not the page where QR code scanning is expected
         elif self.ui.stackedWidget.currentIndex() != self.page["scanqrcode"]:
+            # Disconnect the timer signal and release the camera
             self.camera_timer.timeout.disconnect()
             self.capture.release()
             return
 
-        # Crop the frame to remove the excess part
-        crop_rect = QRect(315, 0, self.ui.camera_label.width(), self.ui.camera_label.height())
+        # Crop the frame to remove the excess part (adjust as needed)
+        crop_rect = QRect(550, 0, self.ui.camera_label.width(), self.ui.camera_label.height())
         cropped_frame = frame[crop_rect.y():crop_rect.y() + crop_rect.height(), crop_rect.x():crop_rect.x() + crop_rect.width()].copy()
 
         # Convert the OpenCV frame to QImage

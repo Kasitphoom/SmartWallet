@@ -107,7 +107,7 @@ color: rgb(0, 0, 0);</string>
               <number>0</number>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>5</number>
              </property>
              <widget class="QWidget" name="dashboardPage">
               <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -165,7 +165,7 @@ width:0px;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>390</width>
+                    <width>391</width>
                     <height>1074</height>
                    </rect>
                   </property>
@@ -3269,7 +3269,7 @@ background-color: none;</string>
                     <x>0</x>
                     <y>0</y>
                     <width>393</width>
-                    <height>838</height>
+                    <height>845</height>
                    </rect>
                   </property>
                   <property name="maximumSize">
@@ -6372,6 +6372,10 @@ color: #F49E4C;
                  <layout class="QVBoxLayout" name="verticalLayout_43">
                   <item>
                    <widget class="QLabel" name="camera_label">
+                    <property name="styleSheet">
+                     <string notr="true">
+background-color: rgb(167, 202, 255);</string>
+                    </property>
                     <property name="text">
                      <string/>
                     </property>
