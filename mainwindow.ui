@@ -107,7 +107,7 @@ color: rgb(0, 0, 0);</string>
               <number>0</number>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>2</number>
              </property>
              <widget class="QWidget" name="dashboardPage">
               <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -148,7 +148,7 @@ color: rgb(0, 0, 0);</string>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">
-width:5px;
+width:0px;
 </string>
                  </property>
                  <property name="horizontalScrollBarPolicy">
@@ -165,7 +165,7 @@ width:5px;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>390</width>
+                    <width>391</width>
                     <height>1074</height>
                    </rect>
                   </property>
@@ -3261,6 +3261,9 @@ background-color: none;</string>
                    <width>393</width>
                    <height>16777215</height>
                   </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">width: 0px;</string>
                  </property>
                  <property name="horizontalScrollBarPolicy">
                   <enum>Qt::ScrollBarAlwaysOff</enum>
