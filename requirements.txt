@@ -6,3 +6,5 @@ PySide6==6.6.2
 PySide6_Addons==6.6.2
 PySide6_Essentials==6.6.2
 ZODB==5.8.1
+RelStorage==1.6.0
+psycopg2==2.9.9
