@@ -1,7 +1,7 @@
 import sys
 
 from PySide6 import QtCore, QtWidgets
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout
 from PySide6.QtCore import QSize, QRect, Qt, Slot, QTimer
 from PySide6.QtGui import QFont, QFontDatabase, QMouseEvent, QImage, QPixmap
 from mainwindow import Ui_MainWindow
@@ -258,35 +258,46 @@ class MainWindow(QMainWindow):
         for limit, ui in self.limit_ui.items():
             ui.setText(str(self.limits[limit]))
         self.ui.planTotalLineEdit.setText(str(sum(self.limits.values())))
-        self.ui.budgetAmountLabel.setText(str(float(self.manager.get_average_income()) - (float(self.manager.get_average_income()) * self.limits["saving"] / 100)))
+        if self.limits["saving"] == 0:
+            self.ui.budgetAmountLabel.setText(str(float(self.manager.get_average_income())))
+        else:
+            self.ui.budgetAmountLabel.setText(str(float(self.manager.get_average_income()) - (float(self.manager.get_average_income()) * self.limits["saving"] / 100)))
 
-    def enable_limits_edit(self):
-        # enable editing
+    def set_line_edits_read_only(self):
         for ui in self.limit_ui.values():
-            ui.setReadOnly(False)
-        self.ui.averageIncomeLineEdit.setReadOnly(False)
-        # change to save button
-        self.ui.planEditButton.setText("Save")
-        self.ui.planEditButton.setStyleSheet("background-color: #4FBA74; color: white;")
-        self.ui.planEditButton.clicked.disconnect()
-        self.ui.planEditButton.clicked.connect(self.save_limits_setting)
+            ui.setReadOnly(True)
+        self.ui.averageIncomeLineEdit.setReadOnly(True)
 
-    def save_limits_setting(self):
-        if self.check_total_limit():
-            # disable editing
-            for ui in self.limit_ui.values():
-                ui.setReadOnly(True)
-            self.ui.averageIncomeLineEdit.setReadOnly(True)
-            # change to edit button
+    def toggle_edit_mode(self, enable_editing):
+        # Toggle editing mode for all limit UI elements
+        for ui in self.limit_ui.values():
+            ui.setReadOnly(not enable_editing)
+        self.ui.averageIncomeLineEdit.setReadOnly(not enable_editing)
+
+        # Change button text and style
+        if enable_editing:
+            self.ui.planEditButton.setText("Save")
+            self.ui.planEditButton.setStyleSheet("background-color: #4FBA74; color: white;")
+            self.ui.planEditButton.clicked.disconnect()
+            self.ui.planEditButton.clicked.connect(self.save_limits_setting)
+        else:
             self.ui.planEditButton.setText("Edit")
             self.ui.planEditButton.setStyleSheet("background-color: #FFF4EA; color: #F49E4C;")
             self.ui.planEditButton.clicked.disconnect()
             self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
-            # save limits
-            self.limits_temp = {}
-            for limit_name, ui in self.limit_ui.items():
-                self.limits_temp[limit_name] = float(ui.text()) / 100
+
+    def enable_limits_edit(self):
+        self.toggle_edit_mode(True)
+
+    def save_limits_setting(self):
+        if self.check_total_limit():
+            # Disable editing
+            self.toggle_edit_mode(False)
+            
+            # Save limits
+            self.limits_temp = {limit_name: float(ui.text()) / 100 for limit_name, ui in self.limit_ui.items()}
             self.manager.save_limits_and_income(self.limits_temp, float(self.ui.averageIncomeLineEdit.text()))
+            self.update_limit_labels()
             self.update_window()
             self.ui.planTotalErrorLabel.setText("")
         else:
@@ -299,15 +310,8 @@ class MainWindow(QMainWindow):
         return float(self.ui.planTotalLineEdit.text()) == 100.0
     
     def setupBudget(self):
-        self.limit_ui = {
-            "housing": self.ui.planHousingLineEdit,
-            "food": self.ui.planFoodLineEdit,
-            "transport": self.ui.planTransportLineEdit,
-            "entertainment": self.ui.planEntertainmentLineEdit,
-            "healthcare": self.ui.planHealthcareLineEdit,
-            "others": self.ui.planMiscellaneousLineEdit,
-            "saving": self.ui.planSavingLineEdit,
-        }
+        self.limit_ui = self.get_all_line_edits_in_frame_and_map_to_strings(self.ui.planYourBudgetFrame)
+        self.set_line_edits_read_only()
         self.update_limit_labels()
         self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
         for ui in self.limit_ui.values():
@@ -374,6 +378,44 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget.setCurrentIndex(self.page["directtransfer"])
         self.ui.accountNumberLineEditDT.setReadOnly(True)
         self.ui.accountNumberLineEditDT.setText(accountID)
+
+    def get_all_line_edits_in_frame(self, frame):
+        line_edits = []
+
+        def traverse_children(widget):
+            for child in widget.children():
+                if isinstance(child, QLineEdit) and "LineEdit" in child.objectName():
+                    line_edits.append(child)
+                elif isinstance(child, (QWidget, QLayout)):
+                    traverse_children(child)
+                elif isinstance(child, QLayoutItem):
+                    item_widget = child.widget()
+                    if item_widget:
+                        traverse_children(item_widget)
+
+        traverse_children(frame)
+        return line_edits
+    
+    def map_line_edits_to_strings(self, line_edits):
+        limit_name = ["housing", "food", "transport", "entertainment", "healthcare", "saving"]
+        limit_ui_mapping = {}
+
+        for obj in line_edits:
+            obj_name = obj.objectName().lower()
+            if "miscellaneous" in obj_name:
+                limit_ui_mapping["others"] = obj
+            else:
+                for name in limit_name[:]:  # Use a copy of limit_name to allow removal during iteration
+                    if name in obj_name:
+                        limit_ui_mapping[name] = obj
+                        limit_name.remove(name)  # Remove the matched item from limit_name
+                        break
+
+        return limit_ui_mapping
+    
+    def get_all_line_edits_in_frame_and_map_to_strings(self, frame):
+        line_edits = self.get_all_line_edits_in_frame(frame)
+        return self.map_line_edits_to_strings(line_edits)
 
 
 
