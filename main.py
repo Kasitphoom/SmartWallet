@@ -241,8 +241,6 @@ class MainWindow(QMainWindow):
         self.ui.otherlimitframe.setStyleSheet(self.style_sheet_color_limit("others"))
         self.ui.otherlimiticon.setStyleSheet(f"color: {'#B3625A' if other_limit < max_other_limit * 0.25 else '#F49E4C' if other_limit < max_other_limit * 0.50 else '#4FBA74'}")
         
-        self.
-        
     def update_total_month_expense(self):
         self.ui.d_expense_amount.setText(f"{self.manager.get_total_expense_of_this_month():,.2f} THB")
 
