@@ -31,9 +31,6 @@ class WalletManager():
         # limit is monthly limit divided by number of days in that month minus with all transactions in that category in that day
         if not category in self.account.monthly_limits:
             return "Category not found"
-        
-        if not category in self.account.monthly_limits:
-            self.account.monthly_limits[category] = self.account.limits_rate[category] * self.account.average_income
                 
         limit = self.account.monthly_limits[category] / calendar.monthrange(self.current_date.year, self.current_date.month)[1]
         for transaction in self.account.transactions:
@@ -44,6 +41,21 @@ class WalletManager():
     def get_max_daily_limit(self, category):
         if category in self.account.monthly_limits:
             return self.account.monthly_limits[category] / calendar.monthrange(self.current_date.year, self.current_date.month)[1]
+        return "Category not found"
+    
+    def calculate_monthly_limit(self, category):
+        if not category in self.account.monthly_limits:
+            return "Category not found"
+        
+        limit = self.account.monthly_limits[category]
+        for transaction in self.account.transactions:
+            if transaction.date.month == self.current_date.month and transaction.category == category:
+                limit -= transaction.amount
+        return limit
+    
+    def get_max_monthly_limit(self, category):
+        if category in self.account.monthly_limits:
+            return self.account.monthly_limits[category]
         return "Category not found"
     
     def get_total_expense_of_this_month(self):
