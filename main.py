@@ -17,6 +17,9 @@ import pickle
 import hashlib
 import cv2
 
+LIMIT_LABEL = ["housing", "food", "transport", "entertainment", "healthcare", "saving"]
+TRANSFER_TYPE_LABEL = ["housing", "food", "transport", "entertainment", "healthcare", "saving", "return", "lend", "others"]
+
 cache_dir = Path(__file__).parent / "cache"
 cache_dir.mkdir(parents=True, exist_ok=True)
 USER_CACHE_FILE = cache_dir / "user_cache.pkl"
@@ -238,6 +241,8 @@ class MainWindow(QMainWindow):
         self.ui.otherlimitframe.setStyleSheet(self.style_sheet_color_limit("others"))
         self.ui.otherlimiticon.setStyleSheet(f"color: {'#B3625A' if other_limit < max_other_limit * 0.25 else '#F49E4C' if other_limit < max_other_limit * 0.50 else '#4FBA74'}")
         
+        self.
+        
     def update_total_month_expense(self):
         self.ui.d_expense_amount.setText(f"{self.manager.get_total_expense_of_this_month():,.2f} THB")
 
@@ -388,12 +393,12 @@ class MainWindow(QMainWindow):
         self.ui.accountNumberLineEditDT.setReadOnly(True)
         self.ui.accountNumberLineEditDT.setText(accountID)
 
-    def get_all_line_edits_in_frame(self, frame):
+    def get_all_child_type_in_frame(self, frame, QType):
         line_edits = []
 
         def traverse_children(widget):
             for child in widget.children():
-                if isinstance(child, QLineEdit) and "LineEdit" in child.objectName():
+                if isinstance(child, QType) and "LineEdit" in child.objectName():
                     line_edits.append(child)
                 elif isinstance(child, (QWidget, QLayout)):
                     traverse_children(child)
@@ -405,8 +410,7 @@ class MainWindow(QMainWindow):
         traverse_children(frame)
         return line_edits
     
-    def map_line_edits_to_strings(self, line_edits):
-        limit_name = ["housing", "food", "transport", "entertainment", "healthcare", "saving"]
+    def map_child_to_string(self, line_edits, child_name):
         limit_ui_mapping = {}
 
         for obj in line_edits:
@@ -414,17 +418,17 @@ class MainWindow(QMainWindow):
             if "miscellaneous" in obj_name:
                 limit_ui_mapping["others"] = obj
             else:
-                for name in limit_name[:]:  # Use a copy of limit_name to allow removal during iteration
+                for name in child_name[:]:  # Use a copy of child_name to allow removal during iteration
                     if name in obj_name:
                         limit_ui_mapping[name] = obj
-                        limit_name.remove(name)  # Remove the matched item from limit_name
+                        child_name.remove(name)  # Remove the matched item from child_name
                         break
 
         return limit_ui_mapping
     
-    def get_all_line_edits_in_frame_and_map_to_strings(self, frame):
-        line_edits = self.get_all_line_edits_in_frame(frame)
-        return self.map_line_edits_to_strings(line_edits)
+    def get_all_children_in_frame_and_map_to_strings(self, frame, QType, child_name):
+        line_edits = self.get_all_child_type_in_frame(frame, QType)
+        return self.map_child_to_string(line_edits, child_name)
 
 
 
