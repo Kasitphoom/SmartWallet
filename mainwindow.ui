@@ -51,8 +51,13 @@ color: rgb(0, 0, 0);</string>
     </property>
     <item>
      <widget class="QStackedWidget" name="stackedWidget_2">
+      <property name="font">
+       <font>
+        <family>Segoe UI</family>
+       </font>
+      </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="main_page">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -107,7 +112,7 @@ color: rgb(0, 0, 0);</string>
               <number>0</number>
              </property>
              <property name="currentIndex">
-              <number>2</number>
+              <number>3</number>
              </property>
              <widget class="QWidget" name="dashboardPage">
               <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -3060,7 +3065,7 @@ height: 0px;</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>133</width>
+                       <width>351</width>
                        <height>105</height>
                       </rect>
                      </property>
@@ -7029,7 +7034,7 @@ color: white;</string>
        </layout>
       </widget>
       <widget class="QWidget" name="login_page">
-       <layout class="QVBoxLayout" name="verticalLayout_27">
+       <layout class="QVBoxLayout" name="verticalLayout_271">
         <property name="spacing">
          <number>0</number>
         </property>
@@ -7059,7 +7064,7 @@ color: white;</string>
           <property name="lineWidth">
            <number>0</number>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_29">
+          <layout class="QVBoxLayout" name="verticalLayout_291">
            <property name="spacing">
             <number>0</number>
            </property>
@@ -7364,7 +7369,7 @@ QLineEdit::disabled {
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_13">
+             <layout class="QHBoxLayout" name="horizontalLayout_131">
               <property name="spacing">
                <number>6</number>
               </property>
@@ -7441,7 +7446,7 @@ border: none;</string>
                </widget>
               </item>
               <item>
-               <spacer name="horizontalSpacer_6">
+               <spacer name="horizontalSpacer_61">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -7548,7 +7553,7 @@ border-radius: 15px</string>
        </layout>
       </widget>
       <widget class="QWidget" name="register_page">
-       <layout class="QVBoxLayout" name="verticalLayout_28">
+       <layout class="QVBoxLayout" name="verticalLayout_281">
         <property name="spacing">
          <number>0</number>
         </property>
@@ -7578,7 +7583,7 @@ border-radius: 15px</string>
           <property name="lineWidth">
            <number>0</number>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_31">
+          <layout class="QVBoxLayout" name="verticalLayout_311">
            <property name="spacing">
             <number>0</number>
            </property>
@@ -7765,7 +7770,7 @@ QLineEdit::disabled {
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_32">
+             <layout class="QVBoxLayout" name="verticalLayout_321">
               <property name="spacing">
                <number>6</number>
               </property>
@@ -8104,7 +8109,7 @@ QLineEdit::disabled {
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_14">
+             <layout class="QHBoxLayout" name="horizontalLayout_141">
               <property name="spacing">
                <number>6</number>
               </property>
