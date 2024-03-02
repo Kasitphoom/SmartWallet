@@ -19,6 +19,7 @@ import cv2
 
 LIMIT_LABEL = ["housing", "food", "transport", "entertainment", "healthcare", "saving"]
 TRANSFER_TYPE_LABEL = ["housing", "food", "transport", "entertainment", "healthcare", "saving", "return", "lend", "others"]
+LOOK_UP_OBJ_NAME = ["LineEdit", "progressbar"]
 
 cache_dir = Path(__file__).parent / "cache"
 cache_dir.mkdir(parents=True, exist_ok=True)
@@ -248,6 +249,9 @@ class MainWindow(QMainWindow):
             if self.ui.accountNumberLineEditDT != "":
                 self.ui.accountNumberLineEditDT.setText("")
                 self.ui.accountNumberLineEditDT.setReadOnly(False)
+            if self.ui.stackedWidget.currentIndex() == self.page["budgetplanner"]:
+                for progress_bar in self.roundprogressbars:
+                    progress_bar.animate_from_zero()
 
     def page_changed_handler_2(self):
         if self.ui.loginError.text() != "":
@@ -303,6 +307,7 @@ class MainWindow(QMainWindow):
             self.manager.save_limits_and_income(self.limits_temp, float(self.ui.averageIncomeLineEdit.text()))
             self.update_limit_labels()
             self.update_window()
+            self.updateRoundProgressBars()
             self.ui.planTotalErrorLabel.setText("")
         else:
             self.ui.planTotalErrorLabel.setText("Total limit is not 100%")
@@ -320,16 +325,29 @@ class MainWindow(QMainWindow):
         self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
         for ui in self.limit_ui.values():
             ui.textChanged.connect(self.update_total_limit)
-        #setup round progress bar
-        self.setupRoundProgressBar()
+        self.setupRoundProgressBars()
 
-    def setupRoundProgressBar(self):
-        self.ui.foodRoundProgressBar = roundProgressBar(self)
-        self.ui.foodprogressbar.layout().addWidget(self.ui.foodRoundProgressBar)
-        self.ui.foodRoundProgressBar.update_value(0.5)
-        self.ui.foodprogressbarlabel.setText(str(self.ui.foodRoundProgressBar.get_percentage()) + "%")
+    def setupRoundProgressBars(self):
+        self.roundprogressbars = []
+        self.progressbars_container = self.get_all_children_in_frame_and_map_to_strings(self.ui.plan_budget_all_progresses, QFrame, LIMIT_LABEL)
+        self.progressbars_label = self.get_all_children_in_frame_and_map_to_strings(self.ui.plan_budget_all_progresses, QLabel, LIMIT_LABEL)
+        for category, ui in self.progressbars_container.items():
+            self.roundprogressbar = roundProgressBar(self, category)
+            ui.layout().addWidget(self.roundprogressbar)
+            self.roundprogressbar.update_value(self.cal_used_monthly_limit_category(category))
+            self.progressbars_label[category].setText(str(int(self.cal_used_monthly_limit_category(category) * 100)) + "%")
+            self.roundprogressbars.append(self.roundprogressbar)
+
+    def updateRoundProgressBars(self):
+        for progressbar in self.roundprogressbars:
+            progressbar.update_value(self.cal_used_monthly_limit_category(progressbar.get_category()))
+            self.progressbars_label[progressbar.get_category()].setText(str(int(self.cal_used_monthly_limit_category(progressbar.get_category()) * 100)) + "%")
+
+    def cal_used_monthly_limit_category(self, category):
+        if self.manager.get_max_monthly_limit(category) == 0:
+            return 0
+        return round(self.manager.calculate_monthly_limit(category)/self.manager.get_max_monthly_limit(category), 2)
         
-    
     def handleNavigationToScanQRCode(self):
         self.ui.stackedWidget.setCurrentIndex(self.page["scanqrcode"])
         self.start_camera_feed()
@@ -396,7 +414,7 @@ class MainWindow(QMainWindow):
 
         def traverse_children(widget):
             for child in widget.children():
-                if isinstance(child, QType) and "LineEdit" in child.objectName():
+                if type(child) == QType and any(name in child.objectName() for name in LOOK_UP_OBJ_NAME):
                     line_edits.append(child)
                 elif isinstance(child, (QWidget, QLayout)):
                     traverse_children(child)
@@ -410,16 +428,17 @@ class MainWindow(QMainWindow):
     
     def map_child_to_string(self, line_edits, child_name):
         limit_ui_mapping = {}
+        child_name_copy = child_name
 
         for obj in line_edits:
             obj_name = obj.objectName().lower()
             if "miscellaneous" in obj_name:
                 limit_ui_mapping["others"] = obj
             else:
-                for name in child_name[:]:  # Use a copy of child_name to allow removal during iteration
+                for name in child_name_copy:  # Use a copy of child_name to allow removal during iteration
                     if name in obj_name:
                         limit_ui_mapping[name] = obj
-                        child_name.remove(name)  # Remove the matched item from child_name
+                        # child_name_copy.remove(name)  # Remove the matched item from child_name
                         break
 
         return limit_ui_mapping

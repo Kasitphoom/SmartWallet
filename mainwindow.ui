@@ -57,7 +57,7 @@ color: rgb(0, 0, 0);</string>
        </font>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="main_page">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -112,7 +112,7 @@ color: rgb(0, 0, 0);</string>
               <number>0</number>
              </property>
              <property name="currentIndex">
-              <number>3</number>
+              <number>2</number>
              </property>
              <widget class="QWidget" name="dashboardPage">
               <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -170,7 +170,7 @@ width:0px;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>391</width>
+                    <width>390</width>
                     <height>1074</height>
                    </rect>
                   </property>
@@ -3065,7 +3065,7 @@ height: 0px;</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>351</width>
+                       <width>133</width>
                        <height>105</height>
                       </rect>
                      </property>
@@ -3632,7 +3632,7 @@ border-radius: 15px;</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QFrame" name="frame_17">
+                    <widget class="QFrame" name="plan_budget_all_progresses">
                      <property name="minimumSize">
                       <size>
                        <width>0</width>
@@ -4053,7 +4053,7 @@ border-radius: 15px;</string>
                           <number>0</number>
                          </property>
                          <item>
-                          <widget class="QFrame" name="educationprogressbar">
+                          <widget class="QFrame" name="housingprogressbar">
                            <property name="styleSheet">
                             <string notr="true"/>
                            </property>
@@ -4083,7 +4083,7 @@ border-radius: 15px;</string>
                           </widget>
                          </item>
                          <item>
-                          <widget class="QLabel" name="educationprogressbarlabel">
+                          <widget class="QLabel" name="housingprogressbarlabel">
                            <property name="maximumSize">
                             <size>
                              <width>16777215</width>

@@ -1,23 +1,57 @@
-from PySide6.QtCore import Qt, QRectF, QPoint
+from PySide6.QtCore import Qt, QRectF, QPoint, QTimer
 from PySide6.QtGui import QPainter, QPainterPath, QPen, QColor, QBrush, QFont, QFontDatabase
-from PySide6.QtWidgets import QVBoxLayout, QSlider, QWidget, QApplication
+from PySide6.QtWidgets import QVBoxLayout, QSlider, QWidget, QApplication, QPushButton
 from pathlib import Path
 
 class roundProgressBar(QWidget):
-    def __init__(self, parent):
+    def __init__(self, parent, category="food"):
         super().__init__(parent)
+        self.category = category
         self.percentage = 0
         self.setMinimumSize(56, 56)
         # Load FontAwesome font
         font_id = QFontDatabase.addApplicationFont(Path.joinpath(Path(__file__).parent, "../otfs/Font Awesome 6 Free-Solid-900.otf").as_posix())
         font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
         self.font_awesome = QFont(font_family)
+        self.limit_font_awesome_map = {
+            "housing": "school",
+            "food": "bowl-food",
+            "transport": "car",
+            "entertainment": "film",
+            "healthcare": "heart-pulse",
+        }
+        self.animation_speed = 10
+        self.animation_duration = 500
+        self.animation_timer = QTimer(self)
+        self.animation_timer.timeout.connect(self.animate_progress)
+        self.animation_timer.setInterval(10)  # Interval in milliseconds
 
     def update_value(self, percentage):
         if self.percentage == percentage:
             return
-        self.percentage = percentage
+        self.start_animation(percentage)
+
+    def start_animation(self, target_percentage):
+        self.target_percentage = target_percentage
+        # Calculate the number of steps and interval time for smooth animation
+        num_steps = int(self.animation_duration / self.animation_timer.interval())
+        self.step_percentage = (self.target_percentage - self.percentage) / num_steps
+        self.animation_step = 0
+        self.animation_timer.start()
+
+    def animate_progress(self):
+        self.percentage += self.step_percentage
+        self.animation_step += 1
         self.update()
+        if self.animation_step >= self.animation_duration / self.animation_timer.interval():
+            self.percentage = self.target_percentage
+            self.animation_timer.stop()
+            self.update()
+
+    def animate_from_zero(self):
+        percentage = self.percentage
+        self.percentage = 0
+        self.update_value(percentage)
 
     def paintEvent(self, e):
         if self.height() > self.width():
@@ -71,7 +105,7 @@ class roundProgressBar(QWidget):
         p.setPen(font_color)
         
         # Calculate text size
-        text = "bowl-food"
+        text = self.limit_font_awesome_map[self.category]
         text_rect = p.fontMetrics().boundingRect(text)
         
         # Calculate the position for drawing text
@@ -80,25 +114,47 @@ class roundProgressBar(QWidget):
         # Draw text at the specified position
         p.drawText(text_position, text)
 
-    def get_percentage(self):
-        return int(self.percentage * 100)
+    def get_category(self):
+        return self.category
+
 
 # class Test(QWidget):
 #     def __init__(self):
 #         super().__init__()
-#         l = QVBoxLayout(self)
-#         p = roundProgressBar(self)
-#         s = QSlider(Qt.Horizontal, self)
-#         s.setMinimum(0)
-#         s.setMaximum(100)
-#         l.addWidget(p)
-#         l.addWidget(s)
-#         self.setLayout(l)
-#         s.valueChanged.connect(lambda: p.upd(s.value() / s.maximum()))
+#         self.layout = QVBoxLayout(self)
+#         self.progress_bar = roundProgressBar(self)
+#         self.slider = QSlider(Qt.Horizontal)
+#         self.slider.setMinimum(0)
+#         self.slider.setMaximum(100)
+#         self.layout.addWidget(self.progress_bar)
+#         self.layout.addWidget(self.slider)
+#         self.setLayout(self.layout)
+
+#         # Create buttons
+#         self.button_to_50 = QPushButton("Change to 50")
+#         self.button_to_0 = QPushButton("Change to 0")
+
+#         # Add buttons to layout
+#         self.layout.addWidget(self.button_to_50)
+#         self.layout.addWidget(self.button_to_0)
+
+#         # Connect button signals
+#         self.button_to_50.clicked.connect(self.set_progress_to_50)
+#         self.button_to_0.clicked.connect(self.set_progress_to_0)
+#         self.slider.valueChanged.connect(self.update_progress_bar)
+
+#     def set_progress_to_50(self):
+#         self.progress_bar.update_value(0.5)
+
+#     def set_progress_to_0(self):
+#         self.progress_bar.update_value(0)
+
+#     def update_progress_bar(self, value):
+#         self.progress_bar.update_value(value / 100)
 
 
-# if __name__ == '__main__':
-#     app = QApplication()
-#     main_widget = Test()
-#     main_widget.show()
-#     app.exec_()
+if __name__ == '__main__':
+    app = QApplication([])
+    main_widget = Test()
+    main_widget.show()
+    app.exec_()
