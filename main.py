@@ -10,6 +10,7 @@ from pathlib import Path
 
 from obj.walletmanager import WalletManager
 from obj.account import Account
+from obj.roundprogressbar import roundProgressBar
 
 import pickle
 
@@ -316,8 +317,16 @@ class MainWindow(QMainWindow):
         self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
         for ui in self.limit_ui.values():
             ui.textChanged.connect(self.update_total_limit)
-    
+        #setup round progress bar
+        self.setupRoundProgressBar()
 
+    def setupRoundProgressBar(self):
+        self.ui.foodRoundProgressBar = roundProgressBar(self)
+        self.ui.foodprogressbar.layout().addWidget(self.ui.foodRoundProgressBar)
+        self.ui.foodRoundProgressBar.update_value(0.5)
+        self.ui.foodprogressbarlabel.setText(str(self.ui.foodRoundProgressBar.get_percentage()) + "%")
+        
+    
     def handleNavigationToScanQRCode(self):
         self.ui.stackedWidget.setCurrentIndex(self.page["scanqrcode"])
         self.start_camera_feed()
