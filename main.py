@@ -314,7 +314,7 @@ class MainWindow(QMainWindow):
         return float(self.ui.planTotalLineEdit.text()) == 100.0
     
     def setupBudget(self):
-        self.limit_ui = self.get_all_line_edits_in_frame_and_map_to_strings(self.ui.planYourBudgetFrame)
+        self.limit_ui = self.get_all_children_in_frame_and_map_to_strings(self.ui.planYourBudgetFrame, QLineEdit, LIMIT_LABEL)
         self.set_line_edits_read_only()
         self.update_limit_labels()
         self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
