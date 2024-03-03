@@ -5688,7 +5688,7 @@ border-radius: 5px;</string>
                         <font>
                          <family>Montserrat</family>
                          <pointsize>10</pointsize>
-                         <bold>true</bold>
+                         <bold>false</bold>
                         </font>
                        </property>
                        <property name="cursor">
@@ -5755,7 +5755,7 @@ border-radius: 5px;</string>
                           <property name="font">
                            <font>
                             <family>Montserrat</family>
-                            <pointsize>10</pointsize>
+                            <pointsize>14</pointsize>
                            </font>
                           </property>
                           <property name="layoutDirection">
@@ -5922,6 +5922,7 @@ border-radius: 5px;</string>
                         <font>
                          <family>Montserrat</family>
                          <pointsize>14</pointsize>
+                         <bold>true</bold>
                         </font>
                        </property>
                        <property name="styleSheet">
@@ -6009,7 +6010,7 @@ color: #F49E4C;
                         <font>
                          <family>Montserrat</family>
                          <pointsize>13</pointsize>
-                         <fontweight>Black</fontweight>
+                         <bold>true</bold>
                         </font>
                        </property>
                        <property name="styleSheet">
