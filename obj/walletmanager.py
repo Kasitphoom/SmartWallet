@@ -70,6 +70,13 @@ class WalletManager():
                 total += transaction.amount
         return total
     
+    def get_total_expense_period(self, start_date, end_date):
+        total = 0
+        for transaction in self.account.transactions:
+            if self.isSelfExpense(transaction) and start_date <= transaction.date <= end_date:
+                total += transaction.amount
+        return total
+    
     def set_account(self, accountID):
         self.account = root.accounts[accountID]
     
