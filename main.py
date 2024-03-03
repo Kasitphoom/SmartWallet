@@ -333,15 +333,25 @@ class MainWindow(QMainWindow):
         self.progressbars_label = self.get_all_children_in_frame_and_map_to_strings(self.ui.plan_budget_all_progresses, QLabel, LIMIT_LABEL)
         for category, ui in self.progressbars_container.items():
             self.roundprogressbar = roundProgressBar(self, category)
+            self.roundprogressbar.setObjectName(category + "ProgressBar")
             ui.layout().addWidget(self.roundprogressbar)
-            self.roundprogressbar.update_value(self.cal_used_monthly_limit_category(category))
+            self.roundprogressbar.update_value(self.check_if_limit_is_zero(self.roundprogressbar, category))
             self.progressbars_label[category].setText(str(int(self.cal_used_monthly_limit_category(category) * 100)) + "%")
             self.roundprogressbars.append(self.roundprogressbar)
 
     def updateRoundProgressBars(self):
         for progressbar in self.roundprogressbars:
+            self.check_if_limit_is_zero(progressbar, progressbar.get_category())
             progressbar.update_value(self.cal_used_monthly_limit_category(progressbar.get_category()))
             self.progressbars_label[progressbar.get_category()].setText(str(int(self.cal_used_monthly_limit_category(progressbar.get_category()) * 100)) + "%")
+
+    def check_if_limit_is_zero(self, progressbar, category):
+        percent_in_fraction = self.cal_used_monthly_limit_category(category)
+        if percent_in_fraction == 0:
+            progressbar.set_gray_color(True)
+        else:
+            progressbar.set_gray_color(False)
+        return percent_in_fraction
 
     def cal_used_monthly_limit_category(self, category):
         if self.manager.get_max_monthly_limit(category) == 0:
@@ -428,14 +438,13 @@ class MainWindow(QMainWindow):
     
     def map_child_to_string(self, line_edits, child_name):
         limit_ui_mapping = {}
-        child_name_copy = child_name
 
         for obj in line_edits:
             obj_name = obj.objectName().lower()
             if "miscellaneous" in obj_name:
                 limit_ui_mapping["others"] = obj
             else:
-                for name in child_name_copy:  # Use a copy of child_name to allow removal during iteration
+                for name in child_name:  # Use a copy of child_name to allow removal during iteration
                     if name in obj_name:
                         limit_ui_mapping[name] = obj
                         # child_name_copy.remove(name)  # Remove the matched item from child_name

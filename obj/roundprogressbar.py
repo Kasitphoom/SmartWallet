@@ -79,7 +79,15 @@ class roundProgressBar(QWidget):
         path = QPainterPath()
         path.moveTo(center.x(), center.y() - circle_rect.height() / 2)
         path.arcTo(circle_rect, 90, - percentage_degree)
-        pen = QPen(QColor("#30b7e0"))
+        if self.gray_color:
+            self.color = QColor("#D9D9D9")
+        elif percentage_degree >= 50:
+            self.color = QColor("#37C768")
+        elif percentage_degree >= 25:
+            self.color = QColor("#FDA653")
+        else:
+            self.color = QColor("#E06053")
+        pen = QPen(self.color)
         pen.setCapStyle(Qt.FlatCap)
         pen.setWidthF(self.width() / 10)
         p.strokePath(path, pen)
@@ -90,7 +98,7 @@ class roundProgressBar(QWidget):
         path = QPainterPath()
         path.moveTo(center.x(), center.y() - circle_rect.height() / 2)
         path.arcTo(circle_rect, 90, remaining_degree)
-        pen = QPen(QColor("#d7d7d7"))
+        pen = QPen(QColor("#D9D9D9"))
         pen.setCapStyle(Qt.FlatCap)
         pen.setWidthF(self.width() / 10)
         p.strokePath(path, pen)
@@ -101,7 +109,7 @@ class roundProgressBar(QWidget):
         p.setFont(self.font_awesome)
         
         # Set font color
-        font_color = QColor("#30b7e0")
+        font_color = self.color
         p.setPen(font_color)
         
         # Calculate text size
@@ -116,7 +124,12 @@ class roundProgressBar(QWidget):
 
     def get_category(self):
         return self.category
+    
+    def set_gray_color(self, boolean):
+        self.gray_color = boolean
 
+    def get_if_gray_color(self):
+        return self.gray_color
 
 # class Test(QWidget):
 #     def __init__(self):
