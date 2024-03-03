@@ -14,7 +14,7 @@ class roundProgressBar(QWidget):
         font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
         self.font_awesome = QFont(font_family)
         self.limit_font_awesome_map = {
-            "housing": "school",
+            "housing": "building",
             "food": "bowl-food",
             "transport": "car",
             "entertainment": "film",

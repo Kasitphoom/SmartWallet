@@ -19,7 +19,7 @@ import cv2
 
 LIMIT_LABEL = ["housing", "food", "transport", "entertainment", "healthcare", "saving"]
 TRANSFER_TYPE_LABEL = ["housing", "food", "transport", "entertainment", "healthcare", "saving", "return", "lend", "others"]
-LOOK_UP_OBJ_NAME = ["LineEdit", "progressbar"]
+LOOK_UP_OBJ_NAME = ["LineEdit", "progressbar", "Button"]
 
 cache_dir = Path(__file__).parent / "cache"
 cache_dir.mkdir(parents=True, exist_ok=True)
@@ -40,6 +40,7 @@ class MainWindow(QMainWindow):
         self.account_number_visibility = False
         self.calculated_limits = {}
         self.__salt = "rT8jllFhs7"
+        self.type_selected = "others"
         # self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 1000)
         self.detector = cv2.QRCodeDetector()
         self.page = {
@@ -92,6 +93,7 @@ class MainWindow(QMainWindow):
         
         # show/hide account number
         self.ui.eyeButton.clicked.connect(self.handleAccountNumberVisibility)
+        self.ui.eyeButtonDT.clicked.connect(self.handleAccountNumberVisibility)
         
         # buttons to change page
         self.ui.dashboardButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
@@ -107,7 +109,13 @@ class MainWindow(QMainWindow):
         # handle page change
         self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler_2)
         self.ui.stackedWidget.currentChanged.connect(self.page_changed_handler)
-        
+
+        # setup transfer select type
+        self.selectable_transfer_type = self.get_all_children_in_frame_and_map_to_strings(self.ui.transfertypeframe, QPushButton, TRANSFER_TYPE_LABEL)
+        for transfer_type, ui in self.selectable_transfer_type.items():
+            ui.clicked.connect(lambda checked=False, transfer_type=transfer_type: self.update_type_selected(transfer_type))
+        self.update_type_selected(self.type_selected)
+
     def handleLogin(self):
         email = self.ui.loginEmailLineEdit.text()
         password = self.ui.loginPasswordLineEdit.text() + self.__salt
@@ -173,8 +181,10 @@ class MainWindow(QMainWindow):
         self.account_number_visibility = not self.account_number_visibility
         if self.account_number_visibility:
             self.ui.accountNumberlabel.setText(self.manager.get_account_number_visible())
+            self.ui.accountNumberlabelDT.setText(self.manager.get_account_number_visible())
         else:
             self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
+            self.ui.accountNumberlabelDT.setText(self.manager.get_account_number_non_visible())
             
     def style_sheet_color_limit(self, category):
         limit = self.manager.calculate_daily_limit(category)
@@ -456,8 +466,13 @@ class MainWindow(QMainWindow):
         line_edits = self.get_all_child_type_in_frame(frame, QType)
         return self.map_child_to_string(line_edits, child_name)
 
-
-
+    def update_type_selected(self, category):
+        for transfer_type, ui in self.selectable_transfer_type.items():
+            if transfer_type == category:
+                self.type_selected = category
+                ui.setStyleSheet("color: #F49E4C")
+            else:
+                ui.setStyleSheet("color: #C7C7C7")
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
