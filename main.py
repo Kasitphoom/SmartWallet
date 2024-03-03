@@ -19,6 +19,7 @@ import pickle
 
 import hashlib
 import cv2
+import qrcode
 
 LIMIT_LABEL = ["housing", "food", "transport", "entertainment", "healthcare", "saving"]
 TRANSFER_TYPE_LABEL = ["housing", "food", "transport", "entertainment", "healthcare", "saving", "return", "lend", "others"]
@@ -57,7 +58,8 @@ class MainWindow(QMainWindow):
             "scanqrcode": 5,
             "others": 6,
             "setting": 7,
-            "parentalcontrol": 8,
+            "myQRcode": 8,
+            "parentalcontrol": 9,
             # stacked widget 2
             "main": 0,
             "login": 1,
@@ -79,6 +81,7 @@ class MainWindow(QMainWindow):
         
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
         
         if user_cache == "":
             self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
@@ -95,6 +98,9 @@ class MainWindow(QMainWindow):
         
         self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
         self.ui.frame_10.installEventFilter(self)
+
+        # generate My QR code
+        self.createMyQRcode()
         
         # login page
         self.ui.loginButton.clicked.connect(self.handleLogin)
@@ -118,6 +124,7 @@ class MainWindow(QMainWindow):
         self.ui.historyButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["history"]))
         self.ui.othersButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["others"]))
         self.ui.setting_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["setting"]))
+        self.ui.fmyqrButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["myQRcode"]))
 
 
         # back buttons
@@ -464,6 +471,19 @@ class MainWindow(QMainWindow):
             self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction))
             
         self.ui.transaction_history_frame.layout().addStretch()
+
+#=================================== My QR Code ==================================
+            
+    def createMyQRcode(self):
+        pass
+
+        # AccountID = self.manager.get_account_number()
+        # myQRcode = qrcode.make(AccountID)
+        # pil_myQR = myQRcode.get_image()
+        # pixmap = pil_myQR.toqpixmap()
+        # self.ui.myQRcodeframe.setPixmap(pixmap)
+
+
 
 # ================================== Others ==================================
 
