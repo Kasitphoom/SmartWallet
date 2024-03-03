@@ -152,7 +152,7 @@ class WalletManager():
             case "return":
                 transaction = Return(transactionID, self.current_date, amount, self.get_account_number(), accountID, "INF", 0, amount)
             case "others":
-                transaction = Other(transactionID, self.current_date, amount, self.get_account_number(), accountID, self.calculate_daily_limit("others"), amount / self.calculate_daily_limit("others") * 100, (1 - amount / self.calculate_daily_limit("others")) * 100)
+                transaction = Others(transactionID, self.current_date, amount, self.get_account_number(), accountID, self.calculate_daily_limit("others"), amount / self.calculate_daily_limit("others") * 100, (1 - amount / self.calculate_daily_limit("others")) * 100)
             case _:
                 transaction = Transaction(transactionID, self.current_date, amount, self.get_account_number(), accountID)
         
@@ -173,3 +173,9 @@ class WalletManager():
         connection.transaction_manager.commit()
         
         return True
+    
+    def getName(self):
+        return self.account.getName()
+    
+    def getEmail(self):
+        return self.account.getEmail()

@@ -45,6 +45,12 @@ class Account(persistent.Persistent):
     
     def getID(self):
         return self.ID
+    
+    def getName(self):
+        return self.name
+    
+    def getEmail(self):
+        return self.email
         
     def getBalance(self):
         """Return in format of 1,000 THB"""

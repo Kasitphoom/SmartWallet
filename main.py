@@ -87,6 +87,7 @@ class MainWindow(QMainWindow):
             self.update_window()
             # set initial budget page
             self.setupBudget()
+            self.setupOthersPage()
         else:
             self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
         
@@ -152,6 +153,7 @@ class MainWindow(QMainWindow):
             self.update_window()
             self.setupBudget()
             self.update_type_selected(self.transfer_type_selected)
+            self.setupOthersPage()
         else:
             self.ui.loginError.setText("Invalid email or password")
 
@@ -537,6 +539,10 @@ class MainWindow(QMainWindow):
         except ValueError:
             self.ui.amountTransferErrorLabel.setText("Invalid amount")
             return False
+    
+    def setupOthersPage(self):
+        self.ui.others_name_label.setText(self.manager.getName())
+        self.ui.others_email_label.setText(self.manager.getEmail())
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
