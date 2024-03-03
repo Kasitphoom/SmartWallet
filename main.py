@@ -444,11 +444,15 @@ class MainWindow(QMainWindow):
 # ================================== History page ==================================
     
     def update_history_page(self):
+        for child in self.ui.transaction_history_frame.children():
+            if type(child) != QVBoxLayout:
+                child.deleteLater()
+        
         old_date = None
         for transaction in self.manager.getTransactions():
-            transaction_date = transaction.date.strftime("%m/%d/%Y")
+            transaction_date = transaction.date.strftime("%d/%m/%Y")
             
-            if old_date == None or old_date.strftime("%m/%d/%Y") != transaction_date:
+            if old_date == None or old_date.strftime("%d/%m/%Y") != transaction_date:
                 old_date = transaction.date
                 date_label = QLabel(self.ui.transaction_history_frame)
                 date_label.setObjectName(transaction_date)
