@@ -54,9 +54,9 @@ class MainWindow(QMainWindow):
             "directtransfer": 3,
             "history": 4,
             "scanqrcode": 5,
-            "othersPage": 6,
-            "settingPage": 7,
-            "parentalControlPage": 8,
+            "others": 6,
+            "setting": 7,
+            "parentalcontrol": 8,
             # stacked widget 2
             "main": 0,
             "login": 1,
@@ -114,8 +114,17 @@ class MainWindow(QMainWindow):
         self.ui.navigateToDirectQrcodeButton.clicked.connect(self.handleNavigationToScanQRCode)
         self.ui.fhistoryButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["history"]))
         self.ui.historyButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["history"]))
-        self.ui.othersButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["othersPage"]))
-        self.ui.setting_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["settingPage"]))
+        self.ui.othersButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["others"]))
+        self.ui.setting_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["setting"]))
+
+        # back buttons
+        self.ui.budgetBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
+        self.ui.dicrectTransferBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["transfer"]))
+        self.ui.historybackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
+        self.ui.othersBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
+        self.ui.scanQRCodeBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["transfer"]))
+        self.ui.settingBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["others"]))
+        self.ui.transferbackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
 
 
         # handle page change

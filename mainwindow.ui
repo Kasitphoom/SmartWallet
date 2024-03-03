@@ -116,7 +116,7 @@ color: rgb(0, 0, 0);</string>
               <number>0</number>
              </property>
              <property name="currentIndex">
-              <number>7</number>
+              <number>1</number>
              </property>
              <widget class="QWidget" name="dashboardPage">
               <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -3292,7 +3292,7 @@ background-color: none;</string>
                     <x>0</x>
                     <y>0</y>
                     <width>393</width>
-                    <height>844</height>
+                    <height>845</height>
                    </rect>
                   </property>
                   <property name="maximumSize">
@@ -7339,7 +7339,7 @@ background-color: rgb(167, 202, 255);</string>
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QPushButton" name="budgetBackButton_2">
+                   <widget class="QPushButton" name="othersBackButton">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                       <horstretch>0</horstretch>
