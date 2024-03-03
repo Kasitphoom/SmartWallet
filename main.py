@@ -8,6 +8,8 @@ from mainwindow import Ui_MainWindow
 
 from pathlib import Path
 
+from datetime import datetime
+
 from obj.walletmanager import WalletManager
 from obj.account import Account
 from obj.roundprogressbar import roundProgressBar
@@ -41,6 +43,7 @@ class MainWindow(QMainWindow):
         self.calculated_limits = {}
         self.__salt = "rT8jllFhs7"
         self.transfer_type_selected = "others"
+        self.current_date = datetime.now()
         # self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 1000)
         self.detector = cv2.QRCodeDetector()
         self.page = {
@@ -175,6 +178,9 @@ class MainWindow(QMainWindow):
         
         # set transfer balance and budget amount
         self.ui.dt_balance_amount.setText(self.manager.get_balance() + " THB")
+        
+        # update month to date expense (from 1st of the month to today compare with 1st of last month to the same date as today)
+        self.update_month_to_date_expense()
 
     def eventFilter(self, obj, event):
         if type(event) == QMouseEvent and obj == self.ui.frame_12 and event.button() == Qt.MouseButton.LeftButton:
@@ -263,6 +269,15 @@ class MainWindow(QMainWindow):
     def update_total_month_expense(self):
         self.ui.d_expense_amount.setText(f"{self.manager.get_total_expense_of_this_month():,.2f} THB")
 
+    def update_month_to_date_expense(self):
+        this_month_expense = self.manager.get_total_expense_of_this_month()
+        last_month_expense = self.manager.get_total_expense_period(datetime(self.current_date.year, self.current_date.month - 1, 1), datetime(self.current_date.year, self.current_date.month-1, self.current_date.day))
+        percentage = this_month_expense / 1 if last_month_expense == 0 else last_month_expense * 100
+        
+        self.ui.mtdPercentagevaluelabel.setText(f"{percentage: .2f}")
+        self.ui.mtdArrowindicator.setText("arrow-up" if this_month_expense > last_month_expense else "arrow-down")
+        self.ui.monthtodateframe.setStyleSheet(f"QLabel {{ color: {'#B3625A' if this_month_expense > last_month_expense else '#4FBA74'} }}")
+    
     def page_changed_handler(self):
             if self.ui.accountNumberLineEditDT != "":
                 self.ui.accountNumberLineEditDT.setText("")
@@ -500,7 +515,8 @@ class MainWindow(QMainWindow):
                 self.ui.amountToTransferLineEditDT.setText("")
                 print("Transfer success")
                 self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
-    
+        self.update_window()
+        
     def amountIsValid(self, amount):
         try:
             amount = float(amount)

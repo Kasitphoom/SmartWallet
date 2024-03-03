@@ -116,7 +116,7 @@ color: rgb(0, 0, 0);</string>
               <number>0</number>
              </property>
              <property name="currentIndex">
-              <number>3</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="dashboardPage">
               <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -157,7 +157,7 @@ color: rgb(0, 0, 0);</string>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">
-width:0px;
+width:5px;
 </string>
                  </property>
                  <property name="horizontalScrollBarPolicy">
@@ -173,8 +173,8 @@ width:0px;
                   <property name="geometry">
                    <rect>
                     <x>0</x>
-                    <y>0</y>
-                    <width>391</width>
+                    <y>-323</y>
+                    <width>390</width>
                     <height>1074</height>
                    </rect>
                   </property>
@@ -2440,13 +2440,16 @@ background-color: rgb(238, 238, 238);</string>
                          </item>
                          <item>
                           <widget class="QFrame" name="monthtodateframe">
+                           <property name="styleSheet">
+                            <string notr="true"/>
+                           </property>
                            <property name="frameShape">
                             <enum>QFrame::StyledPanel</enum>
                            </property>
                            <property name="frameShadow">
                             <enum>QFrame::Raised</enum>
                            </property>
-                           <layout class="QHBoxLayout" name="horizontalLayout_22" stretch="1,3,1">
+                           <layout class="QHBoxLayout" name="horizontalLayout_22" stretch="0,3,1">
                             <property name="topMargin">
                              <number>0</number>
                             </property>
@@ -2454,32 +2457,21 @@ background-color: rgb(238, 238, 238);</string>
                              <number>0</number>
                             </property>
                             <item>
-                             <widget class="QFrame" name="mtdArrowindicatorframe">
-                              <property name="sizePolicy">
-                               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                               </sizepolicy>
+                             <widget class="QLabel" name="mtdArrowindicator">
+                              <property name="font">
+                               <font>
+                                <family>Font Awesome 6 Free</family>
+                                <pointsize>16</pointsize>
+                                <bold>true</bold>
+                               </font>
                               </property>
-                              <property name="minimumSize">
-                               <size>
-                                <width>18</width>
-                                <height>24</height>
-                               </size>
-                              </property>
-                              <property name="styleSheet">
-                               <string notr="true">background-image: url(:/images/image/arrow-none.svg);</string>
-                              </property>
-                              <property name="frameShape">
-                               <enum>QFrame::StyledPanel</enum>
-                              </property>
-                              <property name="frameShadow">
-                               <enum>QFrame::Raised</enum>
+                              <property name="text">
+                               <string>arrow-up</string>
                               </property>
                              </widget>
                             </item>
                             <item>
-                             <widget class="QLabel" name="mtdPercentagelabel">
+                             <widget class="QLabel" name="mtdPercentagevaluelabel">
                               <property name="font">
                                <font>
                                 <family>Montserrat</family>
@@ -2488,7 +2480,7 @@ background-color: rgb(238, 238, 238);</string>
                                </font>
                               </property>
                               <property name="styleSheet">
-                               <string notr="true">color: rgb(0, 0, 0);</string>
+                               <string notr="true"/>
                               </property>
                               <property name="text">
                                <string>0.00</string>
@@ -2499,7 +2491,7 @@ background-color: rgb(238, 238, 238);</string>
                              </widget>
                             </item>
                             <item>
-                             <widget class="QLabel" name="mtdPercentagevaluelabel">
+                             <widget class="QLabel" name="mtdPercentagelabel">
                               <property name="font">
                                <font>
                                 <family>Montserrat</family>
@@ -2508,7 +2500,7 @@ background-color: rgb(238, 238, 238);</string>
                                </font>
                               </property>
                               <property name="styleSheet">
-                               <string notr="true">color: rgb(0, 0, 0);</string>
+                               <string notr="true"/>
                               </property>
                               <property name="text">
                                <string>%</string>
@@ -2597,7 +2589,7 @@ background-color: rgb(238, 238, 238);</string>
                            <property name="frameShadow">
                             <enum>QFrame::Raised</enum>
                            </property>
-                           <layout class="QHBoxLayout" name="horizontalLayout_23" stretch="1,3,1">
+                           <layout class="QHBoxLayout" name="horizontalLayout_23" stretch="0,3,1">
                             <property name="topMargin">
                              <number>0</number>
                             </property>
@@ -2605,27 +2597,16 @@ background-color: rgb(238, 238, 238);</string>
                              <number>0</number>
                             </property>
                             <item>
-                             <widget class="QFrame" name="tfcArrowindicatorframe">
-                              <property name="sizePolicy">
-                               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                               </sizepolicy>
+                             <widget class="QLabel" name="tfcArrowindicator">
+                              <property name="font">
+                               <font>
+                                <family>Font Awesome 6 Free</family>
+                                <pointsize>16</pointsize>
+                                <bold>true</bold>
+                               </font>
                               </property>
-                              <property name="minimumSize">
-                               <size>
-                                <width>18</width>
-                                <height>24</height>
-                               </size>
-                              </property>
-                              <property name="styleSheet">
-                               <string notr="true">background-image: url(:/images/image/arrow-none.svg);</string>
-                              </property>
-                              <property name="frameShape">
-                               <enum>QFrame::StyledPanel</enum>
-                              </property>
-                              <property name="frameShadow">
-                               <enum>QFrame::Raised</enum>
+                              <property name="text">
+                               <string>arrow-up</string>
                               </property>
                              </widget>
                             </item>
@@ -2639,7 +2620,7 @@ background-color: rgb(238, 238, 238);</string>
                                </font>
                               </property>
                               <property name="styleSheet">
-                               <string notr="true">color: rgb(0, 0, 0);</string>
+                               <string notr="true"/>
                               </property>
                               <property name="text">
                                <string>0.00</string>
@@ -2659,7 +2640,7 @@ background-color: rgb(238, 238, 238);</string>
                                </font>
                               </property>
                               <property name="styleSheet">
-                               <string notr="true">color: rgb(0, 0, 0);</string>
+                               <string notr="true"/>
                               </property>
                               <property name="text">
                                <string>%</string>
@@ -3075,7 +3056,7 @@ height: 0px;</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>351</width>
+                       <width>133</width>
                        <height>105</height>
                       </rect>
                      </property>
@@ -3292,7 +3273,7 @@ background-color: none;</string>
                     <x>0</x>
                     <y>0</y>
                     <width>393</width>
-                    <height>844</height>
+                    <height>845</height>
                    </rect>
                   </property>
                   <property name="maximumSize">
