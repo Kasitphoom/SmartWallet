@@ -55,9 +55,9 @@ class MainWindow(QMainWindow):
             "directtransfer": 3,
             "history": 4,
             "scanqrcode": 5,
-            "othersPage": 6,
-            "settingPage": 7,
-            "parentalControlPage": 8,
+            "others": 6,
+            "setting": 7,
+            "parentalcontrol": 8,
             # stacked widget 2
             "main": 0,
             "login": 1,
@@ -89,6 +89,7 @@ class MainWindow(QMainWindow):
             # set initial budget page
             self.setupBudget()
             self.setupOthersPage()
+            self.setupTransferPage()
         else:
             self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
         
@@ -115,19 +116,22 @@ class MainWindow(QMainWindow):
         self.ui.navigateToDirectQrcodeButton.clicked.connect(self.handleNavigationToScanQRCode)
         self.ui.fhistoryButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["history"]))
         self.ui.historyButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["history"]))
-        self.ui.othersButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["othersPage"]))
-        self.ui.setting_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["settingPage"]))
+        self.ui.othersButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["others"]))
+        self.ui.setting_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["setting"]))
+
+        # back buttons
+        self.ui.budgetBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
+        self.ui.dicrectTransferBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["transfer"]))
+        self.ui.historybackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
+        self.ui.othersBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
+        self.ui.scanQRCodeBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["transfer"]))
+        self.ui.settingBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["others"]))
+        self.ui.transferbackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
 
 
         # handle page change
         self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler_2)
         self.ui.stackedWidget.currentChanged.connect(self.page_changed_handler)
-
-        # setup transfer select type
-        self.selectable_transfer_type = self.get_all_children_in_frame_and_map_to_strings(self.ui.transfertypeframe, QPushButton, TRANSFER_TYPE_LABEL)
-        for transfer_type, ui in self.selectable_transfer_type.items():
-            ui.clicked.connect(lambda checked=False, transfer_type=transfer_type: self.update_type_selected(transfer_type))
-        
 
         # setup transfer confirm button
         self.ui.dt_confirmButton.clicked.connect(self.handleTransfer)
@@ -153,7 +157,7 @@ class MainWindow(QMainWindow):
             self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
             self.update_window()
             self.setupBudget()
-            self.update_type_selected(self.transfer_type_selected)
+            self.setupTransferPage()
             self.setupOthersPage()
         else:
             self.ui.loginError.setText("Invalid email or password")
@@ -547,6 +551,12 @@ class MainWindow(QMainWindow):
     def setupOthersPage(self):
         self.ui.others_name_label.setText(self.manager.getName())
         self.ui.others_email_label.setText(self.manager.getEmail())
+
+    def setupTransferPage(self):
+        self.selectable_transfer_type = self.get_all_children_in_frame_and_map_to_strings(self.ui.transfertypeframe, QPushButton, TRANSFER_TYPE_LABEL)
+        for transfer_type, ui in self.selectable_transfer_type.items():
+            ui.clicked.connect(lambda checked=False, transfer_type=transfer_type: self.update_type_selected(transfer_type))
+        self.update_type_selected(self.transfer_type_selected)
     
     # ================================== History page ==================================
     def update_history_page(self):

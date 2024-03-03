@@ -7317,7 +7317,7 @@ background-color: rgb(167, 202, 255);</string>
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QPushButton" name="budgetBackButton_2">
+                   <widget class="QPushButton" name="othersBackButton">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                       <horstretch>0</horstretch>
