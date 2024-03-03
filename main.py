@@ -119,6 +119,7 @@ class MainWindow(QMainWindow):
         self.ui.othersButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["others"]))
         self.ui.setting_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["setting"]))
 
+
         # back buttons
         self.ui.budgetBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
         self.ui.dicrectTransferBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["transfer"]))
