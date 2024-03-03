@@ -19,9 +19,9 @@ class TransactionFrame(QFrame):
         self.layout.setSpacing(10)
         self.layout.setObjectName("HorizontalLayout")
         
-        self.receiver_label = QLabel(self)
-        self.receiver_label.setText(self.transaction.receiver)
-        self.layout.addWidget(self.receiver_label)
+        self.recipient_label = QLabel(self)
+        self.recipient_label.setText(self.transaction.recipient)
+        self.layout.addWidget(self.recipient_label)
         
         self.amount_layout = QVBoxLayout()
         self.amount_layout.setObjectName("VerticalLayout")
