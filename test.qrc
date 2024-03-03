@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="images">
+    <file>image/logo_square.svg</file>
     <file>image/backscanqrcode.svg</file>
     <file>image/backbudgetplanner.svg</file>
     <file>image/dt_cancelbutton.svg</file>
