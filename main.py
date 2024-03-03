@@ -13,6 +13,7 @@ from datetime import datetime
 from obj.walletmanager import WalletManager
 from obj.account import Account
 from obj.roundprogressbar import roundProgressBar
+from obj.WalletManagerObject import TransactionFrame
 
 import pickle
 
@@ -191,6 +192,9 @@ class MainWindow(QMainWindow):
         
         # update month to date expense (from 1st of the month to today compare with 1st of last month to the same date as today)
         self.update_month_to_date_expense()
+        
+        # update history page
+        self.update_history_page()
 
     def eventFilter(self, obj, event):
         if type(event) == QMouseEvent and obj == self.ui.frame_12 and event.button() == Qt.MouseButton.LeftButton:
@@ -543,6 +547,24 @@ class MainWindow(QMainWindow):
     def setupOthersPage(self):
         self.ui.others_name_label.setText(self.manager.getName())
         self.ui.others_email_label.setText(self.manager.getEmail())
+    
+    # ================================== History page ==================================
+    def update_history_page(self):
+        old_date = None
+        for transaction in self.manager.getTransactions():
+            transaction_date = transaction.date.strftime("%m/%d/%Y")
+            
+            if old_date == None or old_date.strftime("%m/%d/%Y") != transaction_date:
+                old_date = transaction.date
+                date_label = QLabel(self.ui.transaction_history_frame)
+                date_label.setObjectName(transaction_date)
+                date_label.setText(transaction_date)
+                date_label.setStyleSheet("color: #A1A5AD; font-size: 16px; font-weight: bold; font-family: Montserrat;")
+                self.ui.transaction_history_frame.layout().addWidget(date_label)
+                
+            self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction))
+            
+        self.ui.transaction_history_frame.layout().addStretch()
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
