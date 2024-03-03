@@ -116,6 +116,9 @@ class MainWindow(QMainWindow):
             ui.clicked.connect(lambda checked=False, transfer_type=transfer_type: self.update_type_selected(transfer_type))
         self.update_type_selected(self.type_selected)
 
+        # setup transfer confirm button
+        self.ui.dt_confirmButton.clicked.connect(self.handleTransfer)
+
     def handleLogin(self):
         email = self.ui.loginEmailLineEdit.text()
         password = self.ui.loginPasswordLineEdit.text() + self.__salt
@@ -161,6 +164,7 @@ class MainWindow(QMainWindow):
         
         # set text as this format XXX-X-1234-X
         self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
+        self.ui.accountNumberlabelDT.setText(self.manager.get_account_number_non_visible())
         
         # set balance
         self.ui.d_balance_amount.setText(self.manager.get_balance() + " THB")
@@ -473,6 +477,31 @@ class MainWindow(QMainWindow):
                 ui.setStyleSheet("color: #F49E4C")
             else:
                 ui.setStyleSheet("color: #C7C7C7")
+
+    def handleTransfer(self):
+        accountID = self.ui.accountNumberLineEditDT.text()
+        amount = self.ui.amountToTransferLineEditDT.text()
+        accountIsValid = self.manager.accountNumberIsValid(accountID)
+        amountIsValid = self.amountIsValid(amount)
+        if not accountIsValid:
+            self.ui.accountNumberTransferErrorLabel.setText("Account number is invalid")
+        if accountIsValid and amountIsValid:
+                self.ui.accountNumberTransferErrorLabel.setText("")
+                self.update_window()
+                self.updateRoundProgressBars()
+    
+    def amountIsValid(self, amount):
+        try:
+            amount = float(amount)
+            if amount > 0:
+                self.ui.amountTransferErrorLabel.setText("")
+                return True
+            else:
+                self.ui.amountTransferErrorLabel.setText("Amount must be greater than 0")
+                return False
+        except ValueError:
+            self.ui.amountTransferErrorLabel.setText("Invalid amount")
+            return False
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)

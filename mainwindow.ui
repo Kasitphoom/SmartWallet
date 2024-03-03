@@ -3075,7 +3075,7 @@ height: 0px;</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>133</width>
+                       <width>351</width>
                        <height>105</height>
                       </rect>
                      </property>
@@ -6503,6 +6503,75 @@ color: #F49E4C;
                   <property name="verticalSpacing">
                    <number>5</number>
                   </property>
+                  <item row="5" column="0" colspan="2">
+                   <widget class="QFrame" name="frame_16">
+                    <property name="styleSheet">
+                     <string notr="true">border-bottom: 1px solid gray;</string>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QHBoxLayout" name="horizontalLayout_19">
+                     <property name="spacing">
+                      <number>0</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QLineEdit" name="amountToTransferLineEditDT">
+                       <property name="font">
+                        <font>
+                         <family>Montserrat</family>
+                         <pointsize>11</pointsize>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">border-bottom: none;</string>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="placeholderText">
+                        <string>0.00</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_14">
+                       <property name="font">
+                        <font>
+                         <family>Montserrat</family>
+                         <pointsize>13</pointsize>
+                         <bold>true</bold>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">border-bottom: none;</string>
+                       </property>
+                       <property name="text">
+                        <string>THB</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
                   <item row="1" column="1">
                    <widget class="QFrame" name="frame_18">
                     <property name="frameShape">
@@ -6567,20 +6636,6 @@ color: #F49E4C;
                       </widget>
                      </item>
                     </layout>
-                   </widget>
-                  </item>
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="label_13">
-                    <property name="font">
-                     <font>
-                      <family>Montserrat</family>
-                      <pointsize>11</pointsize>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Amount</string>
-                    </property>
                    </widget>
                   </item>
                   <item row="2" column="0" colspan="2">
@@ -6659,77 +6714,38 @@ color: #F49E4C;
                     </property>
                    </widget>
                   </item>
-                  <item row="5" column="0" colspan="2">
-                   <widget class="QFrame" name="frame_16">
-                    <property name="styleSheet">
-                     <string notr="true">border-bottom: 1px solid gray;</string>
-                    </property>
-                    <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
-                    </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Raised</enum>
-                    </property>
-                    <layout class="QHBoxLayout" name="horizontalLayout_19">
-                     <property name="spacing">
-                      <number>0</number>
-                     </property>
-                     <property name="leftMargin">
-                      <number>0</number>
-                     </property>
-                     <property name="topMargin">
-                      <number>0</number>
-                     </property>
-                     <property name="rightMargin">
-                      <number>0</number>
-                     </property>
-                     <property name="bottomMargin">
-                      <number>0</number>
-                     </property>
-                     <item>
-                      <widget class="QLineEdit" name="amountToTransferLineEditDT">
-                       <property name="font">
-                        <font>
-                         <family>Montserrat</family>
-                         <pointsize>11</pointsize>
-                        </font>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">border-bottom: none;</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="placeholderText">
-                        <string>0.00</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="label_14">
-                       <property name="font">
-                        <font>
-                         <family>Montserrat</family>
-                         <pointsize>13</pointsize>
-                         <bold>true</bold>
-                        </font>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">border-bottom: none;</string>
-                       </property>
-                       <property name="text">
-                        <string>THB</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
                   <item row="3" column="0">
                    <widget class="QLabel" name="accountNumberTransferErrorLabel">
+                    <property name="font">
+                     <font>
+                      <family>Montserrat Medium</family>
+                      <bold>false</bold>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(255, 0, 0);</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_13">
+                    <property name="font">
+                     <font>
+                      <family>Montserrat</family>
+                      <pointsize>11</pointsize>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Amount</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0">
+                   <widget class="QLabel" name="amountTransferErrorLabel">
                     <property name="font">
                      <font>
                       <family>Montserrat Medium</family>

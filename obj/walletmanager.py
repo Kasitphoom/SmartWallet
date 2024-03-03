@@ -106,3 +106,13 @@ class WalletManager():
         self.account.updateMonthlyLimits()
         root._p_changed = True
         connection.transaction_manager.commit()
+
+    def accountNumberIsValid(self, accountID):
+        try:
+            account_id_int = int(accountID)
+            if len(str(account_id_int)) == 9 and self.check_accounts(accountID) and self.account.getID() != accountID:
+                return True
+            else:
+                return False
+        except ValueError:
+            return False
