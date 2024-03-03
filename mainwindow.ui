@@ -110,13 +110,13 @@ color: rgb(0, 0, 0);</string>
            <item>
             <widget class="QStackedWidget" name="stackedWidget">
              <property name="styleSheet">
-              <string notr="true">border: none;</string>
+              <string notr="true"/>
              </property>
              <property name="lineWidth">
               <number>0</number>
              </property>
              <property name="currentIndex">
-              <number>4</number>
+              <number>8</number>
              </property>
              <widget class="QWidget" name="dashboardPage">
               <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -935,7 +935,7 @@ height: 0px;
                         <x>0</x>
                         <y>0</y>
                         <width>720</width>
-                        <height>90</height>
+                        <height>88</height>
                        </rect>
                       </property>
                       <property name="styleSheet">
@@ -3053,7 +3053,7 @@ height: 0px;</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>133</width>
+                       <width>347</width>
                        <height>105</height>
                       </rect>
                      </property>
@@ -3270,7 +3270,7 @@ background-color: none;</string>
                     <x>0</x>
                     <y>0</y>
                     <width>393</width>
-                    <height>845</height>
+                    <height>871</height>
                    </rect>
                   </property>
                   <property name="maximumSize">
@@ -7075,8 +7075,8 @@ color: #F49E4C;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>391</width>
-                    <height>555</height>
+                    <width>389</width>
+                    <height>547</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_60">
@@ -7929,6 +7929,178 @@ background-color: rgb(167, 202, 255);</string>
                      </size>
                     </property>
                    </spacer>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="myqrPage">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(79, 186, 116);</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_67">
+               <property name="spacing">
+                <number>48</number>
+               </property>
+               <property name="leftMargin">
+                <number>47</number>
+               </property>
+               <property name="topMargin">
+                <number>150</number>
+               </property>
+               <property name="rightMargin">
+                <number>47</number>
+               </property>
+               <property name="bottomMargin">
+                <number>150</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="label_10">
+                 <property name="font">
+                  <font>
+                   <family>Montserrat ExtraBold</family>
+                   <pointsize>24</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(255, 255, 255);</string>
+                 </property>
+                 <property name="text">
+                  <string>Your QR code</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_37">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>300</width>
+                   <height>300</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>300</width>
+                   <height>300</height>
+                  </size>
+                 </property>
+                 <property name="layoutDirection">
+                  <enum>Qt::LeftToRight</enum>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(79, 186, 116);</string>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_38">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_39">
+                  <property name="spacing">
+                   <number>118</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QPushButton" name="shareMyQRButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>95</width>
+                      <height>37</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>95</width>
+                      <height>37</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: none;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="test.qrc">
+                      <normaloff>:/images/image/shareMyQRButton.svg</normaloff>:/images/image/shareMyQRButton.svg</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>95</width>
+                      <height>37</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="saveMyQRButton">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>87</width>
+                      <height>37</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>87</width>
+                      <height>37</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: none;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="test.qrc">
+                      <normaloff>:/images/image/saveMyQRButton.svg</normaloff>:/images/image/saveMyQRButton.svg</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>87</width>
+                      <height>37</height>
+                     </size>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </widget>

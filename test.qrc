@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="images">
+    <file>image/saveMyQRButton.svg</file>
+    <file>image/shareMyQRButton.svg</file>
     <file>image/parentalcontrol_button.svg</file>
     <file>image/logout_button.svg</file>
     <file>image/backsetting.svg</file>
