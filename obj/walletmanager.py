@@ -1,7 +1,9 @@
 from datetime import datetime
 from obj.account import Account
+from obj.transaction import *
 import calendar
 import random
+import uuid
 
 import ZODB, ZODB.config
 
@@ -27,6 +29,9 @@ class WalletManager():
     def get_balance(self):
         return "{:,}".format(self.account.getBalance())
     
+    def isSelfExpense(self, transaction):
+        return transaction.sender == self.get_account_number()
+    
     def calculate_daily_limit(self, category):
         # limit is monthly limit divided by number of days in that month minus with all transactions in that category in that day
         if not category in self.account.monthly_limits:
@@ -34,7 +39,7 @@ class WalletManager():
                 
         limit = self.account.monthly_limits[category] / calendar.monthrange(self.current_date.year, self.current_date.month)[1]
         for transaction in self.account.transactions:
-            if transaction.date.month == self.current_date.month and transaction.date.day == self.current_date.day and transaction.category == category:
+            if self.isSelfExpense(transaction) and transaction.date.month == self.current_date.month and transaction.date.day == self.current_date.day and transaction.__class__.__name__.lower() == category:
                 limit -= transaction.amount
         return limit
     
@@ -49,7 +54,7 @@ class WalletManager():
         
         limit = self.account.monthly_limits[category]
         for transaction in self.account.transactions:
-            if transaction.date.month == self.current_date.month and transaction.category == category:
+            if self.isSelfExpense(transaction) and transaction.date.month == self.current_date.month and transaction.__class__.__name__.lower() == category:
                 limit -= transaction.amount
         return limit
     
@@ -61,7 +66,7 @@ class WalletManager():
     def get_total_expense_of_this_month(self):
         total = 0
         for transaction in self.account.transactions:
-            if transaction.date.month == self.current_date.month:
+            if self.isSelfExpense(transaction) and transaction.date.month == self.current_date.month:
                 total += transaction.amount
         return total
     
@@ -116,3 +121,48 @@ class WalletManager():
                 return False
         except ValueError:
             return False
+    
+    def handleTransfer(self, accountID, amount, transferType):
+        if amount > self.account.getBalance():
+            print("Not enough balance")
+            return False
+        
+        transactionID = str(uuid.uuid4())
+        
+        match transferType:
+            case "food":
+                transaction = Food(transactionID, self.current_date, amount, self.get_account_number(), accountID, self.calculate_daily_limit("food"), amount / self.calculate_daily_limit("food") * 100, (1 - amount / self.calculate_daily_limit("food")) * 100)
+            case "housing":
+                transaction = Housing(transactionID, self.current_date, amount, self.get_account_number(), accountID, self.calculate_daily_limit("housing"), amount / self.calculate_daily_limit("housing") * 100, (1 - amount / self.calculate_daily_limit("housing")) * 100)
+            case "transport":
+                transaction = Transport(transactionID, self.current_date, amount, self.get_account_number(), accountID, self.calculate_daily_limit("transport"), amount / self.calculate_daily_limit("transport") * 100, (1 - amount / self.calculate_daily_limit("transport")) * 100)
+            case "entertainment":
+                transaction = Entertainment(transactionID, self.current_date, amount, self.get_account_number(), accountID, self.calculate_daily_limit("entertainment"), amount / self.calculate_daily_limit("entertainment") * 100, (1 - amount / self.calculate_daily_limit("entertainment")) * 100)
+            case "healthcare":
+                transaction = Healthcare(transactionID, self.current_date, amount, self.get_account_number(), accountID, self.calculate_daily_limit("healthcare"), amount / self.calculate_daily_limit("healthcare") * 100, (1 - amount / self.calculate_daily_limit("healthcare")) * 100)
+            case "lend":
+                transaction = Lend(transactionID, self.current_date, amount, self.get_account_number(), accountID, "-INF", 0, amount)
+            case "return":
+                transaction = Return(transactionID, self.current_date, amount, self.get_account_number(), accountID, "INF", 0, amount)
+            case "others":
+                transaction = Other(transactionID, self.current_date, amount, self.get_account_number(), accountID, self.calculate_daily_limit("others"), amount / self.calculate_daily_limit("others") * 100, (1 - amount / self.calculate_daily_limit("others")) * 100)
+            case _:
+                transaction = Transaction(transactionID, self.current_date, amount, self.get_account_number(), accountID)
+        
+        if transaction.isOverLimit():
+            print("Over limit")
+            return False
+        
+        root.transactions[transactionID] = transaction
+        
+        self.account.addTransaction(root.transactions[transactionID])
+        self.account.withdraw(amount)
+        
+        recipient = root.accounts[accountID]
+        recipient.deposit(amount)
+        recipient.addTransaction(root.transactions[transactionID])
+        
+        root._p_changed = True
+        connection.transaction_manager.commit()
+        
+        return True

@@ -40,7 +40,7 @@ class MainWindow(QMainWindow):
         self.account_number_visibility = False
         self.calculated_limits = {}
         self.__salt = "rT8jllFhs7"
-        self.type_selected = "others"
+        self.transfer_type_selected = "others"
         # self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 1000)
         self.detector = cv2.QRCodeDetector()
         self.page = {
@@ -114,7 +114,7 @@ class MainWindow(QMainWindow):
         self.selectable_transfer_type = self.get_all_children_in_frame_and_map_to_strings(self.ui.transfertypeframe, QPushButton, TRANSFER_TYPE_LABEL)
         for transfer_type, ui in self.selectable_transfer_type.items():
             ui.clicked.connect(lambda checked=False, transfer_type=transfer_type: self.update_type_selected(transfer_type))
-        self.update_type_selected(self.type_selected)
+        
 
         # setup transfer confirm button
         self.ui.dt_confirmButton.clicked.connect(self.handleTransfer)
@@ -140,6 +140,7 @@ class MainWindow(QMainWindow):
             self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
             self.update_window()
             self.setupBudget()
+            self.update_type_selected(self.transfer_type_selected)
         else:
             self.ui.loginError.setText("Invalid email or password")
 
@@ -171,6 +172,9 @@ class MainWindow(QMainWindow):
         
         self.update_daily_limit()
         self.update_total_month_expense()
+        
+        # set transfer balance and budget amount
+        self.ui.dt_balance_amount.setText(self.manager.get_balance() + " THB")
 
     def eventFilter(self, obj, event):
         if type(event) == QMouseEvent and obj == self.ui.frame_12 and event.button() == Qt.MouseButton.LeftButton:
@@ -195,7 +199,7 @@ class MainWindow(QMainWindow):
         daily_limit = self.manager.get_max_daily_limit(category)
         qss = f"""
         QFrame {{
-            background-color: {'rgba(171, 52, 40, 51)' if limit < daily_limit * 0.25 else 'rgba(171, 52, 40, 51)' if limit < daily_limit * 0.50 else 'rgba(40, 171, 52, 51)'};
+            background-color: {'rgba(171, 52, 40, 51)' if limit < daily_limit * 0.25 else 'rgb(255, 244, 234)' if limit < daily_limit * 0.50 else 'rgba(40, 171, 52, 51)'};
             border-radius: 5px;
         }}
         QLabel {{
@@ -473,10 +477,12 @@ class MainWindow(QMainWindow):
     def update_type_selected(self, category):
         for transfer_type, ui in self.selectable_transfer_type.items():
             if transfer_type == category:
-                self.type_selected = category
+                self.transfer_type_selected = category
                 ui.setStyleSheet("color: #F49E4C")
             else:
                 ui.setStyleSheet("color: #C7C7C7")
+        
+        self.ui.dt_expense_amount.setText(f"{self.manager.calculate_daily_limit(category):,.2f} THB" if not category in ["return", "lend"] else "INF THB" if category == "return" else "-INF THB")
 
     def handleTransfer(self):
         accountID = self.ui.accountNumberLineEditDT.text()
@@ -486,9 +492,14 @@ class MainWindow(QMainWindow):
         if not accountIsValid:
             self.ui.accountNumberTransferErrorLabel.setText("Account number is invalid")
         if accountIsValid and amountIsValid:
-                self.ui.accountNumberTransferErrorLabel.setText("")
+            self.ui.accountNumberTransferErrorLabel.setText("")
+            if self.manager.handleTransfer(accountID, float(amount), self.transfer_type_selected):
                 self.update_window()
                 self.updateRoundProgressBars()
+                self.ui.accountNumberLineEditDT.setText("")
+                self.ui.amountToTransferLineEditDT.setText("")
+                print("Transfer success")
+                self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
     
     def amountIsValid(self, amount):
         try:
