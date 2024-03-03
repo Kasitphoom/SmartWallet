@@ -32,6 +32,9 @@ class WalletManager():
     def isSelfExpense(self, transaction):
         return transaction.sender == self.get_account_number()
     
+    def getTransactions(self):
+        return self.account.transactions
+    
     def calculate_daily_limit(self, category):
         # limit is monthly limit divided by number of days in that month minus with all transactions in that category in that day
         if not category in self.account.monthly_limits:

@@ -116,7 +116,7 @@ color: rgb(0, 0, 0);</string>
               <number>0</number>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>4</number>
              </property>
              <widget class="QWidget" name="dashboardPage">
               <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -7317,7 +7317,7 @@ background-color: rgb(167, 202, 255);</string>
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QPushButton" name="budgetBackButton_2">
+                   <widget class="QPushButton" name="othersBackButton">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                       <horstretch>0</horstretch>
