@@ -108,8 +108,6 @@ class WalletManager():
     
     def get_limits(self):
         limits = self.account.limits_rate
-        for key in limits:
-            limits[key] = limits[key] * 100
         return limits
     
     def get_average_income(self):
