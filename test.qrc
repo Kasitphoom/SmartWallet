@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="images">
+    <file>image/backhistory.svg</file>
+    <file>image/history_expense.svg</file>
+    <file>image/history_income.svg</file>
+    <file>image/history_all.svg</file>
     <file>image/logo_square.svg</file>
     <file>image/backscanqrcode.svg</file>
     <file>image/backbudgetplanner.svg</file>
