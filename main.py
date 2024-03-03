@@ -88,6 +88,7 @@ class MainWindow(QMainWindow):
             # set initial budget page
             self.setupBudget()
             self.setupOthersPage()
+            self.setupTransferPage()
         else:
             self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
         
@@ -131,12 +132,6 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler_2)
         self.ui.stackedWidget.currentChanged.connect(self.page_changed_handler)
 
-        # setup transfer select type
-        self.selectable_transfer_type = self.get_all_children_in_frame_and_map_to_strings(self.ui.transfertypeframe, QPushButton, TRANSFER_TYPE_LABEL)
-        for transfer_type, ui in self.selectable_transfer_type.items():
-            ui.clicked.connect(lambda checked=False, transfer_type=transfer_type: self.update_type_selected(transfer_type))
-        
-
         # setup transfer confirm button
         self.ui.dt_confirmButton.clicked.connect(self.handleTransfer)
 
@@ -161,7 +156,7 @@ class MainWindow(QMainWindow):
             self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
             self.update_window()
             self.setupBudget()
-            self.update_type_selected(self.transfer_type_selected)
+            self.setupTransferPage()
             self.setupOthersPage()
         else:
             self.ui.loginError.setText("Invalid email or password")
@@ -552,6 +547,12 @@ class MainWindow(QMainWindow):
     def setupOthersPage(self):
         self.ui.others_name_label.setText(self.manager.getName())
         self.ui.others_email_label.setText(self.manager.getEmail())
+
+    def setupTransferPage(self):
+        self.selectable_transfer_type = self.get_all_children_in_frame_and_map_to_strings(self.ui.transfertypeframe, QPushButton, TRANSFER_TYPE_LABEL)
+        for transfer_type, ui in self.selectable_transfer_type.items():
+            ui.clicked.connect(lambda checked=False, transfer_type=transfer_type: self.update_type_selected(transfer_type))
+        self.update_type_selected(self.transfer_type_selected)
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
