@@ -54,6 +54,9 @@ class MainWindow(QMainWindow):
             "directtransfer": 3,
             "history": 4,
             "scanqrcode": 5,
+            "othersPage": 6,
+            "settingPage": 7,
+            "parentalControlPage": 8,
             # stacked widget 2
             "main": 0,
             "login": 1,
@@ -108,7 +111,12 @@ class MainWindow(QMainWindow):
         self.ui.transferbackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
         self.ui.navigateToDirectTransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["directtransfer"]))
         self.ui.navigateToDirectQrcodeButton.clicked.connect(self.handleNavigationToScanQRCode)
-        
+        self.ui.fhistoryButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["history"]))
+        self.ui.historyButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["history"]))
+        self.ui.othersButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["othersPage"]))
+        self.ui.setting_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["settingPage"]))
+
+
         # handle page change
         self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler_2)
         self.ui.stackedWidget.currentChanged.connect(self.page_changed_handler)
@@ -275,7 +283,7 @@ class MainWindow(QMainWindow):
         percentage = this_month_expense / 1 if last_month_expense == 0 else last_month_expense * 100
         
         self.ui.mtdPercentagevaluelabel.setText(f"{percentage: .2f}")
-        self.ui.mtdArrowindicator.setText("arrow-up" if this_month_expense > last_month_expense else "arrow-down")
+        # self.ui.mtdArrowindicator.setText("arrow-up" if this_month_expense > last_month_expense else "arrow-down")
         self.ui.monthtodateframe.setStyleSheet(f"QLabel {{ color: {'#B3625A' if this_month_expense > last_month_expense else '#4FBA74'} }}")
     
     def page_changed_handler(self):

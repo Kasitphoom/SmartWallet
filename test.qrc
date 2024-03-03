@@ -1,5 +1,11 @@
 <RCC>
   <qresource prefix="images">
+    <file>image/parentalcontrol_button.svg</file>
+    <file>image/logout_button.svg</file>
+    <file>image/backsetting.svg</file>
+    <file>image/backothers.svg</file>
+    <file>image/setting_button.svg</file>
+    <file>image/change_pin_button.svg</file>
     <file>image/backhistory.svg</file>
     <file>image/history_expense.svg</file>
     <file>image/history_income.svg</file>
