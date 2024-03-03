@@ -127,7 +127,6 @@ class MainWindow(QMainWindow):
         for transfer_type, ui in self.selectable_transfer_type.items():
             ui.clicked.connect(lambda checked=False, transfer_type=transfer_type: self.update_type_selected(transfer_type))
         
-
         # setup transfer confirm button
         self.ui.dt_confirmButton.clicked.connect(self.handleTransfer)
 
