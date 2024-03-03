@@ -285,7 +285,7 @@ class MainWindow(QMainWindow):
         percentage = this_month_expense / 1 if last_month_expense == 0 else last_month_expense * 100
         
         self.ui.mtdPercentagevaluelabel.setText(f"{percentage: .2f}")
-        # self.ui.mtdArrowindicator.setText("arrow-up" if this_month_expense > last_month_expense else "arrow-down")
+        self.ui.mtdArrowindicator.setText("arrow-up" if this_month_expense > last_month_expense else "arrow-down")
         self.ui.monthtodateframe.setStyleSheet(f"QLabel {{ color: {'#B3625A' if this_month_expense > last_month_expense else '#4FBA74'} }}")
     
     def page_changed_handler(self):
