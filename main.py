@@ -136,6 +136,8 @@ class MainWindow(QMainWindow):
         # setup transfer confirm button
         self.ui.dt_confirmButton.clicked.connect(self.handleTransfer)
 
+# ================================== Login and Registration Handling ==================================
+
     def handleLogin(self):
         email = self.ui.loginEmailLineEdit.text()
         password = self.ui.loginPasswordLineEdit.text() + self.__salt
@@ -178,6 +180,8 @@ class MainWindow(QMainWindow):
         self.manager.register_account(fullname, email, password)
         self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
 
+# ================================== Dashboard ==================================
+
     def update_window(self):
         self.ui.d_balance_amount.setText(self.manager.get_balance() + " THB")
         
@@ -200,39 +204,6 @@ class MainWindow(QMainWindow):
         # update history page
         self.update_history_page()
 
-    def eventFilter(self, obj, event):
-        if type(event) == QMouseEvent and obj == self.ui.frame_12 and event.button() == Qt.MouseButton.LeftButton:
-            self.customPressEvent(event)
-            return True
-        return super().eventFilter(obj, event)
-
-    def customPressEvent(self, event):
-        print("Frame clicked!")
-    
-    def handleAccountNumberVisibility(self):
-        self.account_number_visibility = not self.account_number_visibility
-        if self.account_number_visibility:
-            self.ui.accountNumberlabel.setText(self.manager.get_account_number_visible())
-            self.ui.accountNumberlabelDT.setText(self.manager.get_account_number_visible())
-        else:
-            self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
-            self.ui.accountNumberlabelDT.setText(self.manager.get_account_number_non_visible())
-            
-    def style_sheet_color_limit(self, category):
-        limit = self.manager.calculate_daily_limit(category)
-        daily_limit = self.manager.get_max_daily_limit(category)
-        qss = f"""
-        QFrame {{
-            background-color: {'rgba(171, 52, 40, 51)' if limit < daily_limit * 0.25 else 'rgb(255, 244, 234)' if limit < daily_limit * 0.50 else 'rgba(40, 171, 52, 51)'};
-            border-radius: 5px;
-        }}
-        QLabel {{
-            background-color: transparent;
-            color: {'#B3625A' if limit < daily_limit * 0.25 else '#F49E4C' if limit < daily_limit * 0.50 else '#4FBA74'};
-        }}
-        """
-        return qss
-    
     def update_daily_limit(self):
         # Update daily limit for each category and set the color of the limit frame and icon.
         # house limit
@@ -283,7 +254,7 @@ class MainWindow(QMainWindow):
         self.ui.otherlimitlabel.setText(f"{other_limit:,.2f}")
         self.ui.otherlimitframe.setStyleSheet(self.style_sheet_color_limit("others"))
         self.ui.otherlimiticon.setStyleSheet(f"color: {'#B3625A' if other_limit < max_other_limit * 0.25 else '#F49E4C' if other_limit < max_other_limit * 0.50 else '#4FBA74'}")
-        
+
     def update_total_month_expense(self):
         self.ui.d_expense_amount.setText(f"{self.manager.get_total_expense_of_this_month():,.2f} THB")
 
@@ -295,20 +266,41 @@ class MainWindow(QMainWindow):
         self.ui.mtdPercentagevaluelabel.setText(f"{percentage: .2f}")
         self.ui.mtdArrowindicator.setText("arrow-up" if this_month_expense > last_month_expense else "arrow-down")
         self.ui.monthtodateframe.setStyleSheet(f"QLabel {{ color: {'#B3625A' if this_month_expense > last_month_expense else '#4FBA74'} }}")
-    
-    def page_changed_handler(self):
-            if self.ui.accountNumberLineEditDT != "":
-                self.ui.accountNumberLineEditDT.setText("")
-                self.ui.accountNumberLineEditDT.setReadOnly(False)
-            if self.ui.stackedWidget.currentIndex() == self.page["budgetplanner"]:
-                for progress_bar in self.roundprogressbars:
-                    progress_bar.animate_from_zero()
 
-    def page_changed_handler_2(self):
-        if self.ui.loginError.text() != "":
-            self.ui.loginError.setText("")
-        if self.ui.registerConfirmPasswordError.text() != "":
-            self.ui.registerConfirmPasswordError.setText("")
+    def handleAccountNumberVisibility(self):
+        self.account_number_visibility = not self.account_number_visibility
+        if self.account_number_visibility:
+            self.ui.accountNumberlabel.setText(self.manager.get_account_number_visible())
+            self.ui.accountNumberlabelDT.setText(self.manager.get_account_number_visible())
+        else:
+            self.ui.accountNumberlabel.setText(self.manager.get_account_number_non_visible())
+            self.ui.accountNumberlabelDT.setText(self.manager.get_account_number_non_visible())
+
+    def style_sheet_color_limit(self, category):
+        limit = self.manager.calculate_daily_limit(category)
+        daily_limit = self.manager.get_max_daily_limit(category)
+        qss = f"""
+        QFrame {{
+            background-color: {'rgba(171, 52, 40, 51)' if limit < daily_limit * 0.25 else 'rgb(255, 244, 234)' if limit < daily_limit * 0.50 else 'rgba(40, 171, 52, 51)'};
+            border-radius: 5px;
+        }}
+        QLabel {{
+            background-color: transparent;
+            color: {'#B3625A' if limit < daily_limit * 0.25 else '#F49E4C' if limit < daily_limit * 0.50 else '#4FBA74'};
+        }}
+        """
+        return qss
+
+# ================================== Budget Planner ==================================
+
+    def setupBudget(self):
+        self.limit_ui = self.get_all_children_in_frame_and_map_to_strings(self.ui.planYourBudgetFrame, QLineEdit, LIMIT_LABEL)
+        self.set_line_edits_read_only()
+        self.update_limit_labels()
+        self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
+        for ui in self.limit_ui.values():
+            ui.textChanged.connect(self.update_total_limit)
+        self.setupRoundProgressBars()
 
     def update_limit_labels(self):
         self.limits = self.manager.get_limits()
@@ -369,15 +361,6 @@ class MainWindow(QMainWindow):
     def check_total_limit(self):
         return float(self.ui.planTotalLineEdit.text()) == 100.0
     
-    def setupBudget(self):
-        self.limit_ui = self.get_all_children_in_frame_and_map_to_strings(self.ui.planYourBudgetFrame, QLineEdit, LIMIT_LABEL)
-        self.set_line_edits_read_only()
-        self.update_limit_labels()
-        self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
-        for ui in self.limit_ui.values():
-            ui.textChanged.connect(self.update_total_limit)
-        self.setupRoundProgressBars()
-
     def setupRoundProgressBars(self):
         self.roundprogressbars = []
         self.progressbars_container = self.get_all_children_in_frame_and_map_to_strings(self.ui.plan_budget_all_progresses, QFrame, LIMIT_LABEL)
@@ -408,10 +391,82 @@ class MainWindow(QMainWindow):
         if self.manager.get_max_monthly_limit(category) == 0:
             return 0
         return round(self.manager.calculate_monthly_limit(category)/self.manager.get_max_monthly_limit(category), 2)
+
+# ================================== Direct Transfer ==================================
+
+    def setupTransferPage(self):
+        self.selectable_transfer_type = self.get_all_children_in_frame_and_map_to_strings(self.ui.transfertypeframe, QPushButton, TRANSFER_TYPE_LABEL)
+        for transfer_type, ui in self.selectable_transfer_type.items():
+            ui.clicked.connect(lambda checked=False, transfer_type=transfer_type: self.update_type_selected(transfer_type))
+        self.update_type_selected(self.transfer_type_selected)
+
+    def update_type_selected(self, category):
+        for transfer_type, ui in self.selectable_transfer_type.items():
+            if transfer_type == category:
+                self.transfer_type_selected = category
+                ui.setStyleSheet("color: #F49E4C")
+            else:
+                ui.setStyleSheet("color: #C7C7C7")
         
-    def handleNavigationToScanQRCode(self):
-        self.ui.stackedWidget.setCurrentIndex(self.page["scanqrcode"])
-        self.start_camera_feed()
+        self.ui.dt_expense_amount.setText(f"{self.manager.calculate_daily_limit(category):,.2f} THB" if not category in ["return", "lend"] else "INF THB" if category == "return" else "-INF THB")
+
+    def handleTransfer(self):
+        accountID = self.ui.accountNumberLineEditDT.text()
+        amount = self.ui.amountToTransferLineEditDT.text()
+        accountIsValid = self.manager.accountNumberIsValid(accountID)
+        amountIsValid = self.amountIsValid(amount)
+        if not accountIsValid:
+            self.ui.accountNumberTransferErrorLabel.setText("Account number is invalid")
+        if accountIsValid and amountIsValid:
+            self.ui.accountNumberTransferErrorLabel.setText("")
+            if self.manager.handleTransfer(accountID, float(amount), self.transfer_type_selected):
+                self.update_window()
+                self.updateRoundProgressBars()
+                self.ui.accountNumberLineEditDT.setText("")
+                self.ui.amountToTransferLineEditDT.setText("")
+                print("Transfer success")
+                self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
+        self.update_window()
+        
+    def amountIsValid(self, amount):
+        try:
+            amount = float(amount)
+            if amount > 0:
+                self.ui.amountTransferErrorLabel.setText("")
+                return True
+            else:
+                self.ui.amountTransferErrorLabel.setText("Amount must be greater than 0")
+                return False
+        except ValueError:
+            self.ui.amountTransferErrorLabel.setText("Invalid amount")
+            return False
+
+# ================================== History page ==================================
+    
+    def update_history_page(self):
+        old_date = None
+        for transaction in self.manager.getTransactions():
+            transaction_date = transaction.date.strftime("%m/%d/%Y")
+            
+            if old_date == None or old_date.strftime("%m/%d/%Y") != transaction_date:
+                old_date = transaction.date
+                date_label = QLabel(self.ui.transaction_history_frame)
+                date_label.setObjectName(transaction_date)
+                date_label.setText(transaction_date)
+                date_label.setStyleSheet("color: #A1A5AD; font-size: 16px; font-weight: bold; font-family: Montserrat;")
+                self.ui.transaction_history_frame.layout().addWidget(date_label)
+                
+            self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction))
+            
+        self.ui.transaction_history_frame.layout().addStretch()
+
+# ================================== Others ==================================
+
+    def setupOthersPage(self):
+        self.ui.others_name_label.setText(self.manager.getName())
+        self.ui.others_email_label.setText(self.manager.getEmail())
+
+# ================================== Camera ==================================
 
     def start_camera_feed(self):
         # Open the default camera (index 0)
@@ -465,6 +520,35 @@ class MainWindow(QMainWindow):
         # Update the QLabel with the new QPixmap
         self.ui.camera_label.setPixmap(pixmap)
 
+# ================================== Event Handling & Helper Functions ==================================
+
+    def eventFilter(self, obj, event):
+        if type(event) == QMouseEvent and obj == self.ui.frame_12 and event.button() == Qt.MouseButton.LeftButton:
+            self.customPressEvent(event)
+            return True
+        return super().eventFilter(obj, event)
+
+    def customPressEvent(self, event):
+        print("Frame clicked!")
+    
+    def page_changed_handler(self):
+            if self.ui.accountNumberLineEditDT != "":
+                self.ui.accountNumberLineEditDT.setText("")
+                self.ui.accountNumberLineEditDT.setReadOnly(False)
+            if self.ui.stackedWidget.currentIndex() == self.page["budgetplanner"]:
+                for progress_bar in self.roundprogressbars:
+                    progress_bar.animate_from_zero()
+
+    def page_changed_handler_2(self):
+        if self.ui.loginError.text() != "":
+            self.ui.loginError.setText("")
+        if self.ui.registerConfirmPasswordError.text() != "":
+            self.ui.registerConfirmPasswordError.setText("")
+   
+    def handleNavigationToScanQRCode(self):
+        self.ui.stackedWidget.setCurrentIndex(self.page["scanqrcode"])
+        self.start_camera_feed()
+
     def handleRedirectFromScanQRCodeToDirectTransfer(self, accountID):
         self.ui.stackedWidget.setCurrentIndex(self.page["directtransfer"])
         self.ui.accountNumberLineEditDT.setReadOnly(True)
@@ -506,75 +590,7 @@ class MainWindow(QMainWindow):
     def get_all_children_in_frame_and_map_to_strings(self, frame, QType, child_name):
         line_edits = self.get_all_child_type_in_frame(frame, QType)
         return self.map_child_to_string(line_edits, child_name)
-
-    def update_type_selected(self, category):
-        for transfer_type, ui in self.selectable_transfer_type.items():
-            if transfer_type == category:
-                self.transfer_type_selected = category
-                ui.setStyleSheet("color: #F49E4C")
-            else:
-                ui.setStyleSheet("color: #C7C7C7")
-        
-        self.ui.dt_expense_amount.setText(f"{self.manager.calculate_daily_limit(category):,.2f} THB" if not category in ["return", "lend"] else "INF THB" if category == "return" else "-INF THB")
-
-    def handleTransfer(self):
-        accountID = self.ui.accountNumberLineEditDT.text()
-        amount = self.ui.amountToTransferLineEditDT.text()
-        accountIsValid = self.manager.accountNumberIsValid(accountID)
-        amountIsValid = self.amountIsValid(amount)
-        if not accountIsValid:
-            self.ui.accountNumberTransferErrorLabel.setText("Account number is invalid")
-        if accountIsValid and amountIsValid:
-            self.ui.accountNumberTransferErrorLabel.setText("")
-            if self.manager.handleTransfer(accountID, float(amount), self.transfer_type_selected):
-                self.update_window()
-                self.updateRoundProgressBars()
-                self.ui.accountNumberLineEditDT.setText("")
-                self.ui.amountToTransferLineEditDT.setText("")
-                print("Transfer success")
-                self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
-        self.update_window()
-        
-    def amountIsValid(self, amount):
-        try:
-            amount = float(amount)
-            if amount > 0:
-                self.ui.amountTransferErrorLabel.setText("")
-                return True
-            else:
-                self.ui.amountTransferErrorLabel.setText("Amount must be greater than 0")
-                return False
-        except ValueError:
-            self.ui.amountTransferErrorLabel.setText("Invalid amount")
-            return False
     
-    def setupOthersPage(self):
-        self.ui.others_name_label.setText(self.manager.getName())
-        self.ui.others_email_label.setText(self.manager.getEmail())
-
-    def setupTransferPage(self):
-        self.selectable_transfer_type = self.get_all_children_in_frame_and_map_to_strings(self.ui.transfertypeframe, QPushButton, TRANSFER_TYPE_LABEL)
-        for transfer_type, ui in self.selectable_transfer_type.items():
-            ui.clicked.connect(lambda checked=False, transfer_type=transfer_type: self.update_type_selected(transfer_type))
-        self.update_type_selected(self.transfer_type_selected)
-    
-    # ================================== History page ==================================
-    def update_history_page(self):
-        old_date = None
-        for transaction in self.manager.getTransactions():
-            transaction_date = transaction.date.strftime("%m/%d/%Y")
-            
-            if old_date == None or old_date.strftime("%m/%d/%Y") != transaction_date:
-                old_date = transaction.date
-                date_label = QLabel(self.ui.transaction_history_frame)
-                date_label.setObjectName(transaction_date)
-                date_label.setText(transaction_date)
-                date_label.setStyleSheet("color: #A1A5AD; font-size: 16px; font-weight: bold; font-family: Montserrat;")
-                self.ui.transaction_history_frame.layout().addWidget(date_label)
-                
-            self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction))
-            
-        self.ui.transaction_history_frame.layout().addStretch()
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
