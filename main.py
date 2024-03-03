@@ -307,7 +307,7 @@ class MainWindow(QMainWindow):
         self.ui.averageIncomeLineEdit.setText(str(float(self.manager.get_average_income())))
         # set line edit texts of limits
         for limit, ui in self.limit_ui.items():
-            ui.setText(str(self.limits[limit]))
+            ui.setText(str(self.limits[limit] * 100))
         self.ui.planTotalLineEdit.setText(str(sum(self.limits.values())))
         if self.limits["saving"] == 0:
             self.ui.budgetAmountLabel.setText(str(float(self.manager.get_average_income())))

@@ -173,7 +173,7 @@ width:0px;
                   <property name="geometry">
                    <rect>
                     <x>0</x>
-                    <y>-323</y>
+                    <y>0</y>
                     <width>391</width>
                     <height>1074</height>
                    </rect>
@@ -7096,26 +7096,53 @@ color: #F49E4C;
                     <number>0</number>
                    </property>
                    <item>
-                    <widget class="QFrame" name="transaction_history_frame">
+                    <widget class="QFrame" name="frame_37">
                      <property name="frameShape">
                       <enum>QFrame::StyledPanel</enum>
                      </property>
                      <property name="frameShadow">
                       <enum>QFrame::Raised</enum>
                      </property>
-                     <layout class="QVBoxLayout" name="verticalLayout_59">
+                     <layout class="QVBoxLayout" name="verticalLayout_67">
+                      <property name="spacing">
+                       <number>0</number>
+                      </property>
                       <property name="leftMargin">
-                       <number>20</number>
+                       <number>41</number>
                       </property>
                       <property name="topMargin">
                        <number>0</number>
                       </property>
                       <property name="rightMargin">
-                       <number>20</number>
+                       <number>41</number>
                       </property>
                       <property name="bottomMargin">
                        <number>0</number>
                       </property>
+                      <item>
+                       <widget class="QFrame" name="transaction_history_frame">
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QVBoxLayout" name="verticalLayout_59">
+                         <property name="leftMargin">
+                          <number>20</number>
+                         </property>
+                         <property name="topMargin">
+                          <number>10</number>
+                         </property>
+                         <property name="rightMargin">
+                          <number>20</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>0</number>
+                         </property>
+                        </layout>
+                       </widget>
+                      </item>
                      </layout>
                     </widget>
                    </item>
