@@ -490,13 +490,11 @@ class MainWindow(QMainWindow):
 #=================================== My QR Code ==================================
             
     def createMyQRcode(self):
-        pass
-
-        # AccountID = self.manager.get_account_number()
-        # myQRcode = qrcode.make(AccountID)
-        # pil_myQR = myQRcode.get_image()
-        # pixmap = pil_myQR.toqpixmap()
-        # self.ui.myQRcodeframe.setPixmap(pixmap)
+        AccountID = self.manager.get_account_number()
+        myQRcode = qrcode.make(AccountID)
+        pil_myQR = myQRcode.get_image()
+        pixmap = pil_myQR.toqpixmap()
+        self.ui.myQRcodeLabel.setPixmap(pixmap)
 
 
 
