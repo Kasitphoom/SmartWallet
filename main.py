@@ -93,14 +93,15 @@ class MainWindow(QMainWindow):
             self.setupBudget()
             self.setupOthersPage()
             self.setupTransferPage()
+            # generate My QR code
+            self.createMyQRcode()
         else:
             self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
         
         self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
         self.ui.frame_10.installEventFilter(self)
 
-        # generate My QR code
-        self.createMyQRcode()
+        
         
         # login page
         self.ui.loginButton.clicked.connect(self.handleLogin)
@@ -143,6 +144,14 @@ class MainWindow(QMainWindow):
 
         # setup transfer confirm button
         self.ui.dt_confirmButton.clicked.connect(self.handleTransfer)
+        
+        # handle history type change
+        self.ui.history_all_button.clicked.connect(lambda: self.update_history_page("all"))
+        self.ui.history_expense_button.clicked.connect(lambda: self.update_history_page("expense"))
+        self.ui.history_income_button.clicked.connect(lambda: self.update_history_page("income"))
+        
+        # handle logout
+        self.ui.logout_button.clicked.connect(self.handleLogout)
 
 # ================================== Login and Registration Handling ==================================
 
@@ -169,6 +178,7 @@ class MainWindow(QMainWindow):
             self.setupBudget()
             self.setupTransferPage()
             self.setupOthersPage()
+            self.createMyQRcode()
         else:
             self.ui.loginError.setText("Invalid email or password")
 
@@ -451,13 +461,16 @@ class MainWindow(QMainWindow):
 
 # ================================== History page ==================================
     
-    def update_history_page(self):
+    def update_history_page(self, history_type="all"):
         for i in reversed(range(self.ui.transaction_history_frame.layout().count())):
-            self.ui.transaction_history_frame.layout().itemAt(i).widget().destroy()
+            item = self.ui.transaction_history_frame.layout().itemAt(i)
+            if item.widget():
+                item.widget().deleteLater()
+            elif item.spacerItem():
+                self.ui.transaction_history_frame.layout().takeAt(i)
         
         old_date = None
         for transaction in self.manager.getTransactionsHistory():
-            transaction
             transaction_date = transaction.date.strftime("%d/%m/%Y")
             
             if old_date == None or old_date.strftime("%d/%m/%Y") != transaction_date:
@@ -467,8 +480,15 @@ class MainWindow(QMainWindow):
                 date_label.setText(transaction_date)
                 date_label.setStyleSheet("color: #A1A5AD; font-size: 16px; font-weight: bold; font-family: Montserrat;")
                 self.ui.transaction_history_frame.layout().addWidget(date_label)
-                
-            self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction, self.manager.get_account_number()))
+            
+            if history_type == "expense":
+                if transaction.sender.getID() == self.manager.get_account_number():
+                    self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction, self.manager.get_account_number()))
+            elif history_type == "income":
+                if transaction.recipient.getID() == self.manager.get_account_number():
+                    self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction, self.manager.get_account_number()))
+            else:
+                self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction, self.manager.get_account_number()))
             
         self.ui.transaction_history_frame.layout().addStretch()
 
@@ -491,14 +511,17 @@ class MainWindow(QMainWindow):
 
     def start_camera_feed(self):
         # Open the default camera (index 0)
-        self.capture = cv2.VideoCapture(0)
+        self.capture = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+        ret, frame = self.capture.read()
+        if not ret:
+            self.capture = cv2.VideoCapture(0)
         # Set the width of the captured frame to 1200 pixels
-        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1250)
+        # self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, self.ui.camera_label.width())
         # Start a timer that triggers the update_camera_feed method at regular intervals
         self.camera_timer = QTimer(self)
         self.camera_timer.timeout.connect(self.update_camera_feed)
         # Start the timer with a timeout value of 50 millisecond (adjust as needed)
-        self.camera_timer.start(50)
+        self.camera_timer.start(30)
 
     @Slot()
     def update_camera_feed(self):
@@ -508,7 +531,10 @@ class MainWindow(QMainWindow):
         if not ret:
             print("Failed to capture frame")
             return
-
+        
+        frame = self.scale_image_by_height(frame, self.ui.camera_label.height())
+        frame = self.center_crop(frame, (self.ui.camera_label.width(), self.ui.camera_label.height()))
+        
         # Detect a QR code from the frame
         accountID, bbox, _ = self.detector.detectAndDecode(frame)
         # Check if a QR code is detected
@@ -527,19 +553,43 @@ class MainWindow(QMainWindow):
             self.capture.release()
             return
 
-        # Crop the frame to remove the excess part (adjust as needed)
-        crop_rect = QRect(550, 0, self.ui.camera_label.width(), self.ui.camera_label.height())
-        cropped_frame = frame[crop_rect.y():crop_rect.y() + crop_rect.height(), crop_rect.x():crop_rect.x() + crop_rect.width()].copy()
-
         # Convert the OpenCV frame to QImage
-        height, width, _ = cropped_frame.shape
-        qimg = QImage(cropped_frame.data, width, height, cropped_frame.strides[0], QImage.Format_BGR888)
+        height, width, _ = frame.shape
+        # Create a deep copy of the frame to ensure continuous memory
+        frame_copy = frame.copy()
+        qimg = QImage(frame_copy.data, width, height, frame_copy.strides[0], QImage.Format_BGR888)
 
         # Convert QImage to QPixmap for displaying
         pixmap = QPixmap.fromImage(qimg)
 
         # Update the QLabel with the new QPixmap
         self.ui.camera_label.setPixmap(pixmap)
+    
+    def center_crop(self, img, dim):
+        """Returns center cropped image
+        Args:
+        img: image to be center cropped
+        dim: dimensions (width, height) to be cropped
+        """
+        width, height = img.shape[1], img.shape[0]
+
+        # process crop width and height for max available dimension
+        crop_width = dim[0] if dim[0]<img.shape[1] else img.shape[1]
+        crop_height = dim[1] if dim[1]<img.shape[0] else img.shape[0] 
+        mid_x, mid_y = int(width/2), int(height/2)
+        cw2, ch2 = int(crop_width/2), int(crop_height/2) 
+        crop_img = img[mid_y-ch2:mid_y+ch2, mid_x-cw2:mid_x+cw2]
+        return crop_img
+
+    def scale_image_by_height(self, img, height, factor=1):
+        """Returns resize image by scale factor.
+        This helps to retain resolution ratio while resizing.
+        Args:
+        img: image to be scaled
+        factor: scale factor to resize
+        """
+        ratio = img.shape[1] / img.shape[0]
+        return cv2.resize(img, (int(height * ratio * factor), height * factor))
 
 # ================================== Event Handling & Helper Functions ==================================
 
@@ -611,6 +661,12 @@ class MainWindow(QMainWindow):
     def get_all_children_in_frame_and_map_to_strings(self, frame, QType, child_name):
         line_edits = self.get_all_child_type_in_frame(frame, QType)
         return self.map_child_to_string(line_edits, child_name)
+    
+    def handleLogout(self):
+        with open(USER_CACHE_FILE, "wb") as f:
+            user_cache = ""
+            pickle.dump(user_cache, f)
+        self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
     
         
 if __name__ == "__main__":
