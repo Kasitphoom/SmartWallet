@@ -452,12 +452,12 @@ class MainWindow(QMainWindow):
 # ================================== History page ==================================
     
     def update_history_page(self):
-        for child in self.ui.transaction_history_frame.children():
-            if type(child) != QVBoxLayout:
-                child.deleteLater()
+        for i in reversed(range(self.ui.transaction_history_frame.layout().count())):
+            self.ui.transaction_history_frame.layout().itemAt(i).widget().destroy()
         
         old_date = None
-        for transaction in self.manager.getTransactions():
+        for transaction in self.manager.getTransactionsHistory():
+            transaction
             transaction_date = transaction.date.strftime("%d/%m/%Y")
             
             if old_date == None or old_date.strftime("%d/%m/%Y") != transaction_date:
@@ -468,7 +468,7 @@ class MainWindow(QMainWindow):
                 date_label.setStyleSheet("color: #A1A5AD; font-size: 16px; font-weight: bold; font-family: Montserrat;")
                 self.ui.transaction_history_frame.layout().addWidget(date_label)
                 
-            self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction))
+            self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction, self.manager.get_account_number()))
             
         self.ui.transaction_history_frame.layout().addStretch()
 

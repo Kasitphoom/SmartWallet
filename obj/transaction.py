@@ -2,7 +2,7 @@ import persistent
 from datetime import datetime
 from obj.account import Account
 class Transaction(persistent.Persistent):
-    def __init__(self, transactionID: str, date: datetime, amount: float, sender: str, recipient: str, spendlimit: int = 0, saved: int = 0, spend: int = 0, description: str = ""):
+    def __init__(self, transactionID: str, date: datetime, amount: float, sender: Account, recipient: Account, spendlimit: int = 0, saved: int = 0, spend: int = 0, description: str = ""):
         self.transactionID = transactionID
         self.date = date
         self.amount = amount
