@@ -508,14 +508,14 @@ class MainWindow(QMainWindow):
 
     def start_camera_feed(self):
         # Open the default camera (index 0)
-        self.capture = cv2.VideoCapture(0)
+        self.capture = cv2.VideoCapture(0, cv2.CAP_DSHOW)
         # Set the width of the captured frame to 1200 pixels
-        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 1250)
+        # self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, self.ui.camera_label.width())
         # Start a timer that triggers the update_camera_feed method at regular intervals
         self.camera_timer = QTimer(self)
         self.camera_timer.timeout.connect(self.update_camera_feed)
         # Start the timer with a timeout value of 50 millisecond (adjust as needed)
-        self.camera_timer.start(50)
+        self.camera_timer.start(30)
 
     @Slot()
     def update_camera_feed(self):
@@ -525,7 +525,10 @@ class MainWindow(QMainWindow):
         if not ret:
             print("Failed to capture frame")
             return
-
+        
+        frame = self.scale_image_by_height(frame, self.ui.camera_label.height())
+        frame = self.center_crop(frame, (self.ui.camera_label.width(), self.ui.camera_label.height()))
+        
         # Detect a QR code from the frame
         accountID, bbox, _ = self.detector.detectAndDecode(frame)
         # Check if a QR code is detected
@@ -544,19 +547,43 @@ class MainWindow(QMainWindow):
             self.capture.release()
             return
 
-        # Crop the frame to remove the excess part (adjust as needed)
-        crop_rect = QRect(550, 0, self.ui.camera_label.width(), self.ui.camera_label.height())
-        cropped_frame = frame[crop_rect.y():crop_rect.y() + crop_rect.height(), crop_rect.x():crop_rect.x() + crop_rect.width()].copy()
-
         # Convert the OpenCV frame to QImage
-        height, width, _ = cropped_frame.shape
-        qimg = QImage(cropped_frame.data, width, height, cropped_frame.strides[0], QImage.Format_BGR888)
+        height, width, _ = frame.shape
+        # Create a deep copy of the frame to ensure continuous memory
+        frame_copy = frame.copy()
+        qimg = QImage(frame_copy.data, width, height, frame_copy.strides[0], QImage.Format_BGR888)
 
         # Convert QImage to QPixmap for displaying
         pixmap = QPixmap.fromImage(qimg)
 
         # Update the QLabel with the new QPixmap
         self.ui.camera_label.setPixmap(pixmap)
+    
+    def center_crop(self, img, dim):
+        """Returns center cropped image
+        Args:
+        img: image to be center cropped
+        dim: dimensions (width, height) to be cropped
+        """
+        width, height = img.shape[1], img.shape[0]
+
+        # process crop width and height for max available dimension
+        crop_width = dim[0] if dim[0]<img.shape[1] else img.shape[1]
+        crop_height = dim[1] if dim[1]<img.shape[0] else img.shape[0] 
+        mid_x, mid_y = int(width/2), int(height/2)
+        cw2, ch2 = int(crop_width/2), int(crop_height/2) 
+        crop_img = img[mid_y-ch2:mid_y+ch2, mid_x-cw2:mid_x+cw2]
+        return crop_img
+
+    def scale_image_by_height(self, img, height, factor=1):
+        """Returns resize image by scale factor.
+        This helps to retain resolution ratio while resizing.
+        Args:
+        img: image to be scaled
+        factor: scale factor to resize
+        """
+        ratio = img.shape[1] / img.shape[0]
+        return cv2.resize(img, (int(height * ratio * factor), height * factor))
 
 # ================================== Event Handling & Helper Functions ==================================
 
