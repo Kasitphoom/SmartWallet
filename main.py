@@ -481,8 +481,6 @@ class MainWindow(QMainWindow):
         pixmap = pil_myQR.toqpixmap()
         self.ui.myQRcodeLabel.setPixmap(pixmap)
 
-
-
 # ================================== Others ==================================
 
     def setupOthersPage(self):
