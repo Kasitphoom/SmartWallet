@@ -157,7 +157,7 @@ color: rgb(0, 0, 0);</string>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">
-width:0px;
+width:10px;
 </string>
                  </property>
                  <property name="horizontalScrollBarPolicy">
@@ -7075,8 +7075,8 @@ color: #F49E4C;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>391</width>
-                    <height>555</height>
+                    <width>122</width>
+                    <height>16</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_60">
@@ -7975,24 +7975,21 @@ background-color: rgb(167, 202, 255);</string>
                 </widget>
                </item>
                <item>
-                <widget class="QFrame" name="myQRcodeframe">
+                <widget class="QLabel" name="myQRcodeLabel">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="minimumSize">
                   <size>
                    <width>300</width>
                    <height>300</height>
                   </size>
                  </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>300</width>
-                   <height>300</height>
-                  </size>
-                 </property>
-                 <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
+                 <property name="text">
+                  <string/>
                  </property>
                 </widget>
                </item>
