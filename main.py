@@ -93,14 +93,15 @@ class MainWindow(QMainWindow):
             self.setupBudget()
             self.setupOthersPage()
             self.setupTransferPage()
+            # generate My QR code
+            self.createMyQRcode()
         else:
             self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
         
         self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
         self.ui.frame_10.installEventFilter(self)
 
-        # generate My QR code
-        self.createMyQRcode()
+        
         
         # login page
         self.ui.loginButton.clicked.connect(self.handleLogin)
@@ -148,6 +149,9 @@ class MainWindow(QMainWindow):
         self.ui.history_all_button.clicked.connect(lambda: self.update_history_page("all"))
         self.ui.history_expense_button.clicked.connect(lambda: self.update_history_page("expense"))
         self.ui.history_income_button.clicked.connect(lambda: self.update_history_page("income"))
+        
+        # handle logout
+        self.ui.logout_button.clicked.connect(self.handleLogout)
 
 # ================================== Login and Registration Handling ==================================
 
@@ -174,6 +178,7 @@ class MainWindow(QMainWindow):
             self.setupBudget()
             self.setupTransferPage()
             self.setupOthersPage()
+            self.createMyQRcode()
         else:
             self.ui.loginError.setText("Invalid email or password")
 
@@ -658,6 +663,12 @@ class MainWindow(QMainWindow):
     def get_all_children_in_frame_and_map_to_strings(self, frame, QType, child_name):
         line_edits = self.get_all_child_type_in_frame(frame, QType)
         return self.map_child_to_string(line_edits, child_name)
+    
+    def handleLogout(self):
+        with open(USER_CACHE_FILE, "wb") as f:
+            user_cache = ""
+            pickle.dump(user_cache, f)
+        self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
     
         
 if __name__ == "__main__":
