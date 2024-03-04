@@ -32,8 +32,8 @@ class WalletManager():
     def isSelfExpense(self, transaction):
         return transaction.sender == self.get_account_number()
     
-    def getTransactions(self):
-        return self.account.transactions
+    def getTransactionsHistory(self):
+        return self.account.transactions[::-1]
     
     def calculate_daily_limit(self, category):
         # limit is monthly limit divided by number of days in that month minus with all transactions in that category in that day
@@ -139,23 +139,23 @@ class WalletManager():
         
         match transferType:
             case "food":
-                transaction = Food(transactionID, self.current_date, amount, self.get_account_number(), accountID, self.calculate_daily_limit("food"), amount / self.calculate_daily_limit("food") * 100, (1 - amount / self.calculate_daily_limit("food")) * 100)
+                transaction = Food(transactionID, self.current_date, amount, self.account, root.accounts[accountID], self.calculate_daily_limit("food"), amount / self.calculate_daily_limit("food") * 100, (1 - amount / self.calculate_daily_limit("food")) * 100)
             case "housing":
-                transaction = Housing(transactionID, self.current_date, amount, self.get_account_number(), accountID, self.calculate_daily_limit("housing"), amount / self.calculate_daily_limit("housing") * 100, (1 - amount / self.calculate_daily_limit("housing")) * 100)
+                transaction = Housing(transactionID, self.current_date, amount, self.account, root.accounts[accountID], self.calculate_daily_limit("housing"), amount / self.calculate_daily_limit("housing") * 100, (1 - amount / self.calculate_daily_limit("housing")) * 100)
             case "transport":
-                transaction = Transport(transactionID, self.current_date, amount, self.get_account_number(), accountID, self.calculate_daily_limit("transport"), amount / self.calculate_daily_limit("transport") * 100, (1 - amount / self.calculate_daily_limit("transport")) * 100)
+                transaction = Transport(transactionID, self.current_date, amount, self.account, root.accounts[accountID], self.calculate_daily_limit("transport"), amount / self.calculate_daily_limit("transport") * 100, (1 - amount / self.calculate_daily_limit("transport")) * 100)
             case "entertainment":
-                transaction = Entertainment(transactionID, self.current_date, amount, self.get_account_number(), accountID, self.calculate_daily_limit("entertainment"), amount / self.calculate_daily_limit("entertainment") * 100, (1 - amount / self.calculate_daily_limit("entertainment")) * 100)
+                transaction = Entertainment(transactionID, self.current_date, amount, self.account, root.accounts[accountID], self.calculate_daily_limit("entertainment"), amount / self.calculate_daily_limit("entertainment") * 100, (1 - amount / self.calculate_daily_limit("entertainment")) * 100)
             case "healthcare":
-                transaction = Healthcare(transactionID, self.current_date, amount, self.get_account_number(), accountID, self.calculate_daily_limit("healthcare"), amount / self.calculate_daily_limit("healthcare") * 100, (1 - amount / self.calculate_daily_limit("healthcare")) * 100)
+                transaction = Healthcare(transactionID, self.current_date, amount, self.account, root.accounts[accountID], self.calculate_daily_limit("healthcare"), amount / self.calculate_daily_limit("healthcare") * 100, (1 - amount / self.calculate_daily_limit("healthcare")) * 100)
             case "lend":
-                transaction = Lend(transactionID, self.current_date, amount, self.get_account_number(), accountID, "-INF", 0, amount)
+                transaction = Lend(transactionID, self.current_date, amount, self.account, root.accounts[accountID], "-INF", 0, amount)
             case "return":
-                transaction = Return(transactionID, self.current_date, amount, self.get_account_number(), accountID, "INF", 0, amount)
+                transaction = Return(transactionID, self.current_date, amount, self.account, root.accounts[accountID], "INF", 0, amount)
             case "others":
-                transaction = Others(transactionID, self.current_date, amount, self.get_account_number(), accountID, self.calculate_daily_limit("others"), amount / self.calculate_daily_limit("others") * 100, (1 - amount / self.calculate_daily_limit("others")) * 100)
+                transaction = Others(transactionID, self.current_date, amount, self.account, root.accounts[accountID], self.calculate_daily_limit("others"), amount / self.calculate_daily_limit("others") * 100, (1 - amount / self.calculate_daily_limit("others")) * 100)
             case _:
-                transaction = Transaction(transactionID, self.current_date, amount, self.get_account_number(), accountID)
+                transaction = Transaction(transactionID, self.current_date, amount, self.account, root.accounts[accountID])
         
         if transaction.isOverLimit():
             print("Over limit")
