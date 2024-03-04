@@ -509,6 +509,9 @@ class MainWindow(QMainWindow):
     def start_camera_feed(self):
         # Open the default camera (index 0)
         self.capture = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+        ret, frame = self.capture.read()
+        if not ret:
+            self.capture = cv2.VideoCapture(0)
         # Set the width of the captured frame to 1200 pixels
         # self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, self.ui.camera_label.width())
         # Start a timer that triggers the update_camera_feed method at regular intervals
