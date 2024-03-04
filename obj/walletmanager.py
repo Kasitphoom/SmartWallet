@@ -30,7 +30,7 @@ class WalletManager():
         return "{:,}".format(self.account.getBalance())
     
     def isSelfExpense(self, transaction):
-        return transaction.sender == self.get_account_number()
+        return transaction.sender == self.account
     
     def getTransactionsHistory(self):
         return self.account.transactions[::-1]

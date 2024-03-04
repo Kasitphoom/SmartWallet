@@ -143,6 +143,11 @@ class MainWindow(QMainWindow):
 
         # setup transfer confirm button
         self.ui.dt_confirmButton.clicked.connect(self.handleTransfer)
+        
+        # handle history type change
+        self.ui.history_all_button.clicked.connect(lambda: self.update_history_page("all"))
+        self.ui.history_expense_button.clicked.connect(lambda: self.update_history_page("expense"))
+        self.ui.history_income_button.clicked.connect(lambda: self.update_history_page("income"))
 
 # ================================== Login and Registration Handling ==================================
 
@@ -451,13 +456,16 @@ class MainWindow(QMainWindow):
 
 # ================================== History page ==================================
     
-    def update_history_page(self):
+    def update_history_page(self, history_type="all"):
         for i in reversed(range(self.ui.transaction_history_frame.layout().count())):
-            self.ui.transaction_history_frame.layout().itemAt(i).widget().destroy()
+            item = self.ui.transaction_history_frame.layout().itemAt(i)
+            if item.widget():
+                item.widget().deleteLater()
+            elif item.spacerItem():
+                self.ui.transaction_history_frame.layout().takeAt(i)
         
         old_date = None
         for transaction in self.manager.getTransactionsHistory():
-            transaction
             transaction_date = transaction.date.strftime("%d/%m/%Y")
             
             if old_date == None or old_date.strftime("%d/%m/%Y") != transaction_date:
@@ -467,8 +475,15 @@ class MainWindow(QMainWindow):
                 date_label.setText(transaction_date)
                 date_label.setStyleSheet("color: #A1A5AD; font-size: 16px; font-weight: bold; font-family: Montserrat;")
                 self.ui.transaction_history_frame.layout().addWidget(date_label)
-                
-            self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction, self.manager.get_account_number()))
+            
+            if history_type == "expense":
+                if transaction.sender.getID() == self.manager.get_account_number():
+                    self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction, self.manager.get_account_number()))
+            elif history_type == "income":
+                if transaction.recipient.getID() == self.manager.get_account_number():
+                    self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction, self.manager.get_account_number()))
+            else:
+                self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction, self.manager.get_account_number()))
             
         self.ui.transaction_history_frame.layout().addStretch()
 
