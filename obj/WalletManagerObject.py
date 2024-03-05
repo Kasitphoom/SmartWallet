@@ -25,9 +25,10 @@ class TransactionFrame(QFrame):
         self.layout.setObjectName("HorizontalLayout")
         
         self.receiver_label = QLabel(self)
-        self.receiver_label.setText(self.transaction.recipient.getName() if self.checkExpense() else self.transaction.sender.getName())
+        name = self.transaction.recipient.getName() if self.checkExpense() else self.transaction.sender.getName()
+        self.receiver_label.setText((name[:13] + '...') if len(name) > 13 else name)
         self.receiver_label.setAlignment(Qt.AlignBottom)
-        self.receiver_label.setStyleSheet("width: 100px; text-overflow: ellipsis;")
+        self.receiver_label.setStyleSheet("width: 100px;")
         self.layout.addWidget(self.receiver_label)
         
         self.amount_type_layout = QHBoxLayout()
