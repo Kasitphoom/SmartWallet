@@ -53,8 +53,8 @@ class Account(persistent.Persistent):
         return self.email
         
     def getBalance(self):
-        """Return in format of 1,000 THB"""
-        return self.balance
+        # return balance that is formatted to 2 decimal places
+        return round(self.balance, 2)
 
     def getMonthlyLimits(self):
         return self.monthly_limits

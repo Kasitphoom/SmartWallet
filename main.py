@@ -100,13 +100,13 @@ class MainWindow(QMainWindow):
             self.setupTransferPage()
             # generate My QR code
             self.createMyQRcode()
+            # generate My QR code
+            self.createMyQRcode()
         else:
             self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
         
         self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
         self.ui.frame_10.installEventFilter(self)
-
-        
         
         # login page
         self.ui.loginButton.clicked.connect(self.handleLogin)
