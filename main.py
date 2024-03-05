@@ -100,8 +100,6 @@ class MainWindow(QMainWindow):
             self.setupTransferPage()
             # generate My QR code
             self.createMyQRcode()
-            # generate My QR code
-            self.createMyQRcode()
         else:
             self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
         
@@ -389,13 +387,18 @@ class MainWindow(QMainWindow):
     def check_total_limit(self):
         return float(self.ui.planTotalLineEdit.text()) == 100.0
     
-    def setupRoundProgressBars(self):
+    def setupRoundProgressBars(self):     
         self.roundprogressbars = []
         self.progressbars_container = self.get_all_children_in_frame_and_map_to_strings(self.ui.plan_budget_all_progresses, QFrame, LIMIT_LABEL)
         self.progressbars_label = self.get_all_children_in_frame_and_map_to_strings(self.ui.plan_budget_all_progresses, QLabel, LIMIT_LABEL)
         for category, ui in self.progressbars_container.items():
             self.roundprogressbar = roundProgressBar(self, category)
             self.roundprogressbar.setObjectName(category + "ProgressBar")
+            
+            item = ui.layout().itemAt(0)
+            if item:
+                item.widget().deleteLater()
+            
             ui.layout().addWidget(self.roundprogressbar)
             self.roundprogressbar.update_value(self.check_if_limit_is_zero(self.roundprogressbar, category))
             self.progressbars_label[category].setText(str(int(self.cal_used_monthly_limit_category(category) * 100)) + "%")
