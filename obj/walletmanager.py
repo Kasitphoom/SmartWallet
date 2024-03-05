@@ -16,6 +16,9 @@ class WalletManager():
     def __init__(self):
         self.account: Account = None
         self.current_date = datetime.now()
+
+    def get_account_name(self):
+        return self.account.getName()
     
     def get_account_number_non_visible(self):
         return f"xxx-x-{str(self.get_account_number())[4:8]}-x"
