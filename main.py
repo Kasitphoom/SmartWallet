@@ -1,7 +1,7 @@
 import sys
 
 from PySide6 import QtCore, QtWidgets
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout, QCheckBox
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout, QCheckBox, QFileDialog
 from PySide6.QtCore import QSize, QRect, Qt, Slot, QTimer
 from PySide6.QtGui import QFont, QFontDatabase, QMouseEvent, QImage, QPixmap
 from mainwindow import Ui_MainWindow
@@ -11,6 +11,8 @@ from py_toggle import ToggleSwitch
 from pathlib import Path
 
 from datetime import datetime
+
+from PIL import Image, ImageDraw, ImageFont
 
 from obj.walletmanager import WalletManager
 from obj.account import Account
@@ -50,6 +52,7 @@ class MainWindow(QMainWindow):
         self.current_date = datetime.now()
         # self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 1000)
         self.detector = cv2.QRCodeDetector()
+        self.pil_myQr = None
         self.page = {
             # stacked widget
             "dashboard": 0,
@@ -154,6 +157,9 @@ class MainWindow(QMainWindow):
         
         # handle logout
         self.ui.logout_button.clicked.connect(self.handleLogout)
+
+        # setup my QR code page
+        self.ui.saveMyQRcodeButton.clicked.connect(self.saveMyQRcode)
 
 # ================================== Login and Registration Handling ==================================
 
@@ -504,9 +510,48 @@ class MainWindow(QMainWindow):
     def createMyQRcode(self):
         AccountID = self.manager.get_account_number()
         myQRcode = qrcode.make(AccountID)
-        pil_myQR = myQRcode.get_image()
-        pixmap = pil_myQR.toqpixmap()
+        pil_myQr = myQRcode.get_image()
+        self.pil_myQr = self.add_infomation_to_myQRcode(myQRcode, "Account: ")
+        pixmap = pil_myQr.toqpixmap()
         self.ui.myQRcodeLabel.setPixmap(pixmap)
+
+    def saveMyQRcode(self):
+        file_dialog = QFileDialog()
+        file_dialog.setFileMode(QFileDialog.AnyFile)
+        file_dialog.setAcceptMode(QFileDialog.AcceptSave)
+        file_dialog.setNameFilter("Image files (*.png, *.jpg, *.jpeg, *.xpm, *.bmp)")
+        file_dialog.setDefaultSuffix("png")
+        file_dialog.setWindowTitle("Save My QR Code")
+        file_dialog.selectFile("MyQRCode.png")
+        file_dialog.setDirectory(str(Path.home()))
+
+        if file_dialog.exec_():
+            file_path = file_dialog.selectedFiles()[0]
+            self.pil_myQr.save(file_path, "PNG")
+
+
+    def add_infomation_to_myQRcode(self, qr_code_image, additional_info):
+        # Create a new image with the QR code and additional information
+        new_image = Image.new('RGB', (max(qr_code_image.size[0], 200), qr_code_image.size[1] + 50), color="#4FBA74")
+
+        # Paste the QR code into the new image
+        new_image.paste(qr_code_image, (0, 0))
+
+        # Draw additional information below the QR code
+        draw = ImageDraw.Draw(new_image)
+        font = ImageFont.load_default()
+        
+
+        # Get the bounding box of the text
+        text_box = draw.textbbox(((new_image.width - qr_code_image.size[0]) // 2, qr_code_image.size[1]),
+                                  additional_info, font=font)
+
+        # Draw the text using the bounding box
+        draw.text(text_box[:2], additional_info, font=font, fill='black')
+
+        return new_image
+
+
 
 # ================================== Parental Control ==================================
         
