@@ -1,10 +1,12 @@
 import sys
 
 from PySide6 import QtCore, QtWidgets
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout, QCheckBox
 from PySide6.QtCore import QSize, QRect, Qt, Slot, QTimer
 from PySide6.QtGui import QFont, QFontDatabase, QMouseEvent, QImage, QPixmap
 from mainwindow import Ui_MainWindow
+
+from py_toggle import ToggleSwitch
 
 from pathlib import Path
 
@@ -126,6 +128,7 @@ class MainWindow(QMainWindow):
         self.ui.othersButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["others"]))
         self.ui.setting_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["setting"]))
         self.ui.fmyqrButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["myQRcode"]))
+        self.ui.parental_control_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["parentalcontrol"]))
 
 
         # back buttons
@@ -136,6 +139,7 @@ class MainWindow(QMainWindow):
         self.ui.scanQRCodeBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["transfer"]))
         self.ui.settingBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["others"]))
         self.ui.transferbackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
+        self.ui.parentalControlBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["setting"]))
 
 
         # handle page change
@@ -501,11 +505,31 @@ class MainWindow(QMainWindow):
         pixmap = pil_myQR.toqpixmap()
         self.ui.myQRcodeLabel.setPixmap(pixmap)
 
+# ================================== Parental Control ==================================
+        
+    def pcToggleSetup(self):
+        self.parental_control_toggle = ToggleSwitch(width=64)
+        self.parental_control_toggle.setObjectName("parentalControlToggle")
+        # self.parental_control_toggle.setChecked(self.manager.getParentalControl())
+        # self.parental_control_toggle.stateChanged.connect(self.toggleParentalControl)
+        self.ui.pcPCMSwitchframe.layout().addWidget(self.parental_control_toggle)
+
+        self.allow_over_budget_toggle = ToggleSwitch(width=64)
+        self.allow_over_budget_toggle.setObjectName("allowOverBudgetToggle")
+        # self.allow_over_budget_toggle.setChecked(self.manager.getAllowOverBudget())
+        # self.allow_over_budget_toggle.stateChanged.connect(self.toggleAllowOverBudget)
+        self.ui.pcAOBSwitchframe.layout().addWidget(self.allow_over_budget_toggle)
+
+
 # ================================== Others ==================================
 
     def setupOthersPage(self):
         self.ui.others_name_label.setText(self.manager.getName())
         self.ui.others_email_label.setText(self.manager.getEmail())
+
+        # add toggle switch
+        self.pcToggleSetup()
+
 
 # ================================== Camera ==================================
 
