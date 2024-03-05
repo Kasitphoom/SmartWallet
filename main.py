@@ -1,10 +1,12 @@
 import sys
 
 from PySide6 import QtCore, QtWidgets
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout, QCheckBox
 from PySide6.QtCore import QSize, QRect, Qt, Slot, QTimer
 from PySide6.QtGui import QFont, QFontDatabase, QMouseEvent, QImage, QPixmap
 from mainwindow import Ui_MainWindow
+
+from py_toggle import ToggleSwitch
 
 from pathlib import Path
 
@@ -95,6 +97,8 @@ class MainWindow(QMainWindow):
             self.setupTransferPage()
             # generate My QR code
             self.createMyQRcode()
+            # generate My QR code
+            self.createMyQRcode()
         else:
             self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
         
@@ -124,6 +128,7 @@ class MainWindow(QMainWindow):
         self.ui.othersButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["others"]))
         self.ui.setting_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["setting"]))
         self.ui.fmyqrButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["myQRcode"]))
+        self.ui.parental_control_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["parentalcontrol"]))
 
 
         # back buttons
@@ -134,6 +139,7 @@ class MainWindow(QMainWindow):
         self.ui.scanQRCodeBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["transfer"]))
         self.ui.settingBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["others"]))
         self.ui.transferbackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
+        self.ui.parentalControlBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["setting"]))
 
 
         # handle page change
@@ -147,6 +153,9 @@ class MainWindow(QMainWindow):
         self.ui.history_all_button.clicked.connect(lambda: self.update_history_page("all"))
         self.ui.history_expense_button.clicked.connect(lambda: self.update_history_page("expense"))
         self.ui.history_income_button.clicked.connect(lambda: self.update_history_page("income"))
+        
+        # handle logout
+        self.ui.logout_button.clicked.connect(self.handleLogout)
 
 # ================================== Login and Registration Handling ==================================
 
@@ -173,6 +182,7 @@ class MainWindow(QMainWindow):
             self.setupBudget()
             self.setupTransferPage()
             self.setupOthersPage()
+            self.createMyQRcode()
         else:
             self.ui.loginError.setText("Invalid email or password")
 
@@ -495,6 +505,26 @@ class MainWindow(QMainWindow):
         pixmap = pil_myQR.toqpixmap()
         self.ui.myQRcodeLabel.setPixmap(pixmap)
 
+# ================================== Parental Control ==================================
+        
+    def pcToggleSetup(self):
+        self.parental_control_toggle = ToggleSwitch(width=64)
+        self.parental_control_toggle.setObjectName("parentalControlToggle")
+        # self.parental_control_toggle.setChecked(self.manager.getParentalControl())
+        # self.parental_control_toggle.stateChanged.connect(self.toggleParentalControl)
+        self.ui.pcPCMSwitchframe.layout().addWidget(self.parental_control_toggle)
+
+        self.allow_over_budget_toggle = ToggleSwitch(width=64)
+        self.allow_over_budget_toggle.setObjectName("allowOverBudgetToggle")
+        # self.allow_over_budget_toggle.setChecked(self.manager.getAllowOverBudget())
+        # self.allow_over_budget_toggle.stateChanged.connect(self.toggleAllowOverBudget)
+        self.ui.pcAOBSwitchframe.layout().addWidget(self.allow_over_budget_toggle)
+
+    def toggleParentalControl(self):
+        pass
+
+    def toggleAllowOverBudget(self):
+        pass
 
 
 # ================================== Others ==================================
@@ -503,11 +533,18 @@ class MainWindow(QMainWindow):
         self.ui.others_name_label.setText(self.manager.getName())
         self.ui.others_email_label.setText(self.manager.getEmail())
 
+        # add toggle switch
+        self.pcToggleSetup()
+
+
 # ================================== Camera ==================================
 
     def start_camera_feed(self):
         # Open the default camera (index 0)
         self.capture = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+        ret, frame = self.capture.read()
+        if not ret:
+            self.capture = cv2.VideoCapture(0)
         # Set the width of the captured frame to 1200 pixels
         # self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, self.ui.camera_label.width())
         # Start a timer that triggers the update_camera_feed method at regular intervals
@@ -654,6 +691,12 @@ class MainWindow(QMainWindow):
     def get_all_children_in_frame_and_map_to_strings(self, frame, QType, child_name):
         line_edits = self.get_all_child_type_in_frame(frame, QType)
         return self.map_child_to_string(line_edits, child_name)
+    
+    def handleLogout(self):
+        with open(USER_CACHE_FILE, "wb") as f:
+            user_cache = ""
+            pickle.dump(user_cache, f)
+        self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
     
         
 if __name__ == "__main__":

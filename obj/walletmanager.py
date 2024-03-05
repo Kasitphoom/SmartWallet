@@ -149,9 +149,9 @@ class WalletManager():
             case "healthcare":
                 transaction = Healthcare(transactionID, self.current_date, amount, self.account, root.accounts[accountID], self.calculate_daily_limit("healthcare"), amount / self.calculate_daily_limit("healthcare") * 100, (1 - amount / self.calculate_daily_limit("healthcare")) * 100)
             case "lend":
-                transaction = Lend(transactionID, self.current_date, amount, self.account, root.accounts[accountID], "-INF", 0, amount)
+                transaction = Lend(transactionID, self.current_date, amount, self.account, root.accounts[accountID], float("-inf"), 0, amount)
             case "return":
-                transaction = Return(transactionID, self.current_date, amount, self.account, root.accounts[accountID], "INF", 0, amount)
+                transaction = Return(transactionID, self.current_date, amount, self.account, root.accounts[accountID], float("inf"), 0, amount)
             case "others":
                 transaction = Others(transactionID, self.current_date, amount, self.account, root.accounts[accountID], self.calculate_daily_limit("others"), amount / self.calculate_daily_limit("others") * 100, (1 - amount / self.calculate_daily_limit("others")) * 100)
             case _:
