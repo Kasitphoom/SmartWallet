@@ -508,7 +508,7 @@ class MainWindow(QMainWindow):
         AccountID = self.manager.get_account_number()
         myQRcode = qrcode.make(AccountID)
         pil_myQr = myQRcode.get_image()
-        self.pil_myQr = self.add_infomation_to_myQRcode(myQRcode, "Account: " + self.manager.get_account_number_non_visible())
+        self.pil_myQr = self.add_infomation_to_myQRcode(myQRcode, "Account: ")
         pixmap = pil_myQr.toqpixmap()
         self.ui.myQRcodeLabel.setPixmap(pixmap)
 
@@ -536,7 +536,7 @@ class MainWindow(QMainWindow):
 
         # Draw additional information below the QR code
         draw = ImageDraw.Draw(new_image)
-        font = ImageFont.load_default("Montserrat-Regular.ttf", 12)
+        font = ImageFont.load_default()
         
 
         # Get the bounding box of the text
