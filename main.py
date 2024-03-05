@@ -520,6 +520,12 @@ class MainWindow(QMainWindow):
         # self.allow_over_budget_toggle.stateChanged.connect(self.toggleAllowOverBudget)
         self.ui.pcAOBSwitchframe.layout().addWidget(self.allow_over_budget_toggle)
 
+    def toggleParentalControl(self):
+        pass
+
+    def toggleAllowOverBudget(self):
+        pass
+
 
 # ================================== Others ==================================
 
