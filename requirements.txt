@@ -9,3 +9,4 @@ ZODB==5.8.1
 RelStorage==1.6.0
 psycopg2==2.9.9
 qrcode==7.4.2
+pillow==10.2.0

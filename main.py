@@ -511,7 +511,7 @@ class MainWindow(QMainWindow):
         AccountID = self.manager.get_account_number()
         myQRcode = qrcode.make(AccountID)
         pil_myQr = myQRcode.get_image()
-        self.pil_myQr = self.add_infomation_to_myQRcode(myQRcode, "Owner: "+self.manager.getName())
+        self.pil_myQr = self.add_infomation_to_myQRcode(myQRcode, "Owner: "+self.manager.getName()+"\nAccount ID: "+ self.manager.get_account_number_non_visible())
         pixmap = pil_myQr.toqpixmap()
         self.ui.myQRcodeLabel.setPixmap(pixmap)
 
@@ -533,23 +533,17 @@ class MainWindow(QMainWindow):
     def add_infomation_to_myQRcode(self, qr_code_image, additional_info):
         # Create a new image with the QR code and additional information
         new_image = Image.new('RGB', (max(qr_code_image.size[0], 200), qr_code_image.size[1] + 50), color="#4FBA74")
-
-        # Paste the QR code into the new image
         new_image.paste(qr_code_image, (0, 0))
 
         # Draw additional information below the QR code
         draw = ImageDraw.Draw(new_image)
-        # change font size to 20
         font = ImageFont.truetype("otfs/Montserrat-Regular.ttf", 16)
-        font_color = 'black'
-        # change font color to black
 
         # Get the bounding box of the text
-        text_bbox = draw.textbbox(((new_image.width - qr_code_image.size[0]) // 2, qr_code_image.size[1]),
-                                  additional_info, font=font)
+        text_bbox = draw.textbbox(((new_image.width - qr_code_image.size[0]) // 2, qr_code_image.size[1]),additional_info, font=font)
 
         # Draw the text using the bounding box
-        draw.text(text_bbox[:2], additional_info, font=font, fill='black')
+        draw.text(text_bbox[:2], additional_info, font=font, fill='White')
 
         return new_image
 
