@@ -65,6 +65,7 @@ class MainWindow(QMainWindow):
             "setting": 7,
             "myQRcode": 8,
             "parentalcontrol": 9,
+            "graph": 10,
             # stacked widget 2
             "main": 0,
             "login": 1,
@@ -102,6 +103,8 @@ class MainWindow(QMainWindow):
             self.createMyQRcode()
             # setup parental control toggle
             self.pcToggleSetup()
+            # setup graph page
+            self.setupGraph()
         else:
             self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
         
@@ -132,6 +135,8 @@ class MainWindow(QMainWindow):
         self.ui.setting_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["setting"]))
         self.ui.fmyqrButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["myQRcode"]))
         self.ui.parental_control_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["parentalcontrol"]))
+        # self.ui.graphButton.clicked.connect(self.handleNavigationToGraph)
+        self.ui.graphButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["graph"]))
 
 
         # back buttons
@@ -574,6 +579,28 @@ class MainWindow(QMainWindow):
 
     def toggleAllowOverBudget(self):
         pass
+    
+# ================================== Graph ==================================
+    
+    def setupGraph(self):
+        #set date to today
+        self.ui.dateEdit.setDate(self.current_date)
+        # default check all radio button
+
+        self.ui.dayradioButton.setChecked(True)
+        self.ui.monthradioButton.setChecked(False)
+        self.ui.yearradioButton.setChecked(False)
+
+        self.ui.lineradioButton.setChecked(True)
+        self.ui.barradioButton.setChecked(False)
+
+        self.ui.allradioButton.setChecked(True)
+        self.ui.incomeradioButton.setChecked(False)
+        self.ui.expenseradioButton.setChecked(False)
+
+        self.ui.total_expense_amount.setText("0")
+        self.ui.total_income_amount.setText("0")
+        self.ui.overall_amount.setText("0")
 
 
 # ================================== Others ==================================
