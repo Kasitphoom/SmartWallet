@@ -100,6 +100,8 @@ class MainWindow(QMainWindow):
             self.setupTransferPage()
             # generate My QR code
             self.createMyQRcode()
+            # setup parental control toggle
+            self.pcToggleSetup()
         else:
             self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
         
@@ -169,7 +171,6 @@ class MainWindow(QMainWindow):
         
         hash_object = hashlib.sha256(password.encode())
         password = hash_object.hexdigest()
-        
         
         account = self.manager.login_account(email, password)
         
@@ -552,6 +553,10 @@ class MainWindow(QMainWindow):
 # ================================== Parental Control ==================================
         
     def pcToggleSetup(self):
+        item = self.ui.pcPCMSwitchframe.layout().itemAt(2)
+        if item:
+            item.widget().deleteLater()
+        
         self.parental_control_toggle = ToggleSwitch(width=64)
         self.parental_control_toggle.setObjectName("parentalControlToggle")
         # self.parental_control_toggle.setChecked(self.manager.getParentalControl())
@@ -576,9 +581,7 @@ class MainWindow(QMainWindow):
     def setupOthersPage(self):
         self.ui.others_name_label.setText(self.manager.getName())
         self.ui.others_email_label.setText(self.manager.getEmail())
-
-        # add toggle switch
-        self.pcToggleSetup()
+        
 
 
 # ================================== Camera ==================================
