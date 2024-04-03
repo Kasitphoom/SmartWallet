@@ -2,6 +2,7 @@ from datetime import datetime
 from datetime import time
 from obj.account import Account
 from obj.transaction import *
+from obj.notification import Notification
 import calendar
 import random
 import uuid
@@ -168,8 +169,11 @@ class WalletManager():
                 transaction = Transaction(transactionID, self.current_date, datetime.now().time(), amount, self.account, root.accounts[accountID])
         
         if transaction.isOverLimit():
-            print("Over limit")
-            return False
+            notification = Notification(transaction.getOverLimitAmount(), type(transaction).__name__)
+            if not notification.show_notification():
+                # user chose to cancel
+                return False
+            # user chose to proceed 
         
         root.transactions[transactionID] = transaction
         
