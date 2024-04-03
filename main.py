@@ -19,6 +19,9 @@ from obj.account import Account
 from obj.roundprogressbar import roundProgressBar
 from obj.WalletManagerObject import TransactionFrame
 
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
+
 import pickle
 
 import hashlib
@@ -508,7 +511,7 @@ class MainWindow(QMainWindow):
                     self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction, self.manager.get_account_number()))
             else:
                 self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction, self.manager.get_account_number()))
-            
+            print(transaction)
         self.ui.transaction_history_frame.layout().addStretch()
 
 #=================================== My QR Code ==================================
@@ -608,7 +611,7 @@ class MainWindow(QMainWindow):
 
     def updateGraph(self):
         #get date
-        self.ui.graphview.clear()
+        # self.ui.graphview.clear()
         date = self.ui.dateEdit.date()
         # get type
         type = ""
@@ -652,26 +655,43 @@ class MainWindow(QMainWindow):
         # self.updateGraphData(data, graph_type)
 
     def drawGraph(self, date, type, graph_type, history_type):
-        data = self.manager.getGraphData(date, type, history_type)
-        if graph_type == "line":
-            self.drawLineGraph(data)
-        elif graph_type == "bar":
-            self.drawBarGraph(data)
+        data = self.manager.getGraphData(date, type)
+        """ data = {
+            "income": {income_date: income_amount},
+            "expense": {expense_date: expense_amount}
+        }
+        """
+        # Step 2: Prepare your data
+        income_data = data["income"]
+        expense_data = data["expense"]
 
-    def drawLineGraph(self, data):
-        x = [i for i in range(len(data))]
-        y = [data[i] for i in range(len(data))]
-        self.ui.graphview.plot(x, y, pen='r')
+        # Step 3: Extract x and y from both dictionaries
+        x = list(income_data.keys())
+        y1 = list(income_data.values())
+        y2 = list(expense_data.values())
 
-    def drawBarGraph(self, data):
-        x = [i for i in range(len(data))]
-        y = [data[i] for i in range(len(data))]
-        self.ui.graphview.plot(x, y, pen='r', symbol='o', symbolPen='r', symbolBrush=0.2)
+        # Step 4: Create a figure and axis object
+        fig, ax = plt.subplots()
 
-    def drawLineGraph(self, data):
-        x = [i for i in range(len(data))]
-        y = [data[i] for i in range(len(data))]
-        self.ui.graphview.plot(x, y, pen='r')
+        # Step 5: Plot your data
+        ax.bar(x, y1, width=0.4, label='Data 1')
+        ax.bar([i + 0.4 for i in range(len(x))], y2, width=0.4, label='Data 2')
+
+        # Step 6: Customize your plot
+        ax.set_xlabel('Categories')
+        ax.set_ylabel('Values')
+        ax.set_title('Bar Graph Example')
+        ax.legend()
+
+        ax.tick_params(axis='x', rotation=90)
+        ax.tick_params(axis='both', labelsize=5)
+        # Step 7: plot the graph in the graph view
+        canvas = FigureCanvas(fig)
+        layout = QVBoxLayout(self.ui.canvasframe)
+        layout.addWidget(canvas)
+
+
+        
 
 # ================================== Others ==================================
 

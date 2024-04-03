@@ -191,4 +191,56 @@ class WalletManager():
     def getEmail(self):
         return self.account.getEmail()
     
+    def getGraphData(self, date, type):
+        period = None
+
+        match type:
+            case "day":
+                period = date
+            case "month":
+                period = date.month
+            case "year":
+                period = date.year
+            case _:
+                print("type : ", type)
+                raise ValueError("Invalid type of period in getGraphData()")
+            
+        x_axis = None
+        if type == "day":
+            x_axis = [str(i)+":00" for i in range(24)]
+        elif type == "month":
+            x_axis = [str(i)+"/"+str(date.month) for i in range(1, calendar.monthrange(date.year, date.month)[1]+1)]
+        elif type == "year":
+            x_axis = [calendar.month_name[i] for i in range(1, 13)]
+
+        data = {
+            "income": {i: 0 for i in x_axis},
+            "expense": {i: 0 for i in x_axis}
+        }
+            
+        #get all transactions of that period
+        transactions = [
+            transaction for transaction in self.account.transactions if (
+                (type == "day" and transaction.date == period) or
+                (type == "month" and transaction.date.month == period) or
+                (type == "year" and transaction.date.year == period)
+            )
+        ]
+
+        # put all transactions into data
+        for transaction in transactions:
+            key = None
+            if type == "day":
+                key = str(transaction.date.hour)+":00"
+            elif type == "month":
+                key = str(transaction.date.day)+"/"+str(transaction.date.month)
+            elif type == "year":
+                key = calendar.month_name[transaction.date.month]
+
+            if self.isSelfExpense(transaction):
+                data["expense"][key] += transaction.amount
+            else:
+                data["income"][key] += transaction.amount
+
+        return data
     

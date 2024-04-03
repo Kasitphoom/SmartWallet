@@ -175,7 +175,7 @@ width:0px;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>391</width>
+                    <width>390</width>
                     <height>1074</height>
                    </rect>
                   </property>
@@ -7076,8 +7076,8 @@ color: #F49E4C;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>391</width>
-                    <height>555</height>
+                    <width>122</width>
+                    <height>16</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_60">
@@ -8496,7 +8496,7 @@ reached the budget limit.</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>321</width>
+                       <width>100</width>
                        <height>224</height>
                       </rect>
                      </property>
@@ -9047,27 +9047,19 @@ selection-background-color: rgb(61, 99, 58);
                 </widget>
                </item>
                <item>
-                <widget class="QFrame" name="graphviewframe">
+                <widget class="QFrame" name="canvasframe">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>250</height>
+                  </size>
+                 </property>
                  <property name="frameShape">
                   <enum>QFrame::StyledPanel</enum>
                  </property>
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
                  </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_81">
-                  <property name="leftMargin">
-                   <number>16</number>
-                  </property>
-                  <property name="topMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="rightMargin">
-                   <number>16</number>
-                  </property>
-                  <item>
-                   <widget class="QGraphicsView" name="graphview"/>
-                  </item>
-                 </layout>
                 </widget>
                </item>
                <item>
