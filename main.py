@@ -678,14 +678,23 @@ class MainWindow(QMainWindow):
         fig, ax = plt.subplots()
 
         # Step 5: Plot your data
-        ax.bar(x, y1, width=0.4, label='Data 1')
-        ax.bar([i + 0.4 for i in range(len(x))], y2, width=0.4, label='Data 2')
+        if (graph_type == "line"):
+            if (history_type == "all"):
+                ax.plot(x, y1, label='Income')
+                ax.plot(x, y2, label='Expense')
+            elif (history_type == "income"):
+                ax.plot(x, y1, label='Income')
+            elif (history_type == "expense"):
+                ax.plot(x, y2, label='Expense')
+        elif (graph_type == "bar"):
+            ax.bar(x, y1, width=0.4, label='Income')
+            ax.bar([i + 0.4 for i in range(len(x))], y2, width=0.4, label='Expense')
 
         # Step 6: Customize your plot
         ax.set_xlabel('Categories')
         ax.set_ylabel('Values')
         ax.set_title('Bar Graph Example')
-        ax.legend()
+        ax.legend(fontsize=9)
 
         ax.tick_params(axis='x', rotation=90)
         ax.tick_params(axis='both', labelsize=5)
