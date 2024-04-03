@@ -6,7 +6,7 @@ from PySide6.QtGui import QPainter, QColor, QPen, QBrush, QFont, QPixmap, QIcon
 class ToggleSwitch(QCheckBox):
     def __init__(
         self,
-        width = 60,
+        width = 64,
         bg_color = "#5B5B5B",
         circle_color = "#FFFFFF",
         active_color = "#4FBA74",
@@ -25,7 +25,8 @@ class ToggleSwitch(QCheckBox):
         self._active_color = active_color
 
         # Animation Curve
-        self._circle_position = circle_margin
+        self._circle_position = circle_margin if not self.isChecked() else self.width() - self.height() + circle_margin
+        
         self.animation = QPropertyAnimation(self, b"circle_position", self)
         self.animation.setEasingCurve(animation_curve)
         self.animation.setDuration(500)
@@ -33,9 +34,13 @@ class ToggleSwitch(QCheckBox):
 
         # Circle Margin (circle position)
         self._circle_margin = circle_margin
-
+        
         # Connect State Changed
-        self.stateChanged.connect(self.startTransition) 
+        self.stateChanged.connect(self.startTransition)
+
+    def resizeEvent(self, event: QtGui.QResizeEvent) -> None:
+        self._circle_position = self._circle_margin if not self.isChecked() else self.width() - self.height() + self._circle_margin
+        return super().resizeEvent(event)
 
     # Create new set and get property for animation
     @Property(int)
@@ -60,7 +65,6 @@ class ToggleSwitch(QCheckBox):
         # Start Animation
         self.animation.start()
         
-        # print(f"Status: {self.isChecked()}")
 
     # Set new hit area
     def hitButton(self, pos: QPoint):

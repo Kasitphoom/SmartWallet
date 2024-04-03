@@ -169,11 +169,11 @@ class WalletManager():
                 transaction = Transaction(transactionID, self.current_date, datetime.now().time(), amount, self.account, root.accounts[accountID])
         
         if transaction.isOverLimit():
-            notification = Notification(transaction.getOverLimitAmount(), type(transaction).__name__)
+            notification = Notification(transaction.getOverLimitAmount(), type(transaction).__name__, self.account.allow_over_budget)
             if not notification.show_notification():
                 # user chose to cancel
                 return False
-            # user chose to proceed 
+            # user chose to proceed
         
         root.transactions[transactionID] = transaction
         
@@ -255,3 +255,18 @@ class WalletManager():
 
         return data
     
+    def toggleParentalControl(self):
+        self.account.toggleParentalControl()
+        root._p_changed = True
+        connection.transaction_manager.commit()
+    
+    def getParentalControl(self):
+        return self.account.parental_control
+    
+    def toggleAllowOverBudget(self):
+        self.account.toggleAllowOverBudget()
+        root._p_changed = True
+        connection.transaction_manager.commit()
+    
+    def getAllowOverBudget(self):
+        return self.account.allow_over_budget

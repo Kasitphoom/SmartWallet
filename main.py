@@ -578,22 +578,26 @@ class MainWindow(QMainWindow):
             item.widget().deleteLater()
         
         self.parental_control_toggle = ToggleSwitch(width=64)
-        self.parental_control_toggle.setObjectName("parentalControlToggle")
-        # self.parental_control_toggle.setChecked(self.manager.getParentalControl())
-        # self.parental_control_toggle.stateChanged.connect(self.toggleParentalControl)
         self.ui.pcPCMSwitchframe.layout().addWidget(self.parental_control_toggle)
+        self.parental_control_toggle.setObjectName("parentalControlToggle")
+        self.parental_control_toggle.setChecked(self.manager.getParentalControl())
+        self.parental_control_toggle.stateChanged.connect(self.toggleParentalControl)
+        # print("at main", self.parental_control_toggle.width(), self.parental_control_toggle.height(), self.parental_control_toggle.parentWidget().width(), self.parental_control_toggle.parentWidget().height())
 
         self.allow_over_budget_toggle = ToggleSwitch(width=64)
         self.allow_over_budget_toggle.setObjectName("allowOverBudgetToggle")
-        # self.allow_over_budget_toggle.setChecked(self.manager.getAllowOverBudget())
-        # self.allow_over_budget_toggle.stateChanged.connect(self.toggleAllowOverBudget)
+        self.allow_over_budget_toggle.setEnabled(not self.manager.getParentalControl())
+        self.allow_over_budget_toggle.setChecked(self.manager.getAllowOverBudget())
+        self.allow_over_budget_toggle.stateChanged.connect(self.toggleAllowOverBudget)
         self.ui.pcAOBSwitchframe.layout().addWidget(self.allow_over_budget_toggle)
 
-    def toggleParentalControl(self):
-        pass
+    def toggleParentalControl(self): # disable or enable the button
+        self.manager.toggleParentalControl()
+        self.allow_over_budget_toggle.setEnabled(not self.manager.getParentalControl())
+        self.allow_over_budget_toggle.setChecked(False)
 
     def toggleAllowOverBudget(self):
-        pass
+        self.manager.toggleAllowOverBudget()
     
 # ================================== Graph ==================================
     
