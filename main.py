@@ -135,8 +135,8 @@ class MainWindow(QMainWindow):
         self.ui.setting_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["setting"]))
         self.ui.fmyqrButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["myQRcode"]))
         self.ui.parental_control_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["parentalcontrol"]))
-        # self.ui.graphButton.clicked.connect(self.handleNavigationToGraph)
-        self.ui.graphButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["graph"]))
+        self.ui.graphButton.clicked.connect(self.handleNavigationToGraph)
+        
 
 
         # back buttons
@@ -602,6 +602,76 @@ class MainWindow(QMainWindow):
         self.ui.total_income_amount.setText("0")
         self.ui.overall_amount.setText("0")
 
+    def handleNavigationToGraph(self):
+        self.ui.stackedWidget.setCurrentIndex(self.page["graph"])
+        self.updateGraph()
+
+    def updateGraph(self):
+        #get date
+        self.ui.graphview.clear()
+        date = self.ui.dateEdit.date()
+        # get type
+        type = ""
+        if self.ui.dayradioButton.isChecked():
+            type = "day"
+        elif self.ui.monthradioButton.isChecked():
+            type = "month"
+        elif self.ui.yearradioButton.isChecked():
+            type = "year"
+        # get graph type
+        graph_type = ""
+        if self.ui.lineradioButton.isChecked():
+            graph_type = "line"
+        elif self.ui.barradioButton.isChecked():
+            graph_type = "bar"
+        # get history type
+        history_type = ""
+        if self.ui.allradioButton.isChecked():
+            history_type = "all"
+        elif self.ui.incomeradioButton.isChecked():
+            history_type = "income"
+        elif self.ui.expenseradioButton.isChecked():
+            history_type = "expense"
+
+        self.drawGraph(date, type, graph_type, history_type)
+
+        #update total income and expense
+
+        
+
+
+        # for transaction in self.manager.getTransactionsHistory():
+        #     print(transaction.date, transaction.time, transaction.amount)
+            # if transaction.type == "expense":
+            #     self.ui.total_expense_amount.setText(str(float(self.ui.total_expense_amount.text()) + transaction.amount))
+            # elif transaction.type == "income":
+            #     self.ui.total_income_amount.setText(str(float(self.ui.total_income_amount.text()) + transaction.amount))
+        # get data within 
+        # data = self.manager.getGraphData(date,type, history_type)
+        # # update graph
+        # self.updateGraphData(data, graph_type)
+
+    def drawGraph(self, date, type, graph_type, history_type):
+        data = self.manager.getGraphData(date, type, history_type)
+        if graph_type == "line":
+            self.drawLineGraph(data)
+        elif graph_type == "bar":
+            self.drawBarGraph(data)
+
+    def drawLineGraph(self, data):
+        x = [i for i in range(len(data))]
+        y = [data[i] for i in range(len(data))]
+        self.ui.graphview.plot(x, y, pen='r')
+
+    def drawBarGraph(self, data):
+        x = [i for i in range(len(data))]
+        y = [data[i] for i in range(len(data))]
+        self.ui.graphview.plot(x, y, pen='r', symbol='o', symbolPen='r', symbolBrush=0.2)
+
+    def drawLineGraph(self, data):
+        x = [i for i in range(len(data))]
+        y = [data[i] for i in range(len(data))]
+        self.ui.graphview.plot(x, y, pen='r')
 
 # ================================== Others ==================================
 

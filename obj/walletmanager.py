@@ -1,4 +1,5 @@
 from datetime import datetime
+from datetime import time
 from obj.account import Account
 from obj.transaction import *
 import calendar
@@ -143,28 +144,28 @@ class WalletManager():
         match transferType:
             case "food":
                 daily_limit = self.calculate_daily_limit("food") if self.calculate_daily_limit("food") != 0 else 0.01
-                transaction = Food(transactionID, self.current_date, amount, self.account, root.accounts[accountID], self.calculate_daily_limit("food"), amount / daily_limit * 100, (1 - amount / daily_limit) * 100)
+                transaction = Food(transactionID, self.current_date, datetime.now().time(), amount, self.account, root.accounts[accountID], self.calculate_daily_limit("food"), amount / daily_limit * 100, (1 - amount / daily_limit) * 100)
             case "housing":
                 daily_limit = self.calculate_daily_limit("housing") if self.calculate_daily_limit("housing") != 0 else 0.01
-                transaction = Housing(transactionID, self.current_date, amount, self.account, root.accounts[accountID], self.calculate_daily_limit("housing"), amount / daily_limit * 100, (1 - amount / daily_limit) * 100)
+                transaction = Housing(transactionID, self.current_date, datetime.now().time(), amount, self.account, root.accounts[accountID], self.calculate_daily_limit("housing"), amount / daily_limit * 100, (1 - amount / daily_limit) * 100)
             case "transport":
                 daily_limit = self.calculate_daily_limit("transport") if self.calculate_daily_limit("transport") != 0 else 0.01
-                transaction = Transport(transactionID, self.current_date, amount, self.account, root.accounts[accountID], self.calculate_daily_limit("transport"), amount / daily_limit * 100, (1 - amount / daily_limit) * 100)
+                transaction = Transport(transactionID, self.current_date, datetime.now().time(), amount, self.account, root.accounts[accountID], self.calculate_daily_limit("transport"), amount / daily_limit * 100, (1 - amount / daily_limit) * 100)
             case "entertainment":
                 daily_limit = self.calculate_daily_limit("entertainment") if self.calculate_daily_limit("entertainment") != 0 else 0.01
-                transaction = Entertainment(transactionID, self.current_date, amount, self.account, root.accounts[accountID], self.calculate_daily_limit("entertainment"), amount / daily_limit * 100, (1 - amount / daily_limit) * 100)
+                transaction = Entertainment(transactionID, self.current_date, datetime.now().time(), amount, self.account, root.accounts[accountID], self.calculate_daily_limit("entertainment"), amount / daily_limit * 100, (1 - amount / daily_limit) * 100)
             case "healthcare":
                 daily_limit = self.calculate_daily_limit("healthcare") if self.calculate_daily_limit("healthcare") != 0 else 0.01
-                transaction = Healthcare(transactionID, self.current_date, amount, self.account, root.accounts[accountID], self.calculate_daily_limit("healthcare"), amount / daily_limit * 100, (1 - amount / daily_limit) * 100)
+                transaction = Healthcare(transactionID, self.current_date, datetime.now().time(), amount, self.account, root.accounts[accountID], self.calculate_daily_limit("healthcare"), amount / daily_limit * 100, (1 - amount / daily_limit) * 100)
             case "lend":
-                transaction = Lend(transactionID, self.current_date, amount, self.account, root.accounts[accountID], float("-inf"), 0, amount)
+                transaction = Lend(transactionID, self.current_date, datetime.now().time(), amount, self.account, root.accounts[accountID], float("-inf"), 0, amount)
             case "return":
-                transaction = Return(transactionID, self.current_date, amount, self.account, root.accounts[accountID], float("inf"), 0, amount)
+                transaction = Return(transactionID, self.current_date, datetime.now().time(), amount, self.account, root.accounts[accountID], float("inf"), 0, amount)
             case "others":
                 daily_limit = self.calculate_daily_limit("others") if self.calculate_daily_limit("others") != 0 else 0.01
-                transaction = Others(transactionID, self.current_date, amount, self.account, root.accounts[accountID], self.calculate_daily_limit("others"), amount / daily_limit * 100, (1 - amount / daily_limit) * 100)
+                transaction = Others(transactionID, self.current_date, datetime.now().time(), amount, self.account, root.accounts[accountID], self.calculate_daily_limit("others"), amount / daily_limit * 100, (1 - amount / daily_limit) * 100)
             case _:
-                transaction = Transaction(transactionID, self.current_date, amount, self.account, root.accounts[accountID])
+                transaction = Transaction(transactionID, self.current_date, datetime.now().time(), amount, self.account, root.accounts[accountID])
         
         if transaction.isOverLimit():
             print("Over limit")
@@ -189,3 +190,5 @@ class WalletManager():
     
     def getEmail(self):
         return self.account.getEmail()
+    
+    
