@@ -9,6 +9,8 @@ class Account(persistent.Persistent):
         self.balance = balance
         self.ID = ID
         self.transactions = []
+        self.parental_control = False
+        self.allow_over_budget = True
         self.average_income = average_income
         self.limits_rate = {
             "housing": 0,
@@ -67,6 +69,12 @@ class Account(persistent.Persistent):
         self.monthly_limits["entertainment"] = self.limits_rate["entertainment"] * self.average_income
         self.monthly_limits["healthcare"] = self.limits_rate["healthcare"] * self.average_income
         self.monthly_limits["others"] = self.limits_rate["others"] * self.average_income
+    
+    def toggleParentalControl(self):
+        self.parental_control = not self.parental_control
+    
+    def toggleAllowOverBudget(self):
+        self.allow_over_budget = not self.allow_over_budget
     
     def __str__(self):
         return "%s: %s" % (self.name, self.balance)

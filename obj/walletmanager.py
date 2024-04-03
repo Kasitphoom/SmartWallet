@@ -244,3 +244,18 @@ class WalletManager():
 
         return data
     
+    def toggleParentalControl(self):
+        self.account.toggleParentalControl()
+        root._p_changed = True
+        connection.transaction_manager.commit()
+    
+    def getParentalControl(self):
+        return self.account.parental_control
+    
+    def toggleAllowOverBudget(self):
+        self.account.toggleAllowOverBudget()
+        root._p_changed = True
+        connection.transaction_manager.commit()
+    
+    def getAllowOverBudget(self):
+        return self.account.allow_over_budget
