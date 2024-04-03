@@ -232,6 +232,7 @@ class MainWindow(QMainWindow):
         
         # set transfer balance and budget amount
         self.ui.dt_balance_amount.setText(self.manager.get_balance() + " THB")
+        self.setupTransferPage()
         
         # update month to date expense (from 1st of the month to today compare with 1st of last month to the same date as today)
         self.update_month_to_date_expense()
