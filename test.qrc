@@ -50,6 +50,7 @@
     <file>image/sw_logo.png</file>
   </qresource>
   <qresource prefix="fonts">
+    <file>image/zero_pin.svg</file>
     <file>otfs/Montserrat-Black.ttf</file>
     <file>otfs/Montserrat-Bold.ttf</file>
     <file>otfs/Montserrat-ExtraBold.ttf</file>
