@@ -21,6 +21,9 @@ class Transaction(persistent.Persistent):
     def isOverLimit(self):
         return self.amount > self.spendlimit
     
+    def getOverLimitAmount(self):
+        return round(self.amount - self.spendlimit, 2)
+    
     def warn_str(self):
         pass
 

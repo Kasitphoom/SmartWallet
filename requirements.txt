@@ -2,7 +2,6 @@ BTrees==5.2
 opencv_python==4.9.0.80
 persistent==5.2
 PySide6==6.6.2
-PySide6==6.6.2
 PySide6_Addons==6.6.2
 PySide6_Essentials==6.6.2
 ZODB==5.8.1
@@ -10,3 +9,4 @@ RelStorage==1.6.0
 psycopg2==2.9.9
 qrcode==7.4.2
 pillow==10.2.0
+matplotlib==3.8.3
