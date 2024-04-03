@@ -171,6 +171,18 @@ class MainWindow(QMainWindow):
         # setup my QR code page
         self.ui.saveMyQRcodeButton.clicked.connect(self.saveMyQRcode)
 
+        # handle Radio button in graph page
+        self.ui.dayradioButton.toggled.connect(self.updateGraph)
+        self.ui.monthradioButton.toggled.connect(self.updateGraph)
+        self.ui.yearradioButton.toggled.connect(self.updateGraph)
+        self.ui.lineradioButton.toggled.connect(self.updateGraph)
+        self.ui.barradioButton.toggled.connect(self.updateGraph)
+        self.ui.allradioButton.toggled.connect(self.updateGraph)
+        self.ui.incomeradioButton.toggled.connect(self.updateGraph)
+        self.ui.expenseradioButton.toggled.connect(self.updateGraph)
+
+        self.ui.dateEdit.dateChanged.connect(self.updateGraph)
+
 # ================================== Login and Registration Handling ==================================
 
     def handleLogin(self):
@@ -232,7 +244,6 @@ class MainWindow(QMainWindow):
         
         # set transfer balance and budget amount
         self.ui.dt_balance_amount.setText(self.manager.get_balance() + " THB")
-        self.setupTransferPage()
         
         # update month to date expense (from 1st of the month to today compare with 1st of last month to the same date as today)
         self.update_month_to_date_expense()
@@ -610,7 +621,20 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget.setCurrentIndex(self.page["graph"])
         self.updateGraph()
 
+    def radio_button_state_changed(self):
+        sender = self.sender()  # Get the radio button that triggered the signal
+        if sender.isChecked():
+            self.updateGraph()
+
     def updateGraph(self):
+        # delete layout from canvasframe if there is any
+        if self.ui.canvasframe.layout():
+            for i in reversed(range(self.ui.canvasframe.layout().count())):
+                item = self.ui.canvasframe.layout().itemAt(i)
+                if item.widget():
+                    item.widget().deleteLater()
+                elif item.spacerItem():
+                    self.ui.canvasframe.layout().takeAt(i)
         #get date
         # self.ui.graphview.clear()
         date = self.ui.dateEdit.date()
@@ -639,21 +663,6 @@ class MainWindow(QMainWindow):
 
         self.drawGraph(date, type, graph_type, history_type)
 
-        #update total income and expense
-
-        
-
-
-        # for transaction in self.manager.getTransactionsHistory():
-        #     print(transaction.date, transaction.time, transaction.amount)
-            # if transaction.type == "expense":
-            #     self.ui.total_expense_amount.setText(str(float(self.ui.total_expense_amount.text()) + transaction.amount))
-            # elif transaction.type == "income":
-            #     self.ui.total_income_amount.setText(str(float(self.ui.total_income_amount.text()) + transaction.amount))
-        # get data within 
-        # data = self.manager.getGraphData(date,type, history_type)
-        # # update graph
-        # self.updateGraphData(data, graph_type)
 
     def drawGraph(self, date, type, graph_type, history_type):
         data = self.manager.getGraphData(date, type)
@@ -675,17 +684,22 @@ class MainWindow(QMainWindow):
         fig, ax = plt.subplots()
 
         # Step 5: Plot your data
-        if (graph_type == "line"):
-            if (history_type == "all"):
+        if graph_type == "line":
+            if history_type == "all":
                 ax.plot(x, y1, label='Income')
                 ax.plot(x, y2, label='Expense')
-            elif (history_type == "income"):
+            elif history_type == "income":
                 ax.plot(x, y1, label='Income')
-            elif (history_type == "expense"):
+            elif history_type == "expense":
                 ax.plot(x, y2, label='Expense')
-        elif (graph_type == "bar"):
-            ax.bar(x, y1, width=0.4, label='Income')
-            ax.bar([i + 0.4 for i in range(len(x))], y2, width=0.4, label='Expense')
+        if graph_type == "bar":
+            if history_type == "all":
+                ax.bar(x, y1, width=0.4, label='Income')
+                ax.bar([i + 0.4 for i in range(len(x))], y2, width=0.4, label='Expense')
+            elif history_type == "income":
+                ax.bar(x, y1, width=0.4, label='Income')
+            elif history_type == "expense":
+                ax.bar([i + 0.4 for i in range(len(x))], y2, width=0.4, label='Expense')
 
         # Step 6: Customize your plot
         ax.set_xlabel('Categories')
