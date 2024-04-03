@@ -16,7 +16,7 @@ class Transaction(persistent.Persistent):
         self.spend = spend
 
     def __str__(self):
-        return f"{self.date} {self.amount} {self.description}"
+        return f"{self.date} {self.amount} {self.description} {self.date}"
     
     def isOverLimit(self):
         return self.amount > self.spendlimit

@@ -202,9 +202,9 @@ class WalletManager():
             case "day":
                 period = date
             case "month":
-                period = date.month
+                period = date.month()
             case "year":
-                period = date.year
+                period = date.year()
             case _:
                 print("type : ", type)
                 raise ValueError("Invalid type of period in getGraphData()")
@@ -213,7 +213,7 @@ class WalletManager():
         if type == "day":
             x_axis = [str(i)+":00" for i in range(24)]
         elif type == "month":
-            x_axis = [str(i)+"/"+str(date.month) for i in range(1, calendar.monthrange(date.year, date.month)[1]+1)]
+            x_axis = [str(i)+"/"+str(date.month()) for i in range(1, calendar.monthrange(date.year(), date.month())[1]+1)]
         elif type == "year":
             x_axis = [calendar.month_name[i] for i in range(1, 13)]
 
@@ -222,6 +222,7 @@ class WalletManager():
             "expense": {i: 0 for i in x_axis}
         }
             
+        
         #get all transactions of that period
         transactions = [
             transaction for transaction in self.account.transactions if (
@@ -231,6 +232,12 @@ class WalletManager():
             )
         ]
 
+        for transaction in self.account.transactions:
+            print("-----------------")
+            print(transaction.date.year)
+            print(period)
+            print(transaction.date.year == period)
+            
         # put all transactions into data
         for transaction in transactions:
             key = None

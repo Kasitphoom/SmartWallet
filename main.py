@@ -617,6 +617,11 @@ class MainWindow(QMainWindow):
         self.ui.total_income_amount.setText("0")
         self.ui.overall_amount.setText("0")
 
+        # add layout to canvasframe
+        self.ui.canvasframe.setLayout(QVBoxLayout(self.ui.canvasframe))
+        self.ax, self.fig = plt.subplots()
+        
+
     def handleNavigationToGraph(self):
         self.ui.stackedWidget.setCurrentIndex(self.page["graph"])
         self.updateGraph()
@@ -627,14 +632,14 @@ class MainWindow(QMainWindow):
             self.updateGraph()
 
     def updateGraph(self):
-        # delete layout from canvasframe if there is any
-        if self.ui.canvasframe.layout():
-            for i in reversed(range(self.ui.canvasframe.layout().count())):
-                item = self.ui.canvasframe.layout().itemAt(i)
-                if item.widget():
-                    item.widget().deleteLater()
-                elif item.spacerItem():
-                    self.ui.canvasframe.layout().takeAt(i)
+        # Check remove canvas from layout
+        for i in reversed(range(self.ui.canvasframe.layout().count())):
+            item = self.ui.canvasframe.layout().itemAt(i)
+            if item.widget():
+                item.widget().deleteLater()
+            elif item.spacerItem():
+                self.ui.canvasframe.layout().takeAt(i)
+        
         #get date
         # self.ui.graphview.clear()
         date = self.ui.dateEdit.date()
@@ -665,7 +670,10 @@ class MainWindow(QMainWindow):
 
 
     def drawGraph(self, date, type, graph_type, history_type):
+        self.ax.clear()
+        self.fig.clear()
         data = self.manager.getGraphData(date, type)
+        print(data)
         """ data = {
             "income": {income_date: income_amount},
             "expense": {expense_date: expense_amount}
@@ -681,38 +689,39 @@ class MainWindow(QMainWindow):
         y2 = list(expense_data.values())
 
         # Step 4: Create a figure and axis object
-        fig, ax = plt.subplots()
+        self.fig, self.ax = plt.subplots()
 
         # Step 5: Plot your data
         if graph_type == "line":
             if history_type == "all":
-                ax.plot(x, y1, label='Income')
-                ax.plot(x, y2, label='Expense')
+                self.ax.plot(x, y1, label='Income')
+                self.ax.plot(x, y2, label='Expense')
             elif history_type == "income":
-                ax.plot(x, y1, label='Income')
+                self.ax.plot(x, y1, label='Income')
             elif history_type == "expense":
-                ax.plot(x, y2, label='Expense')
+                self.ax.plot(x, y2, label='Expense')
         if graph_type == "bar":
             if history_type == "all":
-                ax.bar(x, y1, width=0.4, label='Income')
-                ax.bar([i + 0.4 for i in range(len(x))], y2, width=0.4, label='Expense')
+                self.ax.bar(x, y1, width=0.4, label='Income')
+                self.ax.bar([i + 0.4 for i in range(len(x))], y2, width=0.4, label='Expense')
             elif history_type == "income":
-                ax.bar(x, y1, width=0.4, label='Income')
+                self.ax.bar(x, y1, width=0.4, label='Income')
             elif history_type == "expense":
-                ax.bar([i + 0.4 for i in range(len(x))], y2, width=0.4, label='Expense')
+                self.ax.bar([i + 0.4 for i in range(len(x))], y2, width=0.4, label='Expense')
 
         # Step 6: Customize your plot
-        ax.set_xlabel('Categories')
-        ax.set_ylabel('Values')
-        ax.set_title('Bar Graph Example')
-        ax.legend(fontsize=9)
+        self.ax.set_xlabel('Categories')
+        self.ax.set_ylabel('Values')
+        self.ax.set_title('Bar Graph Example')
+        self.ax.legend(fontsize=9)
 
-        ax.tick_params(axis='x', rotation=90)
-        ax.tick_params(axis='both', labelsize=5)
+        self.ax.tick_params(axis='x', rotation=90)
+        self.ax.tick_params(axis='both', labelsize=5)
         # Step 7: plot the graph in the graph view
-        canvas = FigureCanvas(fig)
-        layout = QVBoxLayout(self.ui.canvasframe)
-        layout.addWidget(canvas)
+        canvas = FigureCanvas(self.fig)
+        # add the canvas to the layout
+        self.ui.canvasframe.layout().addWidget(canvas)
+
 
 
         
