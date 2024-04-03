@@ -231,12 +231,6 @@ class WalletManager():
                 (type == "year" and transaction.date.year == period)
             )
         ]
-
-        for transaction in self.account.transactions:
-            print("-----------------")
-            print(transaction.date.year)
-            print(period)
-            print(transaction.date.year == period)
             
         # put all transactions into data
         for transaction in transactions:

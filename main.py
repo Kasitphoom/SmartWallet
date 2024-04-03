@@ -21,6 +21,7 @@ from obj.WalletManagerObject import TransactionFrame
 
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
+from scipy.interpolate import make_interp_spline
 
 import pickle
 
@@ -677,51 +678,52 @@ class MainWindow(QMainWindow):
         self.ax.clear()
         self.fig.clear()
         data = self.manager.getGraphData(date, type)
-        print(data)
         """ data = {
             "income": {income_date: income_amount},
             "expense": {expense_date: expense_amount}
         }
         """
-        # Step 2: Prepare your data
         income_data = data["income"]
         expense_data = data["expense"]
 
-        # Step 3: Extract x and y from both dictionaries
+        # Extract x and y from both dictionaries
         x = list(income_data.keys())
         y1 = list(income_data.values())
         y2 = list(expense_data.values())
 
-        # Step 4: Create a figure and axis object
+        # Create a figure and axis object
         self.fig, self.ax = plt.subplots()
 
-        # Step 5: Plot your data
+        # Plot your data
         if graph_type == "line":
             if history_type == "all":
-                self.ax.plot(x, y1, label='Income')
-                self.ax.plot(x, y2, label='Expense')
+                self.ax.plot(x, y1, label='Income', color="green")
+                self.ax.plot(x, y2, label='Expense', color="red")
             elif history_type == "income":
-                self.ax.plot(x, y1, label='Income')
+                self.ax.plot(x, y1, label='Income', color="green")
             elif history_type == "expense":
-                self.ax.plot(x, y2, label='Expense')
+                self.ax.plot(x, y2, label='Expense', color="red")
         if graph_type == "bar":
             if history_type == "all":
-                self.ax.bar(x, y1, width=0.4, label='Income')
-                self.ax.bar([i + 0.4 for i in range(len(x))], y2, width=0.4, label='Expense')
+                self.ax.bar(x, y1, width=0.4, label='Income', color="green")
+                self.ax.bar([i + 0.4 for i in range(len(x))], y2, width=0.4, label='Expense', color="red")
             elif history_type == "income":
-                self.ax.bar(x, y1, width=0.4, label='Income')
+                self.ax.bar(x, y1, width=0.4, label='Income', color="green")
             elif history_type == "expense":
-                self.ax.bar([i + 0.4 for i in range(len(x))], y2, width=0.4, label='Expense')
+                self.ax.bar([i + 0.4 for i in range(len(x))], y2, width=0.4, label='Expense', color="red")
 
-        # Step 6: Customize your plot
-        self.ax.set_xlabel('Categories')
-        self.ax.set_ylabel('Values')
-        self.ax.set_title('Bar Graph Example')
+        #Customize plot
+        self.ax.set_xlabel('Categories', fontsize=9)
+        self.ax.set_ylabel('Baht', fontsize=9)
         self.ax.legend(fontsize=9)
+        self.ax.set_ylim(0)
+        self.ax.set_title(f'Summary: {history_type}', fontsize=9)
+        
+        
 
         self.ax.tick_params(axis='x', rotation=90)
         self.ax.tick_params(axis='both', labelsize=5)
-        # Step 7: plot the graph in the graph view
+        # plot the graph in the graph view
         canvas = FigureCanvas(self.fig)
         # add the canvas to the layout
         self.ui.canvasframe.layout().addWidget(canvas)
