@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="images">
+    <file>image/choosefileButton.svg</file>
+    <file>image/opencameraButton.svg</file>
+    <file>image/backaddbill.svg</file>
     <file>image/backgraph.svg</file>
     <file>image/parentalControlbackButton.svg</file>
     <file>image/saveMyQRButton.svg</file>
