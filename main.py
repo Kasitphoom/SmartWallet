@@ -17,7 +17,7 @@ from PIL import Image, ImageDraw, ImageFont
 from obj.walletmanager import WalletManager
 from obj.account import Account
 from obj.roundprogressbar import roundProgressBar
-from obj.WalletManagerObject import TransactionFrame
+from obj.WalletManagerObject import TransactionFrame, BillFrame
 
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
@@ -70,6 +70,7 @@ class MainWindow(QMainWindow):
             "myQRcode": 8,
             "parentalcontrol": 9,
             "graph": 10,
+            "addbill": 11,
             # stacked widget 2
             "main": 0,
             "login": 1,
@@ -140,6 +141,7 @@ class MainWindow(QMainWindow):
         self.ui.setting_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["setting"]))
         self.ui.fmyqrButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["myQRcode"]))
         self.ui.parental_control_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["parentalcontrol"]))
+        self.ui.faddbillsButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["addbill"]))
         self.ui.graphButton.clicked.connect(self.handleNavigationToGraph)
         self.ui.fsummaryButton.clicked.connect(self.handleNavigationToGraph)
         
@@ -197,6 +199,8 @@ class MainWindow(QMainWindow):
         self.ui.expenseradioButton.toggled.connect(self.updateGraph)
 
         self.ui.dateEdit.dateChanged.connect(self.updateGraph)
+        
+        self.ui.add_single_billButton.clicked.connect(self.addSingleBill)
 
 # ================================== Login and Registration Handling ==================================
 
@@ -908,6 +912,11 @@ class MainWindow(QMainWindow):
         """
         ratio = img.shape[1] / img.shape[0]
         return cv2.resize(img, (int(height * ratio * factor), height * factor))
+    
+# ================================== Event Handling & Helper Functions ==================================
+
+    def addSingleBill(self):
+        self.ui.single_bill_frame.layout().addWidget(BillFrame(self.ui.scrollAreaWidgetContents_9))
 
 # ================================== Event Handling & Helper Functions ==================================
 
