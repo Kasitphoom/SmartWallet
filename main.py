@@ -671,8 +671,16 @@ class MainWindow(QMainWindow):
         elif self.ui.expenseradioButton.isChecked():
             history_type = "expense"
 
-        self.drawGraph(date, type, graph_type, history_type)
-
+        data = self.drawGraph(date, type, graph_type, history_type)
+        self.ui.total_expense_amount.setText(f"{data['total_expense']:,.2f}")
+        self.ui.total_income_amount.setText(f"{data['total_income']:,.2f}")
+        self.ui.overall_amount.setText(f"{data['total_income'] - data['total_expense']:,.2f}")
+        if data['total_income'] - data['total_expense'] < 0:
+            self.ui.overall_amount.setStyleSheet("color: #B3625A")
+            self.ui.overall_THBlabel.setStyleSheet("color: #B3625A")
+        else:
+            self.ui.overall_amount.setStyleSheet("color: #4FBA74")
+            self.ui.overall_THBlabel.setStyleSheet("color: #4FBA74")
 
     def drawGraph(self, date, type, graph_type, history_type):
         self.ax.clear()
@@ -681,6 +689,8 @@ class MainWindow(QMainWindow):
         """ data = {
             "income": {income_date: income_amount},
             "expense": {expense_date: expense_amount}
+            "total_income": total_income,
+            "total_expense": total_expense,
         }
         """
         income_data = data["income"]
@@ -713,21 +723,18 @@ class MainWindow(QMainWindow):
                 self.ax.bar([i + 0.4 for i in range(len(x))], y2, width=0.4, label='Expense', color="red")
 
         #Customize plot
-        self.ax.set_xlabel('Categories', fontsize=9)
         self.ax.set_ylabel('Baht', fontsize=9)
         self.ax.legend(fontsize=9)
         self.ax.set_ylim(0)
         self.ax.set_title(f'Summary: {history_type}', fontsize=9)
         
-        
-
         self.ax.tick_params(axis='x', rotation=90)
         self.ax.tick_params(axis='both', labelsize=5)
         # plot the graph in the graph view
         canvas = FigureCanvas(self.fig)
         # add the canvas to the layout
         self.ui.canvasframe.layout().addWidget(canvas)
-
+        return data
 
 
         

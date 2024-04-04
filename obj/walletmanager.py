@@ -219,7 +219,9 @@ class WalletManager():
 
         data = {
             "income": {i: 0 for i in x_axis},
-            "expense": {i: 0 for i in x_axis}
+            "expense": {i: 0 for i in x_axis},
+            "total_income": 0,
+            "total_expense": 0,
         }
             
         
@@ -244,8 +246,10 @@ class WalletManager():
 
             if self.isSelfExpense(transaction):
                 data["expense"][key] += transaction.amount
+                data["total_expense"] += transaction.amount
             else:
                 data["income"][key] += transaction.amount
+                data["total_income"] += transaction.amount
 
         return data
     
