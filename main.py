@@ -21,7 +21,7 @@ from obj.WalletManagerObject import TransactionFrame, BillFrame
 
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
-from scipy.interpolate import make_interp_spline
+
 
 import pickle
 
