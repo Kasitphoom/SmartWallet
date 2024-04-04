@@ -9521,7 +9521,7 @@ selection-background-color: rgb(61, 99, 58);
                    <widget class="QLabel" name="label_37">
                     <property name="font">
                      <font>
-                      <family>Montserrat Light</family>
+                      <family>Montserrat</family>
                       <pointsize>10</pointsize>
                       <bold>false</bold>
                      </font>
