@@ -4,6 +4,9 @@
     <file>image/pin_no_dot.svg</file>
     <file>image/pin_delete_pressed.svg</file>
     <file>image/pin_delete_unpressed.svg</file>
+    <file>image/choosefileButton.svg</file>
+    <file>image/opencameraButton.svg</file>
+    <file>image/backaddbill.svg</file>
     <file>image/backgraph.svg</file>
     <file>image/parentalControlbackButton.svg</file>
     <file>image/saveMyQRButton.svg</file>
