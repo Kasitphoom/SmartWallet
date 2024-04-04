@@ -12,7 +12,7 @@ from pathlib import Path
 
 from datetime import datetime
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageGrab
 
 from obj.walletmanager import WalletManager
 from obj.account import Account
@@ -22,6 +22,7 @@ from obj.WalletManagerObject import TransactionFrame, BillFrame
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 
+import pytesseract
 
 import pickle
 
@@ -155,6 +156,7 @@ class MainWindow(QMainWindow):
         self.ui.transferbackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
         self.ui.parentalControlBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["setting"]))
         self.ui.graphBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
+        self.ui.addbillBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
 
         # Pin
         self.pin_labels = [self.ui.pin_1, self.ui.pin_2, self.ui.pin_3, self.ui.pin_4, self.ui.pin_5, self.ui.pin_6]
@@ -200,7 +202,9 @@ class MainWindow(QMainWindow):
 
         self.ui.dateEdit.dateChanged.connect(self.updateGraph)
         
+        # handle add bill
         self.ui.add_single_billButton.clicked.connect(self.addSingleBill)
+        self.ui.add_bill_choose_fileButton.clicked.connect(self.addBillFromFile)
 
 # ================================== Login and Registration Handling ==================================
 
@@ -654,7 +658,6 @@ class MainWindow(QMainWindow):
         return new_image
 
 
-
 # ================================== Parental Control ==================================
         
     def pcToggleSetup(self):
@@ -913,10 +916,25 @@ class MainWindow(QMainWindow):
         ratio = img.shape[1] / img.shape[0]
         return cv2.resize(img, (int(height * ratio * factor), height * factor))
     
-# ================================== Event Handling & Helper Functions ==================================
+# ================================== Add Bill ==================================
 
     def addSingleBill(self):
         self.ui.single_bill_frame.layout().addWidget(BillFrame(self.ui.scrollAreaWidgetContents_9))
+    
+    def addBillFromFile(self):
+        file_dialog = QFileDialog()
+        file_dialog.setFileMode(QFileDialog.ExistingFile)
+        file_dialog.setNameFilter("Image files (*.png *.jpg *.jpeg *.xpm *.bmp)")
+        file_dialog.setWindowTitle("Select Image")
+        file_dialog.fileSelected.connect(self.file_selected)
+        file_dialog.exec()
+
+    def file_selected(self, file_path):
+        # Display the selected file path
+        img = Image.open(file_path)
+        text = pytesseract.image_to_string(img, lang='eng+tha')
+        print(text)
+
 
 # ================================== Event Handling & Helper Functions ==================================
 
