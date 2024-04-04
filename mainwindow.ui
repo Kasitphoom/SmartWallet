@@ -61,7 +61,7 @@ color: rgb(0, 0, 0);</string>
        </font>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="main_page">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -175,7 +175,7 @@ width:0px;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>391</width>
+                    <width>390</width>
                     <height>1074</height>
                    </rect>
                   </property>
@@ -3054,7 +3054,7 @@ height: 0px;</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>351</width>
+                       <width>133</width>
                        <height>105</height>
                       </rect>
                      </property>
@@ -3271,7 +3271,7 @@ background-color: none;</string>
                     <x>0</x>
                     <y>0</y>
                     <width>393</width>
-                    <height>844</height>
+                    <height>837</height>
                    </rect>
                   </property>
                   <property name="maximumSize">
@@ -8496,7 +8496,7 @@ reached the budget limit.</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>30</width>
+                       <width>100</width>
                        <height>224</height>
                       </rect>
                      </property>
@@ -9805,6 +9805,30 @@ color: rgb(145, 145, 145);</string>
                       </size>
                      </property>
                      <layout class="QVBoxLayout" name="verticalLayout_82">
+                      <item>
+                       <widget class="QFrame" name="single_bill_frame">
+                        <property name="frameShape">
+                         <enum>QFrame::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Raised</enum>
+                        </property>
+                        <layout class="QVBoxLayout" name="verticalLayout_85">
+                         <property name="leftMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="topMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="rightMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>0</number>
+                         </property>
+                        </layout>
+                       </widget>
+                      </item>
                       <item>
                        <widget class="QFrame" name="frame_55">
                         <property name="sizePolicy">

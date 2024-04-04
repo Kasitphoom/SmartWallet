@@ -1,7 +1,7 @@
 from PySide6 import QtCore, QtWidgets
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout, QHBoxLayout
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout, QHBoxLayout, QLineEdit
 from PySide6.QtCore import QSize, QRect, Qt, Slot, QTimer
-from PySide6.QtGui import QFont, QFontDatabase, QMouseEvent, QImage, QPixmap
+from PySide6.QtGui import QFont, QFontDatabase, QMouseEvent, QImage, QPixmap, QIntValidator
 
 class TransactionFrame(QFrame):
     def __init__(self, parent, transaction, self_account_number):
@@ -62,4 +62,46 @@ class TransactionFrame(QFrame):
         
         self.layout.addLayout(self.amount_type_layout)
         self.layout.setStretch(0, 1)
+
+class BillFrame(QFrame):
+    def __init__(self, parent, name = "", amount = 0):
+        super().__init__(parent)
+        self.name = name
+        self.amount = amount
+        self.setStyleSheet("font-size: 16px; font-family: 'Montserrat'; background-color: #F5F5F5; border-radius: 10px; padding: 10px;")
+        self.initUI()
+    
+    def initUI(self):
+        self.setMaximumHeight(58)
+        self.setFrameShape(QFrame.StyledPanel)
+        self.setFrameShadow(QFrame.Raised)
+        self.setObjectName("frame")
+        self.layout = QHBoxLayout(self)
+        self.layout.setContentsMargins(0, 0, 0, 0)
+        self.layout.setAlignment(Qt.AlignVCenter)
+        
+        self.nameInput = QLineEdit(self)
+        self.nameInput.setText(self.name)
+        self.nameInput.setStyleSheet("border-bottom: 1px solid black; border-radius: 0px;")
+        
+        self.amountInput = QLineEdit(self)
+        self.amountInput.setText(str(self.amount))
+        self.amountInput.setStyleSheet("border-bottom: 1px solid black; border-radius: 0px;")
+        self.amountInput.setValidator(QIntValidator())
+        
+        self.deleteButton = QPushButton(self)
+        self.deleteButton.setText("Trash")
+        self.deleteButton.clicked.connect(self.delete)
+        self.deleteButton.setStyleSheet("background-color: #AB3428; color: white; border-radius: 5px; padding: 10px; font-size: 16px; font-family: 'Font Awesome 6 Free';")
+        self.deleteButton.setCursor(Qt.PointingHandCursor)
+        
+        self.layout.addWidget(self.nameInput, stretch=2)
+        self.layout.addWidget(self.amountInput, stretch=1)
+        self.layout.addWidget(self.deleteButton)
+    
+    def delete(self):
+        self.deleteLater()
+    
+    def getValues(self):
+        return [self.nameInput.toPlainText(), self.amountInput.toPlainText()]
         
