@@ -152,7 +152,7 @@ class WalletManager():
     def handleTransfer(self, accountID, amount, transferType):
         if amount > self.account.getBalance():
             print("Not enough balance")
-            return False
+            return False, False
         
         transactionID = str(uuid.uuid4())
         
@@ -186,9 +186,12 @@ class WalletManager():
             notification = Notification(transaction.getOverLimitAmount(), type(transaction).__name__, self.account.allow_over_budget)
             if not notification.show_notification():
                 # user chose to cancel
-                return False
+                return False, False
             # user chose to proceed
-        
+    
+        return transaction, transactionID
+    
+    def transfer(self, accountID, amount, transaction, transactionID):
         root.transactions[transactionID] = transaction
         
         self.account.addTransaction(root.transactions[transactionID])
@@ -200,8 +203,6 @@ class WalletManager():
         
         root._p_changed = True
         connection.transaction_manager.commit()
-        
-        return True
     
     def getName(self):
         return self.account.getName()

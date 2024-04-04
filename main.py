@@ -2,7 +2,7 @@ import sys
 
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout, QCheckBox, QFileDialog
-from PySide6.QtCore import QSize, QRect, Qt, Slot, QTimer
+from PySide6.QtCore import QSize, QRect, Qt, Slot, QTimer, Signal
 from PySide6.QtGui import QFont, QFontDatabase, QMouseEvent, QImage, QPixmap
 from mainwindow import Ui_MainWindow
 
@@ -73,8 +73,10 @@ class MainWindow(QMainWindow):
             # stacked widget 2
             "main": 0,
             "login": 1,
-            "register": 2
+            "register": 2,
+            "pin": 3,
         }
+        self.correct_pin = "123456"
         
 
         # Add fonts in QFontDatabase before setting up the UI
@@ -102,7 +104,6 @@ class MainWindow(QMainWindow):
             # set initial budget page
             self.setupBudget()
             self.setupOthersPage()
-            self.setupTransferPage()
             # generate My QR code
             self.createMyQRcode()
             # setup parental control toggle
@@ -153,6 +154,18 @@ class MainWindow(QMainWindow):
         self.ui.parentalControlBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["setting"]))
         self.ui.graphBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
 
+        # Pin
+        self.ui.pin_num_0.clicked.connect(lambda: self.addNumberToPin("0"))
+        self.ui.pin_num_1.clicked.connect(lambda: self.addNumberToPin("1"))
+        self.ui.pin_num_2.clicked.connect(lambda: self.addNumberToPin("2"))
+        self.ui.pin_num_3.clicked.connect(lambda: self.addNumberToPin("3"))
+        self.ui.pin_num_4.clicked.connect(lambda: self.addNumberToPin("4"))
+        self.ui.pin_num_5.clicked.connect(lambda: self.addNumberToPin("5"))
+        self.ui.pin_num_6.clicked.connect(lambda: self.addNumberToPin("6"))
+        self.ui.pin_num_7.clicked.connect(lambda: self.addNumberToPin("7"))
+        self.ui.pin_num_8.clicked.connect(lambda: self.addNumberToPin("8"))
+        self.ui.pin_num_9.clicked.connect(lambda: self.addNumberToPin("9"))
+        self.ui.pin_delete.clicked.connect(self.deletePin)
 
         # handle page change
         self.ui.stackedWidget_2.currentChanged.connect(self.page_changed_handler_2)
@@ -206,7 +219,6 @@ class MainWindow(QMainWindow):
             self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
             self.update_window()
             self.setupBudget()
-            self.setupTransferPage()
             self.setupOthersPage()
             self.createMyQRcode()
         else:
@@ -253,6 +265,7 @@ class MainWindow(QMainWindow):
         self.update_history_page()
         
         self.update_total_savings()
+        self.setupTransferPage()
 
     def update_daily_limit(self):
         # Update daily limit for each category and set the color of the limit frame and icon.
@@ -477,13 +490,11 @@ class MainWindow(QMainWindow):
             self.ui.accountNumberTransferErrorLabel.setText("Account number is invalid")
         if accountIsValid and amountIsValid:
             self.ui.accountNumberTransferErrorLabel.setText("")
-            if self.manager.handleTransfer(accountID, float(amount), self.transfer_type_selected):
-                self.update_window()
-                self.updateRoundProgressBars()
-                self.ui.accountNumberLineEditDT.setText("")
-                self.ui.amountToTransferLineEditDT.setText("")
-                print("Transfer success")
-                self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
+            transaction, transactionID = self.manager.handleTransfer(accountID, float(amount), self.transfer_type_selected)
+            print(transaction, transactionID)
+            if transaction: # if not over limit and not over balance
+                self.nagivateToPin()
+                self.ui.pinLineEdit.textChanged.connect(lambda: self.handlePinTransfer(accountID, float(amount), transaction, transactionID))
         self.update_window()
         
     def amountIsValid(self, amount):
@@ -498,6 +509,37 @@ class MainWindow(QMainWindow):
         except ValueError:
             self.ui.amountTransferErrorLabel.setText("Invalid amount")
             return False
+        
+    def nagivateToPin(self): 
+        self.ui.stackedWidget_2.setCurrentIndex(self.page["pin"])
+        self.ui.pinErrorLabel.setText("")
+        self.ui.pinLineEdit.setText("")
+
+    def handlePinTransfer(self, accountID, amount, transaction, transactionID):
+        if len(self.ui.pinLineEdit.text()) == 6:
+            if self.ui.pinLineEdit.text() == self.correct_pin:
+                self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
+                self.transfer(accountID, amount, transaction, transactionID)
+            else:
+                self.ui.pinErrorLabel.setText("Incorrect pin")
+                self.ui.pinLineEdit.setText("")
+    
+    def addNumberToPin(self, num):
+        self.ui.pinLineEdit.setText(self.ui.pinLineEdit.text() + num)
+
+    def deletePin(self):
+        if len(self.ui.pinLineEdit.text()) > 0:
+            self.ui.pinLineEdit.setText(self.ui.pinLineEdit.text()[:-1])
+
+    def transfer(self, accountID, amount, transaction, transactionID):
+        self.manager.transfer(accountID, float(amount), transaction, transactionID)
+        self.update_window()
+        self.updateRoundProgressBars()
+        self.ui.accountNumberLineEditDT.setText("")
+        self.ui.amountToTransferLineEditDT.setText("")
+        print("Transfer success")
+        self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
+
 
 # ================================== History page ==================================
     
