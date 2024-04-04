@@ -188,7 +188,7 @@ class WalletManager():
                 # user chose to cancel
                 return False, False
             # user chose to proceed
-    
+
         return transaction, transactionID
     
     def transfer(self, accountID, amount, transaction, transactionID):
@@ -283,3 +283,16 @@ class WalletManager():
     
     def getAllowOverBudget(self):
         return self.account.allow_over_budget
+    
+    def setPin(self, pin):
+        self.account.setPin(pin)
+        root._p_changed = True
+        connection.transaction_manager.commit()
+
+    def checkPin(self, pin):
+        # print("entered pin: ", pin)
+        # print("account pin: ", self.account.pin)
+        return pin == self.account.pin
+    
+    def getPin(self):
+        return self.account.getPin()

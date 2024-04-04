@@ -2,7 +2,7 @@ import persistent
 
 
 class Account(persistent.Persistent):
-    def __init__(self, name, balance, ID, password, email, average_income = 0):
+    def __init__(self, name, balance, ID, password, email, average_income = 0, pin = None):
         self.name = name
         self.password = password
         self.email = email
@@ -13,6 +13,7 @@ class Account(persistent.Persistent):
         self.allow_over_budget = True
         self.average_income = average_income
         self.total_savings = 0
+        self.pin = pin
         self.limits_rate = {
             "housing": 0,
             "food": 0.4,
@@ -82,3 +83,9 @@ class Account(persistent.Persistent):
     
     def __str__(self):
         return "%s: %s" % (self.name, self.balance)
+    
+    def setPin(self, pin):
+        self.pin = pin
+
+    def getPin(self):
+        return self.pin

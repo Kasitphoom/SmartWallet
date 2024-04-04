@@ -155,6 +155,7 @@ class MainWindow(QMainWindow):
         self.ui.graphBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
 
         # Pin
+        self.pin_labels = [self.ui.pin_1, self.ui.pin_2, self.ui.pin_3, self.ui.pin_4, self.ui.pin_5, self.ui.pin_6]
         self.ui.pin_num_0.clicked.connect(lambda: self.addNumberToPin("0"))
         self.ui.pin_num_1.clicked.connect(lambda: self.addNumberToPin("1"))
         self.ui.pin_num_2.clicked.connect(lambda: self.addNumberToPin("2"))
@@ -214,13 +215,16 @@ class MainWindow(QMainWindow):
                 user_cache = account.getID()
                 self.manager.set_account(user_cache)
                 pickle.dump(user_cache, f)
-            
-            self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
-            self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
-            self.update_window()
-            self.setupBudget()
-            self.setupOthersPage()
-            self.createMyQRcode()
+            if not self.manager.getPin():
+                self.ui.stackedWidget_2.setCurrentIndex(self.page["pin"])
+                self.ui.pinLineEdit.textChanged.connect(self.handlePinRegister)
+            else:
+                self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
+                self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
+                self.update_window()
+                self.setupBudget()
+                self.setupOthersPage()
+                self.createMyQRcode()
         else:
             self.ui.loginError.setText("Invalid email or password")
 
@@ -239,6 +243,23 @@ class MainWindow(QMainWindow):
         
         self.manager.register_account(fullname, email, password)
         self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
+
+    def handlePinRegister(self):
+        if len(self.ui.pinLineEdit.text()) <= 6 and len(self.ui.pinLineEdit.text()) > 0:
+            self.pin_labels[len(self.ui.pinLineEdit.text())-1].setStyleSheet("background-image: url(:/images/image/pin_dot.svg); background-repeat: no-repeat;")
+        if len(self.ui.pinLineEdit.text()) == 6:
+            pin = self.ui.pinLineEdit.text() + self.__salt
+            hash_object = hashlib.sha256(pin.encode())
+            pin = hash_object.hexdigest()
+            self.manager.setPin(pin)
+            self.ui.pinLineEdit.textChanged.disconnect()
+            self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
+            self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
+            self.update_window()
+            self.setupBudget()
+            self.setupOthersPage()
+            self.createMyQRcode()
+        
 
 # ================================== Dashboard ==================================
 
@@ -513,24 +534,36 @@ class MainWindow(QMainWindow):
     def nagivateToPin(self): 
         self.ui.stackedWidget_2.setCurrentIndex(self.page["pin"])
         self.ui.pinErrorLabel.setText("")
-        self.ui.pinLineEdit.setText("")
+        self.resetPIN()
 
     def handlePinTransfer(self, accountID, amount, transaction, transactionID):
+        if len(self.ui.pinLineEdit.text()) <= 6 and len(self.ui.pinLineEdit.text()) > 0:
+            self.pin_labels[len(self.ui.pinLineEdit.text())-1].setStyleSheet("background-image: url(:/images/image/pin_dot.svg); background-repeat: no-repeat;")
+
         if len(self.ui.pinLineEdit.text()) == 6:
-            if self.ui.pinLineEdit.text() == self.correct_pin:
+            pin = self.ui.pinLineEdit.text() + self.__salt
+            hash_object = hashlib.sha256(pin.encode())
+            pin = hash_object.hexdigest()
+            if self.manager.checkPin(pin):
                 self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
                 self.transfer(accountID, amount, transaction, transactionID)
+                self.ui.pinLineEdit.textChanged.disconnect()
             else:
                 self.ui.pinErrorLabel.setText("Incorrect pin")
-                self.ui.pinLineEdit.setText("")
-    
+                self.resetPIN()
+
     def addNumberToPin(self, num):
         self.ui.pinLineEdit.setText(self.ui.pinLineEdit.text() + num)
 
     def deletePin(self):
         if len(self.ui.pinLineEdit.text()) > 0:
+            self.pin_labels[len(self.ui.pinLineEdit.text())-1].setStyleSheet("background-image: url(:/images/image/pin_no_dot.svg); background-repeat: no-repeat;")
             self.ui.pinLineEdit.setText(self.ui.pinLineEdit.text()[:-1])
 
+    def resetPIN(self):
+        self.ui.pinLineEdit.setText("")
+        for i in range(6):
+            self.pin_labels[i].setStyleSheet("background-image: url(:/images/image/pin_no_dot.svg); background-repeat: no-repeat;")
     def transfer(self, accountID, amount, transaction, transactionID):
         self.manager.transfer(accountID, float(amount), transaction, transactionID)
         self.update_window()
