@@ -140,9 +140,8 @@ class MainWindow(QMainWindow):
         self.ui.fmyqrButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["myQRcode"]))
         self.ui.parental_control_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["parentalcontrol"]))
         self.ui.graphButton.clicked.connect(self.handleNavigationToGraph)
+        self.ui.fsummaryButton.clicked.connect(self.handleNavigationToGraph)
         
-
-
         # back buttons
         self.ui.budgetBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
         self.ui.dicrectTransferBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["transfer"]))
@@ -152,6 +151,7 @@ class MainWindow(QMainWindow):
         self.ui.settingBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["others"]))
         self.ui.transferbackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
         self.ui.parentalControlBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["setting"]))
+        self.ui.graphBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
 
 
         # handle page change
@@ -739,8 +739,6 @@ class MainWindow(QMainWindow):
         self.ui.canvasframe.layout().addWidget(canvas)
         return data
 
-
-        
 
 # ================================== Others ==================================
 
