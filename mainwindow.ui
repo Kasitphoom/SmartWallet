@@ -610,7 +610,7 @@ color: #4FBA74;
 </string>
                              </property>
                              <property name="text">
-                              <string>Total Saving</string>
+                              <string>Total Income</string>
                              </property>
                             </widget>
                            </item>
@@ -650,9 +650,7 @@ color: #4FBA74;
 </string>
                              </property>
                              <property name="text">
-                              <string>The accumulated savings
-from every type of expense
-of this month </string>
+                              <string>Total income of this month </string>
                              </property>
                             </widget>
                            </item>

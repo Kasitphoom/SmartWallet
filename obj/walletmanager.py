@@ -84,11 +84,18 @@ class WalletManager():
             if self.isSelfExpense(transaction) and start_date <= transaction.date <= end_date:
                 total += transaction.amount
         return total
-
-    def calculate_total_savings(self):
+    
+    def get_total_income_period(self, start_date, end_date):
         total = 0
         for transaction in self.account.transactions:
-            if not self.isSelfExpense(transaction):
+            if not self.isSelfExpense(transaction) and start_date <= transaction.date <= end_date:
+                total += transaction.amount
+        return total
+    
+    def get_total_income_of_this_month(self):
+        total = 0
+        for transaction in self.account.transactions:
+            if not self.isSelfExpense(transaction) and transaction.date.month == self.current_date.month:
                 total += transaction.amount
         return total
     
@@ -275,6 +282,3 @@ class WalletManager():
     
     def getAllowOverBudget(self):
         return self.account.allow_over_budget
-
-    def get_savings(self):
-        return self.account.savings

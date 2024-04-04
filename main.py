@@ -251,6 +251,8 @@ class MainWindow(QMainWindow):
         
         # update history page
         self.update_history_page()
+        
+        self.update_total_savings()
 
     def update_daily_limit(self):
         # Update daily limit for each category and set the color of the limit frame and icon.
@@ -340,7 +342,7 @@ class MainWindow(QMainWindow):
         return qss
     
     def update_total_savings(self):
-        self.ui.d_savings_amount.setText(self.manager.get_savings() + " THB")
+        self.ui.d_saving_amount.setText(f"{self.manager.get_total_income_of_this_month():,.2f} THB")
 
 # ================================== Budget Planner ==================================
 
