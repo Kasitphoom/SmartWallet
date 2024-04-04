@@ -12,6 +12,7 @@ class Account(persistent.Persistent):
         self.parental_control = False
         self.allow_over_budget = True
         self.average_income = average_income
+        self.total_savings = 0
         self.limits_rate = {
             "housing": 0,
             "food": 0.4,
@@ -75,6 +76,9 @@ class Account(persistent.Persistent):
     
     def toggleAllowOverBudget(self):
         self.allow_over_budget = not self.allow_over_budget
+    
+    def getTotalSavings(self):
+        return self.total_savings
     
     def __str__(self):
         return "%s: %s" % (self.name, self.balance)

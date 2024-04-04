@@ -44,7 +44,7 @@ class WalletManager():
         # limit is monthly limit divided by number of days in that month minus with all transactions in that category in that day
         if not category in self.account.monthly_limits:
             return "Category not found"
-                
+        
         limit = self.account.monthly_limits[category] / calendar.monthrange(self.current_date.year, self.current_date.month)[1]
         for transaction in self.account.transactions:
             if self.isSelfExpense(transaction) and transaction.date.month == self.current_date.month and transaction.date.day == self.current_date.day and transaction.__class__.__name__.lower() == category:
@@ -82,6 +82,13 @@ class WalletManager():
         total = 0
         for transaction in self.account.transactions:
             if self.isSelfExpense(transaction) and start_date <= transaction.date <= end_date:
+                total += transaction.amount
+        return total
+
+    def calculate_total_savings(self):
+        total = 0
+        for transaction in self.account.transactions:
+            if not self.isSelfExpense(transaction):
                 total += transaction.amount
         return total
     
@@ -268,3 +275,6 @@ class WalletManager():
     
     def getAllowOverBudget(self):
         return self.account.allow_over_budget
+
+    def get_savings(self):
+        return self.account.savings

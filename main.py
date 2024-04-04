@@ -338,6 +338,9 @@ class MainWindow(QMainWindow):
         }}
         """
         return qss
+    
+    def update_total_savings(self):
+        self.ui.d_savings_amount.setText(self.manager.get_savings() + " THB")
 
 # ================================== Budget Planner ==================================
 
