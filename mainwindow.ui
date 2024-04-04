@@ -61,7 +61,7 @@ color: rgb(0, 0, 0);</string>
        </font>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="main_page">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -117,7 +117,7 @@ color: rgb(0, 0, 0);</string>
               <number>0</number>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>7</number>
              </property>
              <widget class="QWidget" name="dashboardPage">
               <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -610,7 +610,7 @@ color: #4FBA74;
 </string>
                              </property>
                              <property name="text">
-                              <string>Total Income</string>
+                              <string>Total Saving</string>
                              </property>
                             </widget>
                            </item>
@@ -650,7 +650,8 @@ color: #4FBA74;
 </string>
                              </property>
                              <property name="text">
-                              <string>Total income of this month </string>
+                              <string>The accumulated savings
+from every type of expense </string>
                              </property>
                             </widget>
                            </item>
@@ -3053,7 +3054,7 @@ height: 0px;</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>133</width>
+                       <width>351</width>
                        <height>105</height>
                       </rect>
                      </property>
@@ -7075,8 +7076,8 @@ color: #F49E4C;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>122</width>
-                    <height>16</height>
+                    <width>391</width>
+                    <height>555</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_60">
@@ -8495,7 +8496,7 @@ reached the budget limit.</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>100</width>
+                       <width>321</width>
                        <height>224</height>
                       </rect>
                      </property>
