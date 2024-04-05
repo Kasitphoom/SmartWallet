@@ -77,7 +77,6 @@ class MainWindow(QMainWindow):
             "register": 2,
             "pin": 3,
         }
-        self.correct_pin = "123456"
         
 
         # Add fonts in QFontDatabase before setting up the UI
@@ -220,7 +219,7 @@ class MainWindow(QMainWindow):
                 self.manager.set_account(user_cache)
                 pickle.dump(user_cache, f)
             if not self.manager.getPin():
-                self.ui.stackedWidget_2.setCurrentIndex(self.page["pin"])
+                self.nagivateToPin("Create your PIN")
                 self.ui.pinLineEdit.textChanged.connect(self.handlePinRegister)
             else:
                 self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
@@ -518,7 +517,7 @@ class MainWindow(QMainWindow):
             transaction, transactionID = self.manager.handleTransfer(accountID, float(amount), self.transfer_type_selected)
             print(transaction, transactionID)
             if transaction: # if not over limit and not over balance
-                self.nagivateToPin()
+                self.nagivateToPin("Enter your PIN")
                 self.ui.pinLineEdit.textChanged.connect(lambda: self.handlePinTransfer(accountID, float(amount), transaction, transactionID))
         self.update_window()
         
@@ -535,7 +534,8 @@ class MainWindow(QMainWindow):
             self.ui.amountTransferErrorLabel.setText("Invalid amount")
             return False
         
-    def nagivateToPin(self): 
+    def nagivateToPin(self, message="Enter your PIN"): 
+        self.ui.pinLabel.setText(message)
         self.ui.stackedWidget_2.setCurrentIndex(self.page["pin"])
         self.ui.pinErrorLabel.setText("")
         self.resetPIN()
@@ -677,12 +677,47 @@ class MainWindow(QMainWindow):
         self.ui.pcAOBSwitchframe.layout().addWidget(self.allow_over_budget_toggle)
 
     def toggleParentalControl(self): # disable or enable the button
-        self.manager.toggleParentalControl()
-        self.allow_over_budget_toggle.setEnabled(not self.manager.getParentalControl())
-        self.allow_over_budget_toggle.setChecked(False)
+        if self.manager.getParentalControl():
+            self.nagivateToPin("Enter your Parental PIN")
+            self.ui.pinLineEdit.textChanged.connect(self.handlePinPC)
+        else:
+            self.nagivateToPin("Create your Parental PIN")
+            self.ui.pinLineEdit.textChanged.connect(self.handleCreatePinPC)
 
     def toggleAllowOverBudget(self):
         self.manager.toggleAllowOverBudget()
+
+    def handlePinPC(self):
+        if len(self.ui.pinLineEdit.text()) <= 6 and len(self.ui.pinLineEdit.text()) > 0:
+            self.pin_labels[len(self.ui.pinLineEdit.text())-1].setStyleSheet("background-image: url(:/images/image/pin_dot.svg); background-repeat: no-repeat;")
+        if len(self.ui.pinLineEdit.text()) == 6:
+            pin = self.ui.pinLineEdit.text() + self.__salt
+            hash_object = hashlib.sha256(pin.encode())
+            pin = hash_object.hexdigest()
+            if self.manager.checkPinPC(pin):
+                self.ui.pinLineEdit.textChanged.disconnect()
+                self.manager.toggleParentalControl()
+                self.allow_over_budget_toggle.setEnabled(not self.manager.getParentalControl())
+                self.allow_over_budget_toggle.setChecked(False)
+                self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
+            else:
+                self.ui.pinErrorLabel.setText("Incorrect pin")
+                self.resetPIN()
+
+    def handleCreatePinPC(self):
+        if len(self.ui.pinLineEdit.text()) <= 6 and len(self.ui.pinLineEdit.text()) > 0:
+            self.pin_labels[len(self.ui.pinLineEdit.text())-1].setStyleSheet("background-image: url(:/images/image/pin_dot.svg); background-repeat: no-repeat;")
+        if len(self.ui.pinLineEdit.text()) == 6:
+            pin = self.ui.pinLineEdit.text() + self.__salt
+            hash_object = hashlib.sha256(pin.encode())
+            pin = hash_object.hexdigest()
+            self.manager.setPinPC(pin)
+            self.ui.pinLineEdit.textChanged.disconnect()
+            # toggle the parental control
+            self.manager.toggleParentalControl()
+            self.allow_over_budget_toggle.setEnabled(not self.manager.getParentalControl())
+            self.allow_over_budget_toggle.setChecked(False)
+            self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
     
 # ================================== Graph ==================================
     

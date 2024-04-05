@@ -14,6 +14,7 @@ class Account(persistent.Persistent):
         self.average_income = average_income
         self.total_savings = 0
         self.pin = pin
+        self.pin_pc = None
         self.limits_rate = {
             "housing": 0,
             "food": 0.4,
@@ -89,3 +90,9 @@ class Account(persistent.Persistent):
 
     def getPin(self):
         return self.pin
+    
+    def setPinPC(self, pin):
+        self.pin_pc = pin
+
+    def getPinPC(self):
+        return self.pin_pc

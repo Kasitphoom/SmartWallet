@@ -296,3 +296,14 @@ class WalletManager():
     
     def getPin(self):
         return self.account.getPin()
+    
+    def checkPinPC(self, pin):
+        return pin == self.account.pin_pc
+    
+    def getPinPC(self):
+        return self.account.getPinPC()
+    
+    def setPinPC(self, pin):
+        self.account.setPinPC(pin)
+        root._p_changed = True
+        connection.transaction_manager.commit()

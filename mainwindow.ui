@@ -61,7 +61,7 @@ color: rgb(0, 0, 0);</string>
        </font>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="main_page">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -3271,7 +3271,7 @@ background-color: none;</string>
                     <x>0</x>
                     <y>0</y>
                     <width>393</width>
-                    <height>837</height>
+                    <height>844</height>
                    </rect>
                   </property>
                   <property name="maximumSize">
@@ -8496,7 +8496,7 @@ reached the budget limit.</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>100</width>
+                       <width>30</width>
                        <height>224</height>
                       </rect>
                      </property>
@@ -11448,19 +11448,19 @@ border-radius: 15px</string>
          <number>0</number>
         </property>
         <property name="leftMargin">
-         <number>60</number>
+         <number>40</number>
         </property>
         <property name="topMargin">
          <number>89</number>
         </property>
         <property name="rightMargin">
-         <number>60</number>
+         <number>40</number>
         </property>
         <property name="bottomMargin">
          <number>0</number>
         </property>
         <item>
-         <widget class="QLabel" name="label_36">
+         <widget class="QLabel" name="pinLabel">
           <property name="font">
            <font>
             <family>Montserrat</family>
@@ -11469,7 +11469,7 @@ border-radius: 15px</string>
            </font>
           </property>
           <property name="text">
-           <string>Enter Your PIN</string>
+           <string>Enter your PIN</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -11477,31 +11477,12 @@ border-radius: 15px</string>
          </widget>
         </item>
         <item>
-         <spacer name="verticalSpacer_13">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>49</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QFrame" name="frame_49">
+         <widget class="QFrame" name="frame_57">
           <property name="minimumSize">
            <size>
-            <width>276</width>
-            <height>60</height>
+            <width>0</width>
+            <height>50</height>
            </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"/>
           </property>
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
@@ -11509,55 +11490,217 @@ border-radius: 15px</string>
           <property name="frameShadow">
            <enum>QFrame::Raised</enum>
           </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_51">
+          <layout class="QVBoxLayout" name="verticalLayout_86">
            <property name="spacing">
             <number>0</number>
            </property>
            <property name="leftMargin">
-            <number>0</number>
+            <number>20</number>
            </property>
            <property name="topMargin">
             <number>0</number>
            </property>
            <property name="rightMargin">
-            <number>0</number>
+            <number>20</number>
            </property>
            <property name="bottomMargin">
             <number>0</number>
            </property>
            <item>
-            <widget class="QFrame" name="pin_1">
+            <spacer name="verticalSpacer_13">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>49</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QFrame" name="frame_49">
+             <property name="minimumSize">
+              <size>
+               <width>276</width>
+               <height>60</height>
+              </size>
+             </property>
              <property name="styleSheet">
-              <string notr="true">background-image: url(:/images/image/pin_no_dot.svg);
-background-repeat: no-repeat;</string>
+              <string notr="true"/>
              </property>
              <property name="frameShape">
               <enum>QFrame::StyledPanel</enum>
              </property>
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_51">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QFrame" name="pin_1">
+                <property name="styleSheet">
+                 <string notr="true">background-image: url(:/images/image/pin_no_dot.svg);
+background-repeat: no-repeat;</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="pin_2">
+                <property name="styleSheet">
+                 <string notr="true">background-image: url(:/images/image/pin_no_dot.svg);
+background-repeat: no-repeat;</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="pin_3">
+                <property name="styleSheet">
+                 <string notr="true">background-image: url(:/images/image/pin_no_dot.svg);
+background-repeat: no-repeat;</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="pin_4">
+                <property name="styleSheet">
+                 <string notr="true">background-image: url(:/images/image/pin_no_dot.svg);
+background-repeat: no-repeat;</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="pin_5">
+                <property name="styleSheet">
+                 <string notr="true">background-image: url(:/images/image/pin_no_dot.svg);
+background-repeat: no-repeat;</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="pin_6">
+                <property name="styleSheet">
+                 <string notr="true">background-image: url(:/images/image/pin_no_dot.svg);
+background-repeat: no-repeat;</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_15">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>270</width>
+               <height>10</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="pinErrorLabel">
+             <property name="font">
+              <font>
+               <family>Montserrat</family>
+               <pointsize>12</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color:rgb(255, 0, 4)</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QFrame" name="pin_2">
-             <property name="styleSheet">
-              <string notr="true">background-image: url(:/images/image/pin_no_dot.svg);
-background-repeat: no-repeat;</string>
+            <spacer name="verticalSpacer_14">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
              </property>
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
              </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>270</width>
+               <height>40</height>
+              </size>
              </property>
-            </widget>
+            </spacer>
            </item>
            <item>
-            <widget class="QFrame" name="pin_3">
-             <property name="styleSheet">
-              <string notr="true">background-image: url(:/images/image/pin_no_dot.svg);
-background-repeat: no-repeat;</string>
+            <widget class="QFrame" name="frame_50">
+             <property name="minimumSize">
+              <size>
+               <width>261</width>
+               <height>387</height>
+              </size>
              </property>
              <property name="frameShape">
               <enum>QFrame::StyledPanel</enum>
@@ -11565,163 +11708,50 @@ background-repeat: no-repeat;</string>
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QFrame" name="pin_4">
-             <property name="styleSheet">
-              <string notr="true">background-image: url(:/images/image/pin_no_dot.svg);
-background-repeat: no-repeat;</string>
+             <property name="lineWidth">
+              <number>0</number>
              </property>
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QFrame" name="pin_5">
-             <property name="styleSheet">
-              <string notr="true">background-image: url(:/images/image/pin_no_dot.svg);
-background-repeat: no-repeat;</string>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QFrame" name="pin_6">
-             <property name="styleSheet">
-              <string notr="true">background-image: url(:/images/image/pin_no_dot.svg);
-background-repeat: no-repeat;</string>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_15">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>270</width>
-            <height>10</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QLabel" name="pinErrorLabel">
-          <property name="font">
-           <font>
-            <family>Montserrat</family>
-            <pointsize>12</pointsize>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:rgb(255, 0, 4)</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_14">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>270</width>
-            <height>50</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QFrame" name="frame_50">
-          <property name="minimumSize">
-           <size>
-            <width>261</width>
-            <height>387</height>
-           </size>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <property name="lineWidth">
-           <number>0</number>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_10">
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
-           <property name="horizontalSpacing">
-            <number>18</number>
-           </property>
-           <property name="verticalSpacing">
-            <number>29</number>
-           </property>
-           <item row="2" column="1">
-            <widget class="QPushButton" name="pin_num_5">
-             <property name="minimumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Montserrat</family>
-               <pointsize>18</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{
+             <layout class="QGridLayout" name="gridLayout_10">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <property name="horizontalSpacing">
+               <number>18</number>
+              </property>
+              <property name="verticalSpacing">
+               <number>29</number>
+              </property>
+              <item row="2" column="1">
+               <widget class="QPushButton" name="pin_num_5">
+                <property name="minimumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Montserrat</family>
+                  <pointsize>18</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
 	border-radius: 37px;
 	border: 1px solid #979797;
 }
@@ -11729,34 +11759,34 @@ QPushButton:pressed {
 	background-color: #979797;
 	color: #FFFFFF;
 }</string>
-             </property>
-             <property name="text">
-              <string>5</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QPushButton" name="pin_num_7">
-             <property name="minimumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Montserrat</family>
-               <pointsize>18</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{
+                </property>
+                <property name="text">
+                 <string>5</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QPushButton" name="pin_num_7">
+                <property name="minimumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Montserrat</family>
+                  <pointsize>18</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
 	border-radius: 37px;
 	border: 1px solid #979797;
 }
@@ -11764,34 +11794,34 @@ QPushButton:pressed {
 	background-color: #979797;
 	color: #FFFFFF;
 }</string>
-             </property>
-             <property name="text">
-              <string>7</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QPushButton" name="pin_num_4">
-             <property name="minimumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Montserrat</family>
-               <pointsize>18</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{
+                </property>
+                <property name="text">
+                 <string>7</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QPushButton" name="pin_num_4">
+                <property name="minimumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Montserrat</family>
+                  <pointsize>18</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
 	border-radius: 37px;
 	border: 1px solid #979797;
 }
@@ -11799,34 +11829,34 @@ QPushButton:pressed {
 	background-color: #979797;
 	color: #FFFFFF;
 }</string>
-             </property>
-             <property name="text">
-              <string>4</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QPushButton" name="pin_num_1">
-             <property name="minimumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Montserrat</family>
-               <pointsize>18</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{
+                </property>
+                <property name="text">
+                 <string>4</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QPushButton" name="pin_num_1">
+                <property name="minimumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Montserrat</family>
+                  <pointsize>18</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
 	border-radius: 37px;
 	border: 1px solid #979797;
 }
@@ -11834,34 +11864,34 @@ QPushButton:pressed {
 	background-color: #979797;
 	color: #FFFFFF;
 }</string>
-             </property>
-             <property name="text">
-              <string>1</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QPushButton" name="pin_num_2">
-             <property name="minimumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Montserrat</family>
-               <pointsize>18</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{
+                </property>
+                <property name="text">
+                 <string>1</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QPushButton" name="pin_num_2">
+                <property name="minimumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Montserrat</family>
+                  <pointsize>18</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
 	border-radius: 37px;
 	border: 1px solid #979797;
 }
@@ -11869,34 +11899,34 @@ QPushButton:pressed {
 	background-color: #979797;
 	color: #FFFFFF;
 }</string>
-             </property>
-             <property name="text">
-              <string>2</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QPushButton" name="pin_num_3">
-             <property name="minimumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Montserrat</family>
-               <pointsize>18</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{
+                </property>
+                <property name="text">
+                 <string>2</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QPushButton" name="pin_num_3">
+                <property name="minimumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Montserrat</family>
+                  <pointsize>18</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
 	border-radius: 37px;
 	border: 1px solid #979797;
 }
@@ -11904,34 +11934,34 @@ QPushButton:pressed {
 	background-color: #979797;
 	color: #FFFFFF;
 }</string>
-             </property>
-             <property name="text">
-              <string>3</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <widget class="QPushButton" name="pin_num_6">
-             <property name="minimumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Montserrat</family>
-               <pointsize>18</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{
+                </property>
+                <property name="text">
+                 <string>3</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QPushButton" name="pin_num_6">
+                <property name="minimumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Montserrat</family>
+                  <pointsize>18</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
 	border-radius: 37px;
 	border: 1px solid #979797;
 }
@@ -11939,34 +11969,34 @@ QPushButton:pressed {
 	background-color: #979797;
 	color: #FFFFFF;
 }</string>
-             </property>
-             <property name="text">
-              <string>6</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QPushButton" name="pin_num_8">
-             <property name="minimumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Montserrat</family>
-               <pointsize>18</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{
+                </property>
+                <property name="text">
+                 <string>6</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QPushButton" name="pin_num_8">
+                <property name="minimumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Montserrat</family>
+                  <pointsize>18</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
 	border-radius: 37px;
 	border: 1px solid #979797;
 }
@@ -11974,34 +12004,34 @@ QPushButton:pressed {
 	background-color: #979797;
 	color: #FFFFFF;
 }</string>
-             </property>
-             <property name="text">
-              <string>8</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="2">
-            <widget class="QPushButton" name="pin_num_9">
-             <property name="minimumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Montserrat</family>
-               <pointsize>18</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{
+                </property>
+                <property name="text">
+                 <string>8</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <widget class="QPushButton" name="pin_num_9">
+                <property name="minimumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Montserrat</family>
+                  <pointsize>18</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
 	border-radius: 37px;
 	border: 1px solid #979797;
 }
@@ -12009,34 +12039,34 @@ QPushButton:pressed {
 	background-color: #979797;
 	color: #FFFFFF;
 }</string>
-             </property>
-             <property name="text">
-              <string>9</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
-            <widget class="QPushButton" name="pin_num_0">
-             <property name="minimumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>75</width>
-               <height>75</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Montserrat</family>
-               <pointsize>18</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{
+                </property>
+                <property name="text">
+                 <string>9</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QPushButton" name="pin_num_0">
+                <property name="minimumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>75</width>
+                  <height>75</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Montserrat</family>
+                  <pointsize>18</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
 	border-radius: 37px;
 	border: 1px solid #979797;
 }
@@ -12044,34 +12074,34 @@ QPushButton:pressed {
 	background-color: #979797;
 	color: #FFFFFF;
 }</string>
-             </property>
-             <property name="text">
-              <string>0</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="2">
-            <widget class="QPushButton" name="pin_delete">
-             <property name="minimumSize">
-              <size>
-               <width>60</width>
-               <height>41</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>60</width>
-               <height>41</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Montserrat</family>
-               <pointsize>18</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{
+                </property>
+                <property name="text">
+                 <string>0</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2">
+               <widget class="QPushButton" name="pin_delete">
+                <property name="minimumSize">
+                 <size>
+                  <width>60</width>
+                  <height>41</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>60</width>
+                  <height>41</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Montserrat</family>
+                  <pointsize>18</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
 	border-radius: 1px;
 	background-color: rgb(255, 255, 255);
 	background-image: url(:/images/image/pin_delete_unpressed.svg);
@@ -12081,30 +12111,38 @@ QPushButton:pressed {
 QPushButton:pressed {
 	background-image: url(:/images/image/pin_delete_pressed.svg);
 }</string>
-             </property>
-             <property name="text">
-              <string/>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="pinLineEdit">
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);
+border: none;</string>
              </property>
             </widget>
            </item>
+           <item>
+            <spacer name="verticalSpacer_12">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>151</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
           </layout>
          </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="pinLineEdit"/>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_12">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>151</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </widget>
