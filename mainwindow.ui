@@ -3054,7 +3054,7 @@ height: 0px;</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>133</width>
+                       <width>351</width>
                        <height>105</height>
                       </rect>
                      </property>
@@ -3271,7 +3271,7 @@ background-color: none;</string>
                     <x>0</x>
                     <y>0</y>
                     <width>393</width>
-                    <height>844</height>
+                    <height>845</height>
                    </rect>
                   </property>
                   <property name="maximumSize">
@@ -8499,7 +8499,7 @@ reached the budget limit.</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>100</width>
+                       <width>321</width>
                        <height>224</height>
                       </rect>
                      </property>
@@ -9797,7 +9797,7 @@ color: rgb(145, 145, 145);</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>100</width>
+                       <width>371</width>
                        <height>350</height>
                       </rect>
                      </property>
@@ -10150,8 +10150,8 @@ border-radius:5px;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>265</width>
-                    <height>361</height>
+                    <width>391</width>
+                    <height>378</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_88">
@@ -11403,7 +11403,7 @@ border-radius: 6px;</string>
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QPushButton" name="captuereceiptBackButton">
+                   <widget class="QPushButton" name="capturereceiptBackButton">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                       <horstretch>0</horstretch>

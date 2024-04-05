@@ -1,4 +1,5 @@
 import sys
+import os
 
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout, QCheckBox, QFileDialog, QMessageBox
@@ -75,6 +76,8 @@ class MainWindow(QMainWindow):
             "parentalcontrol": 9,
             "graph": 10,
             "addbill": 11,
+            "transactionInfo": 12,
+            "captureReceipt": 13,
             # stacked widget 2
             "main": 0,
             "login": 1,
@@ -147,6 +150,10 @@ class MainWindow(QMainWindow):
         self.ui.faddbillsButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["addbill"]))
         self.ui.graphButton.clicked.connect(self.handleNavigationToGraph)
         self.ui.fsummaryButton.clicked.connect(self.handleNavigationToGraph)
+        self.ui.add_bill_open_cameraButton.clicked.connect(self.handleNaviationToCaptureReceipt)
+        self.ui.capturereceiptBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["addbill"]))
+        self.ui.captureButton.clicked.connect(self.capture_image)
+
         
         # back buttons
         self.ui.budgetBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
@@ -974,6 +981,50 @@ class MainWindow(QMainWindow):
         ratio = img.shape[1] / img.shape[0]
         return cv2.resize(img, (int(height * ratio * factor), height * factor))
     
+    def update_frame(self):
+        ret, frame = self.camera.read()
+        if ret:
+
+            frame = self.scale_image_by_height(frame, self.ui.camera_label_4.height())
+            frame = self.center_crop(frame, (self.ui.camera_label_4.width(), self.ui.camera_label_4.height()))
+            # Convert OpenCV frame to QImage
+            rgb_image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            h, w, ch = rgb_image.shape
+            bytes_per_line = ch * w
+            qt_image = QImage(rgb_image.data, w, h, bytes_per_line, QImage.Format_RGB888)
+
+            # Rezise the QImage to fit the QLabel dimensions
+            if w != self.ui.camera_label_4.width() or h != self.ui.camera_label_4.height():
+                qt_image = qt_image.scaled(self.ui.camera_label_4.width(), self.ui.camera_label_4.height())
+
+            # Update QLabel with the QImage
+            self.ui.camera_label_4.setPixmap(QPixmap.fromImage(qt_image))
+
+    def capture_image(self):
+        ret, frame = self.camera.read()
+        if ret:
+            # Save the captured frame
+            cv2.imwrite("captured_image.jpg", frame)
+            print("Image captured.")
+            # Release the camera and stop the timer
+            self.camera.release()
+            self.timer.stop()
+            
+            #get the imgae path absolute path
+            img_path = os.path.abspath("captured_image.jpg")
+            self.file_selected(img_path)
+            
+            # Delete the captured image
+            os.remove(img_path)
+            # Navigate to the page where the captured image will be displayed
+            self.ui.stackedWidget.setCurrentIndex(self.page["addbill"])
+
+    def closeEvent(self, event):
+        # Release the camera when closing the application
+        self.camera.release()
+        event.accept()
+
+    
 # ================================== Add Bill ==================================
 
     def addSingleBill(self, name='', amount=0):
@@ -1035,6 +1086,15 @@ class MainWindow(QMainWindow):
             warning.setText("Something Went wrong")
             warning.exec()
                 
+    def handleNaviationToCaptureReceipt(self):
+        self.ui.stackedWidget.setCurrentIndex(self.page["captureReceipt"])
+        
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.update_frame)
+        self.timer.start(30)
+        
+        self.camera = cv2.VideoCapture(0)
+    
 
 # ================================== Event Handling & Helper Functions ==================================
 
