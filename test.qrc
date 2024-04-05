@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="images">
+    <file>image/backtransactioninfo.svg</file>
     <file>image/pin_dot.svg</file>
     <file>image/pin_no_dot.svg</file>
     <file>image/pin_delete_pressed.svg</file>

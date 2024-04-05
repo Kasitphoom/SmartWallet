@@ -941,7 +941,7 @@ class MainWindow(QMainWindow):
         url = "https://ocr.asprise.com/api/v1/receipt"
         # res = requests.post(
         #     url,
-        #     data={
+        #     data={    
         #         'api_key': 'TEST',
         #         'recognizer': 'auto',
         #         'ref_no': 'oct_python_123'
