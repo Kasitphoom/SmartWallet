@@ -1,4 +1,5 @@
 import sys
+import os
 
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout, QCheckBox, QFileDialog, QMessageBox
@@ -75,13 +76,14 @@ class MainWindow(QMainWindow):
             "parentalcontrol": 9,
             "graph": 10,
             "addbill": 11,
+            "transactionInfo": 12,
+            "captureReceipt": 13,
             # stacked widget 2
             "main": 0,
             "login": 1,
             "register": 2,
             "pin": 3,
         }
-        self.correct_pin = "123456"
         
 
         # Add fonts in QFontDatabase before setting up the UI
@@ -148,6 +150,10 @@ class MainWindow(QMainWindow):
         self.ui.faddbillsButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["addbill"]))
         self.ui.graphButton.clicked.connect(self.handleNavigationToGraph)
         self.ui.fsummaryButton.clicked.connect(self.handleNavigationToGraph)
+        self.ui.add_bill_open_cameraButton.clicked.connect(self.handleNaviationToCaptureReceipt)
+        self.ui.capturereceiptBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["addbill"]))
+        self.ui.captureButton.clicked.connect(self.capture_image)
+
         
         # back buttons
         self.ui.budgetBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
@@ -228,7 +234,7 @@ class MainWindow(QMainWindow):
                 self.manager.set_account(user_cache)
                 pickle.dump(user_cache, f)
             if not self.manager.getPin():
-                self.ui.stackedWidget_2.setCurrentIndex(self.page["pin"])
+                self.nagivateToPin("Create your PIN")
                 self.ui.pinLineEdit.textChanged.connect(self.handlePinRegister)
             else:
                 self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
@@ -437,7 +443,26 @@ class MainWindow(QMainWindow):
             self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
 
     def enable_limits_edit(self):
-        self.toggle_edit_mode(True)
+        if self.manager.getParentalControl():
+            self.nagivateToPin("Enter your Parental PIN")
+            self.ui.pinLineEdit.textChanged.connect(self.handleEditBudgetPinPC)
+        else:
+            self.toggle_edit_mode(True)
+
+    def handleEditBudgetPinPC(self):
+        if len(self.ui.pinLineEdit.text()) <= 6 and len(self.ui.pinLineEdit.text()) > 0:
+            self.pin_labels[len(self.ui.pinLineEdit.text())-1].setStyleSheet("background-image: url(:/images/image/pin_dot.svg); background-repeat: no-repeat;")
+        if len(self.ui.pinLineEdit.text()) == 6:
+            pin = self.ui.pinLineEdit.text() + self.__salt
+            hash_object = hashlib.sha256(pin.encode())
+            pin = hash_object.hexdigest()
+            if self.manager.checkPin(pin):
+                self.ui.pinLineEdit.textChanged.disconnect()
+                self.toggle_edit_mode(True)
+                self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
+            else:
+                self.ui.pinErrorLabel.setText("Incorrect pin")
+                self.resetPIN()
 
     def save_limits_setting(self):
         if self.check_total_limit():
@@ -526,7 +551,7 @@ class MainWindow(QMainWindow):
             transaction, transactionID = self.manager.handleTransfer(accountID, float(amount), self.transfer_type_selected)
             print(transaction, transactionID)
             if transaction: # if not over limit and not over balance
-                self.nagivateToPin()
+                self.nagivateToPin("Enter your PIN")
                 self.ui.pinLineEdit.textChanged.connect(lambda: self.handlePinTransfer(accountID, float(amount), transaction, transactionID))
         self.update_window()
         
@@ -543,7 +568,8 @@ class MainWindow(QMainWindow):
             self.ui.amountTransferErrorLabel.setText("Invalid amount")
             return False
         
-    def nagivateToPin(self): 
+    def nagivateToPin(self, message="Enter your PIN"): 
+        self.ui.pinLabel.setText(message)
         self.ui.stackedWidget_2.setCurrentIndex(self.page["pin"])
         self.ui.pinErrorLabel.setText("")
         self.resetPIN()
@@ -690,12 +716,47 @@ class MainWindow(QMainWindow):
         self.ui.pcAOBSwitchframe.layout().addWidget(self.allow_over_budget_toggle)
 
     def toggleParentalControl(self): # disable or enable the button
-        self.manager.toggleParentalControl()
-        self.allow_over_budget_toggle.setEnabled(not self.manager.getParentalControl())
-        self.allow_over_budget_toggle.setChecked(False)
+        if self.manager.getParentalControl():
+            self.nagivateToPin("Enter your Parental PIN")
+            self.ui.pinLineEdit.textChanged.connect(self.handlePinPC)
+        else:
+            self.nagivateToPin("Create your Parental PIN")
+            self.ui.pinLineEdit.textChanged.connect(self.handleCreatePinPC)
 
     def toggleAllowOverBudget(self):
         self.manager.toggleAllowOverBudget()
+
+    def handlePinPC(self):
+        if len(self.ui.pinLineEdit.text()) <= 6 and len(self.ui.pinLineEdit.text()) > 0:
+            self.pin_labels[len(self.ui.pinLineEdit.text())-1].setStyleSheet("background-image: url(:/images/image/pin_dot.svg); background-repeat: no-repeat;")
+        if len(self.ui.pinLineEdit.text()) == 6:
+            pin = self.ui.pinLineEdit.text() + self.__salt
+            hash_object = hashlib.sha256(pin.encode())
+            pin = hash_object.hexdigest()
+            if self.manager.checkPinPC(pin):
+                self.ui.pinLineEdit.textChanged.disconnect()
+                self.manager.toggleParentalControl()
+                self.allow_over_budget_toggle.setEnabled(not self.manager.getParentalControl())
+                self.allow_over_budget_toggle.setChecked(False)
+                self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
+            else:
+                self.ui.pinErrorLabel.setText("Incorrect pin")
+                self.resetPIN()
+
+    def handleCreatePinPC(self):
+        if len(self.ui.pinLineEdit.text()) <= 6 and len(self.ui.pinLineEdit.text()) > 0:
+            self.pin_labels[len(self.ui.pinLineEdit.text())-1].setStyleSheet("background-image: url(:/images/image/pin_dot.svg); background-repeat: no-repeat;")
+        if len(self.ui.pinLineEdit.text()) == 6:
+            pin = self.ui.pinLineEdit.text() + self.__salt
+            hash_object = hashlib.sha256(pin.encode())
+            pin = hash_object.hexdigest()
+            self.manager.setPinPC(pin)
+            self.ui.pinLineEdit.textChanged.disconnect()
+            # toggle the parental control
+            self.manager.toggleParentalControl()
+            self.allow_over_budget_toggle.setEnabled(not self.manager.getParentalControl())
+            self.allow_over_budget_toggle.setChecked(False)
+            self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
     
 # ================================== Graph ==================================
     
@@ -926,6 +987,50 @@ class MainWindow(QMainWindow):
         ratio = img.shape[1] / img.shape[0]
         return cv2.resize(img, (int(height * ratio * factor), height * factor))
     
+    def update_frame(self):
+        ret, frame = self.camera.read()
+        if ret:
+
+            frame = self.scale_image_by_height(frame, self.ui.camera_label_4.height())
+            frame = self.center_crop(frame, (self.ui.camera_label_4.width(), self.ui.camera_label_4.height()))
+            # Convert OpenCV frame to QImage
+            rgb_image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            h, w, ch = rgb_image.shape
+            bytes_per_line = ch * w
+            qt_image = QImage(rgb_image.data, w, h, bytes_per_line, QImage.Format_RGB888)
+
+            # Rezise the QImage to fit the QLabel dimensions
+            if w != self.ui.camera_label_4.width() or h != self.ui.camera_label_4.height():
+                qt_image = qt_image.scaled(self.ui.camera_label_4.width(), self.ui.camera_label_4.height())
+
+            # Update QLabel with the QImage
+            self.ui.camera_label_4.setPixmap(QPixmap.fromImage(qt_image))
+
+    def capture_image(self):
+        ret, frame = self.camera.read()
+        if ret:
+            # Save the captured frame
+            cv2.imwrite("captured_image.jpg", frame)
+            print("Image captured.")
+            # Release the camera and stop the timer
+            self.camera.release()
+            self.timer.stop()
+            
+            #get the imgae path absolute path
+            img_path = os.path.abspath("captured_image.jpg")
+            self.file_selected(img_path)
+            
+            # Delete the captured image
+            os.remove(img_path)
+            # Navigate to the page where the captured image will be displayed
+            self.ui.stackedWidget.setCurrentIndex(self.page["addbill"])
+
+    def closeEvent(self, event):
+        # Release the camera when closing the application
+        self.camera.release()
+        event.accept()
+
+    
 # ================================== Add Bill ==================================
 
     def addSingleBill(self, name='', amount=0):
@@ -947,7 +1052,7 @@ class MainWindow(QMainWindow):
         url = "https://ocr.asprise.com/api/v1/receipt"
         # res = requests.post(
         #     url,
-        #     data={
+        #     data={    
         #         'api_key': 'TEST',
         #         'recognizer': 'auto',
         #         'ref_no': 'oct_python_123'
@@ -987,6 +1092,15 @@ class MainWindow(QMainWindow):
             warning.setText("Something Went wrong")
             warning.exec()
                 
+    def handleNaviationToCaptureReceipt(self):
+        self.ui.stackedWidget.setCurrentIndex(self.page["captureReceipt"])
+        
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.update_frame)
+        self.timer.start(30)
+        
+        self.camera = cv2.VideoCapture(0)
+    
 
 # ================================== Event Handling & Helper Functions ==================================
 

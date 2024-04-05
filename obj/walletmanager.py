@@ -309,3 +309,14 @@ class WalletManager():
             return True
         except ValueError:
             return False
+    
+    def checkPinPC(self, pin):
+        return pin == self.account.pin_pc
+    
+    def getPinPC(self):
+        return self.account.getPinPC()
+    
+    def setPinPC(self, pin):
+        self.account.setPinPC(pin)
+        root._p_changed = True
+        connection.transaction_manager.commit()
