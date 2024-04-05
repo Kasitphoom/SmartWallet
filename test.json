@@ -1,0 +1,219 @@
+{
+    "ocr_type": "receipts",
+    "request_id": "P_171.6.144.142_lum5uvs4_4jn",
+    "ref_no": "oct_python_123",
+    "file_name": "EfB3wE7VAAA1VX6.jpg",
+    "request_received_on": 1712291010916,
+    "success": true,
+    "image_width": 1536,
+    "image_height": 2048,
+    "image_rotation": 0,
+    "recognition_completed_on": 1712291011554,
+    "receipts": [
+        {
+            "merchant_name": "CP ALL, 7-Eleven \u0e2b\u0e25\u0e31\u0e07 \u0e15\u0e36\u0e01 \u0e01\u0e32\u0e23\u0e1a\u0e34\u0e19\u0e44\u0e17\u0e22 (01270)",
+            "merchant_address": null,
+            "merchant_phone": "+66 00202850",
+            "merchant_website": null,
+            "merchant_tax_reg_no": "0107542000011",
+            "merchant_company_reg_no": null,
+            "region": null,
+            "mall": null,
+            "country": "TH",
+            "receipt_no": null,
+            "date": null,
+            "time": null,
+            "items": [
+                {
+                    "amount": 39.0,
+                    "category": null,
+                    "description": "\u0e19\u0e34 \u0e41\u0e04\u0e23\u0e2d\u0e17 \u0e21\u0e48\u0e27\u0e07 \u0e1c\u0e2a\u0e21 813.00",
+                    "flags": "",
+                    "qty": null,
+                    "remarks": null,
+                    "tags": null,
+                    "unitPrice": null
+                },
+                {
+                    "amount": 39.0,
+                    "category": null,
+                    "description": "\u0e22\u0e39 \u0e1c\u0e31\u0e01 \u0e1c\u0e25 \u0e44\u0e21\u0e49 \u0e23\u0e27\u0e21 40 8 813.00",
+                    "flags": "",
+                    "qty": 3,
+                    "remarks": null,
+                    "tags": null,
+                    "unitPrice": null
+                },
+                {
+                    "amount": 39.0,
+                    "category": null,
+                    "description": "\u0e19\u0e34 \u0e1c\u0e31\u0e01 \u0e43\u0e1a \u0e40\u0e02\u0e35\u0e22\u0e27 408 13.00",
+                    "flags": "",
+                    "qty": 3,
+                    "remarks": null,
+                    "tags": null,
+                    "unitPrice": null
+                },
+                {
+                    "amount": 39.0,
+                    "category": null,
+                    "description": "\u0e41\u0e04\u0e23\u0e2d\u0e17 \u0e1c\u0e2a\u0e21 \u0e1c\u0e25 \u0e44\u0e21\u0e49 13.00",
+                    "flags": "",
+                    "qty": null,
+                    "remarks": null,
+                    "tags": null,
+                    "unitPrice": null
+                },
+                {
+                    "amount": 0.0,
+                    "category": null,
+                    "description": "\u0e41\u0e2a\u0e15\u0e21\u0e1b\u0e4c 1 \u0e1a\u0e32\u0e17 2563",
+                    "flags": "",
+                    "qty": null,
+                    "remarks": null,
+                    "tags": null,
+                    "unitPrice": null
+                },
+                {
+                    "amount": 0.0,
+                    "category": null,
+                    "description": "\u0e2a\u0e34\u0e17\u0e18\u0e34\u0e4c \u0e2a\u0e48\u0e07 \u0e1e\u0e31\u0e2a\u0e14\u0e38 \u0e1f\u0e23\u0e35 SpeedD",
+                    "flags": "",
+                    "qty": 1,
+                    "remarks": null,
+                    "tags": null,
+                    "unitPrice": null
+                },
+                {
+                    "amount": 0.0,
+                    "category": null,
+                    "description": "\u0e20\u0e32\u0e23\u0e01\u0e34\u0e08 \u0e0b\u0e37\u0e49\u0e2d \u0e2a\u0e30\u0e2a\u0e21 \u0e04\u0e23\u0e1a (\u0e1a\u0e32\u0e17)",
+                    "flags": "",
+                    "qty": 156,
+                    "remarks": null,
+                    "tags": null,
+                    "unitPrice": null
+                },
+                {
+                    "amount": 0.0,
+                    "category": null,
+                    "description": "\u0e20\u0e32\u0e23\u0e01\u0e34\u0e08 \u0e0b\u0e37\u0e49\u0e2d \u0e02\u0e31\u0e49\u0e19 \u0e15\u0e48\u0e33 120 \u0e1a",
+                    "flags": "",
+                    "qty": 1,
+                    "remarks": null,
+                    "tags": null,
+                    "unitPrice": null
+                },
+                {
+                    "amount": 0.0,
+                    "category": null,
+                    "description": "156 \u0e20\u0e32\u0e23\u0e01\u0e34\u0e08 \u0e08\u0e48\u0e32\u0e22 \u0e14\u0e49\u0e27\u0e22 \u0e17 \u0e23\u0e39 \u0e21\u0e31\u0e19 \u0e19\u0e35\u0e48",
+                    "flags": "",
+                    "qty": null,
+                    "remarks": null,
+                    "tags": null,
+                    "unitPrice": null
+                }
+            ],
+            "currency": "THB",
+            "total": 813.0,
+            "subtotal": null,
+            "tax": null,
+            "service_charge": null,
+            "tip": null,
+            "payment_method": null,
+            "payment_details": null,
+            "credit_card_type": null,
+            "credit_card_number": null,
+            "ocr_text": " CP ALL, 7-Eleven \u0e2b\u0e25\u0e31\u0e07 \u0e15\u0e36\u0e01 \u0e01\u0e32\u0e23\u0e1a\u0e34\u0e19\u0e44\u0e17\u0e22 (01270)\n   TAX#0107542000011 (VAT Included)\n  Vat Code 01040 POS#E01007000202850\n      \u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08 \u0e23\u0e31\u0e1a \u0e40\u0e07\u0e34\u0e19/\u0e43\u0e1a \u0e01\u0e33\u0e01\u0e31\u0e1a \u0e20\u0e32\u0e29\u0e35 \u0e2d\u0e22\u0e48\u0e32\u0e07 \u0e22\u0e48\u0e2d\n      \u0e19\u0e34 \u0e41\u0e04\u0e23\u0e2d\u0e17 \u0e21\u0e48\u0e27\u0e07 \u0e1c\u0e2a\u0e21 813.00 39.00\n 3 \u0e22\u0e39 \u0e1c\u0e31\u0e01 \u0e1c\u0e25 \u0e44\u0e21\u0e49 \u0e23\u0e27\u0e21 40 8 813.00 39.00\n 3 \u0e19\u0e34 \u0e1c\u0e31\u0e01 \u0e43\u0e1a \u0e40\u0e02\u0e35\u0e22\u0e27 408 13.00          39.00\n         \u0e41\u0e04\u0e23\u0e2d\u0e17 \u0e1c\u0e2a\u0e21 \u0e1c\u0e25 \u0e44\u0e21\u0e49 13.00       39.00\n 3\n      \u0e41\u0e2a\u0e15\u0e21\u0e1b\u0e4c 1 \u0e1a\u0e32\u0e17 2563                0.00\n 3\n 1 \u0e2a\u0e34\u0e17\u0e18\u0e34\u0e4c \u0e2a\u0e48\u0e07 \u0e1e\u0e31\u0e2a\u0e14\u0e38 \u0e1f\u0e23\u0e35 SpeedD         0.00\n  156 \u0e20\u0e32\u0e23\u0e01\u0e34\u0e08 \u0e0b\u0e37\u0e49\u0e2d \u0e2a\u0e30\u0e2a\u0e21 \u0e04\u0e23\u0e1a (\u0e1a\u0e32\u0e17)        0.00\n  1 \u0e20\u0e32\u0e23\u0e01\u0e34\u0e08 \u0e0b\u0e37\u0e49\u0e2d \u0e02\u0e31\u0e49\u0e19 \u0e15\u0e48\u0e33 120 \u0e1a.         0.00\n                                        0.00\n  156 \u0e20\u0e32\u0e23\u0e01\u0e34\u0e08 \u0e08\u0e48\u0e32\u0e22 \u0e14\u0e49\u0e27\u0e22 \u0e17 \u0e23\u0e39 \u0e21\u0e31\u0e19 \u0e19\u0e35\u0e48\n                                       0.00\n   1 \u0e20\u0e32\u0e23\u0e01\u0e34\u0e08 \u0e08\u0e48\u0e32\u0e22 \u0e14\u0e49\u0e27\u0e22 \u0e17 \u0e23\u0e39 \u0e21\u0e31\u0e19 \u0e19\u0e35\u0e48 1201\n   \u0e22\u0e2d\u0e14 \u0e2a\u0e38\u0e17\u0e18\u0e34 12 \u0e0a\u0e34\u0e49\u0e19       156.00\n                           156.00\n   \u0e17 \u0e23\u0e39 \u0e27\u0e2d \u0e25 \u0e40\u0e25\u0e47 \u0e17 App\n    R#\n                               OCIVICE\n                          \u0e44\u0e14\u0e49 \u0e23\u0e31\u0e1a \u0e43\u0e0a\u0e49 \u0e44\u0e1b \u0e04\u0e07\u0e40\u0e2b\u0e25\u0e37\u0e2d\n      \u0e41\u0e15\u0e49\u0e21 \u0e2a\u0e21\u0e32\u0e0a\u0e34\u0e01          +90 0 8982\n        \u0e22\u0e2d\u0e14 \u0e43\u0e0a\u0e49 \u0e44\u0e1b \u0e41\u0e25\u0e30 \u0e22\u0e2d\u0e14 \u0e04\u0e07\u0e40\u0e2b\u0e25\u0e37\u0e2d \u0e44\u0e21\u0e48 \u0e23\u0e27\u0e21 \u0e22\u0e2d\u0e14 \u0e2a\u0e30\u0e2a\u0e21 \u0e04\u0e23\u0e31\u0e49\u0e07 \u0e19\u0e35\u0e49\n            \u0e2a\u0e34\u0e17\u0e18\u0e34\u0e4c \u0e2a\u0e48\u0e07 \u0e1e\u0e31\u0e2a\u0e14\u0e38 \u0e1f\u0e23\u0e35 Speed\u00ed    X\n             \u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a \u0e23\u0e31\u0e1a \u0e1b\u0e25\u0e32\u0e22\u0e17\u0e32\u0e07 \u0e17\u0e35\u0e48 \u0e23\u0e49\u0e32\u0e19 7-ELEVEN\n                \u0e2b\u0e21\u0e14\u0e40\u0e02\u0e15 23 \u0e15.\u0e04. 53",
+            "ocr_confidence": 94.66,
+            "width": 925,
+            "height": 1763,
+            "avg_char_width": 18.6072,
+            "avg_line_height": 58.6329,
+            "conf_amount": 89,
+            "source_locations": {
+                "merchant_name": [
+                    [
+                        {
+                            "x": 85,
+                            "y": 263
+                        },
+                        {
+                            "x": 1011,
+                            "y": 254
+                        },
+                        {
+                            "x": 1012,
+                            "y": 323
+                        },
+                        {
+                            "x": 86,
+                            "y": 333
+                        }
+                    ]
+                ],
+                "doc": [
+                    [
+                        {
+                            "x": 66,
+                            "y": 167
+                        },
+                        {
+                            "x": 1084,
+                            "y": 167
+                        },
+                        {
+                            "x": 1084,
+                            "y": 2107
+                        },
+                        {
+                            "x": 66,
+                            "y": 2107
+                        }
+                    ]
+                ],
+                "merchant_phone": [
+                    [
+                        {
+                            "x": 596,
+                            "y": 410
+                        },
+                        {
+                            "x": 967,
+                            "y": 408
+                        },
+                        {
+                            "x": 967,
+                            "y": 462
+                        },
+                        {
+                            "x": 596,
+                            "y": 464
+                        }
+                    ]
+                ],
+                "merchant_tax_reg_no": [
+                    [
+                        {
+                            "x": 259,
+                            "y": 341
+                        },
+                        {
+                            "x": 602,
+                            "y": 341
+                        },
+                        {
+                            "x": 602,
+                            "y": 396
+                        },
+                        {
+                            "x": 259,
+                            "y": 396
+                        }
+                    ]
+                ]
+            }
+        }
+    ]
+}

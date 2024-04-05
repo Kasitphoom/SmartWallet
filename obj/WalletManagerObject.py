@@ -92,7 +92,7 @@ class BillFrame(QFrame):
         self.deleteButton = QPushButton(self)
         self.deleteButton.setText("Trash")
         self.deleteButton.clicked.connect(self.delete)
-        self.deleteButton.setStyleSheet("background-color: #AB3428; color: white; border-radius: 5px; padding: 10px; font-size: 16px; font-family: 'Font Awesome 6 Free';")
+        self.deleteButton.setStyleSheet("background-color: #AB3428; color: white; border-radius: 5px; padding: 10px; font-size: 16px; font-family: 'Font Awesome 6 Free'; font-weight: bold; width: auto;")
         self.deleteButton.setCursor(Qt.PointingHandCursor)
         
         self.layout.addWidget(self.nameInput, stretch=2)
@@ -103,5 +103,50 @@ class BillFrame(QFrame):
         self.deleteLater()
     
     def getValues(self):
-        return [self.nameInput.toPlainText(), self.amountInput.toPlainText()]
+        return [self.nameInput.text(), self.amountInput.text()]
         
+class TransactionInfo(QFrame):
+    def __init__(self, parent, transaction):
+        super().__init__(parent)
+        self.transaction = transaction
+        self.setStyleSheet("font-size: 16px; font-family: 'Montserrat';")
+        self.initUI()
+        
+    def initUI(self):
+        self.setFrameShape(QFrame.StyledPanel)
+        self.setFrameShadow(QFrame.Raised)
+        self.setObjectName("frame")
+        self.layout = QVBoxLayout(self)
+        self.layout.setContentsMargins(0, 0, 0, 0)
+        
+        self.sender_label = QLabel(self)
+        self.sender_label.setText(self.transaction.sender.getName())
+        self.sender_label.setAlignment(Qt.AlignBottom)
+        self.layout.addWidget(self.sender_label)
+        
+        self.receiver_label = QLabel(self)
+        self.receiver_label.setText(self.transaction.recipient.getName())
+        self.receiver_label.setAlignment(Qt.AlignBottom)
+        self.layout.addWidget(self.receiver_label)
+        
+        self.amount_label = QLabel(self)
+        self.amount_label.setText(str(self.transaction.amount))
+        self.amount_label.setAlignment(Qt.AlignBottom)
+        self.layout.addWidget(self.amount_label)
+        
+        self.date_label = QLabel(self)
+        self.date_label.setText(self.transaction.date.strftime("%d/%m/%Y"))
+        self.date_label.setAlignment(Qt.AlignBottom)
+        self.layout.addWidget(self.date_label)
+        
+        self.time_label = QLabel(self)
+        self.time_label.setText(self.transaction.time.strftime("%H:%M"))
+        self.time_label.setAlignment(Qt.AlignBottom)
+        self.layout.addWidget(self.time_label)
+        
+        self.description_label = QLabel(self)
+        self.description_label.setText(self.transaction.description)
+        self.description_label.setAlignment(Qt.AlignBottom)
+        self.layout.addWidget(self.description_label)
+        
+        self.setLayout(self.layout)
