@@ -436,7 +436,26 @@ class MainWindow(QMainWindow):
             self.ui.planEditButton.clicked.connect(self.enable_limits_edit)
 
     def enable_limits_edit(self):
-        self.toggle_edit_mode(True)
+        if self.manager.getParentalControl():
+            self.nagivateToPin("Enter your Parental PIN")
+            self.ui.pinLineEdit.textChanged.connect(self.handleEditBudgetPinPC)
+        else:
+            self.toggle_edit_mode(True)
+
+    def handleEditBudgetPinPC(self):
+        if len(self.ui.pinLineEdit.text()) <= 6 and len(self.ui.pinLineEdit.text()) > 0:
+            self.pin_labels[len(self.ui.pinLineEdit.text())-1].setStyleSheet("background-image: url(:/images/image/pin_dot.svg); background-repeat: no-repeat;")
+        if len(self.ui.pinLineEdit.text()) == 6:
+            pin = self.ui.pinLineEdit.text() + self.__salt
+            hash_object = hashlib.sha256(pin.encode())
+            pin = hash_object.hexdigest()
+            if self.manager.checkPin(pin):
+                self.ui.pinLineEdit.textChanged.disconnect()
+                self.toggle_edit_mode(True)
+                self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
+            else:
+                self.ui.pinErrorLabel.setText("Incorrect pin")
+                self.resetPIN()
 
     def save_limits_setting(self):
         if self.check_total_limit():
