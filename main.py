@@ -938,18 +938,21 @@ class MainWindow(QMainWindow):
         # text = pytesseract.image_to_string(img, lang='eng+tha')
         # print(text)
         url = "https://ocr.asprise.com/api/v1/receipt"
-        res = requests.post(
-            url,
-            data={
-                'api_key': 'TEST',
-                'recognizer': 'auto',
-                'ref_no': 'oct_python_123'
-            },
-            files={
-                'file': open(file_path, 'rb')
-            }
-        )
-        data = res.json()
+        # res = requests.post(
+        #     url,
+        #     data={
+        #         'api_key': 'TEST',
+        #         'recognizer': 'auto',
+        #         'ref_no': 'oct_python_123'
+        #     },
+        #     files={
+        #         'file': open(file_path, 'rb')
+        #     }
+        # )
+        # data = res.json()
+        with open ("test.json", "r") as f:
+            data = json.load(f)
+            
         print(data)
         for data in data['receipts']:
             for item in data['items']:
