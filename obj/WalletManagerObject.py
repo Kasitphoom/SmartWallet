@@ -4,11 +4,11 @@ from PySide6.QtCore import QSize, QRect, Qt, Slot, QTimer, Signal
 from PySide6.QtGui import QFont, QFontDatabase, QMouseEvent, QImage, QPixmap, QIntValidator
 
 class TransactionFrame(QFrame):
+    clicked = Signal()
     def __init__(self, parent, transaction, self_account_number):
         super().__init__(parent)
         self.transaction = transaction
         self.self_account_number = self_account_number
-        self.clicked = Signal()
         self.setStyleSheet("font-size: 16px; font-family: 'Montserrat';")
         self.initUI()
         
