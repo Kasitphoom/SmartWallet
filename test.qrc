@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="images">
+    <file>image/captureButton.svg</file>
+    <file>image/captureButtonPressed.svg</file>
+    <file>image/backcapturereceipt.svg</file>
     <file>image/backtransactioninfo.svg</file>
     <file>image/pin_dot.svg</file>
     <file>image/pin_no_dot.svg</file>
