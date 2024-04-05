@@ -921,7 +921,7 @@ class MainWindow(QMainWindow):
     
 # ================================== Add Bill ==================================
 
-    def addSingleBill(self, name, amount):
+    def addSingleBill(self, name='', amount=0):
         self.ui.single_bill_frame.layout().addWidget(BillFrame(self.ui.single_bill_frame, name, amount))
     
     def addBillFromFile(self):

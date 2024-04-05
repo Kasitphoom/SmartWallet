@@ -92,7 +92,7 @@ class BillFrame(QFrame):
         self.deleteButton = QPushButton(self)
         self.deleteButton.setText("Trash")
         self.deleteButton.clicked.connect(self.delete)
-        self.deleteButton.setStyleSheet("background-color: #AB3428; color: white; border-radius: 5px; padding: 10px; font-size: 16px; font-family: 'Font Awesome 6 Free';")
+        self.deleteButton.setStyleSheet("background-color: #AB3428; color: white; border-radius: 5px; padding: 10px; font-size: 16px; font-family: 'Font Awesome 6 Free'; font-style: solid;")
         self.deleteButton.setCursor(Qt.PointingHandCursor)
         
         self.layout.addWidget(self.nameInput, stretch=2)
