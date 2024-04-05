@@ -30,6 +30,9 @@ import hashlib
 import cv2
 import qrcode
 
+import requests
+import json
+
 LIMIT_LABEL = ["housing", "food", "transport", "entertainment", "healthcare", "saving"]
 TRANSFER_TYPE_LABEL = ["housing", "food", "transport", "entertainment", "healthcare", "saving", "return", "lend", "others"]
 LOOK_UP_OBJ_NAME = ["LineEdit", "progressbar", "Button"]
@@ -918,8 +921,8 @@ class MainWindow(QMainWindow):
     
 # ================================== Add Bill ==================================
 
-    def addSingleBill(self):
-        self.ui.single_bill_frame.layout().addWidget(BillFrame(self.ui.scrollAreaWidgetContents_9))
+    def addSingleBill(self, name, amount):
+        self.ui.single_bill_frame.layout().addWidget(BillFrame(self.ui.single_bill_frame, name, amount))
     
     def addBillFromFile(self):
         file_dialog = QFileDialog()
@@ -931,9 +934,26 @@ class MainWindow(QMainWindow):
 
     def file_selected(self, file_path):
         # Display the selected file path
-        img = Image.open(file_path)
-        text = pytesseract.image_to_string(img, lang='eng+tha')
-        print(text)
+        # img = Image.open(file_path)
+        # text = pytesseract.image_to_string(img, lang='eng+tha')
+        # print(text)
+        url = "https://ocr.asprise.com/api/v1/receipt"
+        res = requests.post(
+            url,
+            data={
+                'api_key': 'TEST',
+                'recognizer': 'auto',
+                'ref_no': 'oct_python_123'
+            },
+            files={
+                'file': open(file_path, 'rb')
+            }
+        )
+        data = res.json()
+        print(data)
+        for data in data['receipts']:
+            for item in data['items']:
+                self.addSingleBill(item['description'], item['amount'])
 
 
 # ================================== Event Handling & Helper Functions ==================================
