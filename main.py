@@ -1,7 +1,7 @@
 import sys
 
 from PySide6 import QtCore, QtWidgets
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout, QCheckBox, QFileDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout, QCheckBox, QFileDialog, QMessageBox
 from PySide6.QtCore import QSize, QRect, Qt, Slot, QTimer, Signal
 from PySide6.QtGui import QFont, QFontDatabase, QMouseEvent, QImage, QPixmap
 from mainwindow import Ui_MainWindow
@@ -208,6 +208,7 @@ class MainWindow(QMainWindow):
         # handle add bill
         self.ui.add_single_billButton.clicked.connect(self.addSingleBill)
         self.ui.add_bill_choose_fileButton.clicked.connect(self.addBillFromFile)
+        self.ui.finish_addbillButton.clicked.connect(self.finishAddBill)
 
 # ================================== Login and Registration Handling ==================================
 
@@ -953,11 +954,33 @@ class MainWindow(QMainWindow):
         with open ("test.json", "r") as f:
             data = json.load(f)
             
-        print(data)
         for data in data['receipts']:
             for item in data['items']:
-                self.addSingleBill(item['description'], item['amount'])
+                self.addSingleBill(item['description'], float(item['amount']))
 
+    def finishAddBill(self):
+        billName = self.ui.billName.text()
+        
+        items = []
+        total = 0
+        for item in self.ui.single_bill_frame.children():
+            if isinstance(item, BillFrame):
+                items.append(item.getValues())
+                total += float(item.getValues()[1])
+        
+        if self.manager.addBill(items, total, billName):
+            self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
+            self.update_window()
+            for item in self.ui.single_bill_frame.children():
+                if isinstance(item, BillFrame):
+                    item.deleteLater()
+        else:
+            warning = QMessageBox()
+            warning.setIcon(QMessageBox.Warning)
+            warning.setWindowTitle("Warning")
+            warning.setText("Something Went wrong")
+            warning.exec()
+                
 
 # ================================== Event Handling & Helper Functions ==================================
 

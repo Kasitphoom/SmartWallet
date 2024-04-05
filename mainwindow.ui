@@ -3271,7 +3271,7 @@ background-color: none;</string>
                     <x>0</x>
                     <y>0</y>
                     <width>393</width>
-                    <height>837</height>
+                    <height>845</height>
                    </rect>
                   </property>
                   <property name="maximumSize">
@@ -9679,7 +9679,7 @@ color: rgb(145, 145, 145);</string>
                    </widget>
                   </item>
                   <item row="1" column="0" colspan="2">
-                   <widget class="QLineEdit" name="lineEdit">
+                   <widget class="QLineEdit" name="billName">
                     <property name="font">
                      <font>
                       <family>Montserrat</family>
@@ -9784,7 +9784,7 @@ color: rgb(145, 145, 145);</string>
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">background-color: rgb(184, 255, 255);</string>
+                     <string notr="true">width: 0px;</string>
                     </property>
                     <property name="widgetResizable">
                      <bool>true</bool>
