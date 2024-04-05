@@ -117,7 +117,7 @@ color: rgb(0, 0, 0);</string>
               <number>0</number>
              </property>
              <property name="currentIndex">
-              <number>12</number>
+              <number>2</number>
              </property>
              <widget class="QWidget" name="dashboardPage">
               <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -175,7 +175,7 @@ width:0px;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>391</width>
+                    <width>390</width>
                     <height>1074</height>
                    </rect>
                   </property>
@@ -3054,7 +3054,7 @@ height: 0px;</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>351</width>
+                       <width>133</width>
                        <height>105</height>
                       </rect>
                      </property>
@@ -3271,7 +3271,7 @@ background-color: none;</string>
                     <x>0</x>
                     <y>0</y>
                     <width>393</width>
-                    <height>845</height>
+                    <height>844</height>
                    </rect>
                   </property>
                   <property name="maximumSize">
@@ -5389,6 +5389,9 @@ QLineEdit::focus {
                              <bold>true</bold>
                             </font>
                            </property>
+                           <property name="cursor">
+                            <cursorShape>PointingHandCursor</cursorShape>
+                           </property>
                            <property name="styleSheet">
                             <string notr="true">background-color: #FFF4EA;
 color: #F49E4C;
@@ -7076,8 +7079,8 @@ color: #F49E4C;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>391</width>
-                    <height>555</height>
+                    <width>122</width>
+                    <height>16</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_60">
@@ -8496,7 +8499,7 @@ reached the budget limit.</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>321</width>
+                       <width>100</width>
                        <height>224</height>
                       </rect>
                      </property>
@@ -9794,7 +9797,7 @@ color: rgb(145, 145, 145);</string>
                       <rect>
                        <x>0</x>
                        <y>0</y>
-                       <width>371</width>
+                       <width>100</width>
                        <height>350</height>
                       </rect>
                      </property>
@@ -10147,8 +10150,8 @@ border-radius:5px;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>391</width>
-                    <height>378</height>
+                    <width>265</width>
+                    <height>361</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_88">
