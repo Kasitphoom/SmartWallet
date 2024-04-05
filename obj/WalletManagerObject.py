@@ -1,6 +1,6 @@
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout, QHBoxLayout, QLineEdit
-from PySide6.QtCore import QSize, QRect, Qt, Slot, QTimer
+from PySide6.QtCore import QSize, QRect, Qt, Slot, QTimer, Signal
 from PySide6.QtGui import QFont, QFontDatabase, QMouseEvent, QImage, QPixmap, QIntValidator
 
 class TransactionFrame(QFrame):
@@ -8,11 +8,16 @@ class TransactionFrame(QFrame):
         super().__init__(parent)
         self.transaction = transaction
         self.self_account_number = self_account_number
+        self.clicked = Signal()
         self.setStyleSheet("font-size: 16px; font-family: 'Montserrat';")
         self.initUI()
         
     def checkExpense(self):
         return self.transaction.sender.getID() == self.self_account_number
+
+    def mousePressEvent(self, event: QMouseEvent) -> None:
+        self.clicked.emit()
+        return super().mousePressEvent(event)
     
     def initUI(self):
         # self.setGeometry(QRect(0, 0, 300, 100))

@@ -634,16 +634,22 @@ class MainWindow(QMainWindow):
                 date_label.setStyleSheet("color: #A1A5AD; font-size: 16px; font-weight: bold; font-family: Montserrat;")
                 self.ui.transaction_history_frame.layout().addWidget(date_label)
             
+            transaction_element = TransactionFrame(self.ui.transaction_history_frame, transaction, self.manager.get_account_number())
+            transaction_element.clicked.connect(lambda: self.handleTransactionDetail(transaction))
+            
             if history_type == "expense":
                 if transaction.sender.getID() == self.manager.get_account_number():
-                    self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction, self.manager.get_account_number()))
+                    self.ui.transaction_history_frame.layout().addWidget(transaction_element)
             elif history_type == "income":
                 if transaction.recipient.getID() == self.manager.get_account_number():
-                    self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction, self.manager.get_account_number()))
+                    self.ui.transaction_history_frame.layout().addWidget(transaction_element)
             else:
-                self.ui.transaction_history_frame.layout().addWidget(TransactionFrame(self.ui.transaction_history_frame, transaction, self.manager.get_account_number()))
+                self.ui.transaction_history_frame.layout().addWidget(transaction_element)
             print(transaction)
         self.ui.transaction_history_frame.layout().addStretch()
+    
+    def handleTransactionDetail(self, transaction):
+        print(transaction.transactionID)
 
 #=================================== My QR Code ==================================
             
