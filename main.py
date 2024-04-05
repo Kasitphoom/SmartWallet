@@ -851,6 +851,7 @@ class MainWindow(QMainWindow):
             "total_expense": total_expense,
         }
         """
+        print(data)
         income_data = data["income"]
         expense_data = data["expense"]
 
@@ -878,7 +879,7 @@ class MainWindow(QMainWindow):
             elif history_type == "income":
                 self.ax.bar(x, y1, width=0.4, label='Income', color="green")
             elif history_type == "expense":
-                self.ax.bar([i + 0.4 for i in range(len(x))], y2, width=0.4, label='Expense', color="red")
+                self.ax.bar(x, y2, width=0.4, label='Income', color="red")
 
         #Customize plot
         self.ax.set_ylabel('Baht', fontsize=9)
