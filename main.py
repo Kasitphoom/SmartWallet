@@ -18,7 +18,8 @@ from PIL import Image, ImageDraw, ImageFont, ImageGrab
 from obj.walletmanager import WalletManager
 from obj.account import Account
 from obj.roundprogressbar import roundProgressBar
-from obj.WalletManagerObject import TransactionFrame, BillFrame
+from obj.WalletManagerObject import TransactionFrame, BillFrame, TransactionItem
+from obj.transaction import Transaction
 
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
@@ -51,9 +52,9 @@ else:
         pickle.dump(user_cache, f)
 
 class MainWindow(QMainWindow):
-    def __init__(self, manager: WalletManager):
+    def __init__(self):
         super().__init__()
-        self.manager = manager
+        self.manager = WalletManager()
         self.account_number_visibility = False
         self.calculated_limits = {}
         self.__salt = "rT8jllFhs7"
@@ -104,7 +105,7 @@ class MainWindow(QMainWindow):
         
         if user_cache == "":
             self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
-        elif manager.check_accounts(user_cache):
+        elif self.manager.check_accounts(user_cache):
             self.manager.set_account(user_cache)
             self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
             self.update_window()
@@ -635,21 +636,41 @@ class MainWindow(QMainWindow):
                 self.ui.transaction_history_frame.layout().addWidget(date_label)
             
             transaction_element = TransactionFrame(self.ui.transaction_history_frame, transaction, self.manager.get_account_number())
-            transaction_element.clicked.connect(lambda: self.handleTransactionDetail(transaction))
+            transaction_element.clicked.connect(self.handleTransactionDetail)
             
             if history_type == "expense":
-                if transaction.sender.getID() == self.manager.get_account_number():
+                if self.manager.isSelfExpense(transaction):
                     self.ui.transaction_history_frame.layout().addWidget(transaction_element)
             elif history_type == "income":
-                if transaction.recipient.getID() == self.manager.get_account_number():
+                if not self.manager.isSelfExpense(transaction):
                     self.ui.transaction_history_frame.layout().addWidget(transaction_element)
             else:
                 self.ui.transaction_history_frame.layout().addWidget(transaction_element)
             print(transaction)
         self.ui.transaction_history_frame.layout().addStretch()
     
-    def handleTransactionDetail(self, transaction):
-        print(transaction.transactionID)
+    @Slot(Transaction)
+    def handleTransactionDetail(self, transaction: Transaction):
+        self.ui.stackedWidget.setCurrentIndex(self.page["transactionInfo"])
+        self.ui.sender_label.setText(transaction.sender.getName())
+        self.ui.reciever_label.setText(transaction.recipient.getName())
+        self.ui.date_time_label.setText(transaction.date.strftime("%d/%m/%Y %H:%M:%S"))
+        self.ui.transaction_type_label.setText(transaction.__class__.__name__.upper())
+        self.ui.total_amount_label.setText(f"{transaction.amount:,.2f}")
+        self.ui.spend_limit_label.setText(f"{transaction.spendlimit:,.2f}")
+        self.ui.saved_amount_label.setText(f"{transaction.saved:,.2f}")
+        self.ui.spend_amount_label.setText(f"{transaction.spend:,.2f}")
+        
+        for i in reversed(range(self.ui.transactionDetailframe.layout().count())):
+            item = self.ui.transactionDetailframe.layout().itemAt(i)
+            if item.widget():
+                item.widget().deleteLater()
+            elif item.spacerItem():
+                self.ui.transactionDetailframe.layout().takeAt(i)
+        
+        for item in transaction.itemList:
+            item_frame = TransactionItem(self.ui.transactionDetailframe, item)
+            self.ui.transactionDetailframe.layout().addWidget(item_frame)
 
 #=================================== My QR Code ==================================
             
@@ -1086,6 +1107,7 @@ class MainWindow(QMainWindow):
             for item in self.ui.single_bill_frame.children():
                 if isinstance(item, BillFrame):
                     item.deleteLater()
+            self.ui.billName.setText("")
         else:
             warning = QMessageBox()
             warning.setIcon(QMessageBox.Warning)
@@ -1183,7 +1205,6 @@ class MainWindow(QMainWindow):
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    manager = WalletManager()
-    main = MainWindow(manager)
+    main = MainWindow()
     main.show()
     sys.exit(app.exec())

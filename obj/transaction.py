@@ -14,7 +14,7 @@ class Transaction(persistent.Persistent):
         self.spendlimit = spendlimit
         self.saved = saved
         self.spend = spend
-        self.itemList = ["Not Specified", amount]
+        self.itemList = [["Not Specified", amount]]
 
     def __str__(self):
         return f"{self.date} {self.amount} {self.description} {self.date}"
@@ -62,3 +62,7 @@ class Return(Transaction):
 class Others(Transaction):
     def __init__(self, transactionID, date: datetime, time: time, amount: float, sender, recipient, spendlimit = 0, saved = 0, spend = 0, description: str = ""):
         super().__init__(transactionID, date, time, amount, sender, recipient, spendlimit, saved, spend, description)
+
+class Bill(Transaction):
+    def __init__(self, transactionID, date: datetime, time: time, amount: float, sender, recipient, description: str = ""):
+        super().__init__(transactionID, date, time, amount, sender, recipient, spend = amount, description = description)
