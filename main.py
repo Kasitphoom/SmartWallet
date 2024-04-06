@@ -133,40 +133,40 @@ class MainWindow(QMainWindow):
         self.ui.eyeButtonDT.clicked.connect(self.handleAccountNumberVisibility)
         
         # buttons to change page
-        self.ui.dashboardButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
-        self.ui.ftransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["transfer"]))
-        self.ui.fbudgetplannerButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["budgetplanner"]))
-        self.ui.budgetplannerButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["budgetplanner"]))
-        self.ui.redirectToRegisterButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(self.page["register"]))
-        self.ui.redirectToLoginButton.clicked.connect(lambda: self.ui.stackedWidget_2.setCurrentIndex(self.page["login"]))
-        self.ui.transferbackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
-        self.ui.navigateToDirectTransferButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["directtransfer"]))
+        self.ui.dashboardButton.clicked.connect(lambda: self.changePage("dashboard"))
+        self.ui.ftransferButton.clicked.connect(lambda:self.changePage("transfer"))
+        self.ui.fbudgetplannerButton.clicked.connect(lambda: self.changePage("budgetplanner"))
+        self.ui.budgetplannerButton.clicked.connect(lambda: self.changePage("budgetplanner"))
+        self.ui.redirectToRegisterButton.clicked.connect(lambda: self.changeState("register"))
+        self.ui.redirectToLoginButton.clicked.connect(lambda: self.changeState("login"))
+        self.ui.transferbackButton.clicked.connect(lambda: self.changePage("dashboard"))
+        self.ui.navigateToDirectTransferButton.clicked.connect(lambda: self.changePage("directtransfer"))
         self.ui.navigateToDirectQrcodeButton.clicked.connect(self.handleNavigationToScanQRCode)
-        self.ui.fhistoryButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["history"]))
-        self.ui.historyButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["history"]))
-        self.ui.othersButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["others"]))
-        self.ui.setting_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["setting"]))
-        self.ui.fmyqrButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["myQRcode"]))
-        self.ui.parental_control_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["parentalcontrol"]))
-        self.ui.faddbillsButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["addbill"]))
+        self.ui.fhistoryButton.clicked.connect(lambda: self.changePage("history"))
+        self.ui.historyButton.clicked.connect(lambda: self.changePage("history"))
+        self.ui.othersButton.clicked.connect(lambda: self.changePage("others"))
+        self.ui.setting_button.clicked.connect(lambda: self.changePage("setting"))
+        self.ui.fmyqrButton.clicked.connect(lambda: self.changePage("myQRcode"))
+        self.ui.parental_control_button.clicked.connect(lambda: self.changePage("parentalcontrol"))
+        self.ui.faddbillsButton.clicked.connect(lambda: self.changePage("addbill"))
         self.ui.graphButton.clicked.connect(self.handleNavigationToGraph)
         self.ui.fsummaryButton.clicked.connect(self.handleNavigationToGraph)
         self.ui.add_bill_open_cameraButton.clicked.connect(self.handleNaviationToCaptureReceipt)
-        self.ui.capturereceiptBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["addbill"]))
+        self.ui.capturereceiptBackButton.clicked.connect(lambda: self.changePage("addbill"))
         self.ui.captureButton.clicked.connect(self.capture_image)
 
         
         # back buttons
-        self.ui.budgetBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
-        self.ui.dicrectTransferBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["transfer"]))
-        self.ui.historybackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
-        self.ui.othersBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
-        self.ui.scanQRCodeBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["transfer"]))
-        self.ui.settingBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["others"]))
-        self.ui.transferbackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
-        self.ui.parentalControlBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["setting"]))
-        self.ui.graphBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
-        self.ui.addbillBackButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"]))
+        self.ui.budgetBackButton.clicked.connect(lambda: self.changePage("dashboard"))
+        self.ui.dicrectTransferBackButton.clicked.connect(lambda: self.changePage("transfer"))
+        self.ui.historybackButton.clicked.connect(lambda: self.changePage("dashboard"))
+        self.ui.othersBackButton.clicked.connect(lambda: self.changePage("dashboard"))
+        self.ui.scanQRCodeBackButton.clicked.connect(lambda: self.changePage("transfer"))
+        self.ui.settingBackButton.clicked.connect(lambda: self.changePage("others"))
+        self.ui.transferbackButton.clicked.connect(lambda: self.changePage("dashboard"))
+        self.ui.parentalControlBackButton.clicked.connect(lambda: self.changePage("setting"))
+        self.ui.graphBackButton.clicked.connect(lambda: self.changePage("dashboard"))
+        self.ui.addbillBackButton.clicked.connect(lambda: self.changePage("dashboard"))
 
         # Pin
         self.pin_labels = [self.ui.pin_1, self.ui.pin_2, self.ui.pin_3, self.ui.pin_4, self.ui.pin_5, self.ui.pin_6]
@@ -1103,7 +1103,7 @@ class MainWindow(QMainWindow):
                 total += float(item.getValues()[1])
         
         if self.manager.addBill(items, total, billName):
-            self.ui.stackedWidget.setCurrentIndex(self.page["dashboard"])
+            self.changePage("dashboard")
             self.update_window()
             for item in self.ui.single_bill_frame.children():
                 if isinstance(item, BillFrame):
@@ -1117,7 +1117,7 @@ class MainWindow(QMainWindow):
             warning.exec()
                 
     def handleNaviationToCaptureReceipt(self):
-        self.ui.stackedWidget.setCurrentIndex(self.page["captureReceipt"])
+        self.changePage("captureReceipt")
         
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_frame)
@@ -1127,6 +1127,11 @@ class MainWindow(QMainWindow):
     
 
 # ================================== Event Handling & Helper Functions ==================================
+    def changePage(self, pageIndex):
+        self.ui.stackedWidget.setCurrentIndex(self.page[pageIndex])
+    
+    def changeState(self, state):
+        self.ui.stackedWidget_2.setCurrentIndex(self.page[state])
 
     def eventFilter(self, obj, event):
         if type(event) == QMouseEvent and obj == self.ui.frame_12 and event.button() == Qt.MouseButton.LeftButton:
