@@ -873,7 +873,7 @@ class MainWindow(QMainWindow):
             "total_expense": total_expense,
         }
         """
-        print(data)
+        
         income_data = data["income"]
         expense_data = data["expense"]
 
