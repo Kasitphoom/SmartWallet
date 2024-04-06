@@ -133,9 +133,8 @@ class WalletManager():
         return self.account.average_income
     
     def save_limits_and_income(self, limits, income):
-        self.account.limits_rate = limits
-        self.account.average_income = income
-        self.account.updateMonthlyLimits()
+        self.account.setLimit(limits)
+        self.account.setAverageIncome(income)
         root._p_changed = True
         connection.transaction_manager.commit()
 

@@ -506,8 +506,9 @@ class MainWindow(QMainWindow):
     def updateRoundProgressBars(self):
         for progressbar in self.roundprogressbars:
             self.check_if_limit_is_zero(progressbar, progressbar.get_category())
-            progressbar.update_value(self.cal_used_monthly_limit_category(progressbar.get_category()))
-            self.progressbars_label[progressbar.get_category()].setText(str(int(self.cal_used_monthly_limit_category(progressbar.get_category()) * 100)) + "%")
+            use_monthly_limit = self.cal_used_monthly_limit_category(progressbar.get_category())
+            progressbar.update_value(use_monthly_limit)
+            self.progressbars_label[progressbar.get_category()].setText(str(int(use_monthly_limit * 100)) + "%")
 
     def check_if_limit_is_zero(self, progressbar, category):
         percent_in_fraction = self.cal_used_monthly_limit_category(category)

@@ -48,6 +48,13 @@ class Account(persistent.Persistent):
     def withdraw(self, amount):
         self.balance -= amount
     
+    def setLimit(self, limit):
+        self.limits_rate = limit
+    
+    def setAverageIncome(self, income):
+        self.average_income = income
+        self.updateMonthlyLimits()
+    
     def getID(self):
         return self.ID
     
