@@ -52,9 +52,9 @@ else:
         pickle.dump(user_cache, f)
 
 class MainWindow(QMainWindow):
-    def __init__(self, manager: WalletManager):
+    def __init__(self):
         super().__init__()
-        self.manager = manager
+        self.manager = WalletManager()
         self.account_number_visibility = False
         self.calculated_limits = {}
         self.__salt = "rT8jllFhs7"
@@ -105,7 +105,7 @@ class MainWindow(QMainWindow):
         
         if user_cache == "":
             self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
-        elif manager.check_accounts(user_cache):
+        elif self.manager.check_accounts(user_cache):
             self.manager.set_account(user_cache)
             self.ui.stackedWidget_2.setCurrentIndex(self.page["main"])
             self.update_window()
@@ -639,10 +639,10 @@ class MainWindow(QMainWindow):
             transaction_element.clicked.connect(self.handleTransactionDetail)
             
             if history_type == "expense":
-                if transaction.sender.getID() == self.manager.get_account_number():
+                if self.manager.isSelfExpense(transaction):
                     self.ui.transaction_history_frame.layout().addWidget(transaction_element)
             elif history_type == "income":
-                if transaction.recipient.getID() == self.manager.get_account_number():
+                if not self.manager.isSelfExpense(transaction):
                     self.ui.transaction_history_frame.layout().addWidget(transaction_element)
             else:
                 self.ui.transaction_history_frame.layout().addWidget(transaction_element)
@@ -1205,7 +1205,6 @@ class MainWindow(QMainWindow):
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    manager = WalletManager()
-    main = MainWindow(manager)
+    main = MainWindow()
     main.show()
     sys.exit(app.exec())
