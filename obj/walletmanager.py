@@ -299,7 +299,7 @@ class WalletManager():
     
     def addBill(self, item, total, billName):
         try:
-            transaction = Others(str(uuid.uuid4()), self.current_date, datetime.now().time(), float(total), self.account, self.account, billName)
+            transaction = Bill(str(uuid.uuid4()), self.current_date, datetime.now().time(), float(total), self.account, self.account, billName)
             transaction.setItemList(item)
             root.transactions[transaction.transactionID] = transaction
             self.account.addTransaction(root.transactions[transaction.transactionID])

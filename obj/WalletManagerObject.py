@@ -3,9 +3,11 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayou
 from PySide6.QtCore import QSize, QRect, Qt, Slot, QTimer, Signal
 from PySide6.QtGui import QFont, QFontDatabase, QMouseEvent, QImage, QPixmap, QIntValidator
 
+from obj.transaction import Transaction
+
 class TransactionFrame(QFrame):
-    clicked = Signal()
-    def __init__(self, parent, transaction, self_account_number):
+    clicked = Signal(Transaction)
+    def __init__(self, parent, transaction: Transaction, self_account_number):
         super().__init__(parent)
         self.transaction = transaction
         self.self_account_number = self_account_number
@@ -16,7 +18,7 @@ class TransactionFrame(QFrame):
         return self.transaction.sender.getID() == self.self_account_number
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
-        self.clicked.emit()
+        self.clicked.emit(self.transaction)
         return super().mousePressEvent(event)
     
     def initUI(self):
@@ -109,49 +111,46 @@ class BillFrame(QFrame):
     
     def getValues(self):
         return [self.nameInput.text(), self.amountInput.text()]
-        
-class TransactionInfo(QFrame):
-    def __init__(self, parent, transaction):
+
+class TransactionItem(QFrame):
+    def __init__(self, parent, item: list):
         super().__init__(parent)
-        self.transaction = transaction
+        self.item = item
         self.setStyleSheet("font-size: 16px; font-family: 'Montserrat';")
         self.initUI()
         
     def initUI(self):
         self.setFrameShape(QFrame.StyledPanel)
         self.setFrameShadow(QFrame.Raised)
-        self.setObjectName("frame")
-        self.layout = QVBoxLayout(self)
+        self.setObjectName("TransactionItemFrame")
+        self.layout = QHBoxLayout(self)
         self.layout.setContentsMargins(0, 0, 0, 0)
         
-        self.sender_label = QLabel(self)
-        self.sender_label.setText(self.transaction.sender.getName())
-        self.sender_label.setAlignment(Qt.AlignBottom)
-        self.layout.addWidget(self.sender_label)
+        self.itemName = QLabel(self)
+        self.itemName.setText(self.item[0] if len(self.item[0]) < 17 else self.item[0][:17] + "...")
+        self.itemName.setObjectName("itemName")
+        self.itemName.setStyleSheet("font-size: 16px; font-weight: bold; color: #979797;")
+        self.layout.addWidget(self.itemName)
         
-        self.receiver_label = QLabel(self)
-        self.receiver_label.setText(self.transaction.recipient.getName())
-        self.receiver_label.setAlignment(Qt.AlignBottom)
-        self.layout.addWidget(self.receiver_label)
+        self.amountFrame = QFrame(self)
+        self.amountFrame.layout = QHBoxLayout(self.amountFrame)
+        self.amountFrame.layout.addStretch(1)
         
-        self.amount_label = QLabel(self)
-        self.amount_label.setText(str(self.transaction.amount))
-        self.amount_label.setAlignment(Qt.AlignBottom)
-        self.layout.addWidget(self.amount_label)
+        self.itemAmount = QLabel(self)
+        self.itemAmount.setText(f"{float(self.item[1]): ,.2f}")
+        self.itemAmount.setObjectName("itemAmount")
+        self.itemAmount.setStyleSheet("font-size: 16px; font-weight: bold; color: black;")
         
-        self.date_label = QLabel(self)
-        self.date_label.setText(self.transaction.date.strftime("%d/%m/%Y"))
-        self.date_label.setAlignment(Qt.AlignBottom)
-        self.layout.addWidget(self.date_label)
+        self.layout.addStretch(1)
         
-        self.time_label = QLabel(self)
-        self.time_label.setText(self.transaction.time.strftime("%H:%M"))
-        self.time_label.setAlignment(Qt.AlignBottom)
-        self.layout.addWidget(self.time_label)
+        self.thb = QLabel(self)
+        self.thb.setText("THB")
+        self.thb.setObjectName("thb")
+        self.thb.setStyleSheet("font-size: 10px; font-family: 'Montserrat'; color: black;")
         
-        self.description_label = QLabel(self)
-        self.description_label.setText(self.transaction.description)
-        self.description_label.setAlignment(Qt.AlignBottom)
-        self.layout.addWidget(self.description_label)
+        self.amountFrame.layout.addWidget(self.itemAmount)
+        self.amountFrame.layout.addWidget(self.thb)
+        
+        self.layout.addWidget(self.amountFrame)
         
         self.setLayout(self.layout)
