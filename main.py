@@ -1067,7 +1067,9 @@ class MainWindow(QMainWindow):
 
     def closeEvent(self, event):
         # Release the camera when closing the application
-        self.camera.release()
+        if hasattr(self, "camera"):
+            if self.camera.isOpened():
+                self.camera.release()
         event.accept()
 
     
