@@ -2,10 +2,11 @@ import sys
 import os
 
 from PySide6 import QtCore, QtWidgets
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout, QCheckBox, QFileDialog, QMessageBox
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QFrame, QTreeWidget, QTreeWidgetItem, QLineEdit, QLayoutItem, QLayout, QCheckBox, QFileDialog, QMessageBox, QDialog
 from PySide6.QtCore import QSize, QRect, Qt, Slot, QTimer, Signal
 from PySide6.QtGui import QFont, QFontDatabase, QMouseEvent, QImage, QPixmap
 from mainwindow import Ui_MainWindow
+from info import Ui_Dialog
 
 from py_toggle import ToggleSwitch
 
@@ -50,6 +51,18 @@ else:
     with open(USER_CACHE_FILE, "wb") as f:
         user_cache = ""
         pickle.dump(user_cache, f)
+
+class InfoDialog(QDialog):
+    def __init__(self, system):
+        QDialog.__init__(self, None)
+        self.ui = Ui_Dialog()
+        self.ui.setupUi(self)
+        self.system = system
+        self.ui.pushButton.clicked.connect(self.submit)
+        self.date = None
+    
+    def submit(self):
+        self.close()
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -101,7 +114,6 @@ class MainWindow(QMainWindow):
         
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
         
         if user_cache == "":
             self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
@@ -154,6 +166,8 @@ class MainWindow(QMainWindow):
         self.ui.add_bill_open_cameraButton.clicked.connect(self.handleNaviationToCaptureReceipt)
         self.ui.capturereceiptBackButton.clicked.connect(lambda: self.changePage("addbill"))
         self.ui.captureButton.clicked.connect(self.capture_image)
+        self.ui.moreInfoButton.clicked.connect(self.show_info_dialog)
+        self.ui.moreInfoButtonDT.clicked.connect(self.show_info_dialog)
 
         
         # back buttons
@@ -1210,6 +1224,10 @@ class MainWindow(QMainWindow):
             user_cache = ""
             pickle.dump(user_cache, f)
         self.ui.stackedWidget_2.setCurrentIndex(self.page["login"])
+    
+    def show_info_dialog(self):
+        self.info_dialog = InfoDialog(self)
+        self.info_dialog.show()
     
         
 if __name__ == "__main__":
