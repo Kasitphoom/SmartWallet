@@ -852,6 +852,9 @@ class MainWindow(QMainWindow):
             history_type = "expense"
 
         data = self.drawGraph(date, type, graph_type, history_type)
+        self.updateSummary(data)
+
+    def updateSummary(self, data):
         self.ui.total_expense_amount.setText(f"{data['total_expense']:,.2f}")
         self.ui.total_income_amount.setText(f"{data['total_income']:,.2f}")
         self.ui.overall_amount.setText(f"{data['total_income'] - data['total_expense']:,.2f}")

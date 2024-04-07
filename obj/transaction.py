@@ -31,6 +31,11 @@ class Transaction(persistent.Persistent):
     def setItemList(self, itemList):
         self.itemList = itemList
 
+    def checkTransactionPeriod(self, type, period):
+        if (type == "day" and self.date == period) or (type == "month" and self.date.month == period) or (type == "year" and self.date.year == period):
+            return True
+        return False
+
 class Food(Transaction):
     def __init__(self, transactionID, date: datetime, time: time, amount: float, sender, recipient, spendlimit = 0, saved = 0, spend = 0, description: str = ""):
         super().__init__(transactionID, date, time, amount, sender, recipient, spendlimit, saved, spend, description)
