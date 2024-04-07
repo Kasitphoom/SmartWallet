@@ -242,9 +242,7 @@ class WalletManager():
         #get all transactions of that period
         transactions = [
             transaction for transaction in self.account.transactions if (
-                (type == "day" and transaction.date == period) or
-                (type == "month" and transaction.date.month == period) or
-                (type == "year" and transaction.date.year == period)
+                transaction.checkTransactionPeriod(type, period)
             )
         ]
             
